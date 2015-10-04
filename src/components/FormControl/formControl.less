@@ -1,0 +1,85 @@
+/**
+ * Created by AshZhang on 15/9/28.
+ */
+
+
+@import "../../common/styles/_variables";
+
+
+
+.label-up {
+  font-size: @font-sm;
+  line-height: @line-height;
+  -webkit-transform: translateY(-@font-sm * @line-height - (@control-height - @font-base * @line-height) / 2);
+  transform: translateY(-@font-sm * @line-height - (@control-height - @font-base * @line-height) / 2);
+}
+
+
+// Normal
+// ---------------------------
+
+.form-control {
+  border-bottom: @control-border solid @color-border;
+  margin-bottom: @gap;
+  padding-top: @font-sm * @line-height;
+  position: relative;
+}
+
+.form-label {
+  color: @color-text-lighter;
+  pointer-events: none;
+  position: absolute;
+    top: @font-sm * @line-height + (@control-height - @font-base * @line-height) / 2;
+  -webkit-transition: all @duration ease-in-out;
+  transition: all @duration ease-in-out;
+}
+
+.form-tips {
+  display: none;
+  margin-left: @gap / 2;
+}
+
+
+// Has data
+// ---------------------------
+
+.form-has-data {
+
+  .form-label {
+    &:extend(.label-up);
+  }
+}
+
+
+// Focus
+// ---------------------------
+
+.form-focus {
+  border-bottom-color: @color-primary;
+
+  .form-label {
+    &:extend(.label-up);
+    color: @color-primary;
+  }
+
+  .form-tips {
+    display: inline;
+  }
+}
+
+
+// Invalid
+// ---------------------------
+
+.form-invalid {
+  border-bottom-color: @color-error;
+
+  .form-label {
+    &:extend(.label-up);
+    color: @color-error;
+  }
+
+  .form-tips {
+    display: inline;
+  }
+}

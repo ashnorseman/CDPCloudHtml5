@@ -1,0 +1,170 @@
+/**
+ * CSS Starter
+ */
+
+
+// Normalization
+// ---------------------------
+
+:root {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-text-size-adjust: 100%;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+button {
+  overflow: visible;
+}
+
+input {
+
+  &[type=number] {
+    width: auto;
+  }
+
+  &[type=search] {
+    -webkit-appearance: textfield;
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+main {
+  display: block;
+}
+
+pre {
+  overflow: auto;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[hidden] {
+  display: none;
+}
+
+
+// Inheritance
+// ---------------------------
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+* {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+
+// Defaults
+// ---------------------------
+
+*,
+::before,
+::after {
+  border: 0 solid;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  box-sizing: border-box;
+  font-size: 100%;
+  line-height: @line-height;
+  font-family: sans-serif;
+}
+
+html {
+  background: @color-bg;
+  color: @color-text;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  background: @form-element-bg;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+button,
+[type="button"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="email"],
+[type="month"],
+[type="number"],
+[type="password"],
+[type="reset"],
+[type="search"],
+[type="submit"],
+[type="tel"],
+[type="text"],
+[type="time"],
+[type="url"],
+[type="week"],
+select,
+textarea {
+  outline: 0;
+  min-height: @control-height;
+  width: 100%;
+}
+
+code,
+pre {
+  font-family: monospace;
+}
+
+nav ol,
+nav ul {
+  list-style: none;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &::-ms-value {
+    color: currentColor;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea {
+  resize: vertical;
+}

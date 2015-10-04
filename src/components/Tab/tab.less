@@ -1,0 +1,69 @@
+/**
+ * Created by AshZhang on 15/9/25.
+ */
+
+
+@import "../../common/styles/_variables";
+
+
+@tab-border:  0.125rem;
+
+
+.tab {
+  background: @color-bg-light;
+  color: @color-text-light;
+  display: table;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.tab-item {
+  display: table-cell;
+  line-height: @control-height;
+
+  &.active {
+    color: @color-text;
+  }
+}
+
+.tab-notification {
+  background: @color-primary;
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.5rem;
+  vertical-align: 0.5rem;
+  width: 0.5rem;
+}
+
+
+// Active line
+// ---------------------------
+
+.tab-active-line {
+  background: @color-primary;
+  height: @tab-border;
+  position: absolute;
+    left: 0;
+    bottom: 0;
+  width: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: all @duration @timing;
+  transition: all @duration @timing;
+
+  .active:nth-child(2) ~ & {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+
+  .active:nth-child(3) ~ & {
+    -webkit-transform: translateX(200%);
+    transform: translateX(200%);
+  }
+
+  .active:nth-child(4) ~ & {
+    -webkit-transform: translateX(300%);
+    transform: translateX(300%);
+  }
+}

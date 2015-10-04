@@ -1,0 +1,170 @@
+/**
+ * Ajax utilities
+ */
+
+
+'use strict';
+
+
+let domain = '';
+
+
+/**
+ * Guess dataType by url
+ * @param {string} url
+ * @returns {string}
+ */
+function parseDataType(url) {
+
+  if (/\.html?$/.test(url)) {
+    return 'html';
+  } else if (/\.jsx?$/.test(url)) {
+    return 'script';
+  }
+
+  return 'json';
+}
+
+
+/**
+ * Encode an object to a query string
+ * @param {Object} obj
+ * @returns {string}
+ */
+function makeQueryString(obj) {
+  let result = [];
+
+  for (let prop in obj) if (obj.hasOwnProperty(prop)) {
+    result.push(prop + '=' + encodeURIComponent(obj[prop]));
+  }
+
+  return result.length
+    ? '?' + result.join('&')
+    : '';
+}
+
+
+/**
+ * Throw error when response status is not between 200 and 299
+ * @param {Response} res
+ * @returns {Response}
+ */
+function checkStatus(res) {
+
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  } else {
+    let error = new Error(res.statusText);
+    error.response = res;
+    throw error;
+  }
+}
+
+
+/**
+ * Parse response according to response
+ * @param {Response} res
+ * @param {string} dataType
+ * @returns {Response}
+ */
+function parseResponse(res, dataType) {
+  const methodMap = {
+    html: 'text',
+    script: 'text',
+    json: 'json'
+  };
+
+  return res[methodMap[dataType] || 'json']();
+}
+
+
+/**
+ * If response contains `success: false`, throw an error
+ * @param {*} res
+ * @returns {Object|Error}
+ */
+function checkSuccessFalse(res) {
+  if (!res || (res.success !== false)) {
+    return res;
+  } else {
+    throw new Error(res);
+  }
+}
+
+
+/**
+ * General settings for `post`, `put` and `delete`
+ * @param {string} url
+ * @param {string} method
+ * @param {Object} [data]
+ * @returns {Promise}
+ */
+function sendData(url, method, data = {}) {
+  let option = {
+    method: method.toUpperCase()
+  };
+
+  if ('FormData' in window && data instanceof FormData) {
+
+    // Form
+    option.body = data;
+  } else {
+
+    // JSON
+    option.headers = {
+      'Content-Type': 'application/json'
+    };
+    option.body = JSON.stringify(data);
+  }
+
+  return fetch(url, option)
+    .then(checkStatus)
+    .then((res) => {
+      return res.json();
+    })
+    .then(checkSuccessFalse);
+}
+
+
+/**
+ * API
+ * @type {{get, post, put, delete}}
+ */
+export default {
+
+
+  /**
+   * Set global domain property
+   */
+  setDomain(newDomain) {
+    domain = newDomain;
+  },
+
+
+  // CRUD
+  // ---------------------------
+
+  get(url, data = {}) {
+    let query = data ? makeQueryString(data) : '';
+    let dataType = parseDataType(url);
+
+    return fetch(domain + url + query)
+      .then(checkStatus)
+      .then((res) => {
+        return parseResponse(res, dataType);
+      })
+      .then(checkSuccessFalse);
+  },
+
+  post(url, data = {}) {
+    return sendData(domain + url, 'POST', data);
+  },
+
+  put(url, data = {}) {
+    return sendData(domain + url, 'PUT', data);
+  },
+
+  delete(url, data = {}) {
+    return sendData(domain + url, 'DELETE', data);
+  }
+};

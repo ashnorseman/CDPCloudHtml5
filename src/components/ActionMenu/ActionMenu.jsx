@@ -1,0 +1,39 @@
+/**
+ * Created by AshZhang on 15/9/26.
+ */
+
+
+'use strict';
+
+import './actionMenu.less';
+
+import React, { Component } from 'react';
+
+import Icon from '../Icon/Icon.jsx';
+
+
+export default class ActionMenu extends Component {
+
+  render() {
+    const { items } = this.props,
+          menuItems = items.map((item, index) => {
+            const style = item.style || 1,
+                  className = `action-menu-item action-menu-style-${style}`;
+
+            return <a key={index} href={`#/${item.link}`} className={className}>
+              <Icon name={item.icon} className='action-menu-icon'>
+                {
+                  item.label ? <span className='action-menu-label'>{item.label}</span> : null
+                }
+              </Icon>
+              <span className='action-menu-text'>{item.text}</span>
+            </a>;
+          });
+
+    return (
+      <nav className='action-menu clearfix'>
+        {menuItems}
+      </nav>
+    );
+  }
+}

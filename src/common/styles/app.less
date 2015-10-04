@@ -1,0 +1,21 @@
+/**
+ * Common styles
+ */
+ 
+
+@import "_variables";
+@import "_starter";
+@import "_grid";
+
+.clearfix {
+
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

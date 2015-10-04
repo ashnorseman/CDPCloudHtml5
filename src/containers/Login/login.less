@@ -1,0 +1,93 @@
+/**
+ * Created by AshZhang on 15/10/3.
+ */
+
+
+@import "../../common/styles/_variables";
+
+
+@login-gap:   @gap * 2;
+@placeholder: fade(@color-bg, 50);
+
+
+// Login
+// ---------------------------
+
+.login {
+  background: url(login-bg.jpg);
+  height: 100%;
+  padding-left: @login-gap;
+  padding-right: @login-gap;
+  position: fixed;
+  width: 100%;
+}
+
+.login-logo {
+  padding: @control-height 0;
+  text-align: center;
+}
+
+.login-form {
+  color: @color-bg;
+
+  ::-moz-placeholder { color: @placeholder; }
+  ::-webkit-input-placeholder { color: @placeholder; }
+  :-ms-input-placeholder { color: @placeholder; }
+
+  .form-control {
+    border: 0;
+    padding-top: 0;
+  }
+
+  .checkbox-text {
+    opacity: 0.8;
+  }
+
+  .form-submit {
+    margin-top: @gap;
+  }
+}
+
+.login-forgot {
+  background: transparent;
+  float: right;
+  font-size: @font-sm;
+  opacity: 0.6;
+  padding: 0;
+  width: auto;
+}
+
+.login-copyright {
+  color: fade(#000, 40);
+  font-size: @font-sm;
+  margin-top: @control-height * 2;
+  text-align: center;
+}
+
+
+// Forgot password
+// ---------------------------
+
+.login-forgot-page {
+  padding: @control-height @login-gap;
+}
+
+.login-forgot-form {
+  position: relative;
+}
+
+.login-get-captcha {
+  padding: 0 @gap * 2;
+  position: absolute;
+    bottom: @control-border;
+    right: 0;
+  width: auto;
+}
+
+.login-reset-pwd {
+  margin-top: @control-height;
+}
+
+.login-reset-form {
+  padding: @control-height @login-gap;
+}
