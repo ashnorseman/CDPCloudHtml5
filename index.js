@@ -48,7 +48,7 @@ app.get('/:path?', function (req, res) {
   console.log('get: ', req.query);
 
   res.json({
-    success: false
+    success: true
   });
 });
 
