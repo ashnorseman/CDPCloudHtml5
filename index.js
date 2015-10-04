@@ -20,7 +20,7 @@ var path = require('path'),
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || PORT);
 app.use(cookieParser());
-app.use(express.static(path.resolve(__dirname, '/build')));
+app.use(express.static(__dirname + '/build'));
 
 
 // Middleware
