@@ -54,8 +54,8 @@ React.render((
       <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer} />
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 
-      <Route path='manager' name='manager' component={ManagerContainer} />
-      <Route path='*' name='employee' component={EmployeeContainer} />
+      <Route path='manager' name='manager' component={ManagerContainer} routerProps={{header:true}} />
+      <Route path='*' name='employee' component={EmployeeContainer} routerProps={{header:true}} />
     </Route>
   </Router>
 ), document.getElementById('app'));

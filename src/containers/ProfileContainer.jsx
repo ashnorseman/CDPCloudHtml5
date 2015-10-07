@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../common/lang';
+import Header from '../components/Header/Header.jsx';
 import ProfileStore from '../stores/ProfileStore';
 
 
@@ -25,7 +26,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <h2>{getLang('PROFILE')}</h2>
+        <Header back title={getLang('PROFILE')} />
       </div>
     );
   }

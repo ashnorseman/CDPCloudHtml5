@@ -80,7 +80,9 @@ class Home extends Component {
   }
 
   render() {
-    const { loggedIn, identity, menu } = this.state;
+    const { loggedIn, identity, menu } = this.state,
+          routeName = this.props.location.pathname,
+          hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1;
 
     Object.keys(menu).forEach((userType, index) => {
       tabItems[index].notification = menu[userType].some((item) => {
@@ -92,10 +94,14 @@ class Home extends Component {
       !loggedIn
         ? <LoginContainer />
         : <div>
-            <Header title='CDP Portal' dropdown={langDropdown}
-                    iconLeft='sign-out' onTapLeft={this.logout}></Header>
             {
-              (identity === 2)
+              hasHeader
+                ? <Header title='CDP Portal' dropdown={langDropdown}
+                          iconLeft='sign-out' onTapLeft={this.logout}></Header>
+                : null
+            }
+            {
+              hasHeader
                 ? <Tab items={tabItems}></Tab>
                 : null
             }

@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../common/lang';
+import Header from '../components/Header/Header.jsx';
 import SalaryStore from '../stores/SalaryStore';
 
 
@@ -25,7 +26,7 @@ class Salary extends Component {
   render() {
     return (
       <div>
-        <h2>{getLang('OT_MGR')}</h2>
+        <Header back title={getLang('OT_MGR')} />
       </div>
     );
   }
