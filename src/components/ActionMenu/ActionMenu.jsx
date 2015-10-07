@@ -23,7 +23,7 @@ export default class ActionMenu extends Component {
             return <a key={index} href={`#/${item.link}`} className={className}>
               <Icon name={item.icon} className='action-menu-icon'>
                 {
-                  item.label ? <span className='action-menu-label'>{item.label}</span> : null
+                  item.notification ? <span className='action-menu-label'>{item.notification}</span> : null
                 }
               </Icon>
               <span className='action-menu-text'>{item.text}</span>

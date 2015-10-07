@@ -24,7 +24,13 @@ class UserStore extends ReduceStore {
       lang: lang.getLang(),
       savedLogin: userCookie,
       basicInfo: userCookie,
-      profile: {}
+
+      // 0 - undefined
+      // 1 - employee
+      // 2 - manager
+      identity: 0,
+
+      menu: {}
     };
   }
 
@@ -48,9 +54,15 @@ class UserStore extends ReduceStore {
       UserDataUtils.setLang(action.data);
       break;
     case 'set-language-success':
+      location.reload();
       return assign({}, state, {
         lang: action.data
       });
+    case 'get-user-menu':
+      UserDataUtils.getUserMenu();
+      break;
+    case 'get-user-menu-success':
+      return assign({}, state, action.data);
     default:
     }
 

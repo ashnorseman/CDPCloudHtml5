@@ -36,10 +36,19 @@ const lang = {
     SAME_PWD: '必须和密码相同',
     PWD_RESET_SUCCESS: '密码重置成功',
 
-    WELCOME: '欢迎您',
-    LOGOUT: '退出登录',
+    // HOME
+    EMPLOYEE: '员工',
+    MANAGER: '经理',
+
     PROFILE: '我的信息',
     MY_SALARY: '我的薪酬',
+    MY_LEAVE: '请假',
+    MY_OT: '加班',
+    TEAM_PROFILE: '团队信息',
+    LEAVE_MGR: '请假管理',
+    OT_MGR: '加班管理',
+
+    LOGOUT: '退出登录',
 
     // Validation
     REQUIRED: '必填',
@@ -72,10 +81,19 @@ const lang = {
     SAME_PWD: 'Must the same as password',
     PWD_RESET_SUCCESS: 'Password reset succeeded.',
 
-    WELCOME: 'Welcome',
-    LOGOUT: 'Log out',
+    // HOME
+    EMPLOYEE: 'Employee',
+    MANAGER: 'Manager',
+
     PROFILE: 'Profile',
     MY_SALARY: 'My Salary',
+    MY_LEAVE: 'Leave',
+    MY_OT: 'Overtime',
+    TEAM_PROFILE: 'Team Profile',
+    LEAVE_MGR: 'Leave Management',
+    OT_MGR: 'Overtime Management',
+
+    LOGOUT: 'Log out',
 
     // Validation
     REQUIRED: 'Required',
@@ -108,10 +126,19 @@ const lang = {
     SAME_PWD: '必须和密码相同',
     PWD_RESET_SUCCESS: '密码重置成功',
 
-    WELCOME: 'ようこそ',
-    LOGOUT: 'ログアウト',
+    // HOME
+    EMPLOYEE: '従業員',
+    MANAGER: 'マネージャー',
+
     PROFILE: 'プロフィール',
     MY_SALARY: '私の給料',
+    MY_LEAVE: '休暇',
+    MY_OT: '残業',
+    TEAM_PROFILE: 'チームプロフィール',
+    LEAVE_MGR: '休暇管理',
+    OT_MGR: '残業管理',
+
+    LOGOUT: 'ログアウト',
 
     // Validation
     REQUIRED: '必要です',

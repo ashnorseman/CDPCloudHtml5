@@ -24,8 +24,14 @@ export default class Tab extends Component {
     const { items } = this.state,
           { onActivate } = this.props,
           hasActive = items.some((item) => {
+            if (item.name === location.hash.split('?')[0].slice(2)) {
+              item.active = true;
+            }
             return item.active;
-          });
+          }),
+          style = {
+            width: (100 / items.length) + '%'
+          };
 
     // Set default active item
     if (!hasActive) {
@@ -38,6 +44,8 @@ export default class Tab extends Component {
       const className = 'tab-item' + (item.active ? ' active' : '');
 
       return <a className={className} key={index}
+                href={`#/${item.name}`}
+                style={style}
                 onTouchTap={this.activateTab.bind(this, index)}>
         {item.text}
         {item.notification ? <span className='tab-notification'></span> : null}
@@ -45,7 +53,7 @@ export default class Tab extends Component {
     });
 
     return (
-      <nav className={'tab tab-count-' + items.length}>
+      <nav className={'tab clearfix tab-count-' + items.length}>
         {tabItems}
         <div className='tab-active-line' style={{width: 100 / items.length + '%'}}></div>
       </nav>

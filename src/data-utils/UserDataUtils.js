@@ -143,5 +143,23 @@ export default {
           type: 'check-captcha-success'
         });
       });
+  },
+
+
+  // Home
+  // ---------------------------
+
+
+  /**
+   * Get user identity and custom menu
+   */
+  getUserMenu() {
+    ajax.get('/user-menu')
+      .then((res) => {
+        dispatch({
+          type: 'get-user-menu-success',
+          data: res.data
+        });
+      });
   }
 };

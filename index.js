@@ -45,11 +45,54 @@ app.use(function (req, res, next) {
 
 // GET
 app.get('/:path?', function (req, res) {
-  console.log('get: ', req.query);
+  var path = req.params.path;
 
-  res.json({
-    success: true
-  });
+  if (!path) {
+    return res.sendFile(__dirname + '/build/index.html');
+  }
+
+  switch (path) {
+  case 'user-menu':
+    return res.json({
+      success: true,
+      data: {
+        identity: 2,
+        menu: {
+          employee: [
+            {
+              name: 'profile'
+            },
+            {
+              name: 'mySalary'
+            },
+            {
+              name: 'myLeave'
+            },
+            {
+              name: 'myOT'
+            }
+          ],
+          manager: [
+            {
+              name: 'teamProfile'
+            },
+            {
+              name: 'leaveMgr',
+              notification: 1
+            },
+            {
+              name: 'otMgr',
+              notification: 1
+            }
+          ]
+        }
+      }
+    });
+  default:
+    res.json({
+      success: true
+    });
+  }
 });
 
 // POST

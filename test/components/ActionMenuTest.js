@@ -17,7 +17,7 @@ describe('ActionMenu', () => {
       style: 1,
       icon: 'user',
       link: 'profile',
-      label: 1
+      notification: 1
     },
     {
       text: '我的薪资',
@@ -48,14 +48,14 @@ describe('ActionMenu', () => {
     expect(menuItems[1].querySelector('.action-menu-icon').classList.contains('fa-money')).toBeTruthy();
   });
 
-  it('renders menu labels', () => {
+  it('renders menu notifications', () => {
     const instance = ReactTestUtils.renderIntoDocument(
             <ActionMenu items={items}></ActionMenu>
           ),
           actionMenu = React.findDOMNode(instance),
-          label = actionMenu.querySelector('.action-menu-label');
+          notification = actionMenu.querySelector('.action-menu-label');
 
-    expect(label).not.toBeNull();
-    expect(label.textContent).toEqual('1');
+    expect(notification).not.toBeNull();
+    expect(notification.textContent).toEqual('1');
   });
 });
