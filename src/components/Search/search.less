@@ -16,6 +16,7 @@
 
 .search-toggle,
 .search-close {
+  background: transparent;
   position: absolute;
     right: 0;
     top: -(@control-height - @search-height) / 2;
@@ -26,6 +27,7 @@
   border: 0;
   margin-bottom: 0;
   margin-right: (@control-height - @search-height) / 2;
+  padding-top: 0;
 
   .text-input-with-icon {
     border: 0;
@@ -35,6 +37,7 @@
   [type=text] {
     background: @color-bg;
     border-radius: @search-height / 2;
+    color: @color-text;
     min-height: @search-height;
     padding: 0 @search-height;
   }

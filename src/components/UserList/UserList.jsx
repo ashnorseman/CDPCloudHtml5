@@ -15,13 +15,13 @@ import UserInfo from '../UserInfo/UserInfo.jsx';
 export default class UserList extends Component {
 
   render() {
-    const { userList } = this.props;
+    const { userList, onSelectUser } = this.props;
 
     return (
       <div className='user-list'>
         {
           userList.map((userInfo, index) => {
-            return <UserInfo key={index} userInfo={userInfo} simple />;
+            return <UserInfo key={index} userInfo={userInfo} simple onSelectUser={onSelectUser} />;
           })
         }
       </div>

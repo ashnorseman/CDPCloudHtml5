@@ -45,7 +45,7 @@ React.render((
     <Route path='/' name='home' component={HomeContainer}>
       <IndexRoute component={EmployeeContainer} />
 
-      <Route path='profile' name='profile' component={ProfileContainer} />
+      <Route path='profile(/:id)' name='profile' component={ProfileContainer} />
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />
       <Route path='my-leave' name='my-leave' component={LeaveContainer} />
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />

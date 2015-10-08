@@ -11,6 +11,7 @@ import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
 import { getItem as getLang } from '../common/lang';
 import Header from '../components/Header/Header.jsx';
+import Loader from '../components/Loader/Loader.jsx';
 import UserInfo from '../components/UserInfo/UserInfo.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
 import ProfileStore from '../stores/ProfileStore';
@@ -20,7 +21,7 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.getProfile();
+    this.getProfile(this.props.params.id);
   }
 
   static getStores() {
@@ -32,13 +33,13 @@ class Profile extends Component {
   }
 
   render() {
-    const { basicInfo, infoList, workExp } = this.state;
+    const { basicInfo, infoList, workExp, status } = this.state;
 
     return (
       <div>
         <Header back title={getLang('PROFILE')} />
 
-        <div className='side-gap'>
+        <Loader status={status} className='side-gap pad-b'>
           <UserInfo className='gap-t-lg gap-b-lg' userInfo={basicInfo} />
 
           {
@@ -56,7 +57,7 @@ class Profile extends Component {
               return <InfoCard items={card.items} key={index} />;
             })
           }
-        </div>
+        </Loader>
       </div>
     );
   }

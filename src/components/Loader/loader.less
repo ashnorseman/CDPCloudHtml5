@@ -1,0 +1,22 @@
+/**
+ * Created by AshZhang on 15/10/8.
+ */
+
+
+@import "../../common/styles/_variables";
+
+
+.loader {
+
+  &.loading,
+  &.load-error {
+    font-size: @font-icon-button;
+    padding: @control-height 0;
+    text-align: center;
+  }
+
+  &.load-error {
+    color: @color-text-lighter;
+    font-size: @font-icon-button * 2;
+  }
+}

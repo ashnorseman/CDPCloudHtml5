@@ -25,6 +25,7 @@ import Form from './components/Form/Form.jsx';
 import UserInfo from './components/UserInfo/UserInfo.jsx';
 import UserList from './components/UserList/UserList.jsx';
 import InfoCard from './components/InfoCard/InfoCard.jsx';
+import Loader from './components/Loader/Loader.jsx';
 import Chart from './components/Chart/Chart.jsx';
 import PageOpener from './components/PageOpener/PageOpener.jsx';
 
@@ -261,7 +262,7 @@ class Page extends Component {
   render() {
 
     return (
-      <div>
+      <Loader status='loaded'>
         <Header title='页面标题' iconLeft='sign-out' iconRight='cog'
                 onTapLeft={onEvent} onTapRight={onEvent} />
 
@@ -316,7 +317,7 @@ class Page extends Component {
         <PageOpener ref='page'>
           <h1>获取验证码</h1>
         </PageOpener>
-      </div>
+      </Loader>
     );
   }
 

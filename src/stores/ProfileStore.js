@@ -18,7 +18,8 @@ class ProfileStore extends ReduceStore {
     return {
       basicInfo: {},
       infoList: [],
-      workExp: []
+      workExp: [],
+      status: 'loading'
     };
   }
 
@@ -27,9 +28,13 @@ class ProfileStore extends ReduceStore {
     switch (action.type) {
     case 'get-profile':
       ProfileDataUtils.getProfile(action.data);
-      break;
+      return assign({}, state, {
+        status: 'loading'
+      });
     case 'get-profile-success':
-      return assign({}, state, action.data.data);
+      return assign({}, state, action.data.data, {
+        status: 'loaded'
+      });
     default:
     }
 

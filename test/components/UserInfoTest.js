@@ -64,6 +64,17 @@ describe('User info', () => {
     expect(userInfo.querySelector('.user-info-action').href).toEqual('http://' + location.host + '/#/salary/1');
   });
 
+  it('.onSelectUser(id)', () => {
+    const spy = jasmine.createSpy('onSelectUser'),
+          instance = ReactTestUtils.renderIntoDocument(
+            <UserInfo userInfo={data.userInfo} onSelectUser={spy}></UserInfo>
+          ),
+          userInfo = React.findDOMNode(instance);
+
+    ReactTestUtils.Simulate.touchTap(userInfo);
+    expect(spy.calls.count()).toEqual(1);
+  });
+
   it('simple style', () => {
     const instance = ReactTestUtils.renderIntoDocument(
       <UserInfo userInfo={data.userInfo} simple></UserInfo>

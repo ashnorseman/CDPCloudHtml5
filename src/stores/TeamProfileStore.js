@@ -9,35 +9,37 @@ import { ReduceStore } from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
 import assign from 'object-assign';
 
-import SalaryDataUtils from '../data-utils/SalaryDataUtils';
+import ProfileDataUtils from '../data-utils/ProfileDataUtils';
 
 
-class SalaryStore extends ReduceStore {
+class TeamProfileStore extends ReduceStore {
 
   getInitialState() {
     return {
-      basicInfo: {},
-      status: 'loading',
-      total: 0,
-      infoList: []
+      empList: [],
+      status: 'loading'
     };
   }
 
   reduce(state, action) {
+
     switch (action.type) {
-    case 'get-salary':
-      SalaryDataUtils.getSalary(action.data);
+    case 'get-team-members':
+      ProfileDataUtils.getTeamMembers();
       return assign({}, state, {
         status: 'loading'
       });
-    case 'get-salary-success':
-      return assign({}, state, action.data.data, {
+    case 'get-team-members-success':
+      return assign({}, state, {
+        empList: action.data.data,
         status: 'loaded'
       });
+    default:
     }
+
     return state;
   }
 }
 
 
-export default new SalaryStore(Dispatcher);
+export default new TeamProfileStore(Dispatcher);

@@ -40,7 +40,7 @@ const lang = {
     EMPLOYEE: '员工',
     MANAGER: '经理',
 
-    PROFILE: '我的信息',
+    PROFILE: '个人信息',
     MY_SALARY: '我的薪酬',
     MY_LEAVE: '请假',
     MY_OT: '加班',
@@ -53,10 +53,21 @@ const lang = {
     // Profile
     WORK_EXP: '工作经历',
 
+    // Salary
+    YEAR: '年',
+    MONTH: '月',
+    ACTUAL_SALARY: '实发工资',
+
+    // Team profile
+    ENTER_USER_SEARCH: '员工姓名、基本资料…',
+    NAME: '姓名',
+    JOIN_TIME: '入职时间',
+
     // Validation
     REQUIRED: '必填',
 
     // Punctuation
+    COLON: '：',
     COMMA: '，'
   },
 
@@ -101,10 +112,21 @@ const lang = {
     // Profile
     WORK_EXP: 'Work Experience',
 
+    // Salary
+    YEAR: 'Year',
+    MONTH: 'Month',
+    ACTUAL_SALARY: 'Actual income',
+
+    // Team profile
+    ENTER_USER_SEARCH: 'Employee name, info, etc.',
+    NAME: 'Name',
+    JOIN_TIME: 'Join Time',
+
     // Validation
     REQUIRED: 'Required',
 
     // Punctuation
+    COLON: ': ',
     COMMA: ', '
   },
 
@@ -149,10 +171,21 @@ const lang = {
     // Profile
     WORK_EXP: '仕事の経歴',
 
+    // Salary
+    YEAR: '年',
+    MONTH: '月',
+    ACTUAL_SALARY: '実給料',
+
+    // Team profile
+    ENTER_USER_SEARCH: '社員の名前、情报…',
+    NAME: '名前',
+    JOIN_TIME: '入職時間',
+
     // Validation
     REQUIRED: '必要です',
 
     // Punctuation
+    COLON: '：',
     COMMA: '，'
   }
 };

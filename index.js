@@ -51,114 +51,175 @@ app.get('/:path?/:any?', function (req, res) {
     return res.sendFile(__dirname + '/build/index.html');
   }
 
-  switch (path) {
-  case 'user-menu':
-    return res.json({
-      success: true,
-      data: {
-        identity: 2,
-        menu: {
-          employee: [
+  setTimeout(function () {
+    switch (path) {
+    case 'user-menu':
+      return res.json({
+        success: true,
+        data: {
+          identity: 2,
+          menu: {
+            employee: [
+              {
+                name: 'profile'
+              }
+              //{
+              //  name: 'mySalary'
+              //},
+              //{
+              //  name: 'myLeave'
+              //},
+              //{
+              //  name: 'myOT'
+              //}
+            ],
+            manager: [
+              //{
+              //  name: 'teamProfile'
+              //},
+              //{
+              //  name: 'leaveMgr',
+              //  notification: 1
+              //},
+              //{
+              //  name: 'otMgr',
+              //  notification: 1
+              //}
+            ]
+          }
+        }
+      });
+    case 'profile':
+      return res.json({
+        success: true,
+        data: {
+          basicInfo: {
+            id: 1,
+            name: '张阿十',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端设计师'
+          },
+          infoList: [
             {
-              name: 'profile'
+              title: '基本信息',
+              items: [
+                {
+                  name: '姓名',
+                  value: '张阿十'
+                },
+                {
+                  name: '性别',
+                  value: '女'
+                }
+              ]
             },
             {
-              name: 'mySalary'
-            },
-            {
-              name: 'myLeave'
-            },
-            {
-              name: 'myOT'
+              title: '联系信息',
+              items: [
+                {
+                  name: '地址',
+                  value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
+                },
+                {
+                  name: '电话',
+                  value: '1800000000'
+                }
+              ]
             }
           ],
-          manager: [
+          workExp: [
             {
-              name: 'teamProfile'
+              items: [
+                {
+                  name: '时间',
+                  value: '2007–2012'
+                },
+                {
+                  name: '地点',
+                  value: 'CDP'
+                }
+              ]
             },
             {
-              name: 'leaveMgr',
-              notification: 1
-            },
-            {
-              name: 'otMgr',
-              notification: 1
+              items: [
+                {
+                  name: '时间',
+                  value: '2012–2007'
+                },
+                {
+                  name: '地点',
+                  value: 'PDC'
+                }
+              ]
             }
           ]
         }
-      }
-    });
-  case 'profile':
-    return res.json({
-      success: true,
-      data: {
-        basicInfo: {
-          id: 1,
-          name: '张阿十',
-          avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-          position: '前端设计师'
-        },
-        infoList: [
+      });
+    case 'salary':
+      return res.json({
+        success: true,
+        data: {
+          basicInfo: {
+            id: 1,
+            name: '张阿十',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端设计师'
+          },
+          total: 7000,
+          infoList: [
+            {
+              title: '发放',
+              items: [
+                {
+                  name: '基本工资',
+                  value: '10000'
+                },
+                {
+                  name: '奖金',
+                  value: '1000'
+                }
+              ]
+            },
+            {
+              title: '扣减',
+              items: [
+                {
+                  name: '个人所得税',
+                  value: '2000'
+                },
+                {
+                  name: '四金',
+                  value: '2000'
+                }
+              ]
+            }
+          ]
+        }
+      });
+    case 'team-members':
+      return res.json({
+        success: true,
+        data: [
           {
-            title: '基本信息',
-            items: [
-              {
-                name: '姓名',
-                value: '张阿十'
-              },
-              {
-                name: '性别',
-                value: '女'
-              }
-            ]
+            id: 1,
+            name: '张阿十',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端设计师'
           },
           {
-            title: '联系信息',
-            items: [
-              {
-                name: '地址',
-                value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
-              },
-              {
-                name: '电话',
-                value: '1800000000'
-              }
-            ]
-          }
-        ],
-        workExp: [
-          {
-            items: [
-              {
-                name: '时间',
-                value: '2007–2012'
-              },
-              {
-                name: '地点',
-                value: 'CDP'
-              }
-            ]
-          },
-          {
-            items: [
-              {
-                name: '时间',
-                value: '2012–2007'
-              },
-              {
-                name: '地点',
-                value: 'PDC'
-              }
-            ]
+            id: 2,
+            name: '张阿廿',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端服务员'
           }
         ]
-      }
-    });
-  default:
-    res.json({
-      success: true
-    });
-  }
+      });
+    default:
+      res.json({
+        success: true
+      });
+    }
+  }, 100);
 });
 
 // POST

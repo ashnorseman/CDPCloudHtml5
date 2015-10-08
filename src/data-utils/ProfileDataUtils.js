@@ -28,5 +28,19 @@ export default {
           data: res
         });
       });
+  },
+
+
+  /**
+   * Get team member list (for managers)
+   */
+  getTeamMembers() {
+    ajax.get('/team-members')
+      .then((res) => {
+        dispatch({
+          type: 'get-team-members-success',
+          data: res
+        });
+      });
   }
 };

@@ -17,7 +17,8 @@ export default class UserInfo extends Component {
             userInfo = {},
             action,
             simple,
-            className
+            className,
+            onSelectUser
           } = this.props;
 
     const avatarStyle = userInfo.avatar ? {
@@ -28,7 +29,8 @@ export default class UserInfo extends Component {
                         (simple ? ' user-info-simple' : '');
 
     return (
-      <section className={userClass}>
+      <section className={userClass}
+               onTouchTap={onSelectUser ? onSelectUser.bind(null, userInfo.id) : null}>
         <div className='user-info-avatar' style={avatarStyle}></div>
         <div className='user-info-main clearfix'>
           <div className='user-info-name'>{userInfo.name}</div>
