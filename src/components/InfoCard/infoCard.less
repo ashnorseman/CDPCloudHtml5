@@ -9,25 +9,31 @@
 .info-card {
   border-radius: @border-radius;
   box-shadow: @shadow-depth-1;
-  line-height: @control-sm-height;
-  margin-bottom: @gap;
+  margin-bottom: @gap * 1.2;
 }
 
 .info-card-title {
   background: @color-bg-light;
-  padding: 0 (@control-sm-height - @font-base) / 2;
+  padding: (@control-sm-height - @font-base * @line-height) / 2;
 }
 
 .info-card-item {
   border-top: @border-width solid @color-border;
   list-style: none;
-  margin: 0 (@control-sm-height - @font-base) / 2;
+  padding: (@control-sm-height - @font-base * @line-height) / 2;
 
   &:first-child {
     border-top: 0;
   }
 }
 
+.info-card-name {
+  float: left;
+  width: 30%;
+}
+
 .info-card-value {
   float: right;
+  text-align: right;
+  width: 70%;
 }

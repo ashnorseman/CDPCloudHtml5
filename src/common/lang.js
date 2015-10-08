@@ -50,6 +50,9 @@ const lang = {
 
     LOGOUT: '退出登录',
 
+    // Profile
+    WORK_EXP: '工作经历',
+
     // Validation
     REQUIRED: '必填',
 
@@ -95,6 +98,9 @@ const lang = {
 
     LOGOUT: 'Log out',
 
+    // Profile
+    WORK_EXP: 'Work Experience',
+
     // Validation
     REQUIRED: 'Required',
 
@@ -139,6 +145,9 @@ const lang = {
     OT_MGR: '残業管理',
 
     LOGOUT: 'ログアウト',
+
+    // Profile
+    WORK_EXP: '仕事の経歴',
 
     // Validation
     REQUIRED: '必要です',

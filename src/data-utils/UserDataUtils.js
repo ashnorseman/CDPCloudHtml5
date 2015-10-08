@@ -11,8 +11,6 @@ import ajax from '../common/utils/ajax';
 import cookies from '../common/utils/cookies';
 import lang from '../common/lang';
 
-import LoginStore from '../stores/LoginStore';
-
 
 export default {
 

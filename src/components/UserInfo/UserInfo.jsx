@@ -16,16 +16,19 @@ export default class UserInfo extends Component {
     const {
             userInfo = {},
             action,
-            simple
+            simple,
+            className
           } = this.props;
 
     const avatarStyle = userInfo.avatar ? {
                           backgroundImage: `url(${userInfo.avatar})`
                         } : null,
-          className = 'user-info clearfix' + (simple ? ' user-info-simple' : '');
+          userClass = 'user-info clearfix' +
+                        (className ? ' ' + className : '') +
+                        (simple ? ' user-info-simple' : '');
 
     return (
-      <section className={className}>
+      <section className={userClass}>
         <div className='user-info-avatar' style={avatarStyle}></div>
         <div className='user-info-main clearfix'>
           <div className='user-info-name'>{userInfo.name}</div>

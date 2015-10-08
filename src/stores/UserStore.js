@@ -10,7 +10,6 @@ import Dispatcher from '../dispatcher/Dispatcher';
 import assign from 'object-assign';
 
 import lang from '../common/lang';
-import LoginStore from '../stores/LoginStore';
 import UserDataUtils from '../data-utils/UserDataUtils';
 
 

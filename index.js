@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
 });
 
 // GET
-app.get('/:path?', function (req, res) {
+app.get('/:path?/:any?', function (req, res) {
   var path = req.params.path;
 
   if (!path) {
@@ -86,6 +86,72 @@ app.get('/:path?', function (req, res) {
             }
           ]
         }
+      }
+    });
+  case 'profile':
+    return res.json({
+      success: true,
+      data: {
+        basicInfo: {
+          id: 1,
+          name: '张阿十',
+          avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+          position: '前端设计师'
+        },
+        infoList: [
+          {
+            title: '基本信息',
+            items: [
+              {
+                name: '姓名',
+                value: '张阿十'
+              },
+              {
+                name: '性别',
+                value: '女'
+              }
+            ]
+          },
+          {
+            title: '联系信息',
+            items: [
+              {
+                name: '地址',
+                value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
+              },
+              {
+                name: '电话',
+                value: '1800000000'
+              }
+            ]
+          }
+        ],
+        workExp: [
+          {
+            items: [
+              {
+                name: '时间',
+                value: '2007–2012'
+              },
+              {
+                name: '地点',
+                value: 'CDP'
+              }
+            ]
+          },
+          {
+            items: [
+              {
+                name: '时间',
+                value: '2012–2007'
+              },
+              {
+                name: '地点',
+                value: 'PDC'
+              }
+            ]
+          }
+        ]
       }
     });
   default:
