@@ -66,6 +66,10 @@ const lang = {
     // Validation
     REQUIRED: '必填',
 
+    // Pull loader
+    PULL_TO_LOAD: '上拉加载更多',
+    NO_MORE_DATA: '没有更多数据了',
+
     // Punctuation
     COLON: '：',
     COMMA: '，'
@@ -125,6 +129,10 @@ const lang = {
     // Validation
     REQUIRED: 'Required',
 
+    // Pull loader
+    PULL_TO_LOAD: 'Pull up to load more',
+    NO_MORE_DATA: 'No more data',
+
     // Punctuation
     COLON: ': ',
     COMMA: ', '
@@ -183,6 +191,10 @@ const lang = {
 
     // Validation
     REQUIRED: '必要です',
+
+    // Pull loader
+    PULL_TO_LOAD: 'プルアップ',
+    NO_MORE_DATA: 'もっとのデータがない',
 
     // Punctuation
     COLON: '：',

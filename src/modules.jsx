@@ -26,6 +26,7 @@ import UserInfo from './components/UserInfo/UserInfo.jsx';
 import UserList from './components/UserList/UserList.jsx';
 import InfoCard from './components/InfoCard/InfoCard.jsx';
 import Loader from './components/Loader/Loader.jsx';
+import PullLoader from './components/PullLoader/PullLoader.jsx';
 import Chart from './components/Chart/Chart.jsx';
 import PageOpener from './components/PageOpener/PageOpener.jsx';
 
@@ -55,6 +56,10 @@ function onSearch(text) {
 
 function afterSubmit(res) {
   console.log(res);
+}
+
+function onLoad() {
+  console.log('loading');
 }
 
 
@@ -317,6 +322,10 @@ class Page extends Component {
         <PageOpener ref='page'>
           <h1>获取验证码</h1>
         </PageOpener>
+
+        <PullLoader status='loading' onLoad={onLoad}>
+          <UserList userList={userList}></UserList>
+        </PullLoader>
       </Loader>
     );
   }

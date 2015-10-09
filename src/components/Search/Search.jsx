@@ -27,17 +27,7 @@ export default class Search extends Component {
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.search = this.search.bind(this);
-  }
-
-  componentDidUpdate() {
-    const search = React.findDOMNode(this.refs.search);
-    const input = search && search.querySelector('input');
-
-    if (input) {
-      setTimeout(() => {
-        input.focus();
-      }, 0);
-    }
+    this.checkEnter = this.checkEnter.bind(this);
   }
 
   render() {
@@ -58,7 +48,7 @@ export default class Search extends Component {
               ?
                 <FormControl className='search-text'>
                   <TextInput ref='search' icon='search' placeholder={placeholder}
-                             onBlur={this.search} />
+                             onBlur={this.search} onKeyDown={this.checkEnter} />
                   <Button className='search-close' icon='times' onTouchTap={this.close}></Button>
                 </FormControl>
               : null
@@ -80,12 +70,28 @@ export default class Search extends Component {
 
 
   /**
-   * Close a search
+   * Close a search (search an empty string)
    */
   close() {
+    this.search({
+      target: {
+        value: ''
+      }
+    });
     this.setState({
       opened:false
     });
+  }
+
+
+  /**
+   * Press enter to search
+   * @param e
+   */
+  checkEnter(e) {
+    if (e.key === 'Enter') {
+      this.search(e);
+    }
   }
 
 
@@ -94,8 +100,6 @@ export default class Search extends Component {
    * @param {Event} e
    */
   search(e) {
-    if (!e.target.value) return;
-
     if (typeof this.props.onSearch === 'function') {
       this.props.onSearch.call(this, e.target.value);
     }

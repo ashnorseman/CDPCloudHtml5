@@ -11,10 +11,17 @@ import React, { Component } from 'react';
 import ChartJs from '../../../bower_components/Chart.js/Chart.min.js';
 
 
+const colorList = ['#5dc9e6', '#f773bd', '#fdbb7d', '#6dded5', '#a06081'];
+
+
 export default class Chart extends Component {
 
   componentDidMount() {
     const ctx = React.findDOMNode(this.refs.chart).getContext('2d');
+
+    this.props.data.forEach((item, index) => {
+      item.color = colorList[index % colorList.length];
+    });
 
     const myNewChart = new ChartJs(ctx).Pie(this.props.data, {
       legendTemplate : '<ul class="chart-legend">' +

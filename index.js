@@ -62,29 +62,29 @@ app.get('/:path?/:any?', function (req, res) {
             employee: [
               {
                 name: 'profile'
+              },
+              {
+                name: 'mySalary'
+              },
+              {
+                name: 'myLeave'
+              },
+              {
+                name: 'myOT'
               }
-              //{
-              //  name: 'mySalary'
-              //},
-              //{
-              //  name: 'myLeave'
-              //},
-              //{
-              //  name: 'myOT'
-              //}
             ],
             manager: [
-              //{
-              //  name: 'teamProfile'
-              //},
-              //{
-              //  name: 'leaveMgr',
-              //  notification: 1
-              //},
-              //{
-              //  name: 'otMgr',
-              //  notification: 1
-              //}
+              {
+                name: 'teamProfile'
+              },
+              {
+                name: 'leaveMgr',
+                notification: 1
+              },
+              {
+                name: 'otMgr',
+                notification: 1
+              }
             ]
           }
         }
@@ -199,20 +199,30 @@ app.get('/:path?/:any?', function (req, res) {
     case 'team-members':
       return res.json({
         success: true,
-        data: [
-          {
-            id: 1,
-            name: '张阿十',
-            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端设计师'
-          },
-          {
-            id: 2,
-            name: '张阿廿',
-            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端服务员'
+        data: (function () {
+          var base = [
+            {
+              id: 1,
+              name: '张阿十',
+              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+              position: '前端设计师'
+            },
+            {
+              id: 2,
+              name: '张阿廿',
+              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+              position: '前端服务员'
+            }
+          ];
+
+          if (req.query.page <= 3) {
+            for (var i = 0; i < 4; i += 1) {
+              base = base.concat(base);
+            }
           }
-        ]
+
+          return base.slice(0, 20);
+        }())
       });
     default:
       res.json({

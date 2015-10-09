@@ -14,7 +14,7 @@ export default class Loader extends Component {
 
   render() {
     const { status, className } = this.props,
-          loaderClass = 'loader ' + status + ' ' + className;
+          loaderClass = 'loader ' + status + ' ' + (className || '');
 
     return (
       <div className={loaderClass}>

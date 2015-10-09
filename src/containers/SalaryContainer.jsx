@@ -16,6 +16,7 @@ import UserInfo from '../components/UserInfo/UserInfo.jsx';
 import FormControl from '../components/FormControl/FormControl.jsx';
 import Select from '../components/Select/Select.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
+import Chart from '../components/Chart/Chart.jsx';
 import SalaryStore from '../stores/SalaryStore';
 
 
@@ -60,7 +61,7 @@ class Salary extends Component {
   }
 
   render() {
-    const { total, infoList, basicInfo, status } = this.state;
+    const { total, infoList, basicInfo, status, chartData } = this.state;
 
     return (
       <div>
@@ -83,8 +84,10 @@ class Salary extends Component {
           </div>
         </div>
 
-        <Loader status={status} className='side-gap'>
-          <div className='gap-t-lg gap-b'>
+        <Loader status={status} className='side-gap gap-t pad-b'>
+          <Chart height='200' data={chartData} />
+
+          <div className='gap-t gap-b text-right'>
             {getLang('ACTUAL_SALARY') + getLang('COLON')}
             <span className='text-xl text-primary'>{total}</span>
           </div>

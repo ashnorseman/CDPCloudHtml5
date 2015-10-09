@@ -66,12 +66,12 @@ describe('Search', () => {
     const input = search.querySelector('input');
     input.value = 'search text';
     ReactTestUtils.Simulate.change(input);
-    ReactTestUtils.Simulate.blur(input);
-    //ReactTestUtils.Simulate.keyDown(input, {
-    //  key: 'Enter',
-    //  keyCode: 13,
-    //  which: 13
-    //});
+    //ReactTestUtils.Simulate.blur(input);
+    ReactTestUtils.Simulate.keyDown(input, {
+      key: 'Enter',
+      keyCode: 13,
+      which: 13
+    });
 
     expect(spy.calls.count()).toEqual(1);
     expect(spy.calls.mostRecent().args[0]).toEqual('search text');

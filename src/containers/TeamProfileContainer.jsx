@@ -11,7 +11,7 @@ import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
 import { getItem as getLang } from '../common/lang';
 import Header from '../components/Header/Header.jsx';
-import Loader from '../components/Loader/Loader.jsx';
+import PullLoader from '../components/PullLoader/PullLoader.jsx';
 import Search from '../components/Search/Search.jsx';
 import Sorter from '../components/Sorter/Sorter.jsx';
 import UserList from '../components/UserList/UserList.jsx';
@@ -61,9 +61,9 @@ class Profile extends Component {
 
         <Sorter items={sortItems} defaultItem='name' onSort={this.sort} />
 
-        <Loader status={status} className='side-gap gap-t pad-b'>
+        <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
-        </Loader>
+        </PullLoader>
       </div>
     );
   }
@@ -71,10 +71,28 @@ class Profile extends Component {
 
   /**
    * Get team members
+   * @param {Object} [query]
    */
-  getTeamMembers() {
+  getTeamMembers(query = {}) {
+    query.page = 1;
+    query.loadMore = false;
+
     dispatch({
-      type: 'get-team-members'
+      type: 'get-team-members',
+      data: query
+    });
+  }
+
+
+  /**
+   * Load next page
+   */
+  loadMore() {
+    dispatch({
+      type: 'get-team-members',
+      data: {
+        loadMore: true
+      }
     });
   }
 
@@ -93,17 +111,22 @@ class Profile extends Component {
    * @param {string} query
    */
   search(query) {
-    console.log(query);
+    this.getTeamMembers({
+      search: query
+    });
   }
 
 
   /**
    * Sort
-   * @param name
-   * @param order
+   * @param {string} name
+   * @param {string} order
    */
   sort(name, order) {
-    console.log(name, order);
+    this.getTeamMembers({
+      sort: name,
+      order
+    });
   }
 }
 

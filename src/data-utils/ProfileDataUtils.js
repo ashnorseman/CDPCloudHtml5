@@ -33,9 +33,10 @@ export default {
 
   /**
    * Get team member list (for managers)
+   * @param {Object} query
    */
-  getTeamMembers() {
-    ajax.get('/team-members')
+  getTeamMembers(query) {
+    ajax.get('/team-members', query)
       .then((res) => {
         dispatch({
           type: 'get-team-members-success',
