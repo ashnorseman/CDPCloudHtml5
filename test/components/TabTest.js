@@ -15,11 +15,14 @@ describe('Tab', () => {
     {
       text: '兑礼信息',
       name: 'gift',
-      notification: true
+      icon: 'icon',
+      notification: true,
+      active: true
     },
     {
       text: '收货地址',
-      name: 'address'
+      name: 'address',
+      icon: 'icon'
     }
   ];
 
@@ -77,7 +80,8 @@ describe('Tab', () => {
           instance = ReactTestUtils.renderIntoDocument(
             <Tab items={[{
                 text: '兑礼信息',
-                name: 'gift'
+                name: 'gift',
+                active: true
               },
               {
                 text: '收货地址',
@@ -102,5 +106,17 @@ describe('Tab', () => {
     expect(spy.calls.count()).toEqual(2);
     expect(spy.calls.mostRecent().args[0]).toEqual('gift');
     expect(spy.calls.mostRecent().args[1]).toEqual(0);
+  });
+
+
+  it('renders a tab at the bottom', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+            <Tab items={tabItems} bottom></Tab>
+          ),
+          tab = React.findDOMNode(instance);
+
+    expect(tab.classList.contains('tab-bottom')).toBeTruthy();
+    expect(tab.querySelector('.tab-active-line')).toBeNull();
+    expect(tab.querySelectorAll('.tab-icon').length).toEqual(2);
   });
 });

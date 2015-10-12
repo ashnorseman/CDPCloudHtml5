@@ -17,13 +17,14 @@ export default class Button extends Component {
   render() {
     const {
             type = 'button',
-            text, icon, hollow, link, className,
+            text, icon, action, hollow, link, className,
             submitting,
             ...attr
           } = this.props;
     const btnClassName = (className || '')
             + (submitting ? ' btn-submitting' : '')
             + (hollow ? ' btn-hollow' : '')
+            + (action ? ' btn-action' : '')
             + (link ? ' btn-link' : '');
 
     return (

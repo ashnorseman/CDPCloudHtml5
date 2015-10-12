@@ -15,6 +15,7 @@ import Header from './components/Header/Header.jsx';
 import Search from './components/Search/Search.jsx';
 import Tab from './components/Tab/Tab.jsx';
 import Sorter from './components/Sorter/Sorter.jsx';
+import Filter from './components/Filter/Filter.jsx';
 import ActionMenu from './components/ActionMenu/ActionMenu.jsx';
 import Button from './components/Button/Button.jsx';
 import TextInput from './components/TextInput/TextInput.jsx';
@@ -24,6 +25,7 @@ import FormControl from './components/FormControl/FormControl.jsx';
 import Form from './components/Form/Form.jsx';
 import UserInfo from './components/UserInfo/UserInfo.jsx';
 import UserList from './components/UserList/UserList.jsx';
+import RecordList from './components/RecordList/RecordList.jsx';
 import InfoCard from './components/InfoCard/InfoCard.jsx';
 import Loader from './components/Loader/Loader.jsx';
 import PullLoader from './components/PullLoader/PullLoader.jsx';
@@ -62,6 +64,10 @@ function onLoad() {
   console.log('loading');
 }
 
+function onFilter(item, choice) {
+  console.log(item, choice);
+}
+
 
 // Render
 // ---------------------------
@@ -93,6 +99,24 @@ const tabItems = [
   {
     text: '菜单 3',
     name: 'address'
+  }
+];
+
+const tabBottomItems = [
+  {
+    text: '菜单 1',
+    name: 'points',
+    icon: 'plane'
+  },
+  {
+    text: '菜单 2',
+    name: 'gift',
+    icon: 'flask'
+  },
+  {
+    text: '菜单 3',
+    name: 'address',
+    icon: 'pie-chart'
   }
 ];
 
@@ -257,6 +281,59 @@ const controls = [
   }
 ];
 
+const filterItems = [
+  {
+    text: '时间',
+    name: 'time',
+    choices: [
+      {
+        text: '本月',
+        name: 'thisMonth'
+      },
+      {
+        text: '全部',
+        name: 'all'
+      }
+    ]
+  },
+  {
+    text: '状态',
+    name: 'status',
+    choices: [
+      {
+        text: '已审批',
+        name: 'approved'
+      },
+      {
+        text: '未审批',
+        name: 'pending'
+      }
+    ]
+  }
+];
+
+const records = [
+  {
+    id: 1,
+    name: '张阿⑩',
+    time: '2015/08/05 10:30 – 2015/08/05 18:00',
+    status: 0
+  },
+  {
+    id: 2,
+    name: '张阿十',
+    time: '2015/08/05 10:30 – 2015/08/05 18:00',
+    status: 1
+  },
+  {
+    id: 3,
+    name: '张阿廿',
+    time: '2015/08/05 10:30 – 2015/08/05 18:00',
+    status: 2
+  }
+];
+
+
 class Page extends Component {
 
   constructor(props) {
@@ -279,7 +356,11 @@ class Page extends Component {
 
         <Tab items={tabItems} onActivate={activateTab} />
 
+        <Tab items={tabBottomItems} onActivate={activateTab} bottom />
+
         <Sorter items={sorterItems} defaultItem='name' onSort={onSort}></Sorter>
+
+        <Filter items={filterItems} onFilter={onFilter}></Filter>
 
         <Form action='//localhost:9090/form' submitButton={submitButton} controls={controls}
               afterSubmit={afterSubmit}></Form>
@@ -309,11 +390,15 @@ class Page extends Component {
 
         <Button text='获取验证码' link onClick={this.openPage}></Button>
 
+        <Button icon='pencil' action></Button>
+
         <Chart height='200' data={chartData} />
 
         <UserInfo userInfo={userInfo.userInfo} action={userInfo.action}></UserInfo>
 
         <UserList userList={userList}></UserList>
+
+        <RecordList recordList={records} url='leave-record'></RecordList>
 
         <InfoCard title='基本信息' items={infoCard}></InfoCard>
 

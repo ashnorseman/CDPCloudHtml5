@@ -66,3 +66,32 @@
     transform: translateX(300%);
   }
 }
+
+
+// Bottom
+// ---------------------------
+
+.tab-bottom {
+  background: @color-bg;
+  border-top: @border-width solid @color-border;
+  box-shadow: @shadow-depth-1;
+  position: fixed;
+    bottom: 0;
+    z-index: @z-tab-bottom;
+
+  .tab-item {
+    line-height: 1;
+    font-size: @font-xs;
+    padding: 0.375rem 0;
+
+    &.active {
+      color: @color-primary;
+    }
+  }
+}
+
+.tab-icon {
+  display: block;
+  font-size: @font-icon-button;
+  margin-bottom: 0.375rem;
+}

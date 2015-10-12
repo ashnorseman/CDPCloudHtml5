@@ -33,6 +33,17 @@ describe('Form control', () => {
     expect(control.querySelector('select')).not.toBeNull();
   });
 
+  it('renders half controls', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+            <FormControl label='年份' half>
+              <Select options={options} placeholder='年份'></Select>
+            </FormControl>
+          ),
+          control = React.findDOMNode(instance);
+
+    expect(control.classList.contains('form-control-half')).toBeTruthy();
+  });
+
   it('renders tips', () => {
     const instance = ReactTestUtils.renderIntoDocument(
             <FormControl label='年份' tips='不得早于 2015 年'>
@@ -58,11 +69,11 @@ describe('Form control', () => {
     expect(control.classList.contains('form-has-data')).toBeTruthy();
 
     select.value = '';
-    ReactTestUtils.Simulate.blur(select);
+    ReactTestUtils.Simulate.change(select);
     expect(control.classList.contains('form-has-data')).toBeFalsy();
 
     select.value = '2015';
-    ReactTestUtils.Simulate.blur(select);
+    ReactTestUtils.Simulate.change(select);
     expect(control.classList.contains('form-has-data')).toBeTruthy();
   });
 

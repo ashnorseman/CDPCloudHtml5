@@ -19,10 +19,13 @@ import EmployeeContainer from './containers/HomeMenu/EmployeeContainer.jsx';
 import ManagerContainer from './containers/HomeMenu/ManagerContainer.jsx';
 import ProfileContainer from './containers/ProfileContainer.jsx';
 import SalaryContainer from './containers/SalaryContainer.jsx';
-import LeaveContainer from './containers/LeaveContainer.jsx';
+import LeaveContainer from './containers/Leave/LeaveContainer.jsx';
+import LeaveListContainer from './containers/Leave/LeaveListContainer.jsx';
+import LeaveQuotaContainer from './containers/Leave/LeaveQuotaContainer.jsx';
+import LeaveSummaryContainer from './containers/Leave/LeaveSummaryContainer.jsx';
 import OvertimeContainer from './containers/OvertimeContainer.jsx';
 import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
-import LeaveMgrContainer from './containers/LeaveMgrContainer.jsx';
+import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
 import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 
 
@@ -47,7 +50,12 @@ React.render((
 
       <Route path='profile(/:id)' name='profile' component={ProfileContainer} />
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />
-      <Route path='my-leave' name='my-leave' component={LeaveContainer} />
+      <Route path='my-leave' name='my-leave' component={LeaveContainer}>
+        <IndexRoute component={LeaveListContainer} />
+        <Route path='leave-list' name='leave-list' component={LeaveListContainer}></Route>
+        <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer}></Route>
+        <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer}></Route>
+      </Route>
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />

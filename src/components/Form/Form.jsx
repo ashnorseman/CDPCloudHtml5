@@ -39,6 +39,9 @@ export default class Form extends Component {
             case 'text':
             case 'tel':
             case 'password':
+            case 'date':
+            case 'time':
+            case 'file':
               Control = TextInput;
               break;
             case 'select':

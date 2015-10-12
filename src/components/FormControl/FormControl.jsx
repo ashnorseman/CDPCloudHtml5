@@ -19,9 +19,11 @@ export default class FormControl extends Component {
   }
 
   render() {
-    const { label, tips, className } = this.props;
+    const { label, tips, className, half } = this.props;
 
-    let controlClass = 'form-control' + (className ? ' ' + className : '');
+    let controlClass = 'form-control'
+                          + (half ? ' form-control-half' : '')
+                          + (className ? ' ' + className : '');
 
     const children = React.Children.map(this.props.children, (child) => {
       if (child.props.defaultValue !== void 0) {
@@ -32,7 +34,8 @@ export default class FormControl extends Component {
         onValid: this.onValid,
         onInvalid: this.onInvalid,
         onFocus: this.onFocus.bind(this, child.props.onFocus),
-        onBlur: this.onBlur.bind(this, child.props.onBlur)
+        onBlur: this.onBlur.bind(this, child.props.onBlur),
+        onChange: this.onChange.bind(this, child.props.onChange)
       });
     });
 
@@ -86,13 +89,11 @@ export default class FormControl extends Component {
 
 
   /**
-   * remove `.form-focus` class
+   * Check data
    */
-  onBlur(cb, e) {
+  onChange(cb, e) {
     const value = e.target.value,
           classList = React.findDOMNode(this).classList;
-
-    classList.remove('form-focus');
 
     if (value) {
       classList.add('form-has-data');
@@ -100,6 +101,15 @@ export default class FormControl extends Component {
       classList.remove('form-has-data');
     }
 
+    cb && cb.call(null, e);
+  }
+
+
+  /**
+   * remove `.form-focus` class
+   */
+  onBlur(cb, e) {
+    React.findDOMNode(this).classList.remove('form-focus');
     cb && cb.call(null, e);
   }
 }

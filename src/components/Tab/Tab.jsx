@@ -9,6 +9,8 @@ import './tab.less';
 
 import React, { Component } from 'react';
 
+import Icon from '../Icon/Icon.jsx';
+
 
 export default class Tab extends Component {
 
@@ -22,21 +24,13 @@ export default class Tab extends Component {
 
   render() {
     const { items } = this.state,
-          { onActivate } = this.props,
-          hasActive = items.some((item) => {
-            if (item.name === location.hash.split('?')[0].slice(2)) {
-              item.active = true;
-            }
-            return item.active;
-          }),
+          { bottom, onActivate } = this.props,
+          tabClass = 'tab clearfix tab-count-'
+                        + items.length
+                        + (bottom ? ' tab-bottom' : ''),
           style = {
             width: (100 / items.length) + '%'
           };
-
-    // Set default active item
-    if (!hasActive) {
-      items[0].active = true;
-    }
 
     this.onActivate = onActivate;
 
@@ -47,15 +41,24 @@ export default class Tab extends Component {
                 href={`#/${item.name}`}
                 style={style}
                 onTouchTap={this.activateTab.bind(this, index)}>
+        {
+          item.icon
+            ? <Icon name={item.icon} className='tab-icon' />
+            : null
+        }
         {item.text}
         {item.notification ? <span className='tab-notification'></span> : null}
       </a>;
     });
 
     return (
-      <nav className={'tab clearfix tab-count-' + items.length}>
+      <nav className={tabClass}>
         {tabItems}
-        <div className='tab-active-line' style={{width: 100 / items.length + '%'}}></div>
+        {
+          bottom
+            ? null
+            : <div className='tab-active-line' style={{width: 100 / items.length + '%'}}></div>
+        }
       </nav>
     );
   }

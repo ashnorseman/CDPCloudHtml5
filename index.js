@@ -62,29 +62,29 @@ app.get('/:path?/:any?', function (req, res) {
             employee: [
               {
                 name: 'profile'
-              },
-              {
-                name: 'mySalary'
-              },
-              {
-                name: 'myLeave'
-              },
-              {
-                name: 'myOT'
               }
+              //{
+              //  name: 'mySalary'
+              //},
+              //{
+              //  name: 'myLeave'
+              //},
+              //{
+              //  name: 'myOT'
+              //}
             ],
             manager: [
               {
                 name: 'teamProfile'
-              },
-              {
-                name: 'leaveMgr',
-                notification: 1
-              },
-              {
-                name: 'otMgr',
-                notification: 1
               }
+              //{
+              //  name: 'leaveMgr',
+              //  notification: 1
+              //},
+              //{
+              //  name: 'otMgr',
+              //  notification: 1
+              //}
             ]
           }
         }
@@ -224,6 +224,118 @@ app.get('/:path?/:any?', function (req, res) {
           return base.slice(0, 20);
         }())
       });
+    case 'leave-form':
+      return res.json({
+        success: true,
+        data: [
+          {
+            id: 'type',
+            name: 'type',
+            label: '假期类型',
+            type: 'select',
+            required: true,
+            options: [
+              {
+                text: ''
+              },
+              {
+                text: '事假',
+                value: 1
+              }
+            ]
+          },
+          {
+            id: 'startDate',
+            name: 'startDate',
+            label: '开始日期',
+            type: 'date',
+            half: true
+          },
+          {
+            id: 'startTime',
+            name: 'startTime',
+            label: '时间',
+            half: true,
+            type: 'time'
+          },
+          {
+            id: 'endDate',
+            name: 'endDate',
+            label: '结束日期',
+            half: true,
+            type: 'date'
+          },
+          {
+            id: 'endTime',
+            name: 'endTime',
+            label: '时间',
+            half: true,
+            type: 'time'
+          },
+          {
+            id: 'reason',
+            name: 'reason',
+            label: '理由',
+            type: 'text'
+          },
+          {
+            id: 'attach',
+            name: 'attach',
+            label: '附件',
+            type: 'file'
+          }
+        ]
+      });
+    case 'leave-validation':
+      return res.sendFile(__dirname + '/form-validation/leave.js');
+    case 'leave-types':
+      return res.json({
+        success: true,
+        data: [
+          {
+            text: '事假',
+            name: 'personalAffairs'
+          },
+          {
+            text: '病假',
+            name: 'disease'
+          }
+        ]
+      });
+    case 'leave-records':
+      return res.json({
+        success: true,
+        data: (function () {
+          var base = [
+            {
+              id: 1,
+              name: '张阿十',
+              time: '2015-08-10 10:30 – 2015-08-10 18:00',
+              status: 0
+            },
+            {
+              id: 2,
+              name: '张阿廿',
+              time: '2015-08-10 10:30 – 2015-08-10 18:00',
+              status: 1
+            },
+            {
+              id: 3,
+              name: '张阿廿',
+              time: '2015-08-10 10:30 – 2015-08-10 18:00',
+              status: 2
+            }
+          ];
+
+          if (req.query.page <= 3) {
+            for (var i = 0; i < 4; i += 1) {
+              base = base.concat(base);
+            }
+          }
+
+          return base.slice(0, 20);
+        }())
+      });
     default:
       res.json({
         success: true
@@ -233,8 +345,8 @@ app.get('/:path?/:any?', function (req, res) {
 });
 
 // POST
-app.post('/:path?', multer.array(), function (req, res) {
-  console.log('post: ', req.body);
+app.post('/:path?', multer.single('attach'), function (req, res) {
+  console.log('post: ', req.body, req.file);
 
   switch (req.params.path) {
   case 'login':
@@ -255,7 +367,7 @@ app.post('/:path?', multer.array(), function (req, res) {
     res.json({
       success: true
     });
-  }, 1000);
+  }, 100);
 });
 
 // PUT

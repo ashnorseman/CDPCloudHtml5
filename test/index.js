@@ -10,9 +10,9 @@ import ReactTap from 'react-tap-event-plugin';
 
 ReactTap();
 
-const srcContext = require.context('../src', true, /\.jsx?$/);
+const srcContext = require.context('../src/components', true, /\.jsx?$/);
 srcContext.keys().filter((key) => {
-  return !(/(app|modules|Chart)\.jsx$/.test(key));
+  return !(/(Chart)\.jsx$/.test(key));
 }).forEach(srcContext);
 
 const componentContext = require.context('./components', true, /\.js$/);

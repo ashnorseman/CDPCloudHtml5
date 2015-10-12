@@ -63,6 +63,23 @@ const lang = {
     NAME: '姓名',
     JOIN_TIME: '入职时间',
 
+    // Leave
+    APPLY_LEAVE: '申请休假',
+    MY_APPLY: '我的申请',
+    LEAVE_QUOTA: '假期配额',
+    LEAVE_SUMMARY: '假期汇总',
+    APPLY_SUCCESS: '申请成功',
+    ALL: '全部',
+    TIME: '时间',
+    THIS_WEEK: '本周',
+    THIS_MONTH: '本月',
+    THIS_YEAR: '今年',
+    TYPE: '类型',
+    STATUS: '状态',
+    APPROVED: '已审批',
+    PENDING: '未审批',
+    REJECTED: '已拒绝',
+
     // Validation
     REQUIRED: '必填',
 
@@ -126,6 +143,13 @@ const lang = {
     NAME: 'Name',
     JOIN_TIME: 'Join Time',
 
+    // Leave
+    APPLY_LEAVE: 'Apply for Leave',
+    MY_APPLY: 'Applications',
+    LEAVE_QUOTA: 'Quota',
+    LEAVE_SUMMARY: 'Summary',
+    APPLY_SUCCESS: 'Your application was successfully sent.',
+
     // Validation
     REQUIRED: 'Required',
 
@@ -159,8 +183,8 @@ const lang = {
     REPEAT_PWD: 'パスワードを再入力',
     RESET_PWD: 'パスワードをリセット',
     AT_LEAST_6: '至少 6 位',
-    SAME_PWD: '必须和密码相同',
-    PWD_RESET_SUCCESS: '密码重置成功',
+    SAME_PWD: 'パスワードと同じなければならない',
+    PWD_RESET_SUCCESS: 'パスワードをリセットし',
 
     // HOME
     EMPLOYEE: '従業員',
@@ -188,6 +212,13 @@ const lang = {
     ENTER_USER_SEARCH: '社員の名前、情报…',
     NAME: '名前',
     JOIN_TIME: '入職時間',
+
+    // Leave
+    APPLY_LEAVE: '申請する',
+    MY_APPLY: '私を申請',
+    LEAVE_QUOTA: '割当',
+    LEAVE_SUMMARY: 'まとめ',
+    APPLY_SUCCESS: '申請成功',
 
     // Validation
     REQUIRED: '必要です',

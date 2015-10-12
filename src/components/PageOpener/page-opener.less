@@ -10,6 +10,8 @@
   background: @color-bg;
   height: 100%;
   opacity: 0.01;
+  overflow: auto;
+  padding-top: @gap;
   position: fixed;
     left: 0;
     top: 0;
@@ -36,6 +38,7 @@
   position: absolute;
     right: 0;
     top: 0;
+    z-index: @z-page-opener + 1;
   text-align: center;
   width: @control-height;
 }

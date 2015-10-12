@@ -18,7 +18,7 @@ export default class PageOpener extends Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className = '' } = this.props;
 
     return (
       <div className={`page-opener ${className}`}>

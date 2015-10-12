@@ -156,6 +156,16 @@ export default {
       .then(checkSuccessFalse);
   },
 
+  getScript(url) {
+    return fetch(domain + url)
+      .then(() => {
+        const script = document.createElement('script');
+
+        script.src = domain + url;
+        document.body.appendChild(script);
+      });
+  },
+
   post(url, data = {}) {
     return sendData(domain + url, 'POST', data);
   },

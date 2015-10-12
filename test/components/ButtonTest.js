@@ -43,6 +43,16 @@ describe('Button', () => {
     expect(button.querySelector('.icon-button')).not.toBeNull();
   });
 
+  it('renders an action button', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+            <Button icon='sign-out' action></Button>
+          ),
+          button = React.findDOMNode(instance);
+
+    expect(button.nodeName).toEqual('BUTTON');
+    expect(button.classList.contains('btn-action')).toBeTruthy();
+  });
+
   it('renders a hollow button', () => {
     const instance = ReactTestUtils.renderIntoDocument(
             <Button hollow></Button>
