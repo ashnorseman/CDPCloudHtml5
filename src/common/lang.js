@@ -48,6 +48,8 @@ const lang = {
     LEAVE_MGR: '请假管理',
     OT_MGR: '加班管理',
 
+    CHANGE_PWD: '修改密码',
+    CHANGE_MOBILE: '修改手机',
     LOGOUT: '退出登录',
 
     // Profile
@@ -128,6 +130,8 @@ const lang = {
     LEAVE_MGR: 'Leave Management',
     OT_MGR: 'Overtime Management',
 
+    CHANGE_PWD: 'Change Password',
+    CHANGE_MOBILE: 'Change Mobile',
     LOGOUT: 'Log out',
 
     // Profile
@@ -198,6 +202,8 @@ const lang = {
     LEAVE_MGR: '休暇管理',
     OT_MGR: '残業管理',
 
+    CHANGE_PWD: 'Change Password',
+    CHANGE_MOBILE: 'Change Mobile',
     LOGOUT: 'ログアウト',
 
     // Profile

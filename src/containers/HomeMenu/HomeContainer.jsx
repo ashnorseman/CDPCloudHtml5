@@ -12,14 +12,25 @@ import { dispatch } from '../../dispatcher/Dispatcher';
 import lang, { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
+import SideNav from '../../components/SideNav/SideNav.jsx';
 import LoginContainer from './../Login/LoginContainer.jsx';
 import UserStore from '../../stores/UserStore';
 
 
-/**
- * Language dropdown settings
- * @type {{items: *[], onClickItem}}
- */
+const sideNavData = [
+  {
+    text: getLang('CHANGE_MOBILE'),
+    link: 'change-mobile'
+  },
+  {
+    text: getLang('CHANGE_PWD'),
+    link: 'change-password'
+  },
+  {
+    text: getLang('LOGOUT')
+  }
+];
+
 const langDropdown = {
   items: [
     {
@@ -43,7 +54,6 @@ const langDropdown = {
   }
 };
 
-
 const tabItems = [
   {
     text: getLang('EMPLOYEE'),
@@ -61,6 +71,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.openSideNav = this.openSideNav.bind(this);
+
+    sideNavData[2].onTouchTap = this.logout;
 
     this.getUserMenu();
   }
@@ -97,7 +110,12 @@ class Home extends Component {
             {
               hasHeader
                 ? <Header title='CDP Portal' dropdown={langDropdown}
-                          iconLeft='sign-out' onTapLeft={this.logout}></Header>
+                          iconLeft='bars' onTapLeft={this.openSideNav}></Header>
+                : null
+            }
+            {
+              hasHeader
+                ? <SideNav ref='sideNav' data={sideNavData}></SideNav>
                 : null
             }
             {
@@ -108,6 +126,11 @@ class Home extends Component {
             {this.props.children}
           </div>
     );
+  }
+
+
+  openSideNav() {
+    this.refs.sideNav.open();
   }
 
 

@@ -11,6 +11,7 @@ import './common/styles/app.less';
 import React, { Component } from 'react';
 import ReactTap from 'react-tap-event-plugin';
 
+import SideNav from './components/SideNav/SideNav.jsx';
 import Header from './components/Header/Header.jsx';
 import Search from './components/Search/Search.jsx';
 import Tab from './components/Tab/Tab.jsx';
@@ -333,20 +334,40 @@ const records = [
   }
 ];
 
+const sideNavData = [
+  {
+    text: '修改手机',
+    link: 'change-mobile'
+  },
+  {
+    text: '修改密码',
+    link: 'change-password'
+  },
+  {
+    text: '修改手机',
+    onTouchTap(e) {
+      console.log(e);
+    }
+  }
+];
+
 
 class Page extends Component {
 
   constructor(props) {
     super(props);
     this.openPage = this.openPage.bind(this);
+    this.openSideNav = this.openSideNav.bind(this);
   }
 
   render() {
 
     return (
       <Loader status='loaded'>
-        <Header title='页面标题' iconLeft='sign-out' iconRight='cog'
-                onTapLeft={onEvent} onTapRight={onEvent} />
+        <SideNav data={sideNavData} ref='sideNav'></SideNav>
+
+        <Header title='页面标题' iconLeft='bars' iconRight='cog'
+                onTapLeft={this.openSideNav} onTapRight={onEvent} />
 
         <Header title='页面标题' back>
           <Search placeholder='请输入搜索内容' onSearch={onSearch} />
@@ -417,6 +438,10 @@ class Page extends Component {
 
   openPage(e) {
     this.refs.page.open(e);
+  }
+
+  openSideNav() {
+    this.refs.sideNav.open();
   }
 }
 

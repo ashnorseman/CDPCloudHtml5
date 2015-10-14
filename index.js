@@ -62,10 +62,10 @@ app.get('/:path?/:any?', function (req, res) {
             employee: [
               {
                 name: 'profile'
-              }
-              //{
-              //  name: 'mySalary'
-              //},
+              },
+              {
+                name: 'mySalary'
+              },
               //{
               //  name: 'myLeave'
               //},
@@ -76,7 +76,7 @@ app.get('/:path?/:any?', function (req, res) {
             manager: [
               {
                 name: 'teamProfile'
-              }
+              },
               //{
               //  name: 'leaveMgr',
               //  notification: 1
