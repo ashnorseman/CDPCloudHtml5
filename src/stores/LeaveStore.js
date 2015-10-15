@@ -20,7 +20,15 @@ class LeaveStore extends ReduceStore {
       status: 'loading',
       leaveValidation: null,
       leaveTypes: [],
-      leaveRecords: []
+      leaveRecords: [],
+      leaveRecord: {},
+      selectedLeaveRecords: [],
+      query: {
+        page: 1,
+        pageSize: 20,
+        sort: 'time',
+        order: 'desc'
+      }
     };
   }
 
@@ -49,16 +57,52 @@ class LeaveStore extends ReduceStore {
         leaveTypes: action.data
       });
     case 'get-emp-leave-records':
-      LeaveDataUtils.getEmpLeaveRecords(action.data);
+      const newQuery = assign(state.query, action.data);
+
+      if (action.data && action.data.loadMore) {
+        if (state.status === 'loading') return state;
+
+        newQuery.page += 1;
+      }
+
+      LeaveDataUtils.getEmpLeaveRecords(newQuery);
       return assign({}, state, {
-        leaveRecords: [],
-        status: 'loading'
+        status: 'loading',
+        query: newQuery
       });
     case 'get-emp-leave-records-success':
+      const data = action.data;
+
       return assign({}, state, {
-        leaveRecords: action.data,
+        leaveRecords: state.query.loadMore ? state.leaveRecords.concat(data) : data,
+        status: (data.length < state.query.pageSize)
+          ? 'no-more-data'
+          : 'loaded'
+      });
+    case 'get-leave-record':
+      LeaveDataUtils.getLeaveRecord(action.data);
+      return assign({}, state, {
+        status: 'loading'
+      });
+    case 'get-leave-record-success':
+      return assign({}, state, {
+        leaveRecord: action.data,
         status: 'loaded'
       });
+    case 'toggle-leave-record-selectable':
+      return assign({}, state, {
+        selectable: !state.selectable
+      });
+    case 'toggle-leave-record-select-status':
+      if (action.data.isSelected && (state.selectedLeaveRecords.indexOf(action.data.id) === -1)) {
+        state.selectedLeaveRecords.push(action.data.id);
+      }
+      if (!action.data.isSelected && (state.selectedLeaveRecords.indexOf(action.data.id) !== -1)) {
+        state.selectedLeaveRecords = state.selectedLeaveRecords.filter((item) => {
+          return item !== action.data.id;
+        });
+      }
+      return assign({}, state);
     }
 
     return state;

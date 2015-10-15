@@ -40,15 +40,18 @@
 .side-nav-opened {
   height: 100%;
   overflow: hidden;
+}
 
-  &::before {
-    background: fade(#000, 80);
-    content: ' ';
-    height: 100%;
-    position: fixed;
-      left: 0;
-      top: 0;
-      z-index: @z-side-nav - 1;
-    width: 100%;
-  }
+
+// Cover
+// ---------------------------
+
+.side-nav-cover {
+  background: fade(#000, 80);
+  height: 100%;
+  position: fixed;
+    left: 0;
+    top: 0;
+    z-index: @z-side-nav - 1;
+  width: 100%;
 }

@@ -69,6 +69,10 @@ function onFilter(item, choice) {
   console.log(item, choice);
 }
 
+function select(item) {
+  return item.id === 1;
+}
+
 
 // Render
 // ---------------------------
@@ -383,6 +387,9 @@ class Page extends Component {
 
         <Filter items={filterItems} onFilter={onFilter}></Filter>
 
+        <RecordList recordList={records} url='leave-record'
+                    selectable={select} toggleSelect={onFilter}></RecordList>
+
         <Form action='//localhost:9090/form' submitButton={submitButton} controls={controls}
               afterSubmit={afterSubmit}></Form>
 
@@ -418,8 +425,6 @@ class Page extends Component {
         <UserInfo userInfo={userInfo.userInfo} action={userInfo.action}></UserInfo>
 
         <UserList userList={userList}></UserList>
-
-        <RecordList recordList={records} url='leave-record'></RecordList>
 
         <InfoCard title='基本信息' items={infoCard}></InfoCard>
 

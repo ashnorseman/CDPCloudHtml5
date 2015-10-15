@@ -25,7 +25,9 @@ export default class InfoCard extends Component {
             items.map((item, index) => {
               return (
                 <li className='info-card-item clearfix' key={index}>
-                  <span className='info-card-name'>{item.name}</span>
+                  {
+                    item.name ? <span className='info-card-name'>{item.name}</span> : null
+                  }
                   <span className='info-card-value'>{item.value}</span>
                 </li>
               );

@@ -23,6 +23,7 @@ import ChangePwdContainer from './containers/Config/ChangePwdContainer.jsx';
 import ChangeMobileContainer from './containers/Config/ChangeMobileContainer.jsx';
 import LeaveContainer from './containers/Leave/LeaveContainer.jsx';
 import LeaveListContainer from './containers/Leave/LeaveListContainer.jsx';
+import LeaveRecordContainer from './containers/Leave/LeaveRecordContainer.jsx';
 import LeaveQuotaContainer from './containers/Leave/LeaveQuotaContainer.jsx';
 import LeaveSummaryContainer from './containers/Leave/LeaveSummaryContainer.jsx';
 import OvertimeContainer from './containers/OvertimeContainer.jsx';
@@ -61,6 +62,7 @@ React.render((
         <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer}></Route>
         <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer}></Route>
       </Route>
+      <Route path='leave-record/:id' name='leave-record' component={LeaveRecordContainer} />
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />

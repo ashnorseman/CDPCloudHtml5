@@ -22,7 +22,6 @@ function load() {
         scrollY = window.scrollY;
 
   if (windowHeight + scrollY >= pageHeight) {
-
     if (typeof load.pullLoader.props.onLoad === 'function') {
       load.pullLoader.props.onLoad.call(this);
     }

@@ -24,8 +24,8 @@ describe('Info card', () => {
 
   it('renders an info card', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <InfoCard title='基本信息' items={data}></InfoCard>
-    ),
+            <InfoCard title='基本信息' items={data}></InfoCard>
+          ),
           card = React.findDOMNode(instance);
 
     expect(card.nodeName).toEqual('SECTION');
@@ -35,8 +35,8 @@ describe('Info card', () => {
 
   it('renders info items', () => {
     const instance = ReactTestUtils.renderIntoDocument(
-      <InfoCard items={data}></InfoCard>
-    ),
+            <InfoCard items={data}></InfoCard>
+          ),
           card = React.findDOMNode(instance),
           item = card.querySelector('li');
 
@@ -44,5 +44,16 @@ describe('Info card', () => {
     expect(card.querySelectorAll('.info-card-item').length).toEqual(2);
     expect(item.querySelector('.info-card-name').textContent).toEqual('姓名');
     expect(item.querySelector('.info-card-value').textContent).toEqual('张阿十');
+  });
+
+  it('renders info items without `name`', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+            <InfoCard items={[{ value: 1 }]}></InfoCard>
+          ),
+          card = React.findDOMNode(instance),
+          item = card.querySelector('li');
+
+    expect(item.querySelector('.info-card-name')).toBeNull();
+    expect(item.querySelector('.info-card-value').textContent).toEqual('1');
   });
 });

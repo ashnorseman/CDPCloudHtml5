@@ -60,5 +60,19 @@ export default {
           data: res.data
         });
       });
+  },
+
+
+  /**
+   * Get a single leave record by id
+   */
+  getLeaveRecord(id) {
+    ajax.get('/leave-record', id)
+      .then((res) => {
+        dispatch({
+          type: 'get-leave-record-success',
+          data: res.data
+        });
+      });
   }
 };

@@ -14,30 +14,32 @@ export default class SideNav extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      opened: false
+    };
     this.close = this.close.bind(this);
   }
 
-  componentDidMount() {
-    document.addEventListener('touchend', this.close, false);
-  }
-
-  componetnWillUnmount() {
-    document.removeEventListener('touchend', this.close, false);
-  }
-
   render() {
-    const { data = [] } = this.props;
+    const { data = [] } = this.props,
+          { opened } = this.state,
+          navClass = 'side-nav' + (opened ? ' opened' : '');
 
     return (
-      <nav className='side-nav'>
+      <div>
+        <nav className={navClass}>
+          {
+            data.map((item, index) => {
+              return <a className='side-nav-item' key={index}
+                        href={item.link ? `#/${item.link}` : null}
+                        onTouchTap={this.onTouchTap.bind(this, item.onTouchTap)}>{item.text}</a>;
+            })
+          }
+        </nav>
         {
-          data.map((item, index) => {
-            return <a className='side-nav-item' key={index}
-                      href={item.link ? `#/${item.link}` : null}
-                      onTouchTap={this.onTouchTap.bind(this, item.onTouchTap)}>{item.text}</a>;
-          })
+          opened ? <div className='side-nav-cover' onTouchEnd={this.close}></div> : null
         }
-      </nav>
+      </div>
     );
   }
 
@@ -46,7 +48,9 @@ export default class SideNav extends Component {
    * Open the nav
    */
   open() {
-    React.findDOMNode(this).classList.add('opened');
+    this.setState({
+      opened: true
+    });
     document.body.classList.add('side-nav-opened');
   }
 
@@ -54,15 +58,20 @@ export default class SideNav extends Component {
   /**
    * Close the nav
    */
-  close(e) {
-
-    if (!e || e.target.nodeName === 'BODY') {
-      React.findDOMNode(this).classList.remove('opened');
+  close() {
+    setTimeout(() => {
+      this.setState({
+        opened: false
+      });
       document.body.classList.remove('side-nav-opened');
-    }
+    }, 100);
   }
 
 
+  /**
+   * When a menu item is touched
+   * @param {Function} callback
+   */
   onTouchTap(callback) {
     this.close();
 

@@ -6,10 +6,29 @@
 @import '../../common/styles/_variables';
 
 
+.record-list-selectable {
+  list-style: none;
+  padding-left: @control-height - @gap;
+
+  > li {
+    position: relative;
+  }
+}
+
 .record-item {
   display: block;
   padding: @gap / 2 0;
   position: relative;
+}
+
+.record-item-select {
+  padding-top: @gap / 2;
+  position: absolute;
+    bottom: 0;
+    left: -@control-height;
+    top: 0;
+  text-align: center;
+  width: @control-height;
 }
 
 .record-item-name {
@@ -24,6 +43,7 @@
 
 .record-item-status {
   color: @color-text-lighter;
+  font-size: @font-sm;
   position: absolute;
     right: 0;
     top: @gap / 2;

@@ -21,6 +21,15 @@ export default class Filter extends Component {
     };
 
     this.openFilter = this.openFilter.bind(this);
+    this.scroll = this.scroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.scroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scroll, false);
   }
 
   render() {
@@ -88,6 +97,8 @@ export default class Filter extends Component {
         item.active = (itemIndex === ii);
         choice.active = active;
 
+        window.scrollTo(0, 0);
+
         if (active && (typeof this.props.onFilter === 'function')) {
           this.props.onFilter.call(this, items[itemIndex].name, items[itemIndex].choices[choiceIndex].name);
         }
@@ -95,5 +106,17 @@ export default class Filter extends Component {
     });
 
     this.setState({ items });
+  }
+
+
+  /**
+   * Fixed at top
+   */
+  scroll() {
+    if (window.scrollY > 0) {
+      React.findDOMNode(this).classList.add('fixed');
+    } else {
+      React.findDOMNode(this).classList.remove('fixed');
+    }
   }
 }

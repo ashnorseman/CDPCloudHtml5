@@ -40,7 +40,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-team-members-success',
-          data: res
+          data: res.data
         });
       });
   }

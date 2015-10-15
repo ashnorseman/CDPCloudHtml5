@@ -66,9 +66,9 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'mySalary'
               },
-              //{
-              //  name: 'myLeave'
-              //},
+              {
+                name: 'myLeave'
+              }
               //{
               //  name: 'myOT'
               //}
@@ -76,7 +76,7 @@ app.get('/:path?/:any?', function (req, res) {
             manager: [
               {
                 name: 'teamProfile'
-              },
+              }
               //{
               //  name: 'leaveMgr',
               //  notification: 1
@@ -336,12 +336,54 @@ app.get('/:path?/:any?', function (req, res) {
           return base.slice(0, 20);
         }())
       });
+    case 'leave-record':
+      return res.json({
+        success: true,
+        data: {
+          userInfo: {
+            id: 1,
+            name: '张阿十',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端设计师'
+          },
+          data: [
+            {
+              title: '请假明细',
+              items: [
+                {
+                  name: '状态',
+                  value: '已审批'
+                },
+                {
+                  name: '开始时间',
+                  value: '2015-10-28 10:00'
+                },
+                {
+                  name: '结束时间',
+                  value: '2015-10-28 18:00'
+                },
+                {
+                  value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus earum eum in obcaecati ratione, repellat sequi soluta tempora? Corporis dolore in quisquam similique. Asperiores aut est excepturi nostrum tenetur vero!'
+                }
+              ]
+            },
+            {
+              title: '审批意见',
+              items: [
+                {
+                  value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate delectus deserunt, dicta error eveniet fuga ipsam ipsum magni, maxime molestiae neque placeat possimus quas quibusdam quod similique, tempora voluptas!'
+                }
+              ]
+            }
+          ]
+        }
+      });
     default:
       res.json({
         success: true
       });
     }
-  }, 100);
+  }, 300);
 });
 
 // POST

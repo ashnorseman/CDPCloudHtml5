@@ -49,8 +49,17 @@ const lang = {
     OT_MGR: '加班管理',
 
     CHANGE_PWD: '修改密码',
-    CHANGE_MOBILE: '修改手机',
+    CHANGE_MOBILE: '修改手机号',
     LOGOUT: '退出登录',
+
+    // Mobile
+    NEW_MOBILE: '新手机号',
+    MOBILE_TIP: '请填入 11 位数字',
+    EDIT_SUCCESS: '修改成功',
+    EDIT_FAIL: '修改失败',
+
+    // Password
+    OLD_PASSWORD: '当前密码',
 
     // Profile
     WORK_EXP: '工作经历',
@@ -134,6 +143,15 @@ const lang = {
     CHANGE_MOBILE: 'Change Mobile',
     LOGOUT: 'Log out',
 
+    // Mobile
+    NEW_MOBILE: 'New mobile number',
+    MOBILE_TIP: 'Please enter 11 digits',
+    EDIT_SUCCESS: 'Change succeeded.',
+    EDIT_FAIL: 'Change failed.',
+
+    // Password
+    OLD_PASSWORD: 'Current Password',
+
     // Profile
     WORK_EXP: 'Work Experience',
 
@@ -153,6 +171,16 @@ const lang = {
     LEAVE_QUOTA: 'Quota',
     LEAVE_SUMMARY: 'Summary',
     APPLY_SUCCESS: 'Your application was successfully sent.',
+    ALL: 'All',
+    TIME: 'Time',
+    THIS_WEEK: 'This Week',
+    THIS_MONTH: 'This Month',
+    THIS_YEAR: 'This Year',
+    TYPE: 'Type',
+    STATUS: 'Status',
+    APPROVED: 'Approved',
+    PENDING: 'Pending',
+    REJECTED: 'Rejected',
 
     // Validation
     REQUIRED: 'Required',
@@ -206,6 +234,15 @@ const lang = {
     CHANGE_MOBILE: 'Change Mobile',
     LOGOUT: 'ログアウト',
 
+    // Mobile
+    NEW_MOBILE: '新しい携帯電話号',
+    MOBILE_TIP: '11 位数字を入力してください。',
+    EDIT_SUCCESS: '改正成功',
+    EDIT_FAIL: '改正失敗',
+
+    // Password
+    OLD_PASSWORD: '現在のパスワード',
+
     // Profile
     WORK_EXP: '仕事の経歴',
 
@@ -225,6 +262,16 @@ const lang = {
     LEAVE_QUOTA: '割当',
     LEAVE_SUMMARY: 'まとめ',
     APPLY_SUCCESS: '申請成功',
+    ALL: '全部',
+    TIME: '時間',
+    THIS_WEEK: '今週',
+    THIS_MONTH: '今月',
+    THIS_YEAR: '今年',
+    TYPE: 'タイプ',
+    STATUS: '状態',
+    APPROVED: 'すでに審査',
+    PENDING: '未承認',
+    REJECTED: 'すでに拒否',
 
     // Validation
     REQUIRED: '必要です',

@@ -26,6 +26,10 @@ describe('Record list', () => {
     }
   ];
 
+  function select(item) {
+    return item.id === 1;
+  }
+
   it('renders a record list', () => {
     const instance = ReactTestUtils.renderIntoDocument(
             <RecordList recordList={recordList} url='leave-record'></RecordList>
@@ -35,5 +39,30 @@ describe('Record list', () => {
     expect(records.nodeName).toEqual('UL');
     expect(records.querySelectorAll('.record-item').length).toEqual(2);
     expect(records.querySelectorAll('.record-item')[0].href).toEqual(document.baseURI + '#/leave-record/1');
+  });
+
+  it('selectable', () => {
+    const spy = jasmine.createSpy(),
+          instance = ReactTestUtils.renderIntoDocument(
+            <RecordList recordList={recordList} url='leave-record'
+                        selectable={select} toggleSelect={spy}></RecordList>
+          ),
+          records = React.findDOMNode(instance),
+          items = records.querySelectorAll('li');
+
+    expect(items[0].querySelector('.record-item-select')).not.toBeNull();
+    expect(items[1].querySelector('.record-item-select')).toBeNull();
+
+    items[0].querySelector('input').checked = true;
+    ReactTestUtils.Simulate.change(items[0].querySelector('input'));
+    expect(spy.calls.count()).toEqual(1);
+    expect(spy.calls.mostRecent().args[0].id).toEqual(1);
+    expect(spy.calls.mostRecent().args[1]).toEqual(true);
+
+    items[0].querySelector('input').checked = false;
+    ReactTestUtils.Simulate.change(items[0].querySelector('input'));
+    expect(spy.calls.count()).toEqual(2);
+    expect(spy.calls.mostRecent().args[0].id).toEqual(1);
+    expect(spy.calls.mostRecent().args[1]).toEqual(false);
   });
 });

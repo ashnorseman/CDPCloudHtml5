@@ -7,7 +7,8 @@
 
 
 .filter {
-  background: @color-bg-light;
+  background: darken(@color-bg, 3);
+  box-shadow: @shadow-depth-1;
   color: @color-text-light;
   display: table;
   line-height: @control-height;
@@ -16,6 +17,13 @@
   table-layout: fixed;
   text-align: center;
   width: 100%;
+
+  &.fixed {
+    position: fixed;
+      left: 0;
+      top: 0;
+      z-index: @z-header;
+  }
 }
 
 .filter-item {
