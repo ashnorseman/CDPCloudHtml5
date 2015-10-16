@@ -23,6 +23,7 @@ class LeaveStore extends ReduceStore {
       leaveRecords: [],
       leaveRecord: {},
       selectedLeaveRecords: [],
+      mgrAjax: false,
       query: {
         page: 1,
         pageSize: 20,
@@ -102,6 +103,35 @@ class LeaveStore extends ReduceStore {
           return item !== action.data.id;
         });
       }
+      return assign({}, state);
+    case 'approve-all-leaves':
+      if (state.selectedLeaveRecords.length) {
+        LeaveDataUtils.approveAll(state.selectedLeaveRecords);
+        return assign({}, state, {
+          mgrAjax: true
+        });
+      }
+      return state;
+    case 'reject-all-leaves':
+      if (state.selectedLeaveRecords.length) {
+        LeaveDataUtils.rejectAll(state.selectedLeaveRecords);
+        return assign({}, state, {
+          mgrAjax: true
+        });
+      }
+      return state;
+    case 'approve-all-leaves-success':
+    case 'reject-all-leaves-success':
+      location.reload();
+      return state;
+    case 'toggle-leave-record-select-all':
+      state.selectedLeaveRecords = [];
+      state.leaveRecords.forEach((item) => {
+        if (item.status === 2) {
+          item.checked = action.data;
+          state.selectedLeaveRecords.push(item.id);
+        }
+      });
       return assign({}, state);
     }
 

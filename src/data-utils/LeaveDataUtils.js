@@ -74,5 +74,33 @@ export default {
           data: res.data
         });
       });
+  },
+
+
+  /**
+   * Approve all records
+   * @param {Array} records
+   */
+  approveAll(records) {
+    ajax.post('/approve-leave', records)
+      .then((res) => {
+        dispatch({
+          type: 'approve-all-leaves-success'
+        });
+      });
+  },
+
+
+  /**
+   * Reject all records
+   * @param {Array} records
+   */
+  rejectAll(records) {
+    ajax.post('/reject-leave', records)
+      .then((res) => {
+        dispatch({
+          type: 'reject-all-leaves-success'
+        });
+      });
   }
 };

@@ -76,11 +76,11 @@ app.get('/:path?/:any?', function (req, res) {
             manager: [
               {
                 name: 'teamProfile'
+              },
+              {
+                name: 'leaveMgr',
+                notification: 1
               }
-              //{
-              //  name: 'leaveMgr',
-              //  notification: 1
-              //},
               //{
               //  name: 'otMgr',
               //  notification: 1

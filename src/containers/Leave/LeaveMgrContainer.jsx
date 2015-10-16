@@ -14,6 +14,7 @@ import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
+import Button from '../../components/Button/Button.jsx';
 import LeaveList from './LeaveList.jsx';
 import LeaveStore from '../../stores/LeaveStore';
 
@@ -25,18 +26,11 @@ class LeaveMgr extends Component {
   }
 
   static calculateState() {
-    const state = LeaveStore.getState();
-
-    return {
-      leaveTypes: state.leaveTypes,
-      leaveRecords: state.leaveRecords,
-      status: state.status,
-      selectable: state.selectable
-    };
+    return LeaveStore.getState();
   }
 
   render() {
-    const { selectable } = this.state;
+    const { selectable, mgrAjax } = this.state;
 
     return (
       <div className='bottom-gap'>
@@ -50,10 +44,14 @@ class LeaveMgr extends Component {
           {
             selectable ?
               <nav className='tab tab-bottom leave-mgr-bottom'>
-                <label className='leave-mgr-select-all'><input type='checkbox' /></label>
+                <label className='leave-mgr-select-all'><input type='checkbox' onChange={this.toggleSelectAll} /></label>
                 <div className='row'>
-                  <div className='col-1-2'><button>全部通过</button></div>
-                  <div className='col-1-2'><button>全部拒绝</button></div>
+                  <div className='col-1-2'>
+                    <Button text='全部通过' disabled={mgrAjax} onTouchTap={this.approveAll}></Button>
+                  </div>
+                  <div className='col-1-2'>
+                    <Button text='全部拒绝' hollow disabled={mgrAjax} className='text-primary' onTouchTap={this.rejectAll}></Button>
+                  </div>
                 </div>
               </nav> : null
           }
@@ -85,6 +83,36 @@ class LeaveMgr extends Component {
         id: item.id,
         isSelected
       }
+    });
+  }
+
+
+  /**
+   * Select / Unselect all records
+   * @param {Event} e
+   */
+  toggleSelectAll(e) {
+    [].slice.call(document.querySelectorAll('[type=checkbox]')).forEach((checkbox) => {
+      checkbox.checked = e.target.checked;
+    });
+
+    dispatch({
+      type: 'toggle-leave-record-select-all',
+      data: e.target.checked
+    });
+  }
+
+
+  approveAll() {
+    dispatch({
+      type: 'approve-all-leaves'
+    });
+  }
+
+
+  rejectAll() {
+    dispatch({
+      type: 'reject-all-leaves'
     });
   }
 }
