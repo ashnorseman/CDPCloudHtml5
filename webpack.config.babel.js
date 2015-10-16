@@ -47,7 +47,7 @@ if (TARGET === 'start' || TARGET === 'dev') {
         },
         {
           test: /\.jsx?$/,
-          loaders: ['react-hot', 'babel'],
+          loaders: ['babel'],
           include: path.resolve(ROOT_PATH, 'src')
         },
         {

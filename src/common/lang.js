@@ -90,6 +90,10 @@ const lang = {
     APPROVED: '已审批',
     PENDING: '未审批',
     REJECTED: '已拒绝',
+    APPROVE_ALL: '全部通过',
+    REJECT_ALL: '全部拒绝',
+    APPROVE: '通过',
+    REJECT: '拒绝',
 
     // Validation
     REQUIRED: '必填',
@@ -181,6 +185,10 @@ const lang = {
     APPROVED: 'Approved',
     PENDING: 'Pending',
     REJECTED: 'Rejected',
+    APPROVE_ALL: 'Approve all',
+    REJECT_ALL: 'Reject all',
+    APPROVE: 'Approve',
+    REJECT: 'Reject',
 
     // Validation
     REQUIRED: 'Required',
@@ -272,6 +280,10 @@ const lang = {
     APPROVED: 'すでに審査',
     PENDING: '未承認',
     REJECTED: 'すでに拒否',
+    APPROVE_ALL: '全て通し',
+    REJECT_ALL: '全部拒否',
+    APPROVE: '通し',
+    REJECT: '拒否',
 
     // Validation
     REQUIRED: '必要です',

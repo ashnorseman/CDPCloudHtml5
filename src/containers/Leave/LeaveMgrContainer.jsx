@@ -36,7 +36,9 @@ class LeaveMgr extends Component {
       <div className='bottom-gap'>
         <Header back title={getLang('LEAVE_MGR')} iconRight={selectable ? 'check' : 'edit'}
                 onTapRight={this.toggleEnterMode} />
+
         <LeaveList {...this.state}
+                   mgr={true}
                    defaultFilter={{ type: 'status', choice: 'pending' }}
                    toggleSelect={this.toggleSelect}></LeaveList>
 
@@ -47,10 +49,10 @@ class LeaveMgr extends Component {
                 <label className='leave-mgr-select-all'><input type='checkbox' onChange={this.toggleSelectAll} /></label>
                 <div className='row'>
                   <div className='col-1-2'>
-                    <Button text='全部通过' disabled={mgrAjax} onTouchTap={this.approveAll}></Button>
+                    <Button text={getLang('APPROVE_ALL')} disabled={mgrAjax} onTouchTap={this.approveAll}></Button>
                   </div>
                   <div className='col-1-2'>
-                    <Button text='全部拒绝' hollow disabled={mgrAjax} className='text-primary' onTouchTap={this.rejectAll}></Button>
+                    <Button text={getLang('REJECT_ALL')} hollow disabled={mgrAjax} className='text-primary' onTouchTap={this.rejectAll}></Button>
                   </div>
                 </div>
               </nav> : null

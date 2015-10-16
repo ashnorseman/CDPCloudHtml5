@@ -63,6 +63,7 @@ React.render((
         <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer}></Route>
       </Route>
       <Route path='leave-record/:id' name='leave-record' component={LeaveRecordContainer} />
+      <Route path='leave-record-mgr/:id' name='leave-record-mgr' component={LeaveRecordContainer} />
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />

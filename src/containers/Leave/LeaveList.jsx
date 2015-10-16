@@ -95,7 +95,7 @@ export default class LeaveList extends Component {
   }
 
   render() {
-    const { leaveRecords, status, leaveTypes, selectable, toggleSelect } = this.props;
+    const { leaveRecords, status, leaveTypes, selectable, toggleSelect, mgr } = this.props;
     filter[1].choices = leaveTypes;
 
     return (
@@ -103,7 +103,7 @@ export default class LeaveList extends Component {
         <Filter items={filter} onFilter={this.filter}></Filter>
 
         <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
-          <RecordList recordList={leaveRecords} url='leave-record'
+          <RecordList recordList={leaveRecords} url={'leave-record' + (mgr ? '-mgr' : '')}
                       selectable={selectable && this.select}
                       toggleSelect={toggleSelect}></RecordList>
         </PullLoader>
