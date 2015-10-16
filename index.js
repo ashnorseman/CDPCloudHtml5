@@ -387,7 +387,7 @@ app.get('/:path?/:any?', function (req, res) {
 });
 
 // POST
-app.post('/:path?', multer.single('attach'), function (req, res) {
+app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
   console.log('post: ', req.body, req.file);
 
   switch (req.params.path) {

@@ -7,7 +7,7 @@
 
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
-import ajax from '../common/utils/ajax';
+import ajax, { ajaxDispatch } from '../common/utils/ajax';
 
 
 export default {
@@ -17,6 +17,10 @@ export default {
    * Get leave form
    */
   getLeaveForm() {
+    dispatch({
+      type: 'get-leave-form'
+    });
+
     ajax.get('/leave-form')
       .then((form) => {
 
@@ -38,13 +42,11 @@ export default {
    * Get leave types
    */
   getLeaveTypes() {
-    ajax.get('/leave-types')
-      .then((res) => {
-        dispatch({
-          type: 'get-leave-types-success',
-          data: res.data
-        });
-      });
+    ajaxDispatch({
+      action: 'get-leave-types',
+      url: '/leave-types',
+      method: 'get'
+    });
   },
 
 
@@ -67,13 +69,12 @@ export default {
    * Get a single leave record by id
    */
   getLeaveRecord(id) {
-    ajax.get('/leave-record', id)
-      .then((res) => {
-        dispatch({
-          type: 'get-leave-record-success',
-          data: res.data
-        });
-      });
+
+    ajaxDispatch({
+      action: 'get-leave-record',
+      url: '/leave-record/' + id,
+      method: 'get'
+    });
   },
 
 
@@ -82,12 +83,13 @@ export default {
    * @param {Array} records
    */
   approveAll(records) {
-    ajax.post('/approve-leave', records)
-      .then((res) => {
-        dispatch({
-          type: 'approve-all-leaves-success'
-        });
-      });
+
+    ajaxDispatch({
+      action: 'approve-all-leaves',
+      url: '/approve-leave',
+      method: 'post',
+      data: records
+    });
   },
 
 
@@ -96,11 +98,44 @@ export default {
    * @param {Array} records
    */
   rejectAll(records) {
-    ajax.post('/reject-leave', records)
-      .then((res) => {
-        dispatch({
-          type: 'reject-all-leaves-success'
-        });
-      });
+
+    ajaxDispatch({
+      action: 'reject-all-leaves',
+      url: '/reject-leave',
+      method: 'post',
+      data: records
+    });
+  },
+
+
+  /**
+   * Reject a record
+   */
+  approveRecord({ id, opinion }) {
+
+    ajaxDispatch({
+      action: 'leave-record-approve',
+      url: '/approve-leave/' + id,
+      method: 'post',
+      data: {
+        opinion
+      }
+    });
+  },
+
+
+  /**
+   * Reject a record
+   */
+  rejectRecord({ id, opinion }) {
+
+    ajaxDispatch({
+      action: 'leave-record-reject',
+      url: '/reject-leave/' + id,
+      method: 'post',
+      data: {
+        opinion
+      }
+    });
   }
 };

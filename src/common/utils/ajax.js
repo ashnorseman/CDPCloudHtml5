@@ -5,6 +5,8 @@
 
 'use strict';
 
+import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
+
 
 let domain = '';
 
@@ -130,7 +132,7 @@ function sendData(url, method, data = {}) {
  * API
  * @type {{get, post, put, delete}}
  */
-export default {
+const ajax = {
 
 
   /**
@@ -177,4 +179,27 @@ export default {
   delete(url, data = {}) {
     return sendData(domain + url, 'DELETE', data);
   }
+};
+
+export default ajax;
+
+export const ajaxDispatch = function ({
+    action,
+    url,
+    method,
+    data
+  }) {
+
+  dispatch({
+    type: action,
+    data
+  });
+
+  ajax[method](url, data)
+    .then((res) => {
+      dispatch({
+        type: action + '-success',
+        data: res.data
+      });
+    });
 };

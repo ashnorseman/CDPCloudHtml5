@@ -17,7 +17,9 @@ import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 import FormControl from '../../components/FormControl/FormControl.jsx';
 import TextInput from '../../components/TextInput/TextInput.jsx';
 import Button from '../../components/Button/Button.jsx';
+
 import LeaveStore from '../../stores/LeaveStore';
+import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
 class LeaveRecord extends Component {
@@ -88,31 +90,28 @@ class LeaveRecord extends Component {
    * Get a single leave record
    */
   getLeaveRecord() {
-    dispatch({
-      type: 'get-leave-record',
-      data: this.props.params && this.props.params.id
+    LeaveDataUtils.getLeaveRecord(this.props.params && this.props.params.id);
+  }
+
+
+  /**
+   * Approve a record
+   */
+  approve() {
+    LeaveDataUtils.approveRecord({
+      id: this.props.params.id,
+      opinion: React.findDOMNode(this.refs.opinion).value
     });
   }
 
 
-  approve(e) {
-    dispatch({
-      type: 'leave-record-approve',
-      data: {
-        id: this.props.params.id,
-        opinion: React.findDOMNode(this.refs.opinion).value
-      }
-    });
-  }
-
-
-  reject(e) {
-    dispatch({
-      type: 'leave-record-reject',
-      data: {
-        id: this.props.params.id,
-        opinion: React.findDOMNode(this.refs.opinion).value
-      }
+  /**
+   * Reject a record
+   */
+  reject() {
+    LeaveDataUtils.rejectRecord({
+      id: this.props.params.id,
+      opinion: React.findDOMNode(this.refs.opinion).value
     });
   }
 }

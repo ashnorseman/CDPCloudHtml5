@@ -36,23 +36,15 @@ class LeaveStore extends ReduceStore {
   reduce(state, action) {
     switch (action.type) {
     case 'get-leave-form':
-      if (!state.leaveForm.length) {
-        LeaveDataUtils.getLeaveForm();
-
-        return assign({}, state, {
-          status: 'loading'
-        });
-      }
-      return state;
+      return assign({}, state, {
+        status: 'loading'
+      });
     case 'get-leave-form-success':
       return assign({}, state, {
         leaveForm: action.data,
         status: 'loaded',
         leaveValidation: window.leaveValidation
       });
-    case 'get-leave-types':
-      LeaveDataUtils.getLeaveTypes();
-      break;
     case 'get-leave-types-success':
       return assign({}, state, {
         leaveTypes: action.data
@@ -81,7 +73,6 @@ class LeaveStore extends ReduceStore {
           : 'loaded'
       });
     case 'get-leave-record':
-      LeaveDataUtils.getLeaveRecord(action.data);
       return assign({}, state, {
         status: 'loading'
       });
@@ -105,21 +96,10 @@ class LeaveStore extends ReduceStore {
       }
       return assign({}, state);
     case 'approve-all-leaves':
-      if (state.selectedLeaveRecords.length) {
-        LeaveDataUtils.approveAll(state.selectedLeaveRecords);
-        return assign({}, state, {
-          mgrAjax: true
-        });
-      }
-      return state;
     case 'reject-all-leaves':
-      if (state.selectedLeaveRecords.length) {
-        LeaveDataUtils.rejectAll(state.selectedLeaveRecords);
-        return assign({}, state, {
-          mgrAjax: true
-        });
-      }
-      return state;
+      return assign({}, state, {
+        mgrAjax: true
+      });
     case 'approve-all-leaves-success':
     case 'reject-all-leaves-success':
       location.reload();
@@ -133,6 +113,10 @@ class LeaveStore extends ReduceStore {
         }
       });
       return assign({}, state);
+    case 'leave-record-approve-success':
+    case 'leave-record-reject-success':
+      history.back();
+      return state;
     }
 
     return state;

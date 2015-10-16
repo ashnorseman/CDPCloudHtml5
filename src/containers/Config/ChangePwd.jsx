@@ -6,12 +6,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
 import Form from '../../components/Form/Form.jsx';
-import UserStore from '../../stores/UserStore';
 
 
 const changePwdControls = [
@@ -46,15 +44,7 @@ const submitButton = {
   text: getLang('CHANGE_PWD')
 };
 
-class ChangeMobile extends Component {
-
-  static getStores() {
-    return [UserStore];
-  }
-
-  static calculateState() {
-    return UserStore.getState();
-  }
+export default class ChangePwd extends Component {
 
   render() {
     return (
@@ -96,6 +86,3 @@ class ChangeMobile extends Component {
     }
   }
 }
-
-
-export default Container.create(ChangeMobile);

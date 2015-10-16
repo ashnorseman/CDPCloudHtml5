@@ -19,8 +19,8 @@ import EmployeeContainer from './containers/HomeMenu/EmployeeContainer.jsx';
 import ManagerContainer from './containers/HomeMenu/ManagerContainer.jsx';
 import ProfileContainer from './containers/ProfileContainer.jsx';
 import SalaryContainer from './containers/SalaryContainer.jsx';
-import ChangePwdContainer from './containers/Config/ChangePwdContainer.jsx';
-import ChangeMobileContainer from './containers/Config/ChangeMobileContainer.jsx';
+import ChangePwd from './containers/Config/ChangePwd.jsx';
+import ChangeMobile from './containers/Config/ChangeMobile.jsx';
 import LeaveContainer from './containers/Leave/LeaveContainer.jsx';
 import LeaveListContainer from './containers/Leave/LeaveListContainer.jsx';
 import LeaveRecordContainer from './containers/Leave/LeaveRecordContainer.jsx';
@@ -51,8 +51,8 @@ React.render((
     <Route path='/' name='home' component={HomeContainer}>
       <IndexRoute component={EmployeeContainer} />
 
-      <Route path='change-password' name='change-pwd' component={ChangePwdContainer} />
-      <Route path='change-mobile' name='change-mobile' component={ChangeMobileContainer} />
+      <Route path='change-password' name='change-pwd' component={ChangePwd} />
+      <Route path='change-mobile' name='change-mobile' component={ChangeMobile} />
 
       <Route path='profile(/:id)' name='profile' component={ProfileContainer} />
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />

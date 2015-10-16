@@ -64,7 +64,7 @@ export default class SideNav extends Component {
         opened: false
       });
       document.body.classList.remove('side-nav-opened');
-    }, 100);
+    }, 300);
   }
 
 

@@ -16,7 +16,9 @@ import { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
 import Button from '../../components/Button/Button.jsx';
 import LeaveList from './LeaveList.jsx';
+
 import LeaveStore from '../../stores/LeaveStore';
+import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
 class LeaveMgr extends Component {
@@ -106,16 +108,20 @@ class LeaveMgr extends Component {
 
 
   approveAll() {
-    dispatch({
-      type: 'approve-all-leaves'
-    });
+    const selected = LeaveStore.getState().selectedLeaveRecords;
+
+    if (selected.length) {
+      LeaveDataUtils.approveAll(selected);
+    }
   }
 
 
   rejectAll() {
-    dispatch({
-      type: 'reject-all-leaves'
-    });
+    const selected = LeaveStore.getState().selectedLeaveRecords;
+
+    if (selected.length) {
+      LeaveDataUtils.rejectAll(selected);
+    }
   }
 }
 

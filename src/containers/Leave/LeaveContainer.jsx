@@ -16,7 +16,9 @@ import Button from '../../components/Button/Button.jsx';
 import Form from '../../components/Form/Form.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import PageOpener from '../../components/PageOpener/PageOpener.jsx';
+
 import LeaveStore from '../../stores/LeaveStore';
+import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
 const tabSettings = [
@@ -88,9 +90,9 @@ class Leave extends Component {
   openApply(e) {
     this.refs.apply.open(e);
 
-    dispatch({
-      type: 'get-leave-form'
-    });
+    if (!LeaveStore.getState().leaveForm || !LeaveStore.getState().leaveForm.length) {
+      LeaveDataUtils.getLeaveForm();
+    }
   }
 
 

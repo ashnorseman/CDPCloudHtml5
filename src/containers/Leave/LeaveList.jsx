@@ -13,6 +13,8 @@ import Filter from '../../components/Filter/Filter.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 
+import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
+
 
 const filter = [
   {
@@ -89,9 +91,7 @@ export default class LeaveList extends Component {
       }
     }
 
-    dispatch({
-      type: 'get-leave-types'
-    });
+    LeaveDataUtils.getLeaveTypes();
   }
 
   render() {
