@@ -4,7 +4,7 @@
   "description": "CDP Portal - HTML5 version",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "BABEL_ENV=production webpack",
     "start": "webpack-dev-server",
     "dev": "webpack-dev-server",
     "server": "nodemon index"
