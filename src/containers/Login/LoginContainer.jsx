@@ -118,12 +118,21 @@ class Login extends Component {
       captchaTimer: login.captchaTimer,
       reset: login.reset,
       captchaPass: login.captchaPass,
-      resetPass: login.resetPass
+      resetPass: login.resetPass,
+      loginStatus: login.loginStatus
     };
   }
 
+  componentDidUpdate() {
+    if (this.state.loginStatus.indexOf('failed') > -1) {
+      this.refs.loginForm.setState({
+        submitting: false
+      });
+    }
+  }
+
   render() {
-    const { captchaTimer, reset, captchaPass, resetPass } = this.state;
+    const { captchaTimer, reset, captchaPass, resetPass, loginStatus } = this.state;
 
     return (
       <div className='login'>

@@ -394,8 +394,9 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
   case 'login':
     setTimeout(function () {
       return res.json({
-        success: true,
-        data: {
+        res: true,
+        //error: 'ERROR'
+        val: {
           company: 'cdp',
           username: 'ash',
           nickname: 'Ash'

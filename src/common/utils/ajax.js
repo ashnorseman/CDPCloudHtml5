@@ -86,10 +86,10 @@ function parseResponse(res, dataType) {
  * @returns {Object|Error}
  */
 function checkSuccessFalse(res) {
-  if (!res || (res.success !== false)) {
+  if (res && (res.res !== false)) {
     return res;
   } else {
-    throw new Error(res);
+    throw new Error(res.error);
   }
 }
 

@@ -31,6 +31,7 @@ if (TARGET === 'start' || TARGET === 'dev') {
       historyApiFallback: true,
       hot: true,
       inline: true,
+      port: 8888,
       progress: true
     },
     devtool: 'eval-source-map',

@@ -58,7 +58,7 @@ export default {
       .catch((e) => {
         dispatch({
           type: 'login-fail',
-          error: e
+          data: e.message
         });
       });
   },
