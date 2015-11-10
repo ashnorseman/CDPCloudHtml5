@@ -55,36 +55,49 @@ app.get('/:path?/:any?', function (req, res) {
     switch (path) {
     case 'user-menu':
       return res.json({
-        success: true,
-        data: {
-          identity: 2,
+        res: true,
+        val: {
           menu: {
-            employee: [
+            ess: [
               {
-                name: 'profile'
+                name: 'baseMessage',
+                text: '基本信息',
+                id: 1984
               },
               {
-                name: 'mySalary'
+                name: 'myPay',
+                text: '我的工资',
+                id: 2006
               },
               {
-                name: 'myLeave'
+                name: 'myVacation',
+                text: '我的休假',
+                id: 569
+              },
+              {
+                name: 'myOvertime',
+                text: '我的加班',
+                id: 1456
               }
-              //{
-              //  name: 'myOT'
-              //}
             ],
-            manager: [
+            mss: [
               {
-                name: 'teamProfile'
+                name: 'teamMessage',
+                text: '团队信息',
+                id: 1
               },
               {
-                name: 'leaveMgr',
+                name: 'leaveManagement',
+                text: '请假管理',
+                id: '1656',
+                notification: 1
+              },
+              {
+                name: 'overtimeManagement',
+                text: '加班管理',
+                id: '1666',
                 notification: 1
               }
-              //{
-              //  name: 'otMgr',
-              //  notification: 1
-              //}
             ]
           }
         }

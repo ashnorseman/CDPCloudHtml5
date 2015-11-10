@@ -22,7 +22,7 @@ class Manager extends Component {
   }
 
   static calculateState() {
-    const empMenu = UserStore.getState().menu.manager || [];
+    const empMenu = UserStore.getState().menu.mss || [];
 
     return {
       menu:  empMenu.map((item) => {

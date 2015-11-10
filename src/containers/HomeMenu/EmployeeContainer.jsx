@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import assign from 'object-assign';
 
 import { getItem as getLang } from '../../common/lang';
 import menuSettings from './homeMenuSettings';
@@ -21,11 +22,11 @@ class Employee extends Component {
   }
 
   static calculateState() {
-    const empMenu = UserStore.getState().menu.employee || [];
+    const empMenu = UserStore.getState().menu.ess || [];
 
     return {
       menu:  empMenu.map((item) => {
-        return menuSettings[item.name];
+        return assign(item, menuSettings[item.name]);
       })
     };
   }

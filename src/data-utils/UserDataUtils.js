@@ -156,7 +156,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-user-menu-success',
-          data: res.data
+          data: res.val
         });
       });
   }

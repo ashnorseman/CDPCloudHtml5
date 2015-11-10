@@ -87,13 +87,12 @@ class Home extends Component {
 
     return {
       loggedIn: user.loggedIn,
-      identity: user.identity,
       menu: user.menu
     };
   }
 
   render() {
-    const { loggedIn, identity, menu } = this.state,
+    const { loggedIn, menu } = this.state,
           routeName = this.props.location.pathname,
           hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1;
 
