@@ -32,7 +32,7 @@ class ProfileStore extends ReduceStore {
         status: 'loading'
       });
     case 'get-profile-success':
-      return assign({}, state, action.data.data, {
+      return assign({}, state, action.data, {
         status: 'loaded'
       });
     default:

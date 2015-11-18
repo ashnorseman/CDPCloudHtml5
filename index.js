@@ -104,8 +104,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'profile':
       return res.json({
-        success: true,
-        data: {
+        res: true,
+        val: {
           basicInfo: {
             id: 1,
             name: '张阿十',

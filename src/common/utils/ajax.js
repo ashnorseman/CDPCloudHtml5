@@ -116,7 +116,9 @@ function sendData(url, method, data = {}) {
     option.headers = {
       'Content-Type': 'application/json'
     };
-    option.credentials = 'include';
+    if (process.env.NODE_ENV === 'production') {
+      option.credentials = 'include';
+    }
     option.body = JSON.stringify(data);
   }
 
@@ -151,9 +153,9 @@ const ajax = {
     let query = data ? makeQueryString(data) : '';
     let dataType = parseDataType(url);
 
-    return fetch(domain + url + query, {
+    return fetch(domain + url + query, (process.env.NODE_ENV === 'production') ? {
       credentials: 'include'
-    })
+    } : null)
       .then(checkStatus)
       .then((res) => {
         return parseResponse(res, dataType);

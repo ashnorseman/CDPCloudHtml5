@@ -25,7 +25,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-profile-success',
-          data: res
+          data: res.val
         });
       });
   },
