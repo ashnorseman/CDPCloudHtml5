@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 // ---------------------------
 
 app.use(function (req, res, next) {
+  console.log('cookie: ' + JSON.stringify(req.cookies) + ' from ' + req.url);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Origin', '*');

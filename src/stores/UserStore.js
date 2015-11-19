@@ -36,10 +36,12 @@ class UserStore extends ReduceStore {
   reduce(state, action) {
     switch (action.type) {
     case 'login-success':
-      return assign({}, state, {
+      const data = assign({}, state, {
         loggedIn: true,
         basicInfo: UserDataUtils.readCookie()
       });
+      UserDataUtils.getUserMenu();
+      return data;
     case 'login-failed':
     case 'logout-success':
       return assign({}, state, {
