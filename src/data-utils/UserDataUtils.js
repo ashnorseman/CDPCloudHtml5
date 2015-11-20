@@ -39,26 +39,26 @@ export default {
       .then((res) => {
         cookies.setItem('loggedIn', 1);
 
-        if (res.data) {
+        if (res) {
 
           if (cookies.getItem('remember')) {
-            Object.keys(res.data).forEach((key) => {
-              cookies.setItem(key, res.data[key]);
+            Object.keys(res).forEach((key) => {
+              cookies.setItem(key, res[key]);
             });
           } else {
-            cookies.setItem('nickname', res.data.nickname);
+            cookies.setItem('nickname', res.nickname);
           }
         }
 
         dispatch({
           type: 'login-success',
-          data: res.data
+          data: res
         });
       })
       .catch((e) => {
         dispatch({
           type: 'login-fail',
-          data: e.message
+          data: e
         });
       });
   },
@@ -156,7 +156,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-user-menu-success',
-          data: res.val
+          data: res
         });
       });
   }

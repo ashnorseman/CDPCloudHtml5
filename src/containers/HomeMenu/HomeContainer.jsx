@@ -74,8 +74,6 @@ class Home extends Component {
     this.openSideNav = this.openSideNav.bind(this);
 
     sideNavData[2].onTouchTap = this.logout;
-
-    this.getUserMenu();
   }
 
   static getStores() {
@@ -89,6 +87,12 @@ class Home extends Component {
       loggedIn: user.loggedIn,
       menu: user.menu
     };
+  }
+
+  componentDidMount() {
+    if (this.state.loggedIn) {
+      this.getUserMenu();
+    }
   }
 
   render() {

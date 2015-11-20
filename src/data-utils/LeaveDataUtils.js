@@ -30,7 +30,7 @@ export default {
             setTimeout(() => {
               dispatch({
                 type: 'get-leave-form-success',
-                data: form.data
+                data: form
               });
             }, 200);
           });
@@ -59,7 +59,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-emp-leave-records-success',
-          data: res.data
+          data: res
         });
       });
   },

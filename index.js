@@ -171,8 +171,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'salary':
       return res.json({
-        success: true,
-        data: {
+        res: true,
+        val: {
           basicInfo: {
             id: 1,
             name: '张阿十',
@@ -212,8 +212,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'team-members':
       return res.json({
-        success: true,
-        data: (function () {
+        res: true,
+        val: (function () {
           var base = [
             {
               id: 1,
@@ -240,8 +240,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'leave-form':
       return res.json({
-        success: true,
-        data: [
+        res: true,
+        val: [
           {
             id: 'type',
             name: 'type',
@@ -304,8 +304,8 @@ app.get('/:path?/:any?', function (req, res) {
       return res.sendFile(__dirname + '/form-validation/leave.js');
     case 'leave-types':
       return res.json({
-        success: true,
-        data: [
+        res: true,
+        val: [
           {
             text: '事假',
             name: 'personalAffairs'
@@ -318,8 +318,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'leave-records':
       return res.json({
-        success: true,
-        data: (function () {
+        res: true,
+        val: (function () {
           var base = [
             {
               id: 1,
@@ -352,8 +352,8 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'leave-record':
       return res.json({
-        success: true,
-        data: {
+        res: true,
+        val: {
           userInfo: {
             id: 1,
             name: '张阿十',
@@ -394,7 +394,7 @@ app.get('/:path?/:any?', function (req, res) {
       });
     default:
       res.json({
-        success: true
+        res: true
       });
     }
   }, 300);
@@ -409,14 +409,15 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
     setTimeout(function () {
       return res.json({
         res: true,
-        //error: 'ERROR'
         val: {
           company: 'cdp',
           username: 'ash',
           nickname: 'Ash'
         }
+        //res: false,
+        //error: '公司代码不存在'
       });
-    }, 1000);
+    }, 500);
     return;
   }
 

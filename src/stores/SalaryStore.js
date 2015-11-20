@@ -32,7 +32,7 @@ class SalaryStore extends ReduceStore {
         status: 'loading'
       });
     case 'get-salary-success':
-      const infoList = action.data.data.infoList,
+      const infoList = action.data.infoList,
             chartList = infoList.reduce((list, item) => {
               return list.concat(item.items);
             }, []),
@@ -41,7 +41,7 @@ class SalaryStore extends ReduceStore {
               return item;
             });
 
-      return assign({}, state, action.data.data, {
+      return assign({}, state, action.data, {
         chartData,
         status: 'loaded'
       });

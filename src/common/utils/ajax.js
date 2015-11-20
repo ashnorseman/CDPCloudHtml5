@@ -81,15 +81,15 @@ function parseResponse(res, dataType) {
 
 
 /**
- * If response contains `success: false`, throw an error
+ * If response contains `res: false`, throw an error
  * @param {*} res
  * @returns {Object|Error}
  */
 function checkSuccessFalse(res) {
   if (res && (res.res !== false)) {
-    return res;
+    return res.val;
   } else {
-    throw new Error(res.error);
+    throw new Error(res && res.error);
   }
 }
 

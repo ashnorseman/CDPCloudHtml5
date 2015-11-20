@@ -25,7 +25,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-profile-success',
-          data: res.val
+          data: res
         });
       });
   },
@@ -40,7 +40,7 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-team-members-success',
-          data: res.data
+          data: res
         });
       });
   }
