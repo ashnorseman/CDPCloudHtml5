@@ -16,7 +16,7 @@ class ProfileStore extends ReduceStore {
 
   getInitialState() {
     return {
-      basicInfo: {},
+      basicInfo: null,
       infoList: [],
       workExp: [],
       status: 'loading'

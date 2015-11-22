@@ -64,7 +64,6 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'baseMessage',
                 text: '基本信息',
-                icon: 'user',
                 id: 1984
               },
               {
@@ -109,16 +108,16 @@ app.get('/:path?/:any?', function (req, res) {
       return res.json({
         res: true,
         val: {
-          basicInfo: {
-            id: 1,
-            name: '张阿十',
-            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端设计师'
-          },
+          //basicInfo: {
+          //  id: 1,
+          //  name: '张阿十',
+          //  avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+          //  position: '前端设计师'
+          //},
           infoList: [
             {
               title: '基本信息',
-              items: [
+              items: [[
                 {
                   name: '姓名',
                   value: '张阿十'
@@ -127,11 +126,7 @@ app.get('/:path?/:any?', function (req, res) {
                   name: '性别',
                   value: '女'
                 }
-              ]
-            },
-            {
-              title: '联系信息',
-              items: [
+              ], [
                 {
                   name: '地址',
                   value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
@@ -140,35 +135,57 @@ app.get('/:path?/:any?', function (req, res) {
                   name: '电话',
                   value: '1800000000'
                 }
-              ]
-            }
-          ],
-          workExp: [
-            {
-              items: [
-                {
-                  name: '时间',
-                  value: '2007–2012'
-                },
-                {
-                  name: '地点',
-                  value: 'CDP'
-                }
-              ]
+              ]]
             },
             {
-              items: [
+              title: '联系信息',
+              items: [[
                 {
-                  name: '时间',
-                  value: '2012–2007'
+                  name: '地址',
+                  value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
                 },
                 {
-                  name: '地点',
-                  value: 'PDC'
+                  name: '电话',
+                  value: '1800000000'
                 }
-              ]
+              ], [
+                {
+                  name: '地址',
+                  value: '上海市闵行区莲花路 1733 号 D106（CDP 大楼）'
+                },
+                {
+                  name: '电话',
+                  value: '1800000000'
+                }
+              ]]
             }
           ]
+          //workExp: [
+          //  {
+          //    items: [
+          //      {
+          //        name: '时间',
+          //        value: '2007–2012'
+          //      },
+          //      {
+          //        name: '地点',
+          //        value: 'CDP'
+          //      }
+          //    ]
+          //  },
+          //  {
+          //    items: [
+          //      {
+          //        name: '时间',
+          //        value: '2012–2007'
+          //      },
+          //      {
+          //        name: '地点',
+          //        value: 'PDC'
+          //      }
+          //    ]
+          //  }
+          //]
         }
       });
     case 'salary':

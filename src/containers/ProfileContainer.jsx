@@ -33,28 +33,34 @@ class Profile extends Component {
   }
 
   render() {
-    const { basicInfo, infoList, workExp, status } = this.state;
+    const { basicInfo, infoList, status } = this.state;
 
     return (
       <div>
         <Header back title={getLang('PROFILE')} />
 
         <Loader status={status} className='side-gap pad-b'>
-          <UserInfo className='gap-t-lg gap-b-lg' userInfo={basicInfo} />
-
           {
-            infoList.map((card, index) => {
-              return <InfoCard title={card.title} items={card.items} key={index} />;
-            })
+            basicInfo
+              ? <UserInfo className='gap-t-lg gap-b-lg' userInfo={basicInfo} />
+              :null
           }
 
-          <hr className='gap-t-lg gap-b-lg' />
-
-          <h2 className='gap-b'>{getLang('WORK_EXP')}</h2>
-
           {
-            workExp.map((card, index) => {
-              return <InfoCard items={card.items} key={index} />;
+            infoList.map((list, index) => {
+
+              return (
+                <div key={index}>
+                  <h2 className='gap-t gap-b'>{list.title}</h2>
+
+                  {
+                    list.items.map((card, index) => {
+                      return <InfoCard items={card} key={index} />;
+                    })
+                  }
+                  <hr className='gap-t-lg gap-b-lg'/>
+                </div>
+              );
             })
           }
         </Loader>
