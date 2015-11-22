@@ -39,7 +39,7 @@ React.initializeTouchEvents(true);
 ReactTap();
 
 if (process.env.NODE_ENV !== 'production') {
-  ajax.setDomain('//localhost:9090');
+  ajax.setDomain('https://116.246.38.199:8083');
 }
 
 

@@ -39,17 +39,6 @@ export default {
       .then((res) => {
         cookies.setItem('loggedIn', 1);
 
-        if (res) {
-
-          if (cookies.getItem('remember')) {
-            Object.keys(res).forEach((key) => {
-              cookies.setItem(key, res[key]);
-            });
-          } else {
-            cookies.setItem('nickname', res.nickname);
-          }
-        }
-
         dispatch({
           type: 'login-success',
           data: res

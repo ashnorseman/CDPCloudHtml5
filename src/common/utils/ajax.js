@@ -103,7 +103,8 @@ function checkSuccessFalse(res) {
  */
 function sendData(url, method, data = {}) {
   let option = {
-    method: method.toUpperCase()
+    method: method.toUpperCase(),
+    headers: {}
   };
 
   if ('FormData' in window && data instanceof FormData) {
@@ -113,14 +114,11 @@ function sendData(url, method, data = {}) {
   } else {
 
     // JSON
-    option.headers = {
-      'Content-Type': 'application/json'
-    };
-    if (process.env.NODE_ENV === 'production') {
-      option.credentials = 'include';
-    }
+    option.headers['Content-Type'] = 'application/json';
     option.body = JSON.stringify(data);
   }
+
+  option.credentials = 'include';
 
   return fetch(url, option)
     .then(checkStatus)
@@ -153,9 +151,9 @@ const ajax = {
     let query = data ? makeQueryString(data) : '';
     let dataType = parseDataType(url);
 
-    return fetch(domain + url + query, (process.env.NODE_ENV === 'production') ? {
+    return fetch(domain + url + query, {
       credentials: 'include'
-    } : null)
+    })
       .then(checkStatus)
       .then((res) => {
         return parseResponse(res, dataType);
