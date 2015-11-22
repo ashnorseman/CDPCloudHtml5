@@ -18,7 +18,7 @@ export default {
    * @param {number} [id]
    */
   getProfile(id) {
-    const path = '/profile'
+    const path = '/user-message'
                     + ((id === void 0) ? `` : `/${id}`);
 
     ajax.get(path)

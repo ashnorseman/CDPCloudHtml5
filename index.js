@@ -39,7 +39,8 @@ app.use(function (req, res, next) {
   console.log('cookie: ' + JSON.stringify(req.cookies) + ' from ' + req.url);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+  res.setHeader('Access-Control-Allow-Credentials', true);
 
   next();
 });
@@ -63,6 +64,7 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'baseMessage',
                 text: '基本信息',
+                icon: 'user',
                 id: 1984
               },
               {
@@ -103,7 +105,7 @@ app.get('/:path?/:any?', function (req, res) {
           }
         }
       });
-    case 'profile':
+    case 'user-message':
       return res.json({
         res: true,
         val: {
