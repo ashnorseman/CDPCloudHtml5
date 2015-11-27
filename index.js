@@ -442,7 +442,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
 
   setTimeout(function () {
     res.json({
-      success: true
+      res: true
     });
   }, 100);
 });
@@ -452,7 +452,7 @@ app.put('/:path?', function (req, res) {
   console.log('put: ', req.body);
 
   res.json({
-    success: true
+    res: true
   });
 });
 
@@ -461,7 +461,7 @@ app.delete('/:path?', function (req, res) {
   console.log('delete: ', req.body);
 
   res.json({
-    success: true
+    res: true
   });
 });
 

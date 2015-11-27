@@ -24,15 +24,23 @@ export default {
     return result;
   },
 
-  toggleRemember(remember) {
 
-    if (remember) {
-      cookies.setItem('remember', 1);
+  /**
+   * @params {Object} data
+   */
+  toggleRemember(data) {
+
+    if (data.remember) {
+      Object.keys(data).forEach((key) => {
+        cookies.setItem(key, data[key]);
+      });
     } else {
-      cookies.removeItem('remember');
-      cookies.removeItem('username');
+      Object.keys(data).forEach((key) => {
+        cookies.removeItem(key);
+      });
     }
   },
+
 
   login(data) {
     ajax.post('/login', data)

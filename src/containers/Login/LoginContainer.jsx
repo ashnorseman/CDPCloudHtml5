@@ -3,90 +3,93 @@
  */
 
 
-'use strict';
-
 import './login.less';
 
+import assign from 'object-assign';
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+
 import { dispatch } from '../../dispatcher/Dispatcher';
-
 import { getItem as getLang } from '../../common/lang';
-import UserStore from '../../stores/UserStore';
-import LoginStore from '../../stores/LoginStore';
 
+import Button from '../../components/Button/Button.jsx';
 import Form from '../../components/Form/Form.jsx';
 import FormControl from '../../components/FormControl/FormControl.jsx';
-import TextInput from '../../components/TextInput/TextInput.jsx';
-import Button from '../../components/Button/Button.jsx';
 import PageOpener from '../../components/PageOpener/PageOpener.jsx';
+import TextInput from '../../components/TextInput/TextInput.jsx';
+
 import ForgotStep1 from './ForgotStep1.jsx';
 
+import LoginStore from '../../stores/LoginStore';
+import UserStore from '../../stores/UserStore';
+
+
 const loginForm = [
-        {
-          type: 'text',
-          id: 'company',
-          name: 'company',
-          icon: 'home',
-          placeholder: getLang('COMPANY'),
-          required: true
-        },
-        {
-          type: 'text',
-          id: 'username',
-          name: 'username',
-          icon: 'user',
-          placeholder: getLang('USERNAME'),
-          required: true
-        },
-        {
-          type: 'password',
-          id: 'password',
-          name: 'password',
-          icon: 'lock',
-          placeholder: getLang('PASSWORD'),
-          required: true
-        },
-        {
-          type: 'checkbox',
-          id: 'remember',
-          name: 'remember',
-          placeholder: getLang('REMEMBER')
-        }
-      ],
-      loginSubmit = {
-        text: getLang('LOGIN'),
-        hollow: true
-      },
-      resetForm = [
-        {
-          type: 'password',
-          id: 'new-password',
-          name: 'new-password',
-          label: getLang('NEW_PWD'),
-          tips: getLang('AT_LEAST_6'),
-          required: true,
-          minLength: 6
-        },
-        {
-          type: 'password',
-          id: 'repeat-password',
-          name: 'repeat-password',
-          label: getLang('REPEAT_PWD'),
-          tips: getLang('SAME_PWD'),
-          required: true,
-          minLength: 6
-        }
-      ],
-      resetSubmit = {
-        text: getLang('RESET_PWD')
-      };
+    {
+      type: 'text',
+      id: 'company',
+      name: 'company',
+      icon: 'home',
+      placeholder: getLang('COMPANY'),
+      required: true
+    },
+    {
+      type: 'text',
+      id: 'username',
+      name: 'username',
+      icon: 'user',
+      placeholder: getLang('USERNAME'),
+      required: true
+    },
+    {
+      type: 'password',
+      id: 'password',
+      name: 'password',
+      icon: 'lock',
+      placeholder: getLang('PASSWORD'),
+      required: true
+    },
+    {
+      type: 'checkbox',
+      id: 'remember',
+      name: 'remember',
+      placeholder: getLang('REMEMBER')
+    }
+  ],
+  loginSubmit = {
+    text: getLang('LOGIN'),
+    hollow: true
+  },
+  resetForm = [
+    {
+      type: 'password',
+      id: 'new-password',
+      name: 'new-password',
+      label: getLang('NEW_PWD'),
+      tips: getLang('AT_LEAST_6'),
+      required: true,
+      minLength: 6
+    },
+    {
+      type: 'password',
+      id: 'repeat-password',
+      name: 'repeat-password',
+      label: getLang('REPEAT_PWD'),
+      tips: getLang('SAME_PWD'),
+      required: true,
+      minLength: 6
+    }
+  ],
+  resetSubmit = {
+    text: getLang('RESET_PWD')
+  };
 
 
 class Login extends Component {
 
   constructor(props) {
     super(props);
+
     this.login = this.login.bind(this);
     this.openForgotPage = this.openForgotPage.bind(this);
 
@@ -107,24 +110,19 @@ class Login extends Component {
   }
 
   static getStores() {
-    return [UserStore, LoginStore];
+    return [LoginStore, UserStore];
   }
 
   static calculateState() {
-    const login = LoginStore.getState();
-
-    return {
-      savedLogin: UserStore.getState().savedLogin,
-      captchaTimer: login.captchaTimer,
-      reset: login.reset,
-      captchaPass: login.captchaPass,
-      resetPass: login.resetPass,
-      loginStatus: login.loginStatus
-    };
+    return assign(
+      {},
+      LoginStore.getState(),
+      UserStore.getState()
+    );
   }
 
   componentDidUpdate() {
-    if (this.state.loginStatus.indexOf('failed') > -1) {
+    if (this.state.loginStatus && this.state.loginStatus.indexOf('failed') > -1) {
       this.refs.loginForm.setState({
         submitting: false
       });
@@ -132,7 +130,12 @@ class Login extends Component {
   }
 
   render() {
-    const { captchaTimer, reset, captchaPass, resetPass, loginStatus } = this.state;
+    const {
+            captchaPass,
+            captchaTimer,
+            reset,
+            resetPass
+          } = this.state;
 
     return (
       <div className='login'>
@@ -142,21 +145,28 @@ class Login extends Component {
               ref='loginForm'
               controls={loginForm}
               submitButton={loginSubmit}
-              onSubmit={this.login}></Form>
+              onSubmit={this.login} />
 
-        <Button className='login-forgot' text={getLang('FORGOT_PWD')} onClick={this.openForgotPage} />
+        <Button className='login-forgot'
+                text={getLang('FORGOT_PWD')}
+                onClick={this.openForgotPage} />
 
-        <div className="login-copyright">{getLang('COPYRIGHT')}</div>
+        <div className='login-copyright'>{getLang('COPYRIGHT')}</div>
 
         <PageOpener ref='forgotPage' className={captchaPass && ''}>
-          <ForgotStep1 captchaTimer={captchaTimer} reset={reset}></ForgotStep1>
+          <ForgotStep1 captchaTimer={captchaTimer}
+                       reset={reset} />
         </PageOpener>
 
-        <PageOpener ref='resetPage' className={(captchaPass && !resetPass) ? 'opened' : ''}>
-          <Form ref='resetPwdForm' className='login-reset-form'
+        <PageOpener className={(captchaPass && !resetPass) ? 'opened' : ''}
+                    ref='resetPage'>
+          <Form className='login-reset-form'
+                ref='resetPwdForm'
                 action='/reset-password'
-                controls={resetForm} submitButton={resetSubmit}
-                beforeSubmit={this.checkPwd} afterSubmit={this.assureResetPwd}></Form>
+                controls={resetForm}
+                submitButton={resetSubmit}
+                beforeSubmit={this.checkPwd}
+                afterSubmit={this.assureResetPwd} />
         </PageOpener>
       </div>
     );
@@ -170,8 +180,12 @@ class Login extends Component {
 
     // Remember me
     dispatch({
-      type: 'toggleRemember',
-      data: document.getElementById('remember').checked
+      type: 'toggle-remember',
+      data: {
+        remember: document.getElementById('remember').checked ? 1 : 0,
+        company: document.getElementById('company').value,
+        username: document.getElementById('username').value
+      }
     });
 
     // Login
