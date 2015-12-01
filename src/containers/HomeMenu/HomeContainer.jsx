@@ -35,15 +35,15 @@ const langDropdown = {
   items: [
     {
       text: '中文',
-      name: 'zh'
+      name: 'pla_lan_001'
     },
     {
       text: 'English',
-      name: 'en'
+      name: 'pla_lan_002'
     },
     {
       text: '日本語',
-      name: 'jp'
+      name: 'pla_lan_003'
     }
   ],
   onClickItem(langCode) {

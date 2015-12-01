@@ -78,8 +78,8 @@ export default {
   },
 
   setLang(code) {
-    ajax.post('/lang', {
-      lang: code
+    ajax.post('/change-lang', {
+      langCode: code
     })
       .then(() => {
         lang.setLang(code);

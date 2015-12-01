@@ -10,6 +10,12 @@ import cookies from '../common/utils/cookies';
 
 const supported = ['zh', 'en', 'jp'];
 
+const langMap = {
+  'pla_lan_001': 'zh',
+  'pla_lan_002': 'en',
+  'pla_lan_003': 'jp'
+};
+
 const lang = {
 
   zh: {
@@ -316,7 +322,7 @@ export default {
 
   setLang(code) {
     defaultLang = code;
-    cookies.setItem('lang', code);
+    cookies.setItem('lang', langMap[code]);
   },
 
   getLang() {

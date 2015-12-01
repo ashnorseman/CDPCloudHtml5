@@ -89,7 +89,7 @@ function checkSuccessFalse(res) {
   if (res && (res.res !== false)) {
     return res.val;
   } else {
-    throw new Error(res && res.error);
+    throw res.error;
   }
 }
 

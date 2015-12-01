@@ -467,11 +467,22 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         nickname: 'Ash'
       }
       //res: false,
-      //error: '公司代码不存在'
+      //error: '公司代码不存在',
+      //val: {
+      //  company: 'CDP'
+      //}
     });
+  case 'change-lang':
+
+    return setTimeout(() => {
+      res.json({
+        res: true,
+        val: 'pla_lan_002'
+      });
+    }, 100);
   case 'user-base-message-info':
-    setTimeout(function () {
-      return res.json({
+    return setTimeout(function () {
+      res.json({
         "val": {
           "items": [[{
             "name": "Join Date",
@@ -548,7 +559,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         },
         "res": "true"
       });
-    }, 500);
+    }, 2000);
     return;
   }
 
