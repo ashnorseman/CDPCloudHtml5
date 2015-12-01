@@ -18,14 +18,49 @@ export default {
    * @param {number} [id]
    */
   getProfile(id) {
-    const path = '/user-message'
-                    + ((id === void 0) ? `` : `/${id}`);
+    const path = '/user-message' + ((id === void 0) ? `` : `/${id}`);
 
     ajax.get(path)
       .then((res) => {
         dispatch({
           type: 'get-profile-success',
           data: res
+        });
+      });
+  },
+
+
+  /**
+   * Get user profile categories
+   * @param {number} [id]
+   */
+  getProfileCategories(id) {
+    const path = '/user-message-info-type' + ((id === void 0) ? `` : `/${id}`);
+
+    ajax.get(path)
+      .then((res) => {
+        dispatch({
+          type: 'get-profile-categories-success',
+          data: res
+        });
+      });
+  },
+
+
+  /**
+   * Get a category detail
+   */
+  getProfileByCategory(cmdId) {
+    ajax.post('/user-base-message-info', {
+      cmdId
+    })
+      .then((res) => {
+        dispatch({
+          type: 'get-profile-category-detail-success',
+          data: {
+            cmdId,
+            items: res.items
+          }
         });
       });
   },

@@ -21,7 +21,7 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.getProfile(this.props.params.id);
+    this.getProfileCategories(this.props.params.id);
   }
 
   static getStores() {
@@ -33,7 +33,41 @@ class Profile extends Component {
   }
 
   render() {
-    const { basicInfo, infoList, status } = this.state;
+    const {
+            basicInfo,
+            infoList,
+            status
+          } = this.state,
+
+      listElements = infoList.map((list) => {
+
+        return (
+          <div key={list.cmdId}>
+            <h2 className='gap-t gap-b'
+                onTouchTap={this.loadCategory.bind(null, list)}>
+              {list.pla_lan}
+
+              {
+                list.items ? null : <i className='fa fa-info-circle pull-right' style={{marginTop: '0.25rem'}}></i>
+              }
+            </h2>
+
+            {
+              list.status
+                ? <Loader status={list.status}>
+                    {
+                      list.items && list.items.map((card, index) => {
+                        return <InfoCard items={card} key={index} />;
+                      })
+                    }
+                  </Loader>
+                : null
+            }
+
+            <hr className='gap-t-lg gap-b-lg' />
+          </div>
+        );
+      });
 
     return (
       <div>
@@ -46,26 +80,37 @@ class Profile extends Component {
               :null
           }
 
-          {
-            infoList.map((list, index) => {
-
-              return (
-                <div key={index}>
-                  <h2 className='gap-t gap-b'>{list.title}</h2>
-
-                  {
-                    list.items.map((card, index) => {
-                      return <InfoCard items={card} key={index} />;
-                    })
-                  }
-                  <hr className='gap-t-lg gap-b-lg'/>
-                </div>
-              );
-            })
-          }
+          {listElements}
         </Loader>
       </div>
     );
+  }
+
+
+  /**
+   * Get profile category list
+   * @param id
+   */
+  getProfileCategories(id) {
+    dispatch({
+      type: 'get-profile-categories',
+      data: id
+    });
+  }
+
+
+  /**
+   * Load a list of info items
+   * @param list
+   */
+  loadCategory(list) {
+
+    if (!list.items && (list.status !== 'loading')) {
+      dispatch({
+        type: 'get-profile-category-detail',
+        data: list.cmdId
+      });
+    }
   }
 
 

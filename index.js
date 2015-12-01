@@ -188,6 +188,40 @@ app.get('/:path?/:any?', function (req, res) {
           //]
         }
       });
+    case 'user-message-info-type':
+      return res.json({
+        "val": [{
+          "cmdId": 12000,
+          "langCode": "portal_tab_baseinfo",
+          "efnType": "p_grp_ess",
+          "pla_lan": "Basic Information"
+        },
+        {
+          "cmdId": 12005,
+          "langCode": "portal_tab_social_relations",
+          "efnType": "p_grp_ess",
+          "pla_lan": "社会关系"
+        },
+        {
+          "cmdId": 12001,
+          "langCode": "portal_tab_contract_information",
+          "efnType": "p_grp_ess",
+          "pla_lan": "合同信息"
+        },
+        {
+          "cmdId": 12007,
+          "langCode": "portal_tab_ id_ information",
+          "efnType": "p_grp_ess",
+          "pla_lan": "证件信息"
+        },
+        {
+          "cmdId": 12008,
+          "langCode": "portal_tab_ expat_residency_rermit",
+          "efnType": "p_grp_ess",
+          "pla_lan": "外籍员工居留许可信息"
+        }],
+        "res": "true"
+      });
     case 'salary':
       return res.json({
         res: true,
@@ -425,16 +459,94 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
 
   switch (req.params.path) {
   case 'login':
+    return res.json({
+      res: true,
+      val: {
+        company: 'cdp',
+        username: 'ash',
+        nickname: 'Ash'
+      }
+      //res: false,
+      //error: '公司代码不存在'
+    });
+  case 'user-base-message-info':
     setTimeout(function () {
       return res.json({
-        res: true,
-        val: {
-          company: 'cdp',
-          username: 'ash',
-          nickname: 'Ash'
-        }
-        //res: false,
-        //error: '公司代码不存在'
+        "val": {
+          "items": [[{
+            "name": "Join Date",
+            "value": "1988-06-01"
+          },
+            {
+              "name": "E-mail",
+              "value": "mtse@hitachi.cn"
+            },
+            {
+              "name": "Account Code",
+              "value": "0040315725267"
+            },
+            {
+              "name": "Bank",
+              "value": "004"
+            },
+            {
+              "name": "Cost Center",
+              "value": "HK-IFG-GM2-HK"
+            },
+            {
+              "name": "Owner's Name",
+              "value": "TSE, Mei Ling, May"
+            },
+            {
+              "name": "Legal Company",
+              "value": "HCH"
+            },
+            {
+              "name": "Branch",
+              "value": "HK"
+            },
+            {
+              "name": "Department",
+              "value": "IFG"
+            },
+            {
+              "name": "Position",
+              "value": "Manager"
+            },
+            {
+              "name": "Personal ID",
+              "value": "C254404(9)"
+            },
+            {
+              "name": "Residential Address",
+              "value": "Flat 3702, Shing Yam House, On Yan Estate, Kwai Chung, New Territories"
+            },
+            {
+              "name": "Service Year",
+              "value": "27.46"
+            },
+            {
+              "name": "Employee ID",
+              "value": "18820"
+            },
+            {
+              "name": "English Name",
+              "value": "TSE, Mei Ling, May"
+            },
+            {
+              "name": "Chinese Name",
+              "value": "美玲"
+            },
+            {
+              "name": "Nationality",
+              "value": "China"
+            },
+            {
+              "name": "Age",
+              "value": "53"
+            }]]
+        },
+        "res": "true"
       });
     }, 500);
     return;
