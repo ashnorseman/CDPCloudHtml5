@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
   console.log('cookie: ' + JSON.stringify(req.cookies) + ' from ' + req.url);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+  res.setHeader('Access-Control-Allow-Origin', 'http://192.168.23.210:8888');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
   next();

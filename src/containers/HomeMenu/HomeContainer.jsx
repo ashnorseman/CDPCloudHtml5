@@ -133,7 +133,9 @@ class Home extends Component {
 
 
   openSideNav() {
-    this.refs.sideNav.open();
+    setTimeout(() => {
+      this.refs.sideNav.open();
+    }, 0);
   }
 
 

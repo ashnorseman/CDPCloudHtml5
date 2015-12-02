@@ -53,7 +53,7 @@ describe('Header', () => {
           iconLeft = header.querySelector('.header-icon-left');
 
     expect(spy.calls.count()).toEqual(0);
-    ReactTestUtils.Simulate.touchTap(iconLeft);
+    ReactTestUtils.Simulate.click(iconLeft);
     expect(spy.calls.count()).toEqual(1);
   });
 
@@ -66,7 +66,7 @@ describe('Header', () => {
           iconRight = header.querySelector('.header-icon-right');
 
     expect(spy.calls.count()).toEqual(0);
-    ReactTestUtils.Simulate.touchTap(iconRight);
+    ReactTestUtils.Simulate.click(iconRight);
     expect(spy.calls.count()).toEqual(1);
   });
 
@@ -82,7 +82,7 @@ describe('Header', () => {
     expect(iconBack).not.toBeNull();
     expect(iconBack.classList.contains('header-icon-left'));
     expect(Header.prototype.back).not.toHaveBeenCalled();
-    ReactTestUtils.Simulate.touchTap(iconBack);
+    ReactTestUtils.Simulate.click(iconBack);
     expect(Header.prototype.back).toHaveBeenCalled();
   });
 
@@ -114,7 +114,7 @@ describe('Header', () => {
     ReactTestUtils.Simulate.touchTap(dropdown.firstElementChild);
     expect(dropdown.querySelectorAll('li').length).toEqual(2);
 
-    ReactTestUtils.Simulate.touchTap(dropdown.querySelector('li'));
+    ReactTestUtils.Simulate.click(dropdown.querySelector('li'));
     expect(dropdownSetting.onClickItem.calls.count()).toEqual(1);
   });
 });

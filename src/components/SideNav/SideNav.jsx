@@ -32,7 +32,7 @@ export default class SideNav extends Component {
             data.map((item, index) => {
               return <a className='side-nav-item' key={index}
                         href={item.link ? `#/${item.link}` : null}
-                        onTouchTap={this.onTouchTap.bind(this, item.onTouchTap)}>{item.text}</a>;
+                        onClick={this.onTouchTap.bind(this, item.onTouchTap)}>{item.text}</a>;
             })
           }
         </nav>

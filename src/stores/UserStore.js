@@ -49,8 +49,11 @@ class UserStore extends ReduceStore {
         basicInfo: {}
       });
     case 'toggle-remember':
-      UserDataUtils.toggleRemember(action.data);
-      break;
+      return assign({}, state, {
+        loggedIn: false,
+        basicInfo: {},
+        savedLogin: action.data.remember ? action.data : {}
+      });
     case 'set-language':
       UserDataUtils.setLang(action.data);
       break;

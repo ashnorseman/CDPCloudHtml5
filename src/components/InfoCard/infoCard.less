@@ -6,6 +6,17 @@
 @import "../../common/styles/_variables";
 
 
+.info-card-heading {
+  background: @color-bg-gray;
+  margin-left: -@gap;
+  margin-right: -@gap;
+  padding: (@control-sm-height - @font-base * @line-height) / 2;
+
+  &:first-child {
+    margin-top: @gap;
+  }
+}
+
 .info-card {
   border-radius: @border-radius;
   box-shadow: @shadow-depth-1;

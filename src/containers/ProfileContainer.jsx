@@ -14,6 +14,7 @@ import Header from '../components/Header/Header.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import UserInfo from '../components/UserInfo/UserInfo.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
+import TopAction from '../components/TopAction/TopAction.jsx';
 import ProfileStore from '../stores/ProfileStore';
 
 
@@ -43,7 +44,7 @@ class Profile extends Component {
 
         return (
           <div key={list.cmdId}>
-            <h2 className='gap-t gap-b'
+            <h2 className='info-card-heading gap-t gap-b'
                 onTouchTap={this.loadCategory.bind(null, list)}>
               {list.pla_lan}
 
@@ -65,6 +66,8 @@ class Profile extends Component {
             }
 
             <hr className='gap-t-lg gap-b-lg' />
+
+            <TopAction />
           </div>
         );
       });

@@ -25,23 +25,6 @@ export default {
   },
 
 
-  /**
-   * @params {Object} data
-   */
-  toggleRemember(data) {
-
-    if (data.remember) {
-      Object.keys(data).forEach((key) => {
-        cookies.setItem(key, data[key]);
-      });
-    } else {
-      Object.keys(data).forEach((key) => {
-        cookies.removeItem(key);
-      });
-    }
-  },
-
-
   login(data) {
     ajax.post('/login', data)
       .then((res) => {

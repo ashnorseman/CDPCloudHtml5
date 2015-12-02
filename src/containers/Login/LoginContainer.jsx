@@ -92,21 +92,6 @@ class Login extends Component {
 
     this.login = this.login.bind(this);
     this.openForgotPage = this.openForgotPage.bind(this);
-
-    const savedLogin = Login.calculateState().savedLogin;
-
-    // Saved cookies
-    if (savedLogin.company) {
-      loginForm[0].defaultValue = savedLogin.company;
-    }
-
-    if (savedLogin.username) {
-      loginForm[1].defaultValue = savedLogin.username;
-    }
-
-    if (savedLogin.remember) {
-      loginForm[3].defaultChecked = true;
-    }
   }
 
   static getStores() {
@@ -134,8 +119,13 @@ class Login extends Component {
             captchaPass,
             captchaTimer,
             reset,
-            resetPass
+            resetPass,
+            savedLogin
           } = this.state;
+
+    loginForm[0].defaultValue = savedLogin.company || '';
+    loginForm[1].defaultValue = savedLogin.username || '';
+    loginForm[3].defaultChecked = !!savedLogin.remember;
 
     return (
       <div className='login'>

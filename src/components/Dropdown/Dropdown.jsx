@@ -43,7 +43,7 @@ export default class Dropdown extends Component {
                 {
                   items.map((item, index) => {
                     return <li className='dropdown-item' key={index}
-                               onTouchTap={this._clickItem.bind(this, item.name)}>{item.text}</li>;
+                               onClick={this._clickItem.bind(this, item.name)}>{item.text}</li>;
                   })
                 }
               </ul>

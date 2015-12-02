@@ -53,7 +53,7 @@ describe('SideNav', () => {
           item = sideNav.querySelector('.side-nav-item');
 
     expect(spy.calls.count()).toEqual(0);
-    ReactTestUtils.Simulate.touchTap(item);
+    ReactTestUtils.Simulate.click(item);
     expect(spy.calls.count()).toEqual(1);
     expect(item.href).toEqual('');
   });

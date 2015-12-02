@@ -96,7 +96,7 @@ describe('Dropdown', () => {
 
     const dropdownItems = dropdown.querySelectorAll('li');
 
-    ReactTestUtils.Simulate.touchTap(dropdownItems[0]);
+    ReactTestUtils.Simulate.click(dropdownItems[0]);
     expect(spy.calls.mostRecent().args[0]).toEqual('zh');
     expect(spy.calls.mostRecent().object).toEqual(instance);
   });
