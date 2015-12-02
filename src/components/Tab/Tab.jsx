@@ -34,6 +34,15 @@ export default class Tab extends Component {
 
     this.onActivate = onActivate;
 
+    // Default active
+    if (!(items.some(item => item.active))) {
+      items.forEach((item) => {
+        if (location.hash.indexOf(item.name) !== -1) {
+          item.active = true;
+        }
+      });
+    }
+
     const tabItems = items.map((item, index) => {
       const className = 'tab-item' + (item.active ? ' active' : '');
 
