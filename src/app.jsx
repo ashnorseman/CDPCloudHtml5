@@ -13,6 +13,7 @@ import ReactTap from 'react-tap-event-plugin';
 import { Router, Route, IndexRoute } from 'react-router';
 
 import ajax from './common/utils/ajax';
+import { dispatch } from './dispatcher/Dispatcher';
 
 import HomeContainer from './containers/HomeMenu/HomeContainer.jsx';
 import EmployeeContainer from './containers/HomeMenu/EmployeeContainer.jsx';
@@ -41,6 +42,14 @@ ReactTap();
 if (process.env.NODE_ENV !== 'production') {
   //ajax.setDomain('https://116.246.38.199:8083');
   ajax.setDomain('http://192.168.23.210:9090');
+
+  ajax.onError((status) => {
+    if (status === 999) {
+      dispatch({
+        type: 'logout'
+      });
+    }
+  });
 }
 
 

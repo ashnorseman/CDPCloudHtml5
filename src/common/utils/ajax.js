@@ -10,6 +10,8 @@ import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 
 let domain = '';
 
+let errorCallbacks = [];
+
 
 /**
  * Guess dataType by url
@@ -56,9 +58,9 @@ function checkStatus(res) {
   if (res.status >= 200 && res.status < 300) {
     return res;
   } else {
-    let error = new Error(res.statusText);
-    error.response = res;
-    throw error;
+    errorCallbacks.forEach((cb) => {
+      cb.call(null, res.status, res);
+    });
   }
 }
 
@@ -141,6 +143,14 @@ const ajax = {
    */
   setDomain(newDomain) {
     domain = newDomain;
+  },
+
+
+  /**
+   * Global error callbacks
+   */
+  onError(callback) {
+    errorCallbacks.push(callback);
   },
 
 
