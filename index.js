@@ -490,8 +490,8 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
             "value": "1988-06-01"
           },
             {
-              "name": "E-mail",
-              "value": "mtse@hitachi.cn"
+              "name": "E-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mail",
+              "value": "mtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cn"
             },
             {
               "name": "Account Code",
