@@ -31,7 +31,7 @@ if (TARGET === 'start' || TARGET === 'dev') {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      host: '192.168.23.210',
+      //host: '192.168.23.210',
       port: 8888,
       progress: true
     },

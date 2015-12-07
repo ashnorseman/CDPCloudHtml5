@@ -18,7 +18,7 @@ export default class ActionMenu extends Component {
     const { items } = this.props,
           menuItems = items.map((item, index) => {
             const style = item.style || 1,
-                  className = `action-menu-item action-menu-style-${style}`;
+                  className = `action-menu-item action-menu-style-${style} clearfix`;
 
             return <a key={index} href={`#/${item.link}`} className={className}>
               <Icon name={item.icon} className='action-menu-icon'>
@@ -26,7 +26,8 @@ export default class ActionMenu extends Component {
                   item.notification ? <span className='action-menu-label'>{item.notification}</span> : null
                 }
               </Icon>
-              <span className='action-menu-text'>{item.text}</span>
+              <div className='action-menu-text'>{item.text}</div>
+              <div className='action-menu-desc'>{item.desc}</div>
             </a>;
           });
 

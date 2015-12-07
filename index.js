@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
   console.log('cookie: ' + JSON.stringify(req.cookies) + ' from ' + req.url);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Origin', 'http://192.168.23.210:8888');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
   next();
@@ -65,21 +65,25 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'baseMessage',
                 text: '基本信息',
+                desc: '查看个人信息',
                 id: 1984
               },
               {
                 name: 'myPay',
                 text: '我的工资',
+                desc: '查看个人薪资',
                 id: 2006
               },
               {
                 name: 'myVacation',
                 text: '我的休假',
+                desc: '查看个人休假',
                 id: 569
               },
               {
                 name: 'myOvertime',
                 text: '我的加班',
+                desc: '查看个人加班',
                 id: 1456
               }
             ],
@@ -87,17 +91,20 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'teamMessage',
                 text: '团队信息',
+                desc: '查看团队信息',
                 id: 1
               },
               {
                 name: 'leaveManagement',
                 text: '请假管理',
                 id: '1656',
+                desc: '查看团队请假',
                 notification: 1
               },
               {
                 name: 'overtimeManagement',
                 text: '加班管理',
+                desc: '查看团队加班',
                 id: '1666',
                 notification: 1
               }

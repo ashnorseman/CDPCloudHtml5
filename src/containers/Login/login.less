@@ -7,14 +7,14 @@
 
 
 @login-gap:   @gap * 2;
-@placeholder: fade(@color-bg, 50);
+@placeholder: @color-text-lighter;
 
 
 // Login
 // ---------------------------
 
 .login {
-  background: url(login-bg.jpg);
+  background: @color-bg;
   height: 100%;
   padding-left: @login-gap;
   padding-right: @login-gap;
@@ -23,12 +23,14 @@
 }
 
 .login-logo {
-  padding: @control-height 0;
-  text-align: center;
+  background: url(../../images/cdp-logo.png) no-repeat;
+  height: 48px;
+  margin: @control-height auto;
+  width: 205px;
 }
 
 .login-form {
-  color: @color-bg;
+  color: @color-text;
 
   ::-moz-placeholder { color: @placeholder; }
   ::-webkit-input-placeholder { color: @placeholder; }
@@ -36,8 +38,14 @@
 
   .form-control {
     border: 0;
-    color: @color-bg;
+    color: @color-text;
     padding-top: 0;
+  }
+
+  .text-input-with-icon {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: @color-text-lighter;
+    color: @color-text-lighter;
   }
 
   .checkbox-text {

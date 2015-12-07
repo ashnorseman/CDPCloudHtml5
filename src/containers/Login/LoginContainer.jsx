@@ -57,8 +57,7 @@ const loginForm = [
     }
   ],
   loginSubmit = {
-    text: getLang('LOGIN'),
-    hollow: true
+    text: getLang('LOGIN')
   },
   resetForm = [
     {
@@ -129,7 +128,7 @@ class Login extends Component {
 
     return (
       <div className='login'>
-        <div className='login-logo'>此处应有 Logo</div>
+        <div className='login-logo'></div>
 
         <Form className='login-form'
               ref='loginForm'

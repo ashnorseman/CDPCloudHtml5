@@ -41,7 +41,7 @@ ReactTap();
 
 if (process.env.NODE_ENV !== 'production') {
   //ajax.setDomain('https://116.246.38.199:8083');
-  ajax.setDomain('http://192.168.23.210:9090');
+  ajax.setDomain('http://localhost:9090');
 
   ajax.onError((status) => {
     if (status === 999) {
