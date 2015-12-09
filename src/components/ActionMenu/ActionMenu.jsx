@@ -27,7 +27,7 @@ export default class ActionMenu extends Component {
                 }
               </Icon>
               <div className='action-menu-text'>{item.text}</div>
-              <div className='action-menu-desc'>{item.desc}</div>
+              <div className='action-menu-desc'>{item.content}</div>
             </a>;
           });
 

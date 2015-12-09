@@ -212,7 +212,7 @@ export const ajaxDispatch = function ({
     .then((res) => {
       dispatch({
         type: action + '-success',
-        data: res.data
+        data: res
       });
     });
 };

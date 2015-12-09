@@ -39,18 +39,13 @@ import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 React.initializeTouchEvents(true);
 ReactTap();
 
-if (process.env.NODE_ENV !== 'production') {
-  //ajax.setDomain('https://116.246.38.199:8083');
-  ajax.setDomain('http://localhost:9090');
-
-  ajax.onError((status) => {
-    if (status === 999) {
-      dispatch({
-        type: 'logout'
-      });
-    }
-  });
-}
+ajax.onError((status) => {
+  if (status === 999) {
+    dispatch({
+      type: 'logout'
+    });
+  }
+});
 
 
 // Routes

@@ -20,30 +20,45 @@ class SalaryStore extends ReduceStore {
       status: 'loading',
       total: 0,
       infoList: [],
-      chartData: []
+      chartData: [],
+      salaryCalendar: {
+        minYear: 2015,
+        payrollPeriodList: []
+      }
     };
   }
 
   reduce(state, action) {
     switch (action.type) {
     case 'get-salary':
-      SalaryDataUtils.getSalary(action.data);
       return assign({}, state, {
+        accountList: state.accountList,
         status: 'loading'
       });
     case 'get-salary-success':
-      const infoList = action.data.infoList,
-            chartList = infoList.reduce((list, item) => {
-              return list.concat(item.items);
-            }, []),
-            chartData = chartList.map((item) => {
-              item.label = item.name;
-              return item;
-            });
+      const infoList = action.data.infoList;
+            //chartList = infoList.reduce((list, item) => {
+            //  return list.concat(item.items);
+            //}, []),
+            //chartData = chartList.map((item) => {
+            //  item.label = item.name;
+            //  return item;
+            //});
 
       return assign({}, state, action.data, {
-        chartData,
+        //chartData,
+        accountList: state.accountList,
         status: 'loaded'
+      });
+    case 'get-salary-calendar-success':
+      return assign({}, state, {
+        salaryCalendar: action.data,
+        accountList: null,
+        status: 'loaded'
+      });
+    case 'change-account-list':
+      return assign({}, state, {
+        accountList: action.data
       });
     }
     return state;

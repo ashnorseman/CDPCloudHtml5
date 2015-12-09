@@ -7,7 +7,7 @@
 
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
-import ajax from '../common/utils/ajax';
+import ajax, { ajaxDispatch } from '../common/utils/ajax';
 
 
 export default {
@@ -17,17 +17,30 @@ export default {
    * Get user salary
    * @param {number} year
    * @param {number} month
+   * @param {string} accName
    */
-  getSalary({year, month}) {
+  getSalary({year, month, accName}) {
+    ajaxDispatch({
+      action: 'get-salary',
+      url: '/salary',
+      method: 'post',
+      data: {
+        salaryYear: year,
+        salaryMonth: month,
+        salaryCode: accName
+      }
+    });
+  },
 
-    ajax.get('/salary', {
-      year, month
-    })
-      .then((res) => {
-        dispatch({
-          type: 'get-salary-success',
-          data: res
-        });
-      });
+
+  /**
+   * Get salary calendar
+   */
+  getSalaryCalendar() {
+    ajaxDispatch({
+      action: 'get-salary-calendar',
+      url: '/calendar-salary',
+      method: 'get'
+    });
   }
 };

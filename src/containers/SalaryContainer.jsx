@@ -17,23 +17,13 @@ import FormControl from '../components/FormControl/FormControl.jsx';
 import Select from '../components/Select/Select.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
 import Chart from '../components/Chart/Chart.jsx';
+
 import SalaryStore from '../stores/SalaryStore';
+import SalaryDataUtils from '../data-utils/SalaryDataUtils';
 
 
 const defaultYear = new Date().getFullYear(),
       defaultMonth = new Date().getMonth() + 1,
-      yearList = (function (year) {
-        let list = [];
-
-        for (let y = year - 4; y <= year; y += 1) {
-          list.push({
-            text: y,
-            value: y
-          });
-        }
-
-        return list;
-      }(defaultYear)),
       monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((month) => {
         return {
           text: month,
@@ -46,10 +36,12 @@ class Salary extends Component {
 
   constructor(props) {
     super(props);
-    this.getSalary = this.getSalary.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
+    this.onAccChange = this.onAccChange.bind(this);
+    this.getSalary = this.getSalary.bind(this);
+    this.getAccountList = this.getAccountList.bind(this);
 
-    this.getSalary(defaultYear, defaultMonth);
+    SalaryDataUtils.getSalaryCalendar();
   }
 
   static getStores() {
@@ -61,36 +53,67 @@ class Salary extends Component {
   }
 
   render() {
-    const { total, infoList, basicInfo, status, chartData } = this.state;
+    const { total, infoList, salaryCalendar, accountList, status, chartData } = this.state,
+
+      yearList = (function (year) {
+        let list = [];
+
+        for (; year <= defaultYear; year += 1) {
+          list.unshift({
+            text: year,
+            value: year
+          });
+        }
+
+        return list;
+      }(salaryCalendar.minYear)),
+
+      newAccountList = accountList || this.getAccountList(salaryCalendar.payrollPeriodList, defaultYear, defaultMonth);
 
     return (
       <div>
         <Header back title={getLang('MY_SALARY')} />
 
-        <UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={basicInfo} />
+        {
+          /*<UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={basicInfo} />*/
+        }
 
         <div className='row gap-t'>
           <div className='col-1-2'>
             <FormControl label={getLang('YEAR')}>
-              <Select className='text-primary' defaultValue={defaultYear} options={yearList}
-                      ref='year' onChange={this.onDateChange} />
+              <Select className='text-primary'
+                      defaultValue={defaultYear}
+                      options={yearList}
+                      ref='year'
+                      onChange={this.onDateChange} />
             </FormControl>
           </div>
           <div className='col-1-2'>
             <FormControl label={getLang('MONTH')}>
-              <Select className='text-primary' defaultValue={defaultMonth} options={monthList}
-                      ref='month' onChange={this.onDateChange} />
+              <Select className='text-primary'
+                      defaultValue={defaultMonth}
+                      options={monthList}
+                      ref='month'
+                      onChange={this.onDateChange} />
+            </FormControl>
+          </div>
+          <div className='col-1-1' style={{ display: newAccountList.length > 1 ? 'block' : 'none' }} ref='accNameHolder'>
+            <FormControl label='账套'>
+              <Select className='text-primary'
+                      options={newAccountList}
+                      defaultValue={newAccountList[0] && newAccountList[0].value}
+                      ref='accName' onChange={this.onAccChange} />
             </FormControl>
           </div>
         </div>
 
         <Loader status={status} className='side-gap gap-t pad-b'>
-          <Chart height='200' data={chartData} />
+          {/*<Chart height='200' data={chartData} />*/}
 
-          <div className='gap-t gap-b text-right'>
+          {/*<div className='gap-t gap-b text-right'>
             {getLang('ACTUAL_SALARY') + getLang('COLON')}
             <span className='text-xl text-primary'>{total}</span>
-          </div>
+          </div>*/}
 
           {
             infoList.map((card, index) => {
@@ -104,31 +127,77 @@ class Salary extends Component {
 
 
   /**
-   * Get salary information
-   * @param {number} year
-   * @param {number} month
+   * Re-fetch salary info when year and month changes
    */
-  getSalary(year, month) {
-    dispatch({
-      type: 'get-salary',
-      data: {
-        year, month
-      }
+  onDateChange() {
+    const accountList = this.getAccountList(
+      this.state.salaryCalendar.payrollPeriodList,
+      React.findDOMNode(this.refs.year).value,
+      React.findDOMNode(this.refs.month).value
+    );
+
+    if (accountList.length > 1) {
+      React.findDOMNode(this.refs.accNameHolder).style.display = 'block';
+
+      dispatch({
+        type: 'change-account-list',
+        data: accountList
+      });
+    } else {
+      React.findDOMNode(this.refs.accNameHolder).style.display = 'none';
+    }
+
+    if (accountList[0]) {
+      this.getSalary(accountList[0].value);
+    }
+  }
+
+
+  /**
+   * Account name changes
+   */
+  onAccChange(e) {
+    this.getSalary(e.target.value);
+  }
+
+
+  /**
+   * Get salary data
+   */
+  getSalary(accName) {
+    SalaryDataUtils.getSalary({
+      year: React.findDOMNode(this.refs.year).value,
+      month: React.findDOMNode(this.refs.month).value,
+      accName: accName
     });
   }
 
 
   /**
-   * Re-fetch salary info when year and month changes
+   * Get account list by year and month
+   * @param data
+   * @param year
+   * @param month
+   * @returns {*|Array.<T>}
    */
-  onDateChange() {
-    dispatch({
-      type: 'get-salary',
-      data: {
-        year: React.findDOMNode(this.refs.year).value,
-        month: React.findDOMNode(this.refs.month).value
-      }
+  getAccountList(data, year, month) {
+    const accountList = data.filter((item) => {
+      return (item.payPerYear === +year) && (item.payPerMon === +month);
+    }).map((item) => {
+      return {
+        text: item.payAccName,
+        value: item.payAccName
+      };
     });
+
+    setTimeout(() => {
+      if (!this.firstTime) {
+        this.getSalary(accountList[0] && accountList[0].value);
+        this.firstTime = true;
+      }
+    }, 0);
+
+    return accountList;
   }
 }
 

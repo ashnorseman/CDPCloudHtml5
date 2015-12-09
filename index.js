@@ -65,25 +65,25 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'baseMessage',
                 text: '基本信息',
-                desc: '查看个人信息',
+                content: '查看个人信息',
                 id: 1984
               },
               {
                 name: 'myPay',
                 text: '我的工资',
-                desc: '查看个人薪资',
+                content: '查看个人薪资',
                 id: 2006
               },
               {
                 name: 'myVacation',
                 text: '我的休假',
-                desc: '查看个人休假',
+                content: '查看个人休假',
                 id: 569
               },
               {
                 name: 'myOvertime',
                 text: '我的加班',
-                desc: '查看个人加班',
+                content: '查看个人加班',
                 id: 1456
               }
             ],
@@ -91,20 +91,20 @@ app.get('/:path?/:any?', function (req, res) {
               {
                 name: 'teamMessage',
                 text: '团队信息',
-                desc: '查看团队信息',
+                content: '查看团队信息',
                 id: 1
               },
               {
                 name: 'leaveManagement',
                 text: '请假管理',
                 id: '1656',
-                desc: '查看团队请假',
+                content: '查看团队请假',
                 notification: 1
               },
               {
                 name: 'overtimeManagement',
                 text: '加班管理',
-                desc: '查看团队加班',
+                content: '查看团队加班',
                 id: '1666',
                 notification: 1
               }
@@ -230,46 +230,43 @@ app.get('/:path?/:any?', function (req, res) {
         }],
         "res": "true"
       });
-    case 'salary':
+    case 'calendar-salary':
       return res.json({
-        res: true,
-        val: {
-          basicInfo: {
-            id: 1,
-            name: '张阿十',
-            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端设计师'
-          },
-          total: 7000,
-          infoList: [
+        "val": {
+          "minYear": 2012,
+          "payrollPeriodList": [
             {
-              title: '发放',
-              items: [
-                {
-                  name: '基本工资',
-                  value: '10000'
-                },
-                {
-                  name: '奖金',
-                  value: '1000'
-                }
-              ]
+              "payResId": 37736,
+              "payAccName": "hitachihk201509",
+              "payPerYear": 2015,
+              "payPerMon": 12
             },
             {
-              title: '扣减',
-              items: [
-                {
-                  name: '个人所得税',
-                  value: '2000'
-                },
-                {
-                  name: '四金',
-                  value: '2000'
-                }
-              ]
-            }
-          ]
-        }
+              "payResId": 37530,
+              "payAccName": "hitachihk201510",
+              "payPerYear": 2015,
+              "payPerMon": 12
+            },
+            {
+              "payResId": 37674,
+              "payAccName": "hitachihk201507",
+              "payPerYear": 2015,
+              "payPerMon": 11
+            },
+            {
+              "payResId": 35242,
+              "payAccName": "hitachihk201508",
+              "payPerYear": 2015,
+              "payPerMon": 7
+            },
+            {
+              "payResId": 36946,
+              "payAccName": "hitachihk201505",
+              "payPerYear": 2015,
+              "payPerMon": 6
+            }]
+        },
+        "res": true
       });
     case 'team-members':
       return res.json({
@@ -481,7 +478,6 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
       //}
     });
   case 'change-lang':
-
     return setTimeout(() => {
       res.json({
         res: true,
@@ -568,6 +564,194 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         "res": "true"
       });
     }, 2000);
+  case 'salary':
+    return res.json({
+      "val": {
+        "infoList": [{
+          "title": "eps_basic_info",
+          "items": [{
+            "name": "Employee ID",
+            "value": "18820"
+          }, {
+            "name": "Chinese Name",
+            "value": "�x美玲"
+          },
+            {
+              "name": "English Name",
+              "value": "TSE, Mei Ling, May"
+            }, {
+              "name": "Company Name",
+              "value": "Hitachi East Asia Ltd."
+            },
+            {
+              "name": "Department",
+              "value": "IFG"
+            }, {
+              "name": "Position",
+              "value": "Manager"
+            }, {
+              "name": "Join Date",
+              "value": "1988-06-01"
+            },
+            {
+              "name": "Pay Month",
+              "value": "201510"
+            }]
+        }, {
+          "title": "eps_earning_deduction",
+          "items": [{
+            "name": "Gross Earnings",
+            "value": "32970.00"
+          },
+            {
+              "name": "Gross Deductions",
+              "value": "1648.50"
+            }]
+        }, {
+          "title": "eps_net_pay",
+          "items": [{
+            "name": "Net Pay",
+            "value": "31321.50"
+          }]
+        },
+          {
+            "title": "eps_mpf_orso",
+            "items": [{
+              "name": "Issue Date",
+              "value": "2015-10-31"
+            }, {
+              "name": "Relevant Income",
+              "value": "32970.00"
+            },
+              {
+                "name": "ORSO(Company)",
+                "value": "2307.90"
+              }, {
+                "name": "ORSO(Employee)",
+                "value": "1648.50"
+              }, {
+                "name": "Mandatory(Company)",
+                "value": "0.00"
+              },
+              {
+                "name": "Mandatory(Employee)",
+                "value": "0.00"
+              }, {
+                "name": "Voluntary(Company)",
+                "value": "0.00"
+              }]
+          },
+          {
+            "title": "eps_attendance",
+            "items": [{
+              "name": "Overtime Hours",
+              "value": "0.00"
+            }, {
+              "name": "Early/Late/Personal Affaire Minutes",
+              "value": "0.00"
+            },
+              {
+                "name": "No Pay Leave Days",
+                "value": "0.00"
+              }, {
+                "name": "4/5 Pay Sick Leave Days",
+                "value": "0.00"
+              }, {
+                "name": "Maternity Leave Days",
+                "value": "0.00"
+              },
+              {
+                "name": "Paternity Leave Days",
+                "value": "0.00"
+              }]
+          }, {
+            "title": "eps_earnings",
+            "items": [{
+              "name": "Basic Salary",
+              "value": "32970.00"
+            },
+              {
+                "name": "Living Allowance",
+                "value": "0.00"
+              }, {
+                "name": "Housing Allowance",
+                "value": "0.00"
+              }, {
+                "name": "Transportation Allowance",
+                "value": "0.00"
+              },
+              {
+                "name": "Language Allowance",
+                "value": "0.00"
+              }, {
+                "name": "Child Education Allowance",
+                "value": "0.00"
+              }, {
+                "name": "Home Return Allowance",
+                "value": "0.00"
+              },
+              {
+                "name": "Overtime Fee",
+                "value": "0.00"
+              }, {
+                "name": "Severance Payment",
+                "value": "0.00"
+              }, {
+                "name": "Long Service Payment",
+                "value": "0.00"
+              },
+              {
+                "name": "Payment in lieu of Notice",
+                "value": "0.00"
+              }, {
+                "name": "Shortage Adjustment",
+                "value": "0.00"
+              }, {
+                "name": "Bonus",
+                "value": "0.00"
+              },
+              {
+                "name": "Double Pay",
+                "value": "0.00"
+              }, {
+                "name": "Special Bonus",
+                "value": "0.00"
+              }]
+          },
+          {
+            "title": "eps_deductions",
+            "items": [{
+              "name": "No Pay Absence Deduction",
+              "value": "0.00"
+            }, {
+              "name": "No Pay Leave Deduction",
+              "value": "0.00"
+            },
+              {
+                "name": "Sick Leave Deduction",
+                "value": "0.00"
+              }, {
+                "name": "Maternity Leave Deduction",
+                "value": "0.00"
+              }, {
+                "name": "Paternity Leave Deduction",
+                "value": "0.00"
+              },
+              {
+                "name": "ORSO/MPF Deduction",
+                "value": "1648.50"
+              }, {
+                "name": "Loan Repay",
+                "value": "0.00"
+              }, {
+                "name": "Deduction in Lieu of Notice",
+                "value": "0.00"
+              }]
+          }]
+      },
+      "res": true
+    });
+
     return;
   }
 

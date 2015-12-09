@@ -31,9 +31,11 @@ if (TARGET === 'start' || TARGET === 'dev') {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      //host: '192.168.23.210',
       port: 8888,
-      progress: true
+      progress: true,
+      proxy: {
+        '*': 'http://localhost:9090'
+      }
     },
     devtool: 'eval-source-map',
     entry: path.resolve(ROOT_PATH, isDev ? 'src/modules.jsx' : 'src/app.jsx'),
