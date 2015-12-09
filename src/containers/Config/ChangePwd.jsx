@@ -74,15 +74,9 @@ export default class ChangePwd extends Component {
 
   /**
    * Get change mobile result
-   * @param {Object} res
    */
-  getResult(res) {
-
-    if (res.success) {
-      alert(getLang('EDIT_SUCCESS'));
-      history.back();
-    } else {
-      alert(getLang('EDIT_FAIL'));
-    }
+  getResult() {
+    alert(getLang('EDIT_SUCCESS'));
+    history.back();
   }
 }
