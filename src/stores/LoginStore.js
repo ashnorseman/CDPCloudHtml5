@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import { ReduceStore } from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
 import assign from 'object-assign';

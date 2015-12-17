@@ -21,6 +21,7 @@ class UserStore extends ReduceStore {
     return {
       loggedIn: userCookie.loggedIn,
       lang: lang.getLang(),
+      langList: localStorage.langList ? JSON.parse(localStorage.langList) : [],
       savedLogin: userCookie,
       basicInfo: userCookie,
 
@@ -38,8 +39,12 @@ class UserStore extends ReduceStore {
     case 'login-success':
       const data = assign({}, state, {
         loggedIn: true,
-        basicInfo: UserDataUtils.readCookie()
+        basicInfo: UserDataUtils.readCookie(),
+        langList: action.data.lang
       });
+      localStorage.langList = JSON.stringify(action.data.lang);
+      lang.setLang(action.data.lang[0].langCode);
+      location.reload();
       UserDataUtils.getUserMenu();
       return data;
     case 'login-failed':

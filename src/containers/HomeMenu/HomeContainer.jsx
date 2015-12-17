@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import { dispatch } from '../../dispatcher/Dispatcher';
@@ -81,12 +79,7 @@ class Home extends Component {
   }
 
   static calculateState() {
-    const user = UserStore.getState();
-
-    return {
-      loggedIn: user.loggedIn,
-      menu: user.menu
-    };
+    return UserStore.getState();
   }
 
   componentDidMount() {
@@ -96,7 +89,7 @@ class Home extends Component {
   }
 
   render() {
-    const { loggedIn, menu } = this.state,
+    const { loggedIn, menu, langList } = this.state,
           routeName = this.props.location.pathname,
           hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1;
 
@@ -104,6 +97,13 @@ class Home extends Component {
       tabItems[index].notification = menu[userType].some((item) => {
           return item.notification;
         });
+    });
+
+    langDropdown.items = langList.map((item) => {
+      return {
+        name: item.langCode,
+        text: item.langName
+      };
     });
 
     return (
