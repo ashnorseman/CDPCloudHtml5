@@ -14,7 +14,7 @@
 // ---------------------------
 
 .login {
-  background: @color-bg;
+  background: linear-gradient(#ebc744, @color-bg);
   height: 100%;
   padding-left: @login-gap;
   padding-right: @login-gap;
@@ -24,9 +24,15 @@
 
 .login-logo {
   background: url(../../images/cdp-logo.png) no-repeat;
-  height: 48px;
+  background-size: 100%;
   margin: @control-height auto;
-  width: 205px;
+  width: 50%;
+
+  &::after {
+    content: ' ';
+    display: block;
+    padding-top: percentage(272 / 717);
+  }
 }
 
 .login-form {
@@ -43,7 +49,7 @@
   }
 
   .text-input-with-icon {
-    background: rgba(0, 0, 0, 0.03);
+    background: @color-bg;
     border-color: @color-text-lighter;
     color: @color-text;
   }
@@ -63,6 +69,7 @@
 
 .login-forgot {
   background: transparent;
+  color: @color-text;
   float: right;
   font-size: @font-sm;
   opacity: 0.6;

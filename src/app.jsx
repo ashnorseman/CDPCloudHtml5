@@ -39,11 +39,13 @@ import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 React.initializeTouchEvents(true);
 ReactTap();
 
-ajax.onError((status) => {
+ajax.onError((status, err) => {
   if (status === 999) {
     dispatch({
       type: 'logout'
     });
+  } else {
+    alert(err);
   }
 });
 

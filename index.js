@@ -233,38 +233,45 @@ app.get('/:path?/:any?', function (req, res) {
     case 'calendar-salary':
       return res.json({
         "val": {
-          "minYear": 2012,
-          "payrollPeriodList": [
-            {
-              "payResId": 37736,
-              "payAccName": "hitachihk201509",
-              "payPerYear": 2015,
-              "payPerMon": 12
-            },
-            {
-              "payResId": 37530,
-              "payAccName": "hitachihk201510",
-              "payPerYear": 2015,
-              "payPerMon": 12
-            },
-            {
-              "payResId": 37674,
-              "payAccName": "hitachihk201507",
-              "payPerYear": 2015,
-              "payPerMon": 11
-            },
-            {
-              "payResId": 35242,
-              "payAccName": "hitachihk201508",
-              "payPerYear": 2015,
-              "payPerMon": 7
-            },
-            {
+          "payrollData": {
+            "minYear": 2015,
+            "payrollPeriodList": [{
               "payResId": 36946,
               "payAccName": "hitachihk201505",
               "payPerYear": 2015,
               "payPerMon": 6
-            }]
+            },
+              {
+                "payResId": 37674,
+                "payAccName": "hitachihk201507",
+                "payPerYear": 2015,
+                "payPerMon": 8
+              },
+              {
+                "payResId": 35242,
+                "payAccName": "hitachihk201508",
+                "payPerYear": 2015,
+                "payPerMon": 7
+              },
+              {
+                "payResId": 37736,
+                "payAccName": "hitachihk201509",
+                "payPerYear": 2015,
+                "payPerMon": 9
+              },
+              {
+                "payResId": 37530,
+                "payAccName": "hitachihk201510",
+                "payPerYear": 2015,
+                "payPerMon": 9
+              }],
+            "pointInfo": "本月无数据！"
+          },
+          "picInfo": {
+            "name": "著美玲",
+            "empWorkId": "18820",
+            "url": "../export/upload/hitachihk_emp_info_2608.jpg"
+          }
         },
         "res": true
       });
@@ -469,7 +476,16 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
       val: {
         company: 'cdp',
         username: 'ash',
-        nickname: 'Ash'
+        nickname: 'Ash',
+        lang: [{
+          "langCode": "pla_lan_001",
+          "langName": "简体中文",
+          "flag": true
+        }, {
+          "langCode": "pla_lan_002",
+          "langName": "English",
+          "flag": false
+        }]
       }
       //res: false,
       //error: '公司代码不存在',

@@ -52,8 +52,12 @@ class SalaryStore extends ReduceStore {
       });
     case 'get-salary-calendar-success':
       return assign({}, state, {
-        salaryCalendar: action.data,
+        salaryCalendar: action.data.payrollData,
         accountList: null,
+        picInfo: {
+          name: action.data.picInfo.name,
+          avatar: action.data.picInfo.url
+        },
         status: 'loaded'
       });
     case 'change-account-list':

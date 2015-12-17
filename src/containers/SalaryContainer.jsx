@@ -53,7 +53,7 @@ class Salary extends Component {
   }
 
   render() {
-    const { total, infoList, salaryCalendar, accountList, status, chartData } = this.state,
+    const { total, picInfo, infoList, salaryCalendar, accountList, status, chartData } = this.state,
 
       yearList = (function (year) {
         let list = [];
@@ -74,9 +74,7 @@ class Salary extends Component {
       <div>
         <Header back title={getLang('MY_SALARY')} />
 
-        {
-          /*<UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={basicInfo} />*/
-        }
+        <UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={picInfo} />
 
         <div className='row gap-t'>
           <div className='col-1-2'>
@@ -116,9 +114,11 @@ class Salary extends Component {
           </div>*/}
 
           {
-            infoList.map((card, index) => {
-              return <InfoCard title={card.title} items={card.items} key={index} />;
-            })
+            infoList.length
+              ? infoList.map((card, index) => {
+                  return <InfoCard title={card.title} items={card.items} key={index} />;
+                })
+              : <p>{salaryCalendar.pointInfo}</p>
           }
         </Loader>
       </div>
@@ -145,6 +145,10 @@ class Salary extends Component {
       });
     } else {
       React.findDOMNode(this.refs.accNameHolder).style.display = 'none';
+
+      if (!accountList.length) {
+        return alert(this.state.salaryCalendar.pointInfo);
+      }
     }
 
     if (accountList[0]) {
