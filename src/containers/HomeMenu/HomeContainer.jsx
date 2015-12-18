@@ -11,7 +11,8 @@ import lang, { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
 import SideNav from '../../components/SideNav/SideNav.jsx';
-import LoginContainer from './../Login/LoginContainer.jsx';
+import LoginContainer from '../Login/LoginContainer.jsx';
+import ConfirmMobile from '../ConfirmMobile/ConfirmMobile';
 import UserStore from '../../stores/UserStore';
 
 
@@ -89,9 +90,10 @@ class Home extends Component {
   }
 
   render() {
-    const { loggedIn, menu, langList } = this.state,
-          routeName = this.props.location.pathname,
-          hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1;
+    const { loggedIn, menu, langList, basicInfo } = this.state,
+      routeName = this.props.location.pathname,
+      hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1,
+      needConfirmMobile = (basicInfo && basicInfo.userFlag === 0);
 
     Object.keys(menu).forEach((userType, index) => {
       tabItems[index].notification = menu[userType].some((item) => {
@@ -109,25 +111,27 @@ class Home extends Component {
     return (
       !loggedIn
         ? <LoginContainer />
-        : <div>
-            {
-              hasHeader
-                ? <Header title='CDP Portal' dropdown={langDropdown}
-                          iconLeft='bars' onTapLeft={this.openSideNav}></Header>
-                : null
-            }
-            {
-              hasHeader
-                ? <SideNav ref='sideNav' data={sideNavData}></SideNav>
-                : null
-            }
-            {
-              (hasHeader && menu.mss)
-                ? <Tab items={tabItems}></Tab>
-                : null
-            }
-            {this.props.children}
-          </div>
+        : needConfirmMobile
+          ? <ConfirmMobile {...basicInfo} />
+          : <div>
+              {
+                hasHeader
+                  ? <Header title='CDP Portal' dropdown={langDropdown}
+                            iconLeft='bars' onTapLeft={this.openSideNav}></Header>
+                  : null
+              }
+              {
+                hasHeader
+                  ? <SideNav ref='sideNav' data={sideNavData}></SideNav>
+                  : null
+              }
+              {
+                (hasHeader && menu.mss)
+                  ? <Tab items={tabItems}></Tab>
+                  : null
+              }
+              {this.props.children}
+            </div>
     );
   }
 

@@ -55,6 +55,10 @@ app.get('/:path?/:any?', function (req, res) {
 
   setTimeout(function () {
     switch (path) {
+    case 'user-confirm':
+      return res.json({
+        res: true
+      });
     case 'user-menu':
       //return res.sendStatus(999);
       return res.json({
@@ -474,9 +478,6 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
     return res.json({
       res: true,
       val: {
-        company: 'cdp',
-        username: 'ash',
-        nickname: 'Ash',
         lang: [{
           "langCode": "pla_lan_001",
           "langName": "简体中文",
@@ -485,7 +486,26 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
           "langCode": "pla_lan_002",
           "langName": "English",
           "flag": false
-        }]
+        }],
+        "userInfo": {
+          "companyCode": "hitachihk-1000",
+          "userName": "reese",
+          "passWord": null,
+          "valid": "true",
+          "userTime": 30,
+          "userFlag": 0,  // 0 为初次登录
+          "userMail": "mtse@hitachi.cn",
+          "phone": "14785296321",
+          "lang": "pla_lan_001",
+          "sysSip": null,
+          "eeId": null,
+          "useMss": 1719,
+          "useEss": 1718,
+          "userEmpId": 2608,
+          "userId": 2066,
+          "portalUser": false,
+          "objectCode": null
+        }
       }
       //res: false,
       //error: '公司代码不存在',

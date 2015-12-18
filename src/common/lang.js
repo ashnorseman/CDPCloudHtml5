@@ -42,6 +42,11 @@ const lang = {
     SAME_PWD: '必须和密码相同',
     PWD_RESET_SUCCESS: '密码重置成功',
 
+    // Buttons
+    EDIT: '编辑',
+    OK: '确定',
+    CANCEL: '取消',
+
     // HOME
     EMPLOYEE: '员工',
     MANAGER: '经理',
@@ -137,6 +142,11 @@ const lang = {
     SAME_PWD: 'Must the same as password',
     PWD_RESET_SUCCESS: 'Password reset succeeded.',
 
+    // Buttons
+    EDIT: 'Edit',
+    OK: 'Confirm',
+    CANCEL: 'Cancel',
+
     // HOME
     EMPLOYEE: 'Employee',
     MANAGER: 'Manager',
@@ -231,6 +241,11 @@ const lang = {
     AT_LEAST_6: '至少 6 位',
     SAME_PWD: 'パスワードと同じなければならない',
     PWD_RESET_SUCCESS: 'パスワードをリセットし',
+
+    // Buttons
+    EDIT: '編集',
+    OK: '確定',
+    CANCEL: 'キャンセル',
 
     // HOME
     EMPLOYEE: '従業員',

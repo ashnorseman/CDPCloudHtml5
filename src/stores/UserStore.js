@@ -39,12 +39,11 @@ class UserStore extends ReduceStore {
     case 'login-success':
       const data = assign({}, state, {
         loggedIn: true,
-        basicInfo: UserDataUtils.readCookie(),
-        langList: action.data.lang
+        basicInfo: assign(UserDataUtils.readCookie(), action.data.userInfo),
+        langList: action.data.lang,
+        lang: action.data.lang[0].langCode
       });
       localStorage.langList = JSON.stringify(action.data.lang);
-      lang.setLang(action.data.lang[0].langCode);
-      location.reload();
       UserDataUtils.getUserMenu();
       return data;
     case 'login-failed':
@@ -54,6 +53,7 @@ class UserStore extends ReduceStore {
         basicInfo: {}
       });
     case 'toggle-remember':
+      UserDataUtils.toggleRemember(action.data);
       return assign({}, state, {
         loggedIn: false,
         basicInfo: {},
@@ -74,6 +74,12 @@ class UserStore extends ReduceStore {
       const menu = action.data.menu;
       return assign({}, state, action.data, {
         isMrg: menu && menu.ess && menu.ess.length && menu.mss && menu.mss.length
+      });
+    case 'confirm-mobile-success':
+      return assign({}, state, {
+        basicInfo: assign({}, state.basicInfo, {
+          userFlag: 1
+        })
       });
     default:
     }

@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 
 import { getItem as getLang } from '../../common/lang';

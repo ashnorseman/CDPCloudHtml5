@@ -7,7 +7,7 @@
 
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
-import ajax from '../common/utils/ajax';
+import ajax, { ajaxDispatch } from '../common/utils/ajax';
 import cookies from '../common/utils/cookies';
 import lang from '../common/lang';
 
@@ -22,6 +22,23 @@ export default {
     });
 
     return result;
+  },
+
+
+  /**
+   * @params {Object} data
+   */
+  toggleRemember(data) {
+
+    if (data.remember) {
+      Object.keys(data).forEach((key) => {
+        cookies.setItem(key, data[key]);
+      });
+    } else {
+      Object.keys(data).forEach((key) => {
+        cookies.removeItem(key);
+      });
+    }
   },
 
 
@@ -139,5 +156,17 @@ export default {
           data: res
         });
       });
+  },
+
+
+  // Confirm
+  // ---------------------------
+
+  confirmMobile() {
+    ajaxDispatch({
+      action: 'confirm-mobile',
+      url: '/user-confirm',
+      method: 'get'
+    });
   }
 };
