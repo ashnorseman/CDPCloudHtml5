@@ -131,8 +131,8 @@ const lang = {
 
     // Forgot password
     MOBILE: 'Mobile',
-    CAPTCHA: 'CAPTCHA',
-    GET_CAPTCHA: 'Get CAPTCHA',
+    CAPTCHA: 'Captcha',
+    GET_CAPTCHA: 'Get Captcha',
     RETRY_CAPTCHA: 'seconds',
     NEXT: 'Next',
     NEW_PWD: 'New password',
