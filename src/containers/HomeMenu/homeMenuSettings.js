@@ -27,7 +27,7 @@ export default {
   myOvertime: {
     style: 4,
     link: 'my-ot',
-    icon: 'coffee'
+    icon: 'clock'
   },
   leaveManagement: {
     style: 5,
@@ -37,7 +37,7 @@ export default {
   overtimeManagement: {
     style: 6,
     link: 'ot-mgr',
-    icon: 'coffee'
+    icon: 'clock'
   },
   teamMessage: {
     style: 7,

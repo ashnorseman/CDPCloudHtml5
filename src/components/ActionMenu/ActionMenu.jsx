@@ -21,11 +21,11 @@ export default class ActionMenu extends Component {
                   className = `action-menu-item action-menu-style-${style} clearfix`;
 
             return <a key={index} href={`#/${item.link}`} className={className}>
-              <Icon name={item.icon} className='action-menu-icon'>
+              <i className={'icon-' + item.icon + ' action-menu-icon'}>
                 {
                   item.notification ? <span className='action-menu-label'>{item.notification}</span> : null
                 }
-              </Icon>
+              </i>
               <div className='action-menu-text'>{item.text}</div>
               <div className='action-menu-desc'>{item.content}</div>
             </a>;
