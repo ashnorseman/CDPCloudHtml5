@@ -113,6 +113,12 @@ app.get('/:path?/:any?', function (req, res) {
                 notification: 1
               }
             ]
+          },
+          "picInfo": {
+            "name": "著美玲",
+            "empWorkId": "18820",
+            "pos": "职位职位职位",
+            "url": "../export/upload/hitachihk_emp_info_2608.jpg"
           }
         }
       });

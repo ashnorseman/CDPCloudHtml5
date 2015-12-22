@@ -90,7 +90,7 @@ class Home extends Component {
   }
 
   render() {
-    const { loggedIn, menu, langList, basicInfo } = this.state,
+    const { loggedIn, menu, picInfo, langList, basicInfo } = this.state,
       routeName = this.props.location.pathname,
       hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1,
       needConfirmMobile = (basicInfo && basicInfo.userFlag === 0);
@@ -108,6 +108,22 @@ class Home extends Component {
       };
     });
 
+    const pic = picInfo
+      ? <div style={{
+            background: 'rgba(0, 0, 0, 0.03)',
+            paddingTop: '1rem',
+            textAlign: 'center'
+        }}>
+          <img src={picInfo.url} alt="" style={{
+            borderRadius: '50%',
+            height: '4rem',
+            width: '4rem'
+          }} />
+          <div>{picInfo.name}</div>
+          <div className="text-lighter text-sm">{picInfo.pos}</div>
+        </div>
+      : null;
+
     return (
       !loggedIn
         ? <LoginContainer />
@@ -116,8 +132,14 @@ class Home extends Component {
           : <div>
               {
                 hasHeader
-                  ? <Header title='CDP Portal' dropdown={langDropdown}
-                            iconLeft='bars' onTapLeft={this.openSideNav}></Header>
+                  ? <div>
+                      <Header
+                          title='CDP Portal'
+                          dropdown={langDropdown}
+                          iconLeft='bars'
+                          onTapLeft={this.openSideNav} />
+                      {pic}
+                    </div>
                   : null
               }
               {

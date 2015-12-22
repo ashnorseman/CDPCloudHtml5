@@ -71,6 +71,7 @@ class UserStore extends ReduceStore {
       UserDataUtils.getUserMenu();
       break;
     case 'get-user-menu-success':
+      console.log(action.data);
       const menu = action.data.menu;
       return assign({}, state, action.data, {
         isMrg: menu && menu.ess && menu.ess.length && menu.mss && menu.mss.length
