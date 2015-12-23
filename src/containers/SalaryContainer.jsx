@@ -147,7 +147,12 @@ class Salary extends Component {
       React.findDOMNode(this.refs.accNameHolder).style.display = 'none';
 
       if (!accountList.length) {
-        return alert(this.state.salaryCalendar.pointInfo);
+        dispatch({
+          type: 'get-salary-success',
+          data: {
+            infoList: []
+          }
+        });
       }
     }
 

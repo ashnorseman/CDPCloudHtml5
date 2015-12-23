@@ -61,7 +61,7 @@ export default class TopAction extends Component {
       <span className="top-action"
             style={visibilityStyle}
             onTouchTap={this.scrollTop.bind(this)}>
-        <i className="fa fa-chevron-up" />
+        <i className="fa fa-angle-double-up" />
       </span>
     );
   }

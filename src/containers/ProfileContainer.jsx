@@ -37,7 +37,8 @@ class Profile extends Component {
     const {
             basicInfo,
             infoList,
-            status
+            status,
+            picInfo = {}
           } = this.state,
 
       listElements = infoList.map((list) => {
@@ -49,7 +50,7 @@ class Profile extends Component {
               {list.pla_lan}
 
               {
-                list.items ? null : <i className='fa fa-info-circle pull-right' style={{marginTop: '0.25rem'}}></i>
+                list.items ? null : <i className='fa fa-angle-double-down pull-right' style={{marginTop: '0.25rem'}}></i>
               }
             </h2>
 
@@ -78,8 +79,8 @@ class Profile extends Component {
 
         <Loader status={status} className='side-gap pad-b'>
           {
-            basicInfo
-              ? <UserInfo className='gap-t-lg gap-b-lg' userInfo={basicInfo} />
+            picInfo
+              ? <UserInfo className='gap-t-lg gap-b-lg' userInfo={picInfo} />
               :null
           }
 

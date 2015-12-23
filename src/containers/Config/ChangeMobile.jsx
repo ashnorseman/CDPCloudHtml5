@@ -122,7 +122,13 @@ export default class ChangeMobile extends Component {
    * Get change mobile result
    */
   getResult() {
+    localStorage.needConfirmMobile = 0;
     alert(getLang('EDIT_SUCCESS'));
-    history.back();
+
+    if (location.hash.indexOf('change-mobile') > -1) {
+      history.back();
+    } else {
+      location.reload();
+    }
   }
 }

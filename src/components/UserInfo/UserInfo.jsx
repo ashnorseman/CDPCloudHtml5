@@ -21,6 +21,8 @@ export default class UserInfo extends Component {
             onSelectUser
           } = this.props;
 
+    userInfo.url && (userInfo.avatar = userInfo.url);
+
     const avatarStyle = userInfo.avatar ? {
                           backgroundImage: `url(${userInfo.avatar})`
                         } : null,

@@ -40,17 +40,18 @@ class ProfileStore extends ReduceStore {
     case 'get-profile-categories-success':
 
       // Get first category by default
-      if (action.data && action.data.length) {
+      if (action.data && action.data.baseType.length) {
         setTimeout(() => {
           dispatch({
             type: 'get-profile-category-detail',
-            data: action.data[0].cmdId
+            data: action.data.baseType[0].cmdId
           });
         }, 0);
       }
 
       return assign({}, state, {
-        infoList: action.data,
+        infoList: action.data.baseType,
+        picInfo: action.data.picInfo,
         status: 'loaded'
       });
     case 'get-profile-category-detail':

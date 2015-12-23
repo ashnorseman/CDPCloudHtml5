@@ -51,7 +51,7 @@ const lang = {
     EMPLOYEE: '员工',
     MANAGER: '经理',
 
-    PROFILE: '个人信息',
+    PROFILE: '我的信息',
     MY_SALARY: '我的薪酬',
     MY_LEAVE: '请假',
     MY_OT: '加班',

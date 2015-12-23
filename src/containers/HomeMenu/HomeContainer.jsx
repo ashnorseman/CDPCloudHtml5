@@ -93,7 +93,7 @@ class Home extends Component {
     const { loggedIn, menu, picInfo, langList, basicInfo } = this.state,
       routeName = this.props.location.pathname,
       hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1,
-      needConfirmMobile = (basicInfo && basicInfo.userFlag === 0);
+      needConfirmMobile = +localStorage.needConfirmMobile;
 
     Object.keys(menu).forEach((userType, index) => {
       tabItems[index].notification = menu[userType].some((item) => {
@@ -120,7 +120,7 @@ class Home extends Component {
             width: '4rem'
           }} />
           <div>{picInfo.name}</div>
-          <div className="text-lighter text-sm">{picInfo.pos}</div>
+          <div className="text-lighter text-sm">{picInfo.position}</div>
         </div>
       : null;
 

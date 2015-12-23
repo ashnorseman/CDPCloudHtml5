@@ -43,6 +43,7 @@ class UserStore extends ReduceStore {
         langList: action.data.lang,
         lang: action.data.lang[0].langCode
       });
+      if (!action.data.userInfo.userFlag) localStorage.needConfirmMobile = 1;
       localStorage.langList = JSON.stringify(action.data.lang);
       UserDataUtils.getUserMenu();
       return data;
@@ -71,12 +72,12 @@ class UserStore extends ReduceStore {
       UserDataUtils.getUserMenu();
       break;
     case 'get-user-menu-success':
-      console.log(action.data);
       const menu = action.data.menu;
       return assign({}, state, action.data, {
         isMrg: menu && menu.ess && menu.ess.length && menu.mss && menu.mss.length
       });
     case 'confirm-mobile-success':
+      localStorage.needConfirmMobile = 0;
       return assign({}, state, {
         basicInfo: assign({}, state.basicInfo, {
           userFlag: 1
