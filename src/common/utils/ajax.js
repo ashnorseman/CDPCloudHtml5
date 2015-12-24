@@ -94,6 +94,7 @@ function checkSuccessFalse(res) {
     errorCallbacks.forEach((cb) => {
       cb.call(null, res.status, res.error);
     });
+    throw res.error;
   }
 }
 

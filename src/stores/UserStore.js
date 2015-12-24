@@ -35,6 +35,8 @@ class UserStore extends ReduceStore {
   }
 
   reduce(state, action) {
+    action.data || (action.data = {});
+
     switch (action.type) {
     case 'login-success':
       const data = assign({}, state, {

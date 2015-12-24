@@ -25,7 +25,6 @@ class LoginStore extends ReduceStore {
       UserDataUtils.login(action.data);
       break;
     case 'login-fail':
-      alert(action.data);
       return assign({}, state, {
         loginStatus: 'failed' + Date.now()
       });
