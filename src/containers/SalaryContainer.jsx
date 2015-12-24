@@ -17,6 +17,7 @@ import FormControl from '../components/FormControl/FormControl.jsx';
 import Select from '../components/Select/Select.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
 import Chart from '../components/Chart/Chart.jsx';
+import TopAction from '../components/TopAction/TopAction.jsx';
 
 import SalaryStore from '../stores/SalaryStore';
 import SalaryDataUtils from '../data-utils/SalaryDataUtils';
@@ -71,7 +72,9 @@ class Salary extends Component {
       newAccountList = accountList || this.getAccountList(salaryCalendar.payrollPeriodList, defaultYear, defaultMonth);
 
     return (
-      <div>
+      <div style={{
+        paddingBottom: '3rem'
+      }}>
         <Header back title={getLang('MY_SALARY')} />
 
         <UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={picInfo} />
@@ -121,6 +124,8 @@ class Salary extends Component {
               : <p>{salaryCalendar.pointInfo}</p>
           }
         </Loader>
+
+        <TopAction />
       </div>
     );
   }

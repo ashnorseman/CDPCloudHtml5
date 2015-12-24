@@ -44,7 +44,9 @@ class Profile extends Component {
       listElements = infoList.map((list) => {
 
         return (
-          <div key={list.cmdId}>
+          <div key={list.cmdId} style={{
+            paddingBottom: '2rem'
+          }}>
             <h2 className='info-card-heading gap-t gap-b'
                 onTouchTap={this.loadCategory.bind(null, list)}>
               {list.pla_lan}
@@ -67,8 +69,6 @@ class Profile extends Component {
             }
 
             <hr className='gap-t-lg gap-b-lg' />
-
-            <TopAction />
           </div>
         );
       });
@@ -86,6 +86,8 @@ class Profile extends Component {
 
           {listElements}
         </Loader>
+
+        <TopAction />
       </div>
     );
   }

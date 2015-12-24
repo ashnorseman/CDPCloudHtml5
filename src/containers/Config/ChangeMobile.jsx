@@ -62,6 +62,8 @@ export default class ChangeMobile extends Component {
       getCaptchaText = captchaTimer ? `${captchaTimer} ${getLang('RETRY_CAPTCHA')}` : getLang('GET_CAPTCHA'),
       captchaDisabled = !!captchaTimer;
 
+    changeMobileControls[1].defaultValue = localStorage.mobile || '';
+
     return (
       <div style={{ position: 'relative' }}>
         <Header back title={getLang('CHANGE_MOBILE')} />
@@ -123,6 +125,7 @@ export default class ChangeMobile extends Component {
    */
   getResult() {
     localStorage.needConfirmMobile = 0;
+    localStorage.mobile = document.getElementById('mobile').value;
     alert(getLang('EDIT_SUCCESS'));
 
     if (location.hash.indexOf('change-mobile') > -1) {

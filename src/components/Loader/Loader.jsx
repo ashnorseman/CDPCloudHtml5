@@ -22,7 +22,7 @@ export default class Loader extends Component {
           (status === 'loaded')
             ? this.props.children
             : (status === 'loading')
-                ? <i className='fa fa-spinner fa-pulse' />
+                ? <i className='fa fa-spinner fa-pulse text-primary' />
                 : <i className='fa fa-meh-o' />
         }
       </div>

@@ -43,6 +43,7 @@ class UserStore extends ReduceStore {
         langList: action.data.lang,
         lang: action.data.lang[0].langCode
       });
+      localStorage.mobile = action.data.userInfo.phone;
       if (!action.data.userInfo.userFlag) localStorage.needConfirmMobile = 1;
       localStorage.langList = JSON.stringify(action.data.lang);
       UserDataUtils.getUserMenu();
