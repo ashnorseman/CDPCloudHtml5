@@ -80,7 +80,7 @@ class Salary extends Component {
         <UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={picInfo} />
 
         <div className='row gap-t'>
-          <div className='col-1-2'>
+          <div className='col-1-4'>
             <FormControl label={getLang('YEAR')}>
               <Select className='text-primary'
                       defaultValue={defaultYear}
@@ -89,7 +89,7 @@ class Salary extends Component {
                       onChange={this.onDateChange} />
             </FormControl>
           </div>
-          <div className='col-1-2'>
+          <div className='col-1-4'>
             <FormControl label={getLang('MONTH')}>
               <Select className='text-primary'
                       defaultValue={defaultMonth}
@@ -98,7 +98,7 @@ class Salary extends Component {
                       onChange={this.onDateChange} />
             </FormControl>
           </div>
-          <div className='col-1-1' style={{ display: newAccountList.length > 1 ? 'block' : 'none' }} ref='accNameHolder'>
+          <div className='col-1-2' style={{ display: newAccountList.length > 1 ? 'block' : 'none' }} ref='accNameHolder'>
             <FormControl label='账套'>
               <Select className='text-primary'
                       options={newAccountList}
@@ -204,12 +204,14 @@ class Salary extends Component {
       };
     });
 
-    setTimeout(() => {
-      if (!this.firstTime) {
-        this.getSalary(accountList[0] && accountList[0].value);
-        this.firstTime = true;
-      }
-    }, 0);
+    if (accountList.length) {
+      setTimeout(() => {
+        if (!this.firstTime) {
+          this.getSalary(accountList[0] && accountList[0].value);
+          this.firstTime = true;
+        }
+      }, 0);
+    }
 
     return accountList;
   }

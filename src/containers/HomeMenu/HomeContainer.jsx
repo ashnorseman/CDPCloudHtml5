@@ -119,8 +119,10 @@ class Home extends Component {
             height: '4rem',
             width: '4rem'
           }} />
-          <div>{picInfo.name}</div>
-          <div className="text-lighter text-sm">{picInfo.position}</div>
+          <div>
+            <span>{picInfo.name}</span>
+            <span className="text-lighter text-sm gap-l">{picInfo.position}</span>
+          </div>
         </div>
       : null;
 

@@ -115,9 +115,9 @@ app.get('/:path?/:any?', function (req, res) {
             ]
           },
           "picInfo": {
-            "name": "著美玲",
+            "name": "René Ash Wagner",
             "empWorkId": "18820",
-            "position": "职位职位职位",
+            "position": "Vice-President of Administration and Finance",
             "url": "../export/upload/hitachihk_emp_info_2608.jpg"
           }
         }

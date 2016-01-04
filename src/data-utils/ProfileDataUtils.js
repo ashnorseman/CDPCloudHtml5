@@ -32,10 +32,11 @@ export default {
 
   /**
    * Get user profile categories
-   * @param {number} [id]
+   * @param {number} [data]
    */
-  getProfileCategories(id) {
-    const path = '/user-message-info-type' + ((id === void 0) ? `` : `/${id}`);
+  getProfileCategories(data) {
+    const id = (data && Object.keys(data).length) ? data : undefined,
+      path = '/user-message-info-type' + ((id === void 0) ? `` : `/${id}`);
 
     ajax.get(path)
       .then((res) => {

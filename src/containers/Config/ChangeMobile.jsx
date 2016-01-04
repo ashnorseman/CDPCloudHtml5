@@ -62,7 +62,9 @@ export default class ChangeMobile extends Component {
       getCaptchaText = captchaTimer ? `${captchaTimer} ${getLang('RETRY_CAPTCHA')}` : getLang('GET_CAPTCHA'),
       captchaDisabled = !!captchaTimer;
 
-    changeMobileControls[1].defaultValue = localStorage.mobile || '';
+    if (localStorage.mobile) {
+      changeMobileControls[1].defaultValue = localStorage.mobile;
+    }
 
     return (
       <div style={{ position: 'relative' }}>
