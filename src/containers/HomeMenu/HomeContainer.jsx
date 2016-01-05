@@ -116,8 +116,8 @@ class Home extends Component {
         }}>
           <img src={picInfo.url} alt="" style={{
             borderRadius: '50%',
-            height: '4rem',
-            width: '4rem'
+            height: '5rem',
+            width: '5rem'
           }} />
           <div>
             <span>{picInfo.name}</span>

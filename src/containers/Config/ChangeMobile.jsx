@@ -111,6 +111,7 @@ export default class ChangeMobile extends Component {
     setTimeout(countDown, 0);
 
     ajax.post('/validation-no', {
+      type: 0,
       phone: mobile
     })
       .catch(() => {

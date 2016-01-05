@@ -36,17 +36,14 @@ class SalaryStore extends ReduceStore {
         status: 'loading'
       });
     case 'get-salary-success':
-      const infoList = action.data.infoList;
-            //chartList = infoList.reduce((list, item) => {
-            //  return list.concat(item.items);
-            //}, []),
-            //chartData = chartList.map((item) => {
-            //  item.label = item.name;
-            //  return item;
-            //});
+      const chartData = (action.data.payCharts || []).map((item) => {
+              item.label = item.payrollChartsName;
+              item.value = item.payrollTotal;
+              return item;
+            });
 
       return assign({}, state, action.data, {
-        //chartData,
+        chartData,
         accountList: state.accountList,
         status: 'loaded'
       });

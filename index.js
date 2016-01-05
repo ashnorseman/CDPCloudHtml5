@@ -617,7 +617,8 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
   case 'salary':
     return res.json({
       "val": {
-        "infoList": [{
+        "infoList": [
+          {
           "title": "eps_basic_info",
           "items": [{
             "name": "Employee ID",
@@ -797,7 +798,14 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
                 "name": "Deduction in Lieu of Notice",
                 "value": "0.00"
               }]
-          }]
+          }],
+        "payCharts": [{
+          "payrollChartsName": "NetMonthly Income",
+          "payrollTotal": 11287.9
+        },{
+          "payrollChartsName": "NetMonthly Outcome",
+          "payrollTotal": 11287.9
+        }]
       },
       "res": true
     });
