@@ -118,7 +118,10 @@ export default {
 
     setTimeout(countDown, 0);
 
-    ajax.get('/captcha', { mobile })
+    ajax.post('/validation-no', {
+      type: 1,
+      phone: mobile
+    })
       .catch(() => {
         clearTimeout(timeout);
         dispatch({
@@ -132,7 +135,7 @@ export default {
    * Check captcha
    */
   checkCaptcha(formData) {
-    ajax.post('/check-captcha', formData)
+    ajax.post('/forget-password', formData)
       .then(() => {
         dispatch({
           type: 'check-captcha-success'

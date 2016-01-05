@@ -151,7 +151,7 @@ class Login extends Component {
                     ref='resetPage'>
           <Form className='login-reset-form'
                 ref='resetPwdForm'
-                action='/reset-password'
+                action='/change-emp-password'
                 controls={resetForm}
                 submitButton={resetSubmit}
                 beforeSubmit={this.checkPwd}

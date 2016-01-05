@@ -72,10 +72,12 @@ export default class ForgotStep1 extends Component {
    * Get captcha
    */
   getCaptcha() {
-    dispatch({
-      type: 'get-captcha',
-      data: React.findDOMNode(this.refs.mobile).value
-    });
+    if (this.validateMobile()) {
+      dispatch({
+        type: 'get-captcha',
+        data: React.findDOMNode(this.refs.mobile).value
+      });
+    }
   }
 
 
