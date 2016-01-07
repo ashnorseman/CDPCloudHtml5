@@ -111,6 +111,7 @@ class Home extends Component {
     const pic = picInfo
       ? <div style={{
             background: 'rgba(0, 0, 0, 0.03)',
+            paddingBottom: '1rem',
             paddingTop: '1rem',
             textAlign: 'center'
         }}>

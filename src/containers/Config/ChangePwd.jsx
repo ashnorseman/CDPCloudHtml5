@@ -38,8 +38,8 @@ const changePwdControls = [
   },
   {
     type: 'password',
-    id: 'new-password',
-    name: 'new-password',
+    id: 'newPwd',
+    name: 'newPwd',
     label: getLang('NEW_PWD'),
     tips: getLang('AT_LEAST_6'),
     required: true,
@@ -47,8 +47,8 @@ const changePwdControls = [
   },
   {
     type: 'password',
-    id: 'repeat-password',
-    name: 'repeat-password',
+    id: 'repeatPwd',
+    name: 'repeatPwd',
     label: getLang('REPEAT_PWD'),
     tips: getLang('SAME_PWD'),
     required: true,
@@ -137,7 +137,7 @@ export default class ChangePwd extends Component {
    * Check password and repeat password are the same
    */
   checkPwd() {
-    if (document.getElementById('new-password').value !== document.getElementById('repeat-password').value) {
+    if (document.getElementById('newPwd').value !== document.getElementById('repeatPwd').value) {
       alert(getLang('SAME_PWD'));
       return false;
     }

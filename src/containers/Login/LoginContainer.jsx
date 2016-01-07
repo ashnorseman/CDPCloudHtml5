@@ -61,9 +61,17 @@ const loginForm = [
   },
   resetForm = [
     {
+      type: 'text',
+      id: 'companyCode',
+      name: 'companyCode',
+      label: getLang('COMPANY'),
+      tips: getLang('REQUIRED'),
+      required: true
+    },
+    {
       type: 'password',
-      id: 'new-password',
-      name: 'new-password',
+      id: 'newPwd',
+      name: 'newPwd',
       label: getLang('NEW_PWD'),
       tips: getLang('AT_LEAST_6'),
       required: true,
@@ -71,8 +79,8 @@ const loginForm = [
     },
     {
       type: 'password',
-      id: 'repeat-password',
-      name: 'repeat-password',
+      id: 'repeatPwd',
+      name: 'repeatPwd',
       label: getLang('REPEAT_PWD'),
       tips: getLang('SAME_PWD'),
       required: true,
@@ -202,8 +210,8 @@ class Login extends Component {
    * Check password and repeat password are the same
    */
   checkPwd() {
-    const pwd = document.getElementById('new-password').value,
-          rpt = document.getElementById('repeat-password').value;
+    const pwd = document.getElementById('newPwd').value,
+          rpt = document.getElementById('repeatPwd').value;
 
     if (pwd !== rpt) {
       alert(getLang('SAME_PWD'));

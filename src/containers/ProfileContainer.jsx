@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
+import assign from 'object-assign';
 
 import { getItem as getLang } from '../common/lang';
 import Header from '../components/Header/Header.jsx';
@@ -15,7 +16,9 @@ import Loader from '../components/Loader/Loader.jsx';
 import UserInfo from '../components/UserInfo/UserInfo.jsx';
 import InfoCard from '../components/InfoCard/InfoCard.jsx';
 import TopAction from '../components/TopAction/TopAction.jsx';
+
 import ProfileStore from '../stores/ProfileStore';
+import UserStore from '../stores/UserStore';
 
 
 class Profile extends Component {
@@ -26,11 +29,11 @@ class Profile extends Component {
   }
 
   static getStores() {
-    return [ProfileStore];
+    return [ProfileStore, UserStore];
   }
 
   static calculateState() {
-    return ProfileStore.getState();
+    return assign({}, ProfileStore.getState(), UserStore.getState());
   }
 
   render() {
@@ -38,15 +41,16 @@ class Profile extends Component {
             basicInfo,
             infoList,
             status,
-            picInfo = {}
+            picInfo = {},
+            menu
           } = this.state,
+
+      baseMenu = (menu.ess || []).filter(item => item.name === 'baseMessage'),
 
       listElements = infoList.map((list) => {
 
         return (
-          <div key={list.cmdId} style={{
-            paddingBottom: '2rem'
-          }}>
+          <div key={list.cmdId}>
             <h2 className='info-card-heading gap-t gap-b'
                 onTouchTap={this.loadCategory.bind(null, list)}>
               {list.pla_lan}
@@ -75,7 +79,7 @@ class Profile extends Component {
 
     return (
       <div>
-        <Header back title={getLang('PROFILE')} />
+        <Header back title={baseMenu && baseMenu[0] && baseMenu[0].text} />
 
         <Loader status={status} className='side-gap pad-b'>
           {

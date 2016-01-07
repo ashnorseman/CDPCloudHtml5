@@ -799,6 +799,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
                 "value": "0.00"
               }]
           }],
+        //"payCharts": ""
         "payCharts": [{
           "payrollChartsName": "NetMonthly Income",
           "payrollTotal": 11287.9

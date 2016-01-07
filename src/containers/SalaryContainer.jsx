@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
+import assign from 'object-assign';
 
 import { getItem as getLang } from '../common/lang';
 import Loader from '../components/Loader/Loader.jsx';
@@ -20,6 +21,7 @@ import Chart from '../components/Chart/Chart.jsx';
 import TopAction from '../components/TopAction/TopAction.jsx';
 
 import SalaryStore from '../stores/SalaryStore';
+import UserStore from '../stores/UserStore';
 import SalaryDataUtils from '../data-utils/SalaryDataUtils';
 
 
@@ -46,15 +48,15 @@ class Salary extends Component {
   }
 
   static getStores() {
-    return [SalaryStore];
+    return [SalaryStore, UserStore];
   }
 
   static calculateState() {
-    return SalaryStore.getState();
+    return assign({}, SalaryStore.getState(), UserStore.getState());
   }
 
   render() {
-    const { total, picInfo, infoList, salaryCalendar, accountList, status, chartData } = this.state,
+    const { total, picInfo, infoList, salaryCalendar, accountList, status, chartData, menu } = this.state,
 
       yearList = (function (year) {
         let list = [];
@@ -69,13 +71,15 @@ class Salary extends Component {
         return list;
       }(salaryCalendar.minYear)),
 
-      newAccountList = accountList || this.getAccountList(salaryCalendar.payrollPeriodList, defaultYear, defaultMonth);
+      newAccountList = accountList || this.getAccountList(salaryCalendar.payrollPeriodList, defaultYear, defaultMonth),
+
+      payMenu = (menu.ess || []).filter(item => item.name === 'myPay');
 
     return (
       <div style={{
         paddingBottom: '3rem'
       }}>
-        <Header back title={getLang('MY_SALARY')} />
+        <Header back title={payMenu && payMenu[0] && payMenu[0].text} />
 
         <UserInfo className='gap-t-lg gap-b-lg side-gap' userInfo={picInfo} />
 
@@ -110,7 +114,7 @@ class Salary extends Component {
 
         <Loader status={status} className='side-gap gap-t pad-b'>
           {
-            infoList.length
+            infoList.length && chartData.length
                 ? <div className='gap-b'><Chart height='200' data={chartData}/></div>
                 : null
           }
