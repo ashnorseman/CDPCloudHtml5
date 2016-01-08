@@ -61,14 +61,6 @@ const loginForm = [
   },
   resetForm = [
     {
-      type: 'text',
-      id: 'companyCode',
-      name: 'companyCode',
-      label: getLang('COMPANY'),
-      tips: getLang('REQUIRED'),
-      required: true
-    },
-    {
       type: 'password',
       id: 'newPwd',
       name: 'newPwd',

@@ -30,6 +30,12 @@ export default class ForgotStep1 extends Component {
     return(
       <div className='login-forgot-page'>
         <form ref='captchaForm' className='login-forgot-form'>
+          <FormControl label={getLang('COMPANY')} tips={getLang('REQUIRED')}>
+            <TextInput ref='companyCode' id='companyCode' name='companyCode'
+                       type='text' required
+                       onChange={this.validateMobile} />
+          </FormControl>
+
           <FormControl label={getLang('MOBILE')} tips={getLang('REQUIRED')}>
             <TextInput ref='mobile' id='mobile' name='mobile'
                        type='tel' required maxLength='11'
@@ -60,7 +66,8 @@ export default class ForgotStep1 extends Component {
    */
   validateMobile() {
     const mobile = React.findDOMNode(this.refs.mobile).value,
-          valid = mobile && mobile.length >= 11;
+          companyCode = React.findDOMNode(this.refs.companyCode).value,
+          valid = companyCode && mobile && mobile.length >= 11;
 
     React.findDOMNode(this.refs.getCaptcha).disabled = !valid;
 
@@ -72,10 +79,14 @@ export default class ForgotStep1 extends Component {
    * Get captcha
    */
   getCaptcha() {
-    if (this.validateMobile()) {
+
+    if (this.validateMobile() && companyCode) {
       dispatch({
         type: 'get-captcha',
-        data: React.findDOMNode(this.refs.mobile).value
+        data: {
+          phone: React.findDOMNode(this.refs.mobile).value,
+          companyCode: React.findDOMNode(this.refs.companyCode).value
+        }
       });
     }
   }

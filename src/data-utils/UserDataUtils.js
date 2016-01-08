@@ -97,7 +97,7 @@ export default {
   /**
    * Get captcha for a mobile
    */
-  getCaptcha(mobile) {
+  getCaptcha(data) {
     let timer = 61,
         timeout;
 
@@ -120,7 +120,8 @@ export default {
 
     ajax.post('/validation-no', {
       type: 1,
-      phone: mobile
+      phone: data.phone,
+      captcha: data.captcha
     })
       .catch(() => {
         clearTimeout(timeout);
