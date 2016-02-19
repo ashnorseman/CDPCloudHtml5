@@ -8,15 +8,15 @@
 @top-action-size: 2.375rem;
 
 .top-action {
+  background: @color-bg;
+  box-shadow: 0 1px 3px rgba(142, 142, 142, 0.8);
+  //border: @border-width solid fade(@color-text, 80);
+  border-radius: 50%;
+  color: #000;
   display: inline-block;
   height: @top-action-size;
-  line-height: @top-action-size;
-  text-align: center;
-  width: @top-action-size;
-  //background: @color-bg;
-  //box-shadow: 0 2px 1px rgba(142, 142, 142, 0.3);
-  border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: @top-action-size;
+  line-height: @top-action-size * 0.9;
   margin-left: -@top-action-size / 2;
   opacity: 0.95;
   position: fixed;
@@ -25,4 +25,6 @@
     left: 50%;
     //right: 2rem;
     z-index: @z-page-opener;
+  text-align: center;
+  width: @top-action-size;
 }

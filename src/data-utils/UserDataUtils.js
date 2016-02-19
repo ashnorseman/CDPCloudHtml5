@@ -120,6 +120,7 @@ export default {
 
     ajax.post('/validation-no', {
       type: 1,
+      companyCode: data.companyCode,
       phone: data.phone,
       captcha: data.captcha
     })
@@ -171,6 +172,18 @@ export default {
       action: 'confirm-mobile',
       url: '/user-confirm',
       method: 'get'
+    });
+  },
+
+
+  // Init Password
+  // ---------------------------
+
+  initPassword() {
+    ajaxDispatch({
+      action: 'init-password',
+      url: '/init-change-password',
+      method: 'post'
     });
   }
 };

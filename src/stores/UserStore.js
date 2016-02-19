@@ -47,6 +47,7 @@ class UserStore extends ReduceStore {
       });
       localStorage.mobile = action.data.userInfo.phone;
       if (!action.data.userInfo.userFlag) localStorage.needConfirmMobile = 1;
+      if (!action.data.userInfo.userInitFlag) localStorage.needResetPassword = 1;
       localStorage.langList = JSON.stringify(action.data.lang);
       UserDataUtils.getUserMenu();
       return data;
@@ -84,6 +85,13 @@ class UserStore extends ReduceStore {
       return assign({}, state, {
         basicInfo: assign({}, state.basicInfo, {
           userFlag: 1
+        })
+      });
+    case 'init-password-success':
+      localStorage.needResetPassword = 0;
+      return assign({}, state, {
+        basicInfo: assign({}, state.basicInfo, {
+          userInitFlag: 1
         })
       });
     default:

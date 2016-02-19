@@ -13,6 +13,7 @@ import Tab from '../../components/Tab/Tab.jsx';
 import SideNav from '../../components/SideNav/SideNav.jsx';
 import LoginContainer from '../Login/LoginContainer.jsx';
 import ConfirmMobile from '../ConfirmMobile/ConfirmMobile';
+import ResetPassword from '../ConfirmMobile/ResetPassword';
 import UserStore from '../../stores/UserStore';
 
 
@@ -93,7 +94,8 @@ class Home extends Component {
     const { loggedIn, menu, picInfo, langList, basicInfo } = this.state,
       routeName = this.props.location.pathname,
       hasHeader = ['/employee', '/manager', '/'].indexOf(routeName) > -1,
-      needConfirmMobile = +localStorage.needConfirmMobile;
+      needConfirmMobile = +localStorage.needConfirmMobile,
+      needResetPassword = +localStorage.needResetPassword;
 
     Object.keys(menu).forEach((userType, index) => {
       tabItems[index].notification = menu[userType].some((item) => {
@@ -132,31 +134,33 @@ class Home extends Component {
         ? <LoginContainer />
         : needConfirmMobile
           ? <ConfirmMobile {...basicInfo} />
-          : <div>
-              {
-                hasHeader
-                  ? <div>
-                      <Header
-                          title='CDP Portal'
-                          dropdown={langDropdown}
-                          iconLeft='bars'
-                          onTapLeft={this.openSideNav} />
-                      {pic}
-                    </div>
-                  : null
-              }
-              {
-                hasHeader
-                  ? <SideNav ref='sideNav' data={sideNavData}></SideNav>
-                  : null
-              }
-              {
-                (hasHeader && menu.mss)
-                  ? <Tab items={tabItems}></Tab>
-                  : null
-              }
-              {this.props.children}
-            </div>
+          : needResetPassword
+              ? <ResetPassword></ResetPassword>
+              : <div>
+                  {
+                    hasHeader
+                      ? <div>
+                          <Header
+                              title='CDP Portal'
+                              dropdown={langDropdown}
+                              iconLeft='cdp-line'
+                              onTapLeft={this.openSideNav} />
+                          {pic}
+                        </div>
+                      : null
+                  }
+                  {
+                    hasHeader
+                      ? <SideNav ref='sideNav' data={sideNavData}></SideNav>
+                      : null
+                  }
+                  {
+                    (hasHeader && menu.mss)
+                      ? <Tab items={tabItems}></Tab>
+                      : null
+                  }
+                  {this.props.children}
+                </div>
     );
   }
 

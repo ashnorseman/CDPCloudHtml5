@@ -53,7 +53,7 @@ export default class Dropdown extends Component {
 
     return (
       <div>
-        <Button className='dropdown-toggle' icon='ellipsis-v' onTouchTap={this.toggle}></Button>
+        <Button className='dropdown-toggle' icon='cdp-point' iconType='icomoon' onTouchTap={this.toggle}></Button>
         <CSSTransitionGroup component='div' transitionName='dropdown'>
           {dropdownItems}
         </CSSTransitionGroup>

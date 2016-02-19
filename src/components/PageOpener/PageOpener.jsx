@@ -22,7 +22,7 @@ export default class PageOpener extends Component {
 
     return (
       <div className={`page-opener ${className}`}>
-        <i className='fa fa-times page-closer' onTouchTap={this.close}></i>
+        <i className='icon-icomoon icon-cdp-close page-closer' onTouchTap={this.close}></i>
         {this.props.children}
       </div>
     );

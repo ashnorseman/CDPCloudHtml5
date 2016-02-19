@@ -17,7 +17,7 @@ export default class Button extends Component {
   render() {
     const {
             type = 'button',
-            text, icon, action, hollow, link, className,
+            text, icon, iconType, action, hollow, link, className,
             submitting,
             ...attr
           } = this.props;
@@ -30,7 +30,7 @@ export default class Button extends Component {
     return (
       <button type={type} className={btnClassName.trim()} {...attr}>
         {
-          icon ? <Icon name={icon} button></Icon> : null
+          icon ? <Icon name={icon} type={iconType} button></Icon> : null
         }
         {
           submitting ? <Icon name='spinner fa-pulse' button></Icon> : null

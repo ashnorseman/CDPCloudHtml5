@@ -19,12 +19,13 @@ export default class Header extends Component {
     const { title, iconLeft, iconRight, onTapLeft, onTapRight, back, dropdown } = this.props;
 
     const buttonLeft = back
-            ? <Button className='header-icon-left' icon='chevron-left' onClick={this.back}></Button>
+            ? <Button className='header-icon-left' icon='cdp-left-arrow' iconType='icomoon' onClick={this.back}></Button>
             : iconLeft
-                ? <Button className='header-icon-left' icon={iconLeft} onClick={onTapLeft}></Button>
+                ? <Button className='header-icon-left' icon={iconLeft} iconType='icomoon' onClick={onTapLeft}></Button>
                 : null;
     const buttonRight = iconRight
-            ? <Button className='header-icon-right' icon={iconRight} onClick={onTapRight}></Button>
+            ? <Button className='header-icon-right' icon={iconRight} iconType='icomoon'
+                      onClick={onTapRight}></Button>
             : null;
     const dropdownMenu = dropdown
             ? <Dropdown {...dropdown} />

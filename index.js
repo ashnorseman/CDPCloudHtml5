@@ -508,6 +508,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
           "valid": "true",
           "userTime": 30,
           "userFlag": 1,  // 0 为初次登录
+          "userInitFlag": 1,  // 0 为需要修改密码
           "userMail": "mtse@hitachi.cn",
           "phone": "14785296321",
           "lang": "pla_lan_001",

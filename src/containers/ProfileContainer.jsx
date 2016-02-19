@@ -56,7 +56,7 @@ class Profile extends Component {
               {list.pla_lan}
 
               {
-                list.items ? null : <i className='fa fa-angle-double-down pull-right' style={{marginTop: '0.25rem'}}></i>
+                list.items ? null : <i className='icon-icomoon icon-cdp-down-arrow pull-right'></i>
               }
             </h2>
 

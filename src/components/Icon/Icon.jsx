@@ -13,11 +13,11 @@ import React, { Component } from 'react';
 export default class Icon extends Component {
 
   render() {
-    const { name, button, className } = this.props;
+    const { name, button, className, type } = this.props;
 
     return (
       <i className={
-        'fa fa-'
+        (type ? 'icon-' + type + ' icon-'  : 'fa fa-')
           + name
           + (button ? ' icon-button' : '')
           + (className ? ' ' +  className : '')
