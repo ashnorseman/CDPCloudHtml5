@@ -63,7 +63,7 @@ React.render((
 
       <Route path='profile(/:id)' name='profile' component={ProfileContainer} />
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />
-      <Route path='my-leave' name='my-leave' component={LeaveContainer}>
+      {/*<Route path='my-leave' name='my-leave' component={LeaveContainer}>
         <IndexRoute component={LeaveListContainer} />
         <Route path='leave-list' name='leave-list' component={LeaveListContainer}></Route>
         <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer}></Route>
@@ -78,7 +78,7 @@ React.render((
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 
       <Route path='manager' name='manager' component={ManagerContainer} routerProps={{header:true}} />
-      <Route path='*' name='employee' component={EmployeeContainer} routerProps={{header:true}} />
+      <Route path='*' name='employee' component={EmployeeContainer} routerProps={{header:true}} />*/}
     </Route>
   </Router>
 ), document.getElementById('app'));

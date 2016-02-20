@@ -26,10 +26,9 @@
     "font-awesome": "^4.4.0",
     "multer": "^1.0.5",
     "object-assign": "^4.0.1",
-    "react": "^0.13.3",
-    "react-dom": "^0.14.0-rc1",
-    "react-router": "^1.0.0-rc1",
-    "react-tap-event-plugin": "^0.1.8",
+    "react": "0.13.3",
+    "react-router": "1.0.0-rc1",
+    "react-tap-event-plugin": "0.1.7",
     "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
