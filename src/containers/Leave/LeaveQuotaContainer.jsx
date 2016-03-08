@@ -39,7 +39,10 @@ class LeaveQuota extends Component {
         <Loader status={status}>
           {
             quota.map((card, index) => {
-              return <InfoCard items={card} key={index} />;
+              return <div className="gap-t" key={index}>
+                <h2 className="info-card-heading gap-b">{card.title}</h2>
+                <InfoCard items={card.items} />
+              </div>;
             })
           }
         </Loader>

@@ -64,7 +64,7 @@ React.render((
       <Route path='profile(/:id)' name='profile' component={ProfileContainer} />
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />
       <Route path='my-leave' name='my-leave' component={LeaveContainer}>
-        <IndexRoute component={LeaveListContainer} />
+        <IndexRoute component={LeaveQuotaContainer} />
         <Route path='leave-list' name='leave-list' component={LeaveListContainer}></Route>
         <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer}></Route>
         <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer}></Route>

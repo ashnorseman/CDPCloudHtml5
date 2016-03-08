@@ -295,19 +295,29 @@ app.get('/:path?/:any?', function (req, res) {
       });
     case 'user-quota':
       return res.json({
-        "val": [[{"name": "员工姓名", "value": "罗 美文"}, {"name": "部门", "value": "人事总务法务部"}, {
-          "name": "年份",
-          "value": "2016"
-        }, {"name": "QuotaType", "value": "调休假"}, {"name": "可取得天数", "value": "0.83000"}, {
-          "name": "已取得天数",
-          "value": "0.5"
-        }, {"name": "剩余天数", "value": "0.33"}], [{"name": "员工姓名", "value": "罗 美文"}, {
-          "name": "部门",
-          "value": "人事总务法务部"
-        }, {"name": "年份", "value": "2016"}, {"name": "QuotaType", "value": "年假"}, {
-          "name": "可取得天数",
-          "value": "0.83000"
-        }, {"name": "已取得天数", "value": "0.5"}, {"name": "剩余天数", "value": "0.33"}]], "res": true
+        "val": [
+          {
+            title: '配额分类 1',
+            items: [{"name": "员工姓名", "value": "罗 美文"}, {"name": "部门", "value": "人事总务法务部"}, {
+              "name": "年份",
+              "value": "2016"
+            }, {"name": "QuotaType", "value": "调休假"}, {"name": "可取得天数", "value": "0.83000"}, {
+              "name": "已取得天数",
+              "value": "0.5"
+            }, {"name": "剩余天数", "value": "0.33"}]
+          },
+          {
+            title: '配额分类 2',
+            items: [{"name": "员工姓名", "value": "罗 美文"}, {
+              "name": "部门",
+              "value": "人事总务法务部"
+            }, {"name": "年份", "value": "2016"}, {"name": "QuotaType", "value": "年假"}, {
+              "name": "可取得天数",
+              "value": "0.83000"
+            }, {"name": "已取得天数", "value": "0.5"}, {"name": "剩余天数", "value": "0.33"}]
+          }
+        ],
+        "res": true
       });
     case 'leave-form':
       return res.json({
