@@ -293,34 +293,6 @@ app.get('/:path?/:any?', function (req, res) {
         },
         "res": true
       });
-    case 'team-members':
-      return res.json({
-        res: true,
-        val: (function () {
-          var base = [
-            {
-              id: 1,
-              name: '张阿十',
-              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-              position: '前端设计师'
-            },
-            {
-              id: 2,
-              name: '张阿廿',
-              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-              position: '前端服务员'
-            }
-          ];
-
-          if (req.query.page <= 3) {
-            for (var i = 0; i < 4; i += 1) {
-              base = base.concat(base);
-            }
-          }
-
-          return base.slice(0, 20);
-        }())
-      });
     case 'leave-form':
       return res.json({
         res: true,
@@ -812,6 +784,34 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
       "res": true
     });
 
+  case 'team-info-page':
+    return res.json({
+      res: true,
+      val: (function () {
+        var base = [
+          {
+            id: 1,
+            name: '张阿十',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端设计师'
+          },
+          {
+            id: 2,
+            name: '张阿廿',
+            avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+            position: '前端服务员'
+          }
+        ];
+
+        if (req.body.page <= 3) {
+          for (var i = 0; i < 4; i += 1) {
+            base = base.concat(base);
+          }
+        }
+
+        return base.slice(0, 20);
+      }())
+    });
     return;
   }
 

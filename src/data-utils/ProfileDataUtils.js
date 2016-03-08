@@ -72,7 +72,7 @@ export default {
    * @param {Object} query
    */
   getTeamMembers(query) {
-    ajax.get('/team-members', query)
+    ajax.post('/team-info-page', query)
       .then((res) => {
         dispatch({
           type: 'get-team-members-success',

@@ -22,12 +22,12 @@ const sortItems = [
   {
     text: getLang('NAME'),
     name: 'name',
-    order: 'asc'
+    order: 'ASC'
   },
   {
     text: getLang('JOIN_TIME'),
     name: 'joinTime',
-    order: 'desc'
+    order: 'DESC'
   }
 ];
 
@@ -75,6 +75,7 @@ class Profile extends Component {
    */
   getTeamMembers(query = {}) {
     query.page = 1;
+    query.pageSize = 16;
     query.loadMore = false;
 
     dispatch({

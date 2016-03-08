@@ -105,7 +105,7 @@ if (TARGET === 'build') {
     devtool: 'source-map',
     entry: {
       app: path.resolve(ROOT_PATH, 'src/app.jsx'),
-      libs: ['es6-promise', 'flux', 'object-assign', 'react', 'react-router', 'react-dom', 'react-tap-event-plugin', 'whatwg-fetch']
+      libs: ['es6-promise', 'flux', 'object-assign', 'react', 'react-router', 'react-tap-event-plugin', 'whatwg-fetch']
     },
     output: {
       path: path.resolve(ROOT_PATH, 'build'),

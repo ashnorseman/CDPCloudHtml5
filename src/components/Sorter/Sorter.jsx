@@ -34,7 +34,7 @@ export default class Sorter extends Component {
           items.map((item, index) => {
             const className = 'sorter-item'
               + (item.active ? ' active' : '')
-              + (item.order === 'asc' ? ' asc' : ' desc');
+              + (item.order === 'ASC' ? ' asc' : ' desc');
 
             return (
               <li className={className} key={index}
@@ -60,7 +60,7 @@ export default class Sorter extends Component {
     if (item.active) {
 
       // Switch order only if the item is active
-      item.order = (item.order === 'asc' ? 'desc' : 'asc');
+      item.order = (item.order === 'ASC' ? 'DESC' : 'ASC');
     } else {
       items.forEach((item, itemIndex) => {
         item.active = (itemIndex === index);

@@ -22,7 +22,7 @@ class TeamProfileStore extends ReduceStore {
         page: 1,
         pageSize: 20,
         sort: 'name',
-        order: 'asc'
+        order: 'ASC'
       }
     };
   }
@@ -46,6 +46,8 @@ class TeamProfileStore extends ReduceStore {
       });
     case 'get-team-members-success':
       const data = action.data;
+
+        console.log(data);
 
       return assign({}, state, {
         empList: state.query.loadMore ? state.empList.concat(data) : data,
