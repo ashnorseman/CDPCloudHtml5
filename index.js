@@ -293,6 +293,22 @@ app.get('/:path?/:any?', function (req, res) {
         },
         "res": true
       });
+    case 'user-quota':
+      return res.json({
+        "val": [[{"name": "员工姓名", "value": "罗 美文"}, {"name": "部门", "value": "人事总务法务部"}, {
+          "name": "年份",
+          "value": "2016"
+        }, {"name": "QuotaType", "value": "调休假"}, {"name": "可取得天数", "value": "0.83000"}, {
+          "name": "已取得天数",
+          "value": "0.5"
+        }, {"name": "剩余天数", "value": "0.33"}], [{"name": "员工姓名", "value": "罗 美文"}, {
+          "name": "部门",
+          "value": "人事总务法务部"
+        }, {"name": "年份", "value": "2016"}, {"name": "QuotaType", "value": "年假"}, {
+          "name": "可取得天数",
+          "value": "0.83000"
+        }, {"name": "已取得天数", "value": "0.5"}, {"name": "剩余天数", "value": "0.33"}]], "res": true
+      });
     case 'leave-form':
       return res.json({
         res: true,
@@ -592,52 +608,52 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
       "val": {
         "infoList": [
           {
-          "title": "eps_basic_info",
-          "items": [{
-            "name": "Employee ID",
-            "value": "18820"
+            "title": "eps_basic_info",
+            "items": [{
+              "name": "Employee ID",
+              "value": "18820"
+            }, {
+              "name": "Chinese Name",
+              "value": "�x美玲"
+            },
+              {
+                "name": "English Name",
+                "value": "TSE, Mei Ling, May"
+              }, {
+                "name": "Company Name",
+                "value": "Hitachi East Asia Ltd."
+              },
+              {
+                "name": "Department",
+                "value": "IFG"
+              }, {
+                "name": "Position",
+                "value": "Manager"
+              }, {
+                "name": "Join Date",
+                "value": "1988-06-01"
+              },
+              {
+                "name": "Pay Month",
+                "value": "201510"
+              }]
           }, {
-            "name": "Chinese Name",
-            "value": "�x美玲"
-          },
-            {
-              "name": "English Name",
-              "value": "TSE, Mei Ling, May"
-            }, {
-              "name": "Company Name",
-              "value": "Hitachi East Asia Ltd."
+            "title": "eps_earning_deduction",
+            "items": [{
+              "name": "Gross Earnings",
+              "value": "32970.00"
             },
-            {
-              "name": "Department",
-              "value": "IFG"
-            }, {
-              "name": "Position",
-              "value": "Manager"
-            }, {
-              "name": "Join Date",
-              "value": "1988-06-01"
-            },
-            {
-              "name": "Pay Month",
-              "value": "201510"
+              {
+                "name": "Gross Deductions",
+                "value": "1648.50"
+              }]
+          }, {
+            "title": "eps_net_pay",
+            "items": [{
+              "name": "Net Pay",
+              "value": "31321.50"
             }]
-        }, {
-          "title": "eps_earning_deduction",
-          "items": [{
-            "name": "Gross Earnings",
-            "value": "32970.00"
           },
-            {
-              "name": "Gross Deductions",
-              "value": "1648.50"
-            }]
-        }, {
-          "title": "eps_net_pay",
-          "items": [{
-            "name": "Net Pay",
-            "value": "31321.50"
-          }]
-        },
           {
             "title": "eps_mpf_orso",
             "items": [{
@@ -776,7 +792,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         "payCharts": [{
           "payrollChartsName": "NetMonthly Income",
           "payrollTotal": 11287.9
-        },{
+        }, {
           "payrollChartsName": "NetMonthly Outcome",
           "payrollTotal": 11287.9
         }]

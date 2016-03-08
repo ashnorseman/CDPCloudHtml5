@@ -23,15 +23,15 @@ import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 const tabSettings = [
   {
-    text: getLang('MY_APPLY'),
-    name: 'my-leave/leave-list',
-    icon: 'plane',
+    text: getLang('LEAVE_QUOTA'),
+    name: 'my-leave/leave-quota',
+    icon: 'calendar',
     active: true
   },
   {
-    text: getLang('LEAVE_QUOTA'),
-    name: 'my-leave/leave-quota',
-    icon: 'flask'
+    text: getLang('MY_APPLY'),
+    name: 'my-leave/leave-list',
+    icon: 'plane'
   },
   {
     text: getLang('LEAVE_SUMMARY'),

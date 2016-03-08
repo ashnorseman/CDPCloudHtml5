@@ -29,12 +29,24 @@ class LeaveStore extends ReduceStore {
         pageSize: 20,
         sort: 'time',
         order: 'desc'
-      }
+      },
+      quota: []
     };
   }
 
   reduce(state, action) {
     switch (action.type) {
+    case 'get-leave-quota':
+      return {
+        ...state,
+        status: 'loading'
+      };
+    case 'get-leave-quota-success':
+      return {
+        ...state,
+        quota: action.data || [],
+        status: 'loaded'
+      };
     case 'get-leave-form':
       return assign({}, state, {
         status: 'loading'

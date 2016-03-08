@@ -14,6 +14,26 @@ export default {
 
 
   /**
+   * Get Leave Quota
+   */
+  getQuota() {
+    dispatch({
+      type: 'get-leave-quota'
+    });
+
+    ajax.get('/user-quota')
+        .then((data) => {
+          console.log(data);
+
+          dispatch({
+            type: 'get-leave-quota-success',
+            data
+          });
+        });
+  },
+
+
+  /**
    * Get leave form
    */
   getLeaveForm() {
