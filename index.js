@@ -846,15 +846,15 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         var base = [
           {
             id: 1,
-            name: '张阿十',
+            firField: '张阿十',
             avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端设计师'
+            secField: '前端设计师'
           },
           {
             id: 2,
-            name: '张阿廿',
+            firField: '张阿廿',
             avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-            position: '前端服务员'
+            secField: '前端服务员'
           }
         ];
 

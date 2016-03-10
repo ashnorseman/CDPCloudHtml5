@@ -45,12 +45,16 @@ class TeamProfileStore extends ReduceStore {
         status: 'loading'
       });
     case 'get-team-members-success':
-      const data = action.data;
-
-        console.log(data);
+      const data = (action.data || []).map(item => {
+        return {
+          ...item,
+          name: item.firField,
+          position: item.secField
+        };
+      });
 
       return assign({}, state, {
-        empList: state.query.loadMore ? state.empList.concat(data) : data,
+        empList: state.query.loadMore ? (state.empList || []).concat(data) : data,
         status: (data.length < state.query.pageSize)
                   ? 'no-more-data'
                   : 'loaded'

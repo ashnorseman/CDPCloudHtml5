@@ -53,6 +53,8 @@ class Profile extends Component {
   render() {
     const { status, empList } = this.state;
 
+    console.log(empList[0]);
+
     return (
       <div>
         <Header back title={getLang('TEAM_PROFILE')}>
