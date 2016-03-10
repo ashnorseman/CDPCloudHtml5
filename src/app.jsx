@@ -30,6 +30,8 @@ import LeaveSummaryContainer from './containers/Leave/LeaveSummaryContainer.jsx'
 import OvertimeContainer from './containers/OvertimeContainer.jsx';
 import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
 import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
+import LeaveMgrQuotaContainer from './containers/Leave/LeaveMgrQuotaContainer.jsx';
+import LeaveMgrEmpQuotaContainer from './containers/Leave/LeaveMgrEmpQuotaContainer.jsx';
 import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 
 
@@ -74,7 +76,15 @@ React.render((
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />
-      <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer} />
+      <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer}>
+        <IndexRoute component={LeaveMgrQuotaContainer} />
+        <Route path='quota' name='quota' component={LeaveMgrQuotaContainer}></Route>
+        <Route path='pending' name='pending' component={LeaveListContainer}></Route>
+        <Route path='history' name='history' component={LeaveListContainer}></Route>
+        <Route path='summary' name='summary' component={LeaveListContainer}></Route>
+      </Route>
+      <Route path='leave-mgr/quota/:id' name='emp-quota' component={LeaveMgrEmpQuotaContainer}></Route>
+
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 
       <Route path='manager' name='manager' component={ManagerContainer} routerProps={{header:true}} />

@@ -6,12 +6,12 @@
 'use strict';
 
 var path = require('path'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    express = require('express'),
-    multer = require('multer')(),
-    app = express(),
-    PORT = 9090;
+  bodyParser = require('body-parser'),
+  cookieParser = require('cookie-parser'),
+  express = require('express'),
+  multer = require('multer')(),
+  app = express(),
+  PORT = 9090;
 
 
 // Settings
@@ -298,23 +298,53 @@ app.get('/:path?/:any?', function (req, res) {
         "val": [
           {
             title: '配额分类 1',
-            items: [{"name": "员工姓名", "value": "罗 美文"}, {"name": "部门", "value": "人事总务法务部"}, {
+            items: [{
+              "name": "员工姓名",
+              "value": "罗 美文"
+            }, {
+              "name": "部门",
+              "value": "人事总务法务部"
+            }, {
               "name": "年份",
               "value": "2016"
-            }, {"name": "QuotaType", "value": "调休假"}, {"name": "可取得天数", "value": "0.83000"}, {
+            }, {
+              "name": "QuotaType",
+              "value": "调休假"
+            }, {
+              "name": "可取得天数",
+              "value": "0.83000"
+            }, {
               "name": "已取得天数",
               "value": "0.5"
-            }, {"name": "剩余天数", "value": "0.33"}]
+            }, {
+              "name": "剩余天数",
+              "value": "0.33"
+            }]
           },
           {
             title: '配额分类 2',
-            items: [{"name": "员工姓名", "value": "罗 美文"}, {
+            items: [{
+              "name": "员工姓名",
+              "value": "罗 美文"
+            }, {
               "name": "部门",
               "value": "人事总务法务部"
-            }, {"name": "年份", "value": "2016"}, {"name": "QuotaType", "value": "年假"}, {
+            }, {
+              "name": "年份",
+              "value": "2016"
+            }, {
+              "name": "QuotaType",
+              "value": "年假"
+            }, {
               "name": "可取得天数",
               "value": "0.83000"
-            }, {"name": "已取得天数", "value": "0.5"}, {"name": "剩余天数", "value": "0.33"}]
+            }, {
+              "name": "已取得天数",
+              "value": "0.5"
+            }, {
+              "name": "剩余天数",
+              "value": "0.33"
+            }]
           }
         ],
         "res": true
@@ -809,7 +839,6 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
       },
       "res": true
     });
-
   case 'team-info-page':
     return res.json({
       res: true,
@@ -837,6 +866,51 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
 
         return base.slice(0, 20);
       }())
+    });
+  case 'quota-team-member':
+    return res.json({
+      "val": [{
+        "secField": "生活产业事业部",
+        "id": 12000014,
+        "firField": "曾 晖"
+      }, {
+        "secField": "财务会计审查部",
+        "id": 12000015,
+        "firField": "谢 颖"
+      }, {
+        "secField": "泛用·聚氨酯涂料化学品部",
+        "id": 12000017,
+        "firField": "林 光晓"
+      }, {
+        "secField": "聚氯乙烯树脂部",
+        "id": 12000019,
+        "firField": "杨 思慧"
+      }, {
+        "secField": "人事总务法务部",
+        "id": 12000020,
+        "firField": "张 月华"
+      }, {
+        "secField": "泛用·聚氨酯涂料化学品部",
+        "id": 12000021,
+        "firField": "吴 军"
+      }, {
+        "secField": "生活产业事业部",
+        "id": 12000022,
+        "firField": "李 晓琼"
+      }, {
+        "secField": "聚氯乙烯树脂部",
+        "id": 12000024,
+        "firField": "刘 湘"
+      }, {
+        "secField": "财务会计审查部",
+        "id": 12000025,
+        "firField": "麦 智莹"
+      }, {
+        "secField": "能源部",
+        "id": 12000028,
+        "firField": "邵 远志"
+      }],
+      "res": true
     });
     return;
   }

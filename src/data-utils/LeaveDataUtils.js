@@ -16,18 +16,43 @@ export default {
   /**
    * Get Leave Quota
    */
-  getQuota() {
+  getQuota(id) {
     dispatch({
       type: 'get-leave-quota'
     });
 
-    ajax.get('/user-quota')
+    const params = id ? {
+      empId: id
+    } : null;
+
+    ajax.get('/user-quota', params)
         .then((data) => {
           console.log(data);
 
           dispatch({
             type: 'get-leave-quota-success',
             data
+          });
+        });
+  },
+
+
+  /**
+   * Get Leave Quota
+   */
+  getQuotaMembers(query = {}) {
+    dispatch({
+      type: 'get-quota-members'
+    });
+
+    ajax.post('/quota-team-member', query)
+        .then((data) => {
+          dispatch({
+            type: 'get-quota-members-success',
+            data: {
+              list: data,
+              loadMore: query.loadMore
+            }
           });
         });
   },

@@ -30,7 +30,8 @@ class LeaveStore extends ReduceStore {
         sort: 'time',
         order: 'desc'
       },
-      quota: []
+      quota: [],
+      quotaTeamList: []
     };
   }
 
@@ -45,6 +46,24 @@ class LeaveStore extends ReduceStore {
       return {
         ...state,
         quota: action.data || [],
+        status: 'loaded'
+      };
+    case 'get-quota-members':
+      return {
+        ...state,
+        status: 'loading'
+      };
+    case 'get-quota-members-success':
+      const newList = (action.data.list || []).map(item => {
+        return {
+          ...item,
+          name: item.firField,
+          position: item.secField
+        };
+      });
+      return {
+        ...state,
+        quotaTeamList: action.data.loadMore ? (state.quotaTeamList || []).concat(newList) : newList,
         status: 'loaded'
       };
     case 'get-leave-form':

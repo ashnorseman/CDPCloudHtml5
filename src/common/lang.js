@@ -105,6 +105,7 @@ const lang = {
     REJECT_ALL: '全部拒绝',
     APPROVE: '通过',
     REJECT: '拒绝',
+    HISTORY: '历史',
 
     // Validation
     REQUIRED: '必填',
@@ -205,6 +206,7 @@ const lang = {
     REJECT_ALL: 'Reject all',
     APPROVE: 'Approve',
     REJECT: 'Reject',
+    HISTORY: 'History',
 
     // Validation
     REQUIRED: 'Required',
@@ -305,6 +307,7 @@ const lang = {
     REJECT_ALL: '全部拒否',
     APPROVE: '通し',
     REJECT: '拒否',
+    HISTORY: '历史',
 
     // Validation
     REQUIRED: '必要です',
