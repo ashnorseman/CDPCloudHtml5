@@ -79,5 +79,19 @@ export default {
           data: res
         });
       });
+  },
+
+
+  /**
+   * Get sort items(for managers)
+   */
+  getSortItems() {
+    ajax.get('/team-tital')
+      .then((res) => {
+        dispatch({
+          type: 'get-sort-items-success',
+          data: res
+        });
+      });
   }
 };

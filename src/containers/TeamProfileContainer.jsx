@@ -15,10 +15,11 @@ import PullLoader from '../components/PullLoader/PullLoader.jsx';
 import Search from '../components/Search/Search.jsx';
 import Sorter from '../components/Sorter/Sorter.jsx';
 import UserList from '../components/UserList/UserList.jsx';
+
 import TeamProfileStore from '../stores/TeamProfileStore';
 
 
-const sortItems = [
+/*const sortItems = [
   {
     text: getLang('NAME'),
     name: 'name',
@@ -29,16 +30,16 @@ const sortItems = [
     name: 'joinTime',
     order: 'DESC'
   }
-];
+];*/
 
-class Profile extends Component {
+class TeamProfile extends Component {
 
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
     this.sort = this.sort.bind(this);
     this.selectUser = this.selectUser.bind(this);
-
+    this.getSortItems();
     this.getTeamMembers();
   }
 
@@ -51,23 +52,32 @@ class Profile extends Component {
   }
 
   render() {
-    const { status, empList } = this.state;
+    const { status, empList, sortItems } = this.state;
 
     console.log(empList[0]);
+    console.log(sortItems);
 
     return (
       <div>
-        <Header back title={getLang('TEAM_PROFILE')}>
+        <Header back title={getLang('TEAM_PROFILE')} dropdown>
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 
-        <Sorter items={sortItems} defaultItem='name' onSort={this.sort} />
+        <Sorter items={sortItems} defaultItem='userName' onSort={this.sort} />
 
         <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
         </PullLoader>
       </div>
     );
+  }
+  /**
+   * Get sort items
+   */
+  getSortItems() {
+    dispatch({
+      type: 'get-sort-items'
+    });
   }
 
 
@@ -134,4 +144,4 @@ class Profile extends Component {
 }
 
 
-export default Container.create(Profile);
+export default Container.create(TeamProfile);
