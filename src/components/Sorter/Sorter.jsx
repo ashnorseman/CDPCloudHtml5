@@ -34,7 +34,7 @@ export default class Sorter extends Component {
           items.map((item, index) => {
             const className = 'sorter-item'
               + (item.active ? ' active' : '')
-              + (item.order === 'ASC' ? ' asc' : ' desc');
+              + (item.order === 'DESC' ? ' desc' : ' asc');
 
             return (
               <li className={className} key={index}
