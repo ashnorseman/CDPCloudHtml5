@@ -17,6 +17,7 @@ class TeamProfileStore extends ReduceStore {
   getInitialState() {
     return {
       empList: [],
+      sortItems: {},
       status: 'loading',
       query: {
         page: 1,
@@ -30,6 +31,19 @@ class TeamProfileStore extends ReduceStore {
   reduce(state, action) {
 
     switch (action.type) {
+
+        case 'get-sort-items':
+            ProfileDataUtils.getSortItems();
+            return assign({}, state, {
+                status: 'loading'
+            });
+        case 'get-sort-items-success':
+            return assign({},state,{
+              sortItems: action.data,
+              status:'loaded'
+            });
+
+
     case 'get-team-members':
       const newQuery = assign(state.query, action.data);
 
@@ -44,6 +58,7 @@ class TeamProfileStore extends ReduceStore {
         query: newQuery,
         status: 'loading'
       });
+
     case 'get-team-members-success':
       const data = (action.data || []).map(item => {
         return {
