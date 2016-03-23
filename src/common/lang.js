@@ -83,7 +83,7 @@ const lang = {
     // Team profile
     ENTER_USER_SEARCH: '员工姓名、基本资料…',
     NAME: '姓名',
-    JOIN_TIME: '入职时间',
+    POSITION: '职位',
 
     // Leave
     APPLY_LEAVE: '申请休假',
@@ -184,7 +184,7 @@ const lang = {
     // Team profile
     ENTER_USER_SEARCH: 'Employee name, info, etc.',
     NAME: 'Name',
-    JOIN_TIME: 'Join Time',
+    POSITION: 'Position',
 
     // Leave
     APPLY_LEAVE: 'Apply for Leave',
@@ -285,7 +285,7 @@ const lang = {
     // Team profile
     ENTER_USER_SEARCH: '社員の名前、情报…',
     NAME: '名前',
-    JOIN_TIME: '入職時間',
+    POSITION: 'オフィス',
 
     // Leave
     APPLY_LEAVE: '申請する',
