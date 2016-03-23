@@ -13,33 +13,30 @@ import { getItem as getLang } from '../common/lang';
 import Header from '../components/Header/Header.jsx';
 import PullLoader from '../components/PullLoader/PullLoader.jsx';
 import Search from '../components/Search/Search.jsx';
-import Sorter from '../components/Sorter/Sorter.jsx';
+import Dropdown from '../components/Dropdown/Dropdown.jsx';
 import UserList from '../components/UserList/UserList.jsx';
 
 import TeamProfileStore from '../stores/TeamProfileStore';
 
 
-/*const sortItems = [
+const dropdownItems = [
   {
     text: getLang('NAME'),
-    name: 'name',
-    order: 'ASC'
+    name: 'name'
   },
   {
-    text: getLang('JOIN_TIME'),
-    name: 'joinTime',
-    order: 'DESC'
+    text: getLang('POSITION'),
+    name: 'position'
   }
-];*/
+];
 
 class TeamProfile extends Component {
 
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
-    this.sort = this.sort.bind(this);
     this.selectUser = this.selectUser.bind(this);
-    this.getSortItems();
+    this.clickitem = this.clickitem.bind(this);
     this.getTeamMembers();
   }
 
@@ -52,10 +49,7 @@ class TeamProfile extends Component {
   }
 
   render() {
-    const { status, empList, sortItems } = this.state;
-
-    console.log(empList[0]);
-    console.log(sortItems);
+    const {status, empList} = this.state;
 
     return (
       <div>
@@ -63,7 +57,7 @@ class TeamProfile extends Component {
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 
-        <Sorter items={sortItems} defaultItem='userName' onSort={this.sort} />
+        <Dropdown items={dropdownItems} onClickItem={this.clickitem} />
 
         <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
@@ -71,15 +65,6 @@ class TeamProfile extends Component {
       </div>
     );
   }
-  /**
-   * Get sort items
-   */
-  getSortItems() {
-    dispatch({
-      type: 'get-sort-items'
-    });
-  }
-
 
   /**
    * Get team members
@@ -89,7 +74,6 @@ class TeamProfile extends Component {
     query.page = 1;
     query.pageSize = 16;
     query.loadMore = false;
-
     dispatch({
       type: 'get-team-members',
       data: query
@@ -136,11 +120,19 @@ class TeamProfile extends Component {
    * @param {string} order
    */
   sort(name, order) {
-    this.getTeamMembers({
-      sort: name,
-      order
-    });
+      this.getTeamMembers({
+          sort: name,
+          order
+      });
+    }
+
+  /**
+   * clickitem
+   */
+  clickitem(name) {
+
   }
+
 }
 
 
