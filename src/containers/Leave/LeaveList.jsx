@@ -16,52 +16,52 @@ import RecordList from '../../components/RecordList/RecordList.jsx';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
-const filter = [
-  {
-    text: getLang('TIME'),
-    name: 'time',
-    choices: [
-      {
-        text: getLang('THIS_WEEK'),
-        name: 'thisMonth'
-      },
-      {
-        text: getLang('THIS_MONTH'),
-        name: 'all'
-      },
-      {
-        text: getLang('THIS_YEAR'),
-        name: 'all'
-      },
-      {
-        text: getLang('ALL'),
-        name: 'all'
-      }
-    ]
-  },
-  {
-    text: getLang('TYPE'),
-    name: 'type'
-  },
-  {
-    text: getLang('STATUS'),
-    name: 'status',
-    choices: [
-      {
-        text: getLang('APPROVED'),
-        name: 'approved'
-      },
-      {
-        text: getLang('PENDING'),
-        name: 'pending'
-      },
-      {
-        text: getLang('REJECTED'),
-        name: 'rejected'
-      }
-    ]
-  }
-];
+// const filter = [
+//   {
+//     text: getLang('TIME'),
+//     name: 'time',
+//     choices: [
+//       {
+//         text: getLang('THIS_WEEK'),
+//         name: 'thisMonth'
+//       },
+//       {
+//         text: getLang('THIS_MONTH'),
+//         name: 'all'
+//       },
+//       {
+//         text: getLang('THIS_YEAR'),
+//         name: 'all'
+//       },
+//       {
+//         text: getLang('ALL'),
+//         name: 'all'
+//       }
+//     ]
+//   },
+//   {
+//     text: getLang('TYPE'),
+//     name: 'type'
+//   },
+//   {
+//     text: getLang('STATUS'),
+//     name: 'status',
+//     choices: [
+//       {
+//         text: getLang('APPROVED'),
+//         name: 'approved'
+//       },
+//       {
+//         text: getLang('PENDING'),
+//         name: 'pending'
+//       },
+//       {
+//         text: getLang('REJECTED'),
+//         name: 'rejected'
+//       }
+//     ]
+//   }
+// ];
 
 export default class LeaveList extends Component {
 
@@ -77,35 +77,36 @@ export default class LeaveList extends Component {
     this.getEmpLeaveRecords(defaultFilter);
 
     // Init default filter
-    if (defaultFilter) {
-      let active = filter.filter((item) => {
-        return item.name === defaultFilter.type;
-      })[0];
-
-      if (active) {
-        active.active = true;
-
-        active.choices.forEach((choice) => {
-          choice.active = (defaultFilter.choice === choice.name);
-        });
-      }
-    }
+    // if (defaultFilter) {
+    //   let active = filter.filter((item) => {
+    //     return item.name === defaultFilter.type;
+    //   })[0];
+		//
+    //   if (active) {
+    //     active.active = true;
+		//
+    //     active.choices.forEach((choice) => {
+    //       choice.active = (defaultFilter.choice === choice.name);
+    //     });
+    //   }
+    // }
 
     LeaveDataUtils.getLeaveTypes();
   }
 
   render() {
     const { leaveRecords, status, leaveTypes, selectable, toggleSelect, mgr } = this.props;
-    filter[1].choices = leaveTypes;
+    // filter[1].choices = leaveTypes;
 
     return (
       <div>
-        <Filter items={filter} onFilter={this.filter}></Filter>
+        {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
         <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
-          <RecordList recordList={leaveRecords} url={'leave-record' + (mgr ? '-mgr' : '')}
+          <RecordList recordList={leaveRecords}
+                      url={'leave-record' + (mgr ? '-mgr' : '')}
                       selectable={selectable && this.select}
-                      toggleSelect={toggleSelect}></RecordList>
+                      toggleSelect={toggleSelect} />
         </PullLoader>
       </div>
     );
@@ -119,6 +120,7 @@ export default class LeaveList extends Component {
   getEmpLeaveRecords(params = {}) {
     params.page = 1;
     params.loadMore = false;
+    params.state = 'edit';
 
     dispatch({
       type: 'get-emp-leave-records',

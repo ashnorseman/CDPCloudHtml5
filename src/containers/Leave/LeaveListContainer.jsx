@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
@@ -24,7 +22,7 @@ class LeaveListContainer extends Component {
     const state = LeaveStore.getState();
 
     return {
-      leaveTypes: state.leaveTypes,
+      // leaveTypes: state.leaveTypes,
       leaveRecords: state.leaveRecords,
       status: state.status
     };

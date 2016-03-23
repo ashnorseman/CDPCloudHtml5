@@ -54,9 +54,9 @@ class LeaveRecord extends Component {
       <div>
         <Header back title={getLang('MY_APPLY')}></Header>
         <Loader status={status} className='side-gap gap-t-lg pad-b'>
-          <UserInfo userInfo={leaveRecord.userInfo} className='gap-b-lg'></UserInfo>
+          {/*<UserInfo userInfo={leaveRecord.userInfo} className='gap-b-lg'></UserInfo>*/}
           {
-            leaveRecord.data && leaveRecord.data.map((item, index) => {
+            Array.isArray(leaveRecord) && leaveRecord.map((item, index) => {
               return <InfoCard title={item.title} items={item.items} key={index}></InfoCard>;
             })
           }

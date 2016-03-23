@@ -26,9 +26,7 @@ class LeaveStore extends ReduceStore {
       mgrAjax: false,
       query: {
         page: 1,
-        pageSize: 20,
-        sort: 'time',
-        order: 'desc'
+        state: 'edit'
       },
       quota: [],
       quotaTeamList: []

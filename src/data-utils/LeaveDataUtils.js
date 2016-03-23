@@ -100,7 +100,7 @@ export default {
    * @param {Object} [params]
    */
   getEmpLeaveRecords(params) {
-    ajax.get('/leave-records', params)
+    ajax.get('/ess-lv-list', params)
       .then((res) => {
         dispatch({
           type: 'get-emp-leave-records-success',
@@ -117,7 +117,7 @@ export default {
 
     ajaxDispatch({
       action: 'get-leave-record',
-      url: '/leave-record/' + id,
+      url: '/ess-lv-detail/' + id,
       method: 'get'
     });
   },

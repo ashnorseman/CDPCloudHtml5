@@ -5,10 +5,6 @@
       2,
       "single"
     ],
-    "linebreak-style": [
-      2,
-      "unix"
-    ],
     "no-console": 0,
     "no-unused-vars": 0,
     "semi": [

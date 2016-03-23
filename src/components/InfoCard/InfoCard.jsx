@@ -26,9 +26,9 @@ export default class InfoCard extends Component {
               return (
                 <li className='info-card-item clearfix' key={index}>
                   {
-                    item.name ? <span className='info-card-name'>{item.name}</span> : null
+                    (item.name || item.firField) ? <span className='info-card-name'>{item.name || item.firField}</span> : null
                   }
-                  <span className='info-card-value'>{item.value}</span>
+                  <span className='info-card-value'>{item.value || item.secField}</span>
                 </li>
               );
             })
