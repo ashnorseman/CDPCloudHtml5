@@ -32,7 +32,7 @@ export default class RecordList extends Component {
                     : null
                 }
                 <a className='record-item' href={`#/${url}/${record.id}`}>
-                  <span className='record-item-name'>{record.application}</span>
+                  <span className='record-item-name'>{record.Type}</span>
                   <span className='record-item-time'>{record.Start} - {record.End}</span>
                   <span className={'record-item-status record-item-status-' + record.status}>
                     {record.state}

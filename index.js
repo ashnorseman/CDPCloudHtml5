@@ -432,32 +432,32 @@ app.get('/:path?/:any?', function (req, res) {
 				res: true,
 				val: (function () {
 					var base = [{
-						"id": "2",
+						"id": 2,
 						"End": "2015/09/22",
-						"application": "2015/09/29",
 						"Start": "2015/09/22",
 						"hours": "7.5",
+						"Type": "婚假",
 						"state": "审批中"
 					}, {
-						"id": "7",
+						"id": 7,
 						"End": "2015/10/15",
-						"application": "2015/09/30",
 						"Start": "2015/10/14",
 						"hours": "15",
+						"Type": "年度带薪休假",
 						"state": "审批中"
 					}, {
-						"id": "6",
+						"id": 6,
 						"End": "2015/09/24",
-						"application": "2015/09/29",
 						"Start": "2015/09/24",
 						"hours": "7.5",
+						"Type": "年度带薪休假",
 						"state": "审批中"
 					}, {
-						"id": "9",
+						"id": 9,
 						"End": "2015/11/30",
-						"application": "2015/11/09",
 						"Start": "2015/11/27",
 						"hours": "15",
+						"Type": "晚婚假",
 						"state": "审批中"
 					}];
 

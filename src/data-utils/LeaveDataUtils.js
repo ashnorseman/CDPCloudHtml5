@@ -27,8 +27,6 @@ export default {
 
     ajax.get('/user-quota', params)
         .then((data) => {
-          console.log(data);
-
           dispatch({
             type: 'get-leave-quota-success',
             data
