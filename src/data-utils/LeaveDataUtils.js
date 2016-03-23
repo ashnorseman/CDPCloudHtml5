@@ -121,6 +121,19 @@ export default {
   },
 
 
+	/**
+   * 获取休假汇总
+   * @param id
+   */
+  getLeaveSummary(id) {
+    ajaxDispatch({
+      action: 'get-leave-summary',
+      url: '/ess-lv-summary/' + (id || ''),
+      method: 'get'
+    });
+  },
+
+
   /**
    * Approve all records
    * @param {Array} records

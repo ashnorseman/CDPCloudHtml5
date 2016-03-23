@@ -518,6 +518,35 @@ app.get('/:path?/:any?', function (req, res) {
 					"res": true
 				}
 			);
+		case 'ess-lv-summary':
+			return res.json({
+				"val": [{
+					"title": "婚假",
+					"items": [{
+						"firField": "审批中",
+						"secField": "7.5"
+					}]
+				}, {
+					"title": "年度带薪休假",
+					"items": [{
+						"firField": "编辑中",
+						"secField": "7.5"
+					}, {
+						"firField": "审批中",
+						"secField": "22.5"
+					}, {
+						"firField": "已批准",
+						"secField": "15"
+					}]
+				}, {
+					"title": "晚婚假",
+					"items": [{
+						"firField": "审批中",
+						"secField": "15"
+					}]
+				}],
+				"res": true
+			});
 		default:
 			res.json({
 				res: true

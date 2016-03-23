@@ -110,6 +110,15 @@ class LeaveStore extends ReduceStore {
         leaveRecord: action.data,
         status: 'loaded'
       });
+    case 'get-leave-summary':
+      return assign({}, state, {
+        status: 'loading'
+      });
+    case 'get-leave-summary-success':
+      return assign({}, state, {
+        leaveSummary: action.data,
+        status: 'loaded'
+      });
     case 'toggle-leave-record-selectable':
       return assign({}, state, {
         selectable: !state.selectable
