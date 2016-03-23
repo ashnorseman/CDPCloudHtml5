@@ -30,12 +30,13 @@ const dropdownItems = [
   }
 ];
 
-class Profile extends Component {
+class TeamProfile extends Component {
 
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
     this.selectUser = this.selectUser.bind(this);
+    this.clickitem = this.clickitem.bind(this);
     this.getTeamMembers();
   }
 
@@ -56,7 +57,7 @@ class Profile extends Component {
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 
-        <Dropdown items={dropdownItems} onClickItem />
+        <Dropdown items={dropdownItems} onClickItem={this.clickitem} />
 
         <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
@@ -112,7 +113,27 @@ class Profile extends Component {
     });
   }
 
+
+  /**
+   * Sort
+   * @param {string} name
+   * @param {string} order
+   */
+  sort(name, order) {
+      this.getTeamMembers({
+          sort: name,
+          order
+      });
+    }
+
+  /**
+   * clickitem
+   */
+  clickitem(name) {
+
+  }
+
 }
 
 
-export default Container.create(Profile);
+export default Container.create(TeamProfile);
