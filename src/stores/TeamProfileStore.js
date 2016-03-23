@@ -21,8 +21,8 @@ class TeamProfileStore extends ReduceStore {
       query: {
         page: 1,
         pageSize: 20,
-        sort: '',
-        order: ''
+        sort: 'name',
+        order: 'ASC'
       }
     };
   }
