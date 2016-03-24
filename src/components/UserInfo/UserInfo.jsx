@@ -35,8 +35,8 @@ export default class UserInfo extends Component {
                onTouchTap={onSelectUser ? onSelectUser.bind(null, userInfo.id) : null}>
         <div className='user-info-avatar' style={avatarStyle}></div>
         <div className='user-info-main clearfix'>
-          <div className='user-info-name'>{userInfo.name}</div>
-          <div className='user-info-pos'>{userInfo.position}</div>
+          <div className='user-info-name'>{userInfo.name || userInfo.firField}</div>
+          <div className='user-info-pos'>{userInfo.position || userInfo.SecField}</div>
         </div>
         {
           action

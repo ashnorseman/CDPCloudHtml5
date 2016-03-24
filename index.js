@@ -547,6 +547,15 @@ app.get('/:path?/:any?', function (req, res) {
 				}],
 				"res": true
 			});
+		case 'lv-history-member':
+			return res.json({
+				"val": [{
+					"id": 20000436,
+					"firField": "刘 天",
+					"SecField": "新产业开发事业部"
+				}],
+				"res": true
+			});
 		default:
 			res.json({
 				res: true

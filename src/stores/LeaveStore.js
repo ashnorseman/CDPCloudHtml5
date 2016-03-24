@@ -93,6 +93,7 @@ class LeaveStore extends ReduceStore {
         query: newQuery
       });
     case 'get-emp-leave-records-success':
+    case 'get-mgr-leave-history-success':
       const data = action.data;
 
       return assign({}, state, {
@@ -100,6 +101,20 @@ class LeaveStore extends ReduceStore {
         status: (data.length < state.query.pageSize)
           ? 'no-more-data'
           : 'loaded'
+      });
+    case 'get-mgr-leave-history':
+      const newQueryHistory = assign(state.query, action.data);
+
+      if (action.data && action.data.loadMore) {
+        if (state.status === 'loading') return state;
+
+        newQueryHistory.page += 1;
+      }
+
+      LeaveDataUtils.getMgrLeaveHistory(newQueryHistory);
+      return assign({}, state, {
+        status: 'loading',
+        query: newQueryHistory
       });
     case 'get-leave-record':
       return assign({}, state, {

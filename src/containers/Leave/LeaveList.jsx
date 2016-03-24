@@ -12,6 +12,7 @@ import { getItem as getLang } from '../../common/lang';
 import Filter from '../../components/Filter/Filter.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
+import UserList from '../../components/UserList/UserList.jsx';
 
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
@@ -72,7 +73,13 @@ export default class LeaveList extends Component {
   }
 
   componentDidMount() {
-    const { defaultFilter } = this.props;
+    const { defaultFilter, mgr } = this.props;
+
+    if (mgr) {
+      this._type = 'get-mgr-leave-history';
+    } else {
+      this._type = 'get-emp-leave-records';
+    }
 
     this.getEmpLeaveRecords(defaultFilter);
 
@@ -95,18 +102,23 @@ export default class LeaveList extends Component {
   }
 
   render() {
-    const { leaveRecords, status, leaveTypes, selectable, toggleSelect, mgr } = this.props;
-    // filter[1].choices = leaveTypes;
+    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect } = this.props;
 
     return (
       <div>
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
         <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
-          <RecordList recordList={leaveRecords}
-                      url={'leave-record' + (mgr ? '-mgr' : '')}
-                      selectable={selectable && this.select}
-                      toggleSelect={toggleSelect} />
+          {
+            mgr
+              ? <div className="gap-t-lg">
+                  <UserList userList={leaveRecords} onSelectUser={this.selectUser} />
+                </div>
+              : <RecordList recordList={leaveRecords}
+                            url={'leave-record' + (mgr ? '-mgr' : '')}
+                            selectable={selectable && this.select}
+                            toggleSelect={toggleSelect} />
+          }
         </PullLoader>
       </div>
     );
@@ -123,7 +135,7 @@ export default class LeaveList extends Component {
     params.state = 'edit';
 
     dispatch({
-      type: 'get-emp-leave-records',
+      type: this._type,
       data: params
     });
   }
@@ -134,7 +146,7 @@ export default class LeaveList extends Component {
    */
   loadMore() {
     dispatch({
-      type: 'get-emp-leave-records',
+      type: this._type,
       data: {
         loadMore: true
       }
@@ -158,5 +170,10 @@ export default class LeaveList extends Component {
    */
   select(item) {
     return item.status === 2;
+  }
+
+
+  selectUser(id) {
+    location.hash = 'my-leave/leave-list/' + id;
   }
 }

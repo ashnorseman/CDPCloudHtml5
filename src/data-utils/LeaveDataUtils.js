@@ -109,6 +109,21 @@ export default {
 
 
   /**
+   * Get an employee's leave records
+   * @param {Object} [params]
+   */
+  getMgrLeaveHistory(params) {
+    ajax.get('/lv-history-member', params)
+      .then((res) => {
+        dispatch({
+          type: 'get-mgr-leave-history-success',
+          data: res
+        });
+      });
+  },
+
+
+  /**
    * Get a single leave record by id
    */
   getLeaveRecord(id) {

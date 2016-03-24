@@ -29,8 +29,10 @@ class LeaveListContainer extends Component {
   }
 
   render() {
+    const mgr = location.hash.indexOf('mgr') !== -1;
+
     return (
-      <LeaveList {...this.state}></LeaveList>
+      <LeaveList {...this.state} mgr={mgr} id={this.props.routeParams.id}></LeaveList>
     );
   }
 }
