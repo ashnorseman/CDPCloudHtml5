@@ -70,7 +70,7 @@ class LeaveStore extends ReduceStore {
       });
     case 'get-leave-form-success':
       return assign({}, state, {
-        leaveForm: action.data,
+        leaveForm: action.data.formConfig,
         status: 'loaded',
         leaveValidation: window.leaveValidation
       });

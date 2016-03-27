@@ -54,6 +54,7 @@ app.get('/:path?/:any?', function (req, res) {
 	}
 
 	setTimeout(function () {
+		console.log(path);
 		switch (path) {
 		case 'user-confirm':
 			return res.json({
@@ -349,69 +350,138 @@ app.get('/:path?/:any?', function (req, res) {
 				],
 				"res": true
 			});
-		case 'leave-form':
+		case 'ess-lv-config':
 			return res.json({
-				res: true,
-				val: [
-					{
-						id: 'type',
-						name: 'type',
-						label: '假期类型',
-						type: 'select',
-						required: true,
-						options: [
-							{
-								text: ''
-							},
-							{
-								text: '事假',
-								value: 1
-							}
-						]
-					},
-					{
-						id: 'startDate',
-						name: 'startDate',
-						label: '开始日期',
-						type: 'date',
-						half: true
-					},
-					{
-						id: 'startTime',
-						name: 'startTime',
-						label: '时间',
-						half: true,
-						type: 'time'
-					},
-					{
-						id: 'endDate',
-						name: 'endDate',
-						label: '结束日期',
-						half: true,
-						type: 'date'
-					},
-					{
-						id: 'endTime',
-						name: 'endTime',
-						label: '时间',
-						half: true,
-						type: 'time'
-					},
-					{
-						id: 'reason',
-						name: 'reason',
-						label: '理由',
-						type: 'text'
-					},
-					{
-						id: 'attach',
-						name: 'attach',
-						label: '附件',
-						type: 'file'
-					}
-				]
+				val: {
+					"JS_CONFIG_FILE": "demo_ess_lv_config.js",
+					"formConfig": [{
+						"label": "休假类型名称",
+						"name": "eleaveSubtype",
+						"required": true,
+						"options": [{
+							"text": "年度带薪休假",
+							"value": "M0"
+						}, {
+							"text": "伤病休假",
+							"value": "M1"
+						}, {
+							"text": "独生子女光荣证",
+							"value": "M10"
+						}, {
+							"text": "产前定期检查",
+							"value": "M14"
+						}, {
+							"text": "多胞胎生育",
+							"value": "M15"
+						}, {
+							"text": "婚假",
+							"value": "M2"
+						}, {
+							"text": "调休",
+							"value": "M21"
+						}, {
+							"text": "晚婚假",
+							"value": "M3"
+						}, {
+							"text": "丧假",
+							"value": "M4"
+						}, {
+							"text": "产假",
+							"value": "M5"
+						}, {
+							"text": "晚育假",
+							"value": "M6"
+						}, {
+							"text": "难产假",
+							"value": "M7"
+						}],
+						"type": "select"
+					}, {
+						"label": "附件",
+						"name": "attachment",
+						"type": "file"
+					}, {
+						"label": "申请日期",
+						"name": "applicationDate",
+						"type": "date"
+					}, {
+						"label": "开始时间",
+						"name": "eleaveStart",
+						"type": "datetime-local"
+					}, {
+						"label": "结束时间",
+						"name": "eleaveEnd",
+						"type": "datetime-local"
+					}, {
+						"label": "休假理由",
+						"name": "eleaveNote",
+						"type": "text"
+					}]
+				},
+				"res": true
 			});
-		case 'leave-validation':
+			// return res.json({
+			// 	res: true,
+			// 	val: [
+			// 		{
+			// 			id: 'type',
+			// 			name: 'type',
+			// 			label: '假期类型',
+			// 			type: 'select',
+			// 			required: true,
+			// 			options: [
+			// 				{
+			// 					text: ''
+			// 				},
+			// 				{
+			// 					text: '事假',
+			// 					value: 1
+			// 				}
+			// 			]
+			// 		},
+			// 		{
+			// 			id: 'startDate',
+			// 			name: 'startDate',
+			// 			label: '开始日期',
+			// 			type: 'date',
+			// 			half: true
+			// 		},
+			// 		{
+			// 			id: 'startTime',
+			// 			name: 'startTime',
+			// 			label: '时间',
+			// 			half: true,
+			// 			type: 'time'
+			// 		},
+			// 		{
+			// 			id: 'endDate',
+			// 			name: 'endDate',
+			// 			label: '结束日期',
+			// 			half: true,
+			// 			type: 'date'
+			// 		},
+			// 		{
+			// 			id: 'endTime',
+			// 			name: 'endTime',
+			// 			label: '时间',
+			// 			half: true,
+			// 			type: 'time'
+			// 		},
+			// 		{
+			// 			id: 'reason',
+			// 			name: 'reason',
+			// 			label: '理由',
+			// 			type: 'text'
+			// 		},
+			// 		{
+			// 			id: 'attach',
+			// 			name: 'attach',
+			// 			label: '附件',
+			// 			type: 'file'
+			// 		}
+			// 	]
+			// });
+		case 'demo_ess_lv_config.js':
 			return res.sendFile(__dirname + '/form-validation/leave.js');
 		case 'leave-types':
 			return res.json({
@@ -991,7 +1061,12 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
 			}],
 			"res": true
 		});
-		return;
+	case 'ess-submit-lv':
+	case 'ess-insert-lv':
+		return res.json({
+			res: true,
+			val: 'abc'
+		});
 	}
 
 	setTimeout(function () {
