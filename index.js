@@ -472,22 +472,24 @@ app.get('/:path?/:any?', function (req, res) {
 			});
 		case 'ess-lv-detail':
 			return res.json({
-					"val": [{
+				"val": {
+					appInfo: {
 						"title": "审批信息",
-						"items": [{
+						"items": [[{
 							"firField": "审批人",
 							"secField": "海 天"
 						}, {
 							"firField": "状态",
 							"secField": "审批中"
-						}, {
+						}], [{
 							"firField": "审批人",
 							"secField": "李 康"
 						}, {
 							"firField": "状态",
 							"secField": "待审批"
-						}]
-					}, {
+						}]]
+					},
+					baseInfo: {
 						"title": "单据信息",
 						"items": [{
 							"firField": "员工姓名",
@@ -514,10 +516,10 @@ app.get('/:path?/:any?', function (req, res) {
 							"firField": "休假理由",
 							"secField": "test"
 						}]
-					}],
-					"res": true
-				}
-			);
+					}
+				},
+				"res": true
+			});
 		case 'ess-lv-summary':
 			return res.json({
 				"val": [{
