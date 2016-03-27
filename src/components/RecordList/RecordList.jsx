@@ -34,6 +34,7 @@ export default class RecordList extends Component {
                 <a className='record-item' href={`#/${url}/${record.id}`}>
                   <span className='record-item-name'>{record.Type}</span>
                   <span className='record-item-time'>{record.Start} - {record.End}</span>
+                  <span className='record-item-hours'>{record.hours}</span>
                   <span className={'record-item-status record-item-status-' + record.status}>
                     {record.state}
                   </span>

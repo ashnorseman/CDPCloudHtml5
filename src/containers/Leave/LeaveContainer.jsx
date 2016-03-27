@@ -25,8 +25,7 @@ const tabSettings = [
   {
     text: getLang('LEAVE_QUOTA'),
     name: 'my-leave/leave-quota',
-    icon: 'calendar',
-    active: true
+    icon: 'calendar'
   },
   {
     text: getLang('MY_APPLY'),

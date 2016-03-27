@@ -36,7 +36,7 @@ export default class UserInfo extends Component {
         <div className='user-info-avatar' style={avatarStyle}></div>
         <div className='user-info-main clearfix'>
           <div className='user-info-name'>{userInfo.name || userInfo.firField}</div>
-          <div className='user-info-pos'>{userInfo.position || userInfo.SecField}</div>
+          <div className='user-info-pos'>{userInfo.position || userInfo.secField}</div>
         </div>
         {
           action
