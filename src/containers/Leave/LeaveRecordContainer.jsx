@@ -55,6 +55,14 @@ class LeaveRecord extends Component {
         <Header back title={getLang('MY_APPLY')} />
         <Loader status={status} className='side-gap gap-t-lg pad-b'>
           {
+            baseInfo
+              ? <div>
+              <h2 className="info-card-heading gap-b">{baseInfo.title}</h2>
+              <InfoCard items={baseInfo.items} />
+            </div>
+              : null
+          }
+          {
             appInfo
               ? <div>
                   <h2 className="info-card-heading gap-b">{appInfo.title}</h2>
@@ -63,14 +71,6 @@ class LeaveRecord extends Component {
                       return <InfoCard items={item} key={index} />;
                     })
                   }
-                </div>
-              : null
-          }
-          {
-            baseInfo
-              ? <div>
-                  <h2 className="info-card-heading gap-b">{baseInfo.title}</h2>
-                  <InfoCard items={baseInfo.items} />
                 </div>
               : null
           }

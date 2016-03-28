@@ -126,6 +126,12 @@ class Leave extends Component {
    * @param res
    */
   applyResponse(res) {
+    const inputs = React.findDOMNode(this.refs.applyForm).querySelectorAll('input, select, textarea');
+
+    for (let i = 0; i < inputs.length; i += 1) {
+      inputs[i].value = '';
+    }
+
     if (res) {
       alert(res);
     }

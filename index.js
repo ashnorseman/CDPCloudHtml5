@@ -54,7 +54,6 @@ app.get('/:path?/:any?', function (req, res) {
 	}
 
 	setTimeout(function () {
-		console.log(path);
 		switch (path) {
 		case 'user-confirm':
 			return res.json({
@@ -657,7 +656,7 @@ app.get('/:path?/:any?', function (req, res) {
 				res: true
 			});
 		}
-	}, 300);
+	}, 1000);
 });
 
 // POST

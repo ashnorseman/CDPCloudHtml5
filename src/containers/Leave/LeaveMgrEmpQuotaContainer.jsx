@@ -28,7 +28,8 @@ class LeaveQuota extends Component {
     return LeaveStore.getState();
   }
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
     LeaveDataUtils.getQuota(this.props.params.id);
   }
 

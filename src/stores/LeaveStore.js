@@ -38,6 +38,7 @@ class LeaveStore extends ReduceStore {
     case 'get-leave-quota':
       return {
         ...state,
+        quota: [],
         status: 'loading'
       };
     case 'get-leave-quota-success':

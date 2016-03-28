@@ -98,7 +98,7 @@ export default class LeaveList extends Component {
     //   }
     // }
 
-    LeaveDataUtils.getLeaveTypes();
+    // LeaveDataUtils.getLeaveTypes();
   }
 
   render() {
