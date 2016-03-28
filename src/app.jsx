@@ -27,6 +27,7 @@ import LeaveQuotaContainer from './containers/Leave/LeaveQuotaContainer.jsx';
 import LeaveSummaryContainer from './containers/Leave/LeaveSummaryContainer.jsx';
 import OvertimeContainer from './containers/OvertimeContainer.jsx';
 import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
+import TeamProfileEmpProfileContainer from './containers/TeamProfileEmpProfileContainer.jsx';
 import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
 import LeaveMgrHistoryContainer from './containers/Leave/LeaveMgrHistoryContainer.jsx';
 import LeaveMgrEmpHistoryContainer from './containers/Leave/LeaveMgrEmpHistoryContainer.jsx';
@@ -76,6 +77,8 @@ React.render((
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />
+      <Route path='team-profile/profile(/:id)' name='profile' component={TeamProfileEmpProfileContainer}></Route>
+
       <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer}>
         <IndexRoute component={LeaveMgrQuotaContainer} />
         <Route path='quota' name='quota' component={LeaveMgrQuotaContainer}></Route>

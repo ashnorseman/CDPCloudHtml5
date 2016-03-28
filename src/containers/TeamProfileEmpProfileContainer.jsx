@@ -1,5 +1,5 @@
 /**
- * Profile container
+ * Team Profile Emp Profile
  */
 
 
@@ -21,7 +21,7 @@ import ProfileStore from '../stores/ProfileStore';
 import UserStore from '../stores/UserStore';
 
 
-class Profile extends Component {
+class TeamProfileEmpProfile extends Component {
 
   constructor(props) {
     super(props);
@@ -38,13 +38,12 @@ class Profile extends Component {
 
   render() {
     const {
-            basicInfo,
-            empId,
-            infoList,
-            status,
-            picInfo = {},
-            menu
-          } = this.state,
+        basicInfo,
+        infoList,
+        status,
+        picInfo = {},
+        menu
+        } = this.state,
 
       baseMenu = (menu.ess || []).filter(item => item.name === 'baseMessage'),
 
@@ -64,12 +63,12 @@ class Profile extends Component {
             {
               list.status
                 ? <Loader status={list.status}>
-                    {
-                      list.items && list.items.map((card, index) => {
-                        return <InfoCard items={card} key={index} />;
-                      })
-                    }
-                  </Loader>
+                {
+                  list.items && list.items.map((card, index) => {
+                    return <InfoCard items={card} key={index} />;
+                  })
+                }
+              </Loader>
                 : null
             }
 
@@ -83,11 +82,11 @@ class Profile extends Component {
         <Header back title={baseMenu && baseMenu[0] && baseMenu[0].text} />
 
         <Loader status={status} className='side-gap pad-b'>
-          {
+          {/*
             picInfo
               ? <UserInfo className='gap-t-lg gap-b-lg' userInfo={picInfo} />
               :null
-          }
+          */}
 
           {listElements}
         </Loader>
@@ -138,4 +137,4 @@ class Profile extends Component {
 }
 
 
-export default Container.create(Profile);
+export default Container.create(TeamProfileEmpProfile);
