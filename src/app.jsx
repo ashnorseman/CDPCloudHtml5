@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import '../node_modules/font-awesome/css/font-awesome.css';
 import './common/styles/app.less';
 
@@ -31,6 +29,8 @@ import OvertimeContainer from './containers/OvertimeContainer.jsx';
 import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
 import TeamProfileEmpProfileContainer from './containers/TeamProfileEmpProfileContainer.jsx';
 import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
+import LeaveMgrHistoryContainer from './containers/Leave/LeaveMgrHistoryContainer.jsx';
+import LeaveMgrEmpHistoryContainer from './containers/Leave/LeaveMgrEmpHistoryContainer.jsx';
 import LeaveMgrQuotaContainer from './containers/Leave/LeaveMgrQuotaContainer.jsx';
 import LeaveMgrEmpQuotaContainer from './containers/Leave/LeaveMgrEmpQuotaContainer.jsx';
 import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
@@ -83,10 +83,11 @@ React.render((
         <IndexRoute component={LeaveMgrQuotaContainer} />
         <Route path='quota' name='quota' component={LeaveMgrQuotaContainer}></Route>
         <Route path='pending' name='pending' component={LeaveListContainer}></Route>
-        <Route path='history' name='history' component={LeaveListContainer}></Route>
+        <Route path='history' name='history' component={LeaveMgrHistoryContainer}></Route>
         <Route path='summary' name='summary' component={LeaveListContainer}></Route>
       </Route>
       <Route path='leave-mgr/quota/:id' name='emp-quota' component={LeaveMgrEmpQuotaContainer}></Route>
+      <Route path='leave-mgr/history/:id' name='emp-history' component={LeaveMgrEmpHistoryContainer}></Route>
 
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 

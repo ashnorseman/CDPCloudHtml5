@@ -64,10 +64,10 @@ export default {
       type: 'get-leave-form'
     });
 
-    ajax.get('/leave-form')
+    ajax.get('/ess-lv-config')
       .then((form) => {
 
-        ajax.getScript('/leave-validation')
+        ajax.getScript(form.JS_CONFIG_FILE)
           .then(() => {
 
             setTimeout(() => {
@@ -77,6 +77,21 @@ export default {
               });
             }, 200);
           });
+      });
+  },
+
+
+  /**
+   * Get leave history employee list
+   * @param {Object} [params]
+   */
+  getLeaveEmpList(params) {
+    ajax.get('/lv-history-member', params)
+      .then((res) => {
+        dispatch({
+          type: 'get-mgr-leave-empList-success',
+          data: res
+        });
       });
   },
 

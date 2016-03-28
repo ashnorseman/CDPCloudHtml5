@@ -35,12 +35,16 @@ export default class Form extends Component {
           controlElems = controls.map((control, index) => {
             let Control;
 
+            if (!control.id) {
+              control.id = control.name;
+            }
+
             switch (control.type) {
             case 'text':
             case 'tel':
             case 'password':
             case 'date':
-            case 'time':
+            case 'datetime-local':
             case 'file':
               Control = TextInput;
               break;
@@ -63,9 +67,9 @@ export default class Form extends Component {
       <form {...attrs} onSubmit={this.onSubmit} noValidate>
         {controlElems}
         <div className='form-submit'>
-          <Button type='submit' {...submitButton}
+          {submitButton && <Button type='submit' {...submitButton}
                   disabled={this.state.disabled}
-                  submitting={this.state.submitting} />
+                  submitting={this.state.submitting} />}
         </div>
       </form>
     );

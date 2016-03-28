@@ -3,11 +3,10 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
+import ajax, { ajaxDispatch } from '.././../common/utils/ajax';
 
 import { getItem as getLang } from '../../common/lang';
 import Header from '../../components/Header/Header.jsx';
@@ -25,8 +24,7 @@ const tabSettings = [
   {
     text: getLang('LEAVE_QUOTA'),
     name: 'my-leave/leave-quota',
-    icon: 'calendar',
-    active: true
+    icon: 'calendar'
   },
   {
     text: getLang('MY_APPLY'),
@@ -47,6 +45,8 @@ class Leave extends Component {
     super(props);
     this.openApply = this.openApply.bind(this);
     this.applyResponse = this.applyResponse.bind(this);
+    this.save = this.save.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   static getStores() {
@@ -58,10 +58,7 @@ class Leave extends Component {
   }
 
   render() {
-    const submitButton = {
-            text: getLang('APPLY_LEAVE')
-          },
-          { status, leaveForm, leaveValidation } = this.state;
+    const { status, leaveForm } = this.state;
 
     return (
       <div className='bottom-gap'>
@@ -72,8 +69,12 @@ class Leave extends Component {
         <PageOpener ref='apply'>
           <Loader status={status}>
             <Form className='side-gap pad-b' action='/leave-apply' ref='applyForm'
-                  controls={leaveForm} submitButton={submitButton}
-                  beforeSubmit={leaveValidation} afterSubmit={this.applyResponse} />
+                  controls={leaveForm} />
+
+            <div className="row">
+              <div className="col-1-2"><Button type='button' text={getLang('SAVE')} onClick={this.save} /></div>
+              <div className="col-1-2"><Button type='button' text={getLang('SUBMIT')} onClick={this.submit} /></div>
+            </div>
           </Loader>
         </PageOpener>
 
@@ -96,18 +97,39 @@ class Leave extends Component {
   }
 
 
+  save() {
+    if (window.leaveValidation && !window.leaveValidation()) return;
+
+    const formData = new FormData(React.findDOMNode(this.refs.applyForm));
+
+    ajax.post('/ess-insert-lv', formData)
+      .then((res) => {
+        this.applyResponse(res);
+      });
+  }
+
+
+  submit() {
+    if (window.leaveValidation && !window.leaveValidation()) return;
+
+    const formData = new FormData(React.findDOMNode(this.refs.applyForm));
+
+    ajax.post('/ess-submit-lv', formData)
+      .then((res) => {
+        this.applyResponse(res);
+      });
+  }
+
+
   /**
    * Apply response
    * @param res
    */
   applyResponse(res) {
-
-    if (res.success) {
-      this.refs.apply.close();
-      alert(getLang('APPLY_SUCCESS'));
-    } else {
-      alert(res.data);
+    if (res) {
+      alert(res);
     }
+    this.refs.apply.close();
   }
 }
 

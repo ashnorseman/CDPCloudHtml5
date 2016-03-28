@@ -18,8 +18,7 @@ const tabSettings = [
   {
     text: getLang('LEAVE_QUOTA'),
     name: 'leave-mgr/quota',
-    icon: 'calendar',
-    active: true
+    icon: 'calendar'
   },
   {
     text: getLang('PENDING'),

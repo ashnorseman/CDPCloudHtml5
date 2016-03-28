@@ -20,13 +20,13 @@ class LeaveStore extends ReduceStore {
       status: 'loading',
       leaveValidation: null,
       leaveTypes: [],
+      leaveEmpList: [],
       leaveRecords: [],
       leaveRecord: {},
       selectedLeaveRecords: [],
       mgrAjax: false,
       query: {
-        page: 1,
-        state: 'edit'
+        page: 1
       },
       quota: [],
       quotaTeamList: []
@@ -70,7 +70,7 @@ class LeaveStore extends ReduceStore {
       });
     case 'get-leave-form-success':
       return assign({}, state, {
-        leaveForm: action.data,
+        leaveForm: action.data.formConfig,
         status: 'loaded',
         leaveValidation: window.leaveValidation
       });
@@ -91,6 +91,14 @@ class LeaveStore extends ReduceStore {
       return assign({}, state, {
         status: 'loading',
         query: newQuery
+      });
+    case 'get-mgr-leave-empList-success':
+      console.log(action.data);
+      return assign({}, state, {
+        leaveEmpList: state.query.loadMore ? state.leaveEmpList.concat(action.data) : action.data,
+        status: (action.data.length < state.query.pageSize)
+          ? 'no-more-data'
+          : 'loaded'
       });
     case 'get-emp-leave-records-success':
     case 'get-mgr-leave-history-success':

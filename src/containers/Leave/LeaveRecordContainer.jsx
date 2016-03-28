@@ -46,17 +46,33 @@ class LeaveRecord extends Component {
 
   render() {
     const { status, leaveRecord } = this.state,
-          mgr = (this.props.route.name === 'leave-record-mgr');
+      appInfo = leaveRecord.appInfo,
+      baseInfo = leaveRecord.baseInfo,
+      mgr = (this.props.route.name === 'leave-record-mgr');
 
     return (
       <div>
-        <Header back title={getLang('MY_APPLY')}></Header>
+        <Header back title={getLang('MY_APPLY')} />
         <Loader status={status} className='side-gap gap-t-lg pad-b'>
-          {/*<UserInfo userInfo={leaveRecord.userInfo} className='gap-b-lg'></UserInfo>*/}
           {
-            Array.isArray(leaveRecord) && leaveRecord.map((item, index) => {
-              return <InfoCard title={item.title} items={item.items} key={index}></InfoCard>;
-            })
+            appInfo
+              ? <div>
+                  <h2 className="info-card-heading gap-b">{appInfo.title}</h2>
+                  {
+                    appInfo.items.map((item, index) => {
+                      return <InfoCard items={item} key={index} />;
+                    })
+                  }
+                </div>
+              : null
+          }
+          {
+            baseInfo
+              ? <div>
+                  <h2 className="info-card-heading gap-b">{baseInfo.title}</h2>
+                  <InfoCard items={baseInfo.items} />
+                </div>
+              : null
           }
         </Loader>
         {

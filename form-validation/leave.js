@@ -4,9 +4,12 @@
 
 
 window.leaveValidation = function () {
-  var start = document.getElementById('startDate');
+  var eleaveNote = document.getElementById('eleaveNote');
 
-  //alert(start.value);
+  if (!eleaveNote.value) {
+    alert('理由呢?');
+    return false;
+  }
 
   return true;
 };
