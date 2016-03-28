@@ -39,6 +39,7 @@ class Profile extends Component {
   render() {
     const {
             basicInfo,
+            empId,
             infoList,
             status,
             picInfo = {},

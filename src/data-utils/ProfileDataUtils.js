@@ -38,7 +38,7 @@ export default {
     const id = (data && Object.keys(data).length) ? data : undefined,
       path = '/user-message-info-type' + ((id === void 0) ? `` : `/${id}`);
 
-    ajax.get(path)
+    ajax.post('/user-message-info-type',{empId:id})
       .then((res) => {
         dispatch({
           type: 'get-profile-categories-success',

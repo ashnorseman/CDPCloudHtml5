@@ -20,7 +20,8 @@ class ProfileStore extends ReduceStore {
       //infoList: [],
       //workExp: [],
       infoList: [],
-      status: 'loading'
+      status: 'loading',
+      empId: null
     };
   }
 
@@ -32,13 +33,14 @@ class ProfileStore extends ReduceStore {
       return assign({}, state, {
         status: 'loading'
       });
+
     case 'get-profile-categories':
       ProfileDataUtils.getProfileCategories(action.data);
       return assign({}, state, {
         status: 'loading'
       });
-    case 'get-profile-categories-success':
 
+    case 'get-profile-categories-success':
       // Get first category by default
       if (action.data && action.data.baseType.length) {
         setTimeout(() => {
@@ -48,12 +50,12 @@ class ProfileStore extends ReduceStore {
           });
         }, 0);
       }
-
       return assign({}, state, {
         infoList: action.data.baseType,
         picInfo: action.data.picInfo,
         status: 'loaded'
       });
+
     case 'get-profile-category-detail':
       ProfileDataUtils.getProfileByCategory(action.data);
       return assign({}, state, {
@@ -67,6 +69,7 @@ class ProfileStore extends ReduceStore {
           }
         })
       });
+
     case 'get-profile-category-detail-success':
       return assign({}, state, {
         infoList: state.infoList.map((category) => {
@@ -80,6 +83,7 @@ class ProfileStore extends ReduceStore {
           }
         })
       });
+
     case 'get-profile-success':
       return assign({}, state, action.data, {
         status: 'loaded'

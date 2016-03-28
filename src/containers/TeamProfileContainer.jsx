@@ -13,20 +13,22 @@ import { getItem as getLang } from '../common/lang';
 import Header from '../components/Header/Header.jsx';
 import PullLoader from '../components/PullLoader/PullLoader.jsx';
 import Search from '../components/Search/Search.jsx';
-import Dropdown from '../components/Dropdown/Dropdown.jsx';
+import Sorter from '../components/Sorter/Sorter.jsx';
 import UserList from '../components/UserList/UserList.jsx';
 
 import TeamProfileStore from '../stores/TeamProfileStore';
 
 
-const dropdownItems = [
+const sortItems = [
   {
     text: getLang('NAME'),
-    name: 'name'
+    name: 'name',
+    order: 'ASC'
   },
   {
     text: getLang('POSITION'),
-    name: 'position'
+    name: 'position',
+    order: 'DESC'
   }
 ];
 
@@ -36,7 +38,7 @@ class TeamProfile extends Component {
     super(props);
     this.search = this.search.bind(this);
     this.selectUser = this.selectUser.bind(this);
-    this.clickitem = this.clickitem.bind(this);
+    this.sort = this.sort.bind(this);
     this.getTeamMembers();
   }
 
@@ -57,7 +59,7 @@ class TeamProfile extends Component {
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 
-        <Dropdown items={dropdownItems} onClickItem={this.clickitem} />
+        <Sorter items={sortItems} defaultItem='name' onSort={this.sort} />
 
         <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
@@ -99,7 +101,7 @@ class TeamProfile extends Component {
    * @param id
    */
   selectUser(id) {
-    location.hash = '/profile/' + id;
+    location.hash = '/team-profile/profile/' + id;
   }
 
 
@@ -125,14 +127,6 @@ class TeamProfile extends Component {
           order
       });
     }
-
-  /**
-   * clickitem
-   */
-  clickitem(name) {
-
-  }
-
 }
 
 
