@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import './leave-mgr.less';
 
 import React, { Component } from 'react';

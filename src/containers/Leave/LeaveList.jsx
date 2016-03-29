@@ -7,9 +7,14 @@
 
 import React, { Component } from 'react';
 import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
+import ajax, { ajaxDispatch } from '.././../common/utils/ajax';
 
+import CSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import { getItem as getLang } from '../../common/lang';
 import Filter from '../../components/Filter/Filter.jsx';
+import Button from '../../components/Button/Button.jsx';
+import Header from '../../components/Header/Header.jsx';
+import Tab from '../../components/Tab/Tab.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 import UserList from '../../components/UserList/UserList.jsx';
@@ -106,6 +111,8 @@ export default class LeaveList extends Component {
 
     return (
       <div>
+        <Header back title={getLang('MY_APPLY')} />
+
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
         <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
@@ -117,9 +124,46 @@ export default class LeaveList extends Component {
               : <RecordList recordList={leaveRecords}
                             url={'leave-record' + (mgr ? '-mgr' : '')}
                             selectable={selectable && this.select}
-                            toggleSelect={toggleSelect} />
+                            toggleSelect={this.toggleSelect} />
           }
         </PullLoader>
+
+        <Button icon='pencil' action onClick={this.toggleEnterMode} />
+
+        <CSSTransitionGroup component='div' transitionName='bottom-up'>
+          {
+            selectable ?
+              <nav className='tab tab-bottom leave-mgr-bottom'>
+                <label className='leave-mgr-select-all' />
+                <div className='row'>
+                  <div className='col-1-2'>
+                    <Button text={getLang('SUBMIT')} onTouchTap={this.submit} />
+                  </div>
+                  <div className='col-1-2'>
+                    <Button text={getLang('DROP')} hollow className='text-primary' onTouchTap={this.drop} />
+                  </div>
+                </div>
+              </nav> : null
+          }
+        </CSSTransitionGroup>
+
+        {!selectable && <Tab items={[
+          {
+            text: getLang('LEAVE_QUOTA'),
+            name: 'my-leave/leave-quota',
+            icon: 'calendar'
+          },
+          {
+            text: getLang('MY_APPLY'),
+            name: 'my-leave/leave-list',
+            icon: 'plane'
+          },
+          {
+            text: getLang('LEAVE_SUMMARY'),
+            name: 'my-leave/leave-summary',
+            icon: 'pie-chart'
+          }
+        ]} bottom />}
       </div>
     );
   }
@@ -163,15 +207,45 @@ export default class LeaveList extends Component {
     this.getEmpLeaveRecords({ type, choice });
   }
 
-
   /**
    * Test if an item is selectable
    * @param {Object} item
    */
   select(item) {
-    return item.status === 2;
+    return true;
   }
 
+  toggleSelect(record) {
+    console.log(record);
+  }
+
+  toggleEnterMode() {
+    dispatch({
+      type: 'toggle-leave-record-selectable'
+    });
+  }
+
+  submit() {
+    const inputs = [].slice.call(document.querySelectorAll('[type=checkbox]'))
+      .filter(check => check.checked)
+      .map(check => check.value);
+
+    ajax.post('/ess-submit-lv', inputs)
+      .then(() => {
+        location.reload();
+      });
+  }
+
+  drop() {
+    const inputs = [].slice.call(document.querySelectorAll('[type=checkbox]'))
+      .filter(check => check.checked)
+      .map(check => check.value);
+
+    ajax.post('/ess-drop-lv', inputs)
+      .then(() => {
+        location.reload();
+      });
+  }
 
   selectUser(id) {
     location.hash = 'my-leave/leave-list/' + id;

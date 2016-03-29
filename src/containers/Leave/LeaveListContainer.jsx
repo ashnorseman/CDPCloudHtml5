@@ -19,13 +19,7 @@ class LeaveListContainer extends Component {
   }
 
   static calculateState() {
-    const state = LeaveStore.getState();
-
-    return {
-      // leaveTypes: state.leaveTypes,
-      leaveRecords: state.leaveRecords,
-      status: state.status
-    };
+    return LeaveStore.getState();
   }
 
   render() {

@@ -28,7 +28,7 @@ export default class RecordList extends Component {
               <li key={index}>
                 {
                   selectable && selectable(record)
-                    ? <label className='record-item-select'><input type='checkbox' defaultChecked={!!record.checked} onChange={this.toggleSelect.bind(this, record)} /></label>
+                    ? <label className='record-item-select'><input type='checkbox' defaultChecked={!!record.checked} onChange={this.toggleSelect.bind(this, record)} value={record.id} /></label>
                     : null
                 }
                 <a className='record-item' href={`#/${url}/${record.id}`}>

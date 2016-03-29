@@ -68,26 +68,26 @@ React.render((
       <Route path='my-salary' name='my-salary' component={SalaryContainer} />
       <Route path='my-leave' name='my-leave' component={LeaveContainer}>
         <IndexRoute component={LeaveQuotaContainer} />
-        <Route path='leave-list(/:id)' name='leave-list' component={LeaveListContainer}></Route>
-        <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer}></Route>
-        <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer}></Route>
+        <Route path='leave-quota' name='leave-quota' component={LeaveQuotaContainer} />
+        <Route path='leave-summary' name='leave-summary' component={LeaveSummaryContainer} />
       </Route>
+      <Route path='my-leave/leave-list(/:id)' name='leave-list' component={LeaveListContainer} />
       <Route path='leave-record/:id' name='leave-record' component={LeaveRecordContainer} />
       <Route path='leave-record-mgr/:id' name='leave-record-mgr' component={LeaveRecordContainer} />
       <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />
-      <Route path='team-profile/profile(/:id)' name='profile' component={TeamProfileEmpProfileContainer}></Route>
+      <Route path='team-profile/profile(/:id)' name='profile' component={TeamProfileEmpProfileContainer} />
 
       <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer}>
         <IndexRoute component={LeaveMgrQuotaContainer} />
-        <Route path='quota' name='quota' component={LeaveMgrQuotaContainer}></Route>
-        <Route path='pending' name='pending' component={LeaveListContainer}></Route>
-        <Route path='history' name='history' component={LeaveMgrHistoryContainer}></Route>
-        <Route path='summary' name='summary' component={LeaveListContainer}></Route>
+        <Route path='quota' name='quota' component={LeaveMgrQuotaContainer} />
+        <Route path='pending' name='pending' component={LeaveListContainer} />
+        <Route path='history' name='history' component={LeaveMgrHistoryContainer} />
+        <Route path='summary' name='summary' component={LeaveListContainer} />
       </Route>
-      <Route path='leave-mgr/quota/:id' name='emp-quota' component={LeaveMgrEmpQuotaContainer}></Route>
-      <Route path='leave-mgr/history/:id' name='emp-history' component={LeaveMgrEmpHistoryContainer}></Route>
+      <Route path='leave-mgr/quota/:id' name='emp-quota' component={LeaveMgrEmpQuotaContainer} />
+      <Route path='leave-mgr/history/:id' name='emp-history' component={LeaveMgrEmpHistoryContainer} />
 
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 

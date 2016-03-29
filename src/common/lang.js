@@ -48,6 +48,7 @@ const lang = {
     CANCEL: '取消',
     SAVE: '保存',
     SUBMIT: '提交',
+    DROP: '删除',
 
     // HOME
     EMPLOYEE: '员工',
@@ -151,6 +152,7 @@ const lang = {
     CANCEL: 'Cancel',
     SAVE: 'Save',
     SUBMIT: 'Submit',
+    DROP: 'Drop',
 
     // HOME
     EMPLOYEE: 'Employee',
@@ -254,6 +256,7 @@ const lang = {
     CANCEL: 'キャンセル',
     SAVE: '保存',
     SUBMIT: '提交',
+    DROP: '删除',
 
     // HOME
     EMPLOYEE: '従業員',
