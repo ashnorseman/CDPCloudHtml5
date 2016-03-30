@@ -3,6 +3,8 @@
  */
 
 
+'use strict';
+
 import React, { Component } from 'react';
 import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
@@ -32,19 +34,19 @@ class LeaveMgrQuota extends Component {
     const state = LeaveStore.getState();
 
     return {
-      quotaTeamList: state.quotaTeamList,
+      leaveEmpList: state.leaveEmpList,
       status: state.status
     };
   }
 
   render() {
-    const { quotaTeamList, status } = this.state;
+    const { leaveEmpList, status } = this.state;
 
     return (
       <PullLoader className='side-gap gap-t pad-b'
                   status={status}
                   onLoad={this.loadMore}>
-        <UserList userList={quotaTeamList}
+        <UserList userList={leaveEmpList}
                   onSelectUser={this.selectUser} />
       </PullLoader>
     );
@@ -56,12 +58,12 @@ class LeaveMgrQuota extends Component {
     query.pageSize = 16;
     query.loadMore = false;
 
-    LeaveDataUtils.getQuotaMembers(query);
+    LeaveDataUtils.getLeaveEmpList(query);
   }
 
 
   loadMore({ page = 1, ...props } = {}) {
-    LeaveDataUtils.getQuotaMembers({
+    LeaveDataUtils.getLeaveEmpList({
       page: page + 1,
       ...props,
       loadMore: true
@@ -70,7 +72,7 @@ class LeaveMgrQuota extends Component {
 
 
   selectUser(id) {
-    location.hash = '/leave-mgr/quota/' + id;
+    location.hash = '/leave-mgr/summary/' + id;
   }
 }
 

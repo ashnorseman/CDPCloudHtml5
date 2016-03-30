@@ -97,6 +97,29 @@ export default {
 
 
   /**
+   * Get leave history employee list
+   * @param {Object} [params]
+   */
+  getPendingRecords(params = {}) {
+    if (params.loadMore) {
+      params.page += + 1;
+    }
+
+    dispatch({
+      type: 'get-emp-pending-records'
+    });
+
+    ajax.get('/mss-lv-todolist', params)
+      .then((res) => {
+        dispatch({
+          type: 'get-emp-pending-records-success',
+          data: res
+        });
+      });
+  },
+
+
+  /**
    * Get leave types
    */
   getLeaveTypes() {
@@ -151,6 +174,20 @@ export default {
   },
 
 
+  /**
+   * Get a single leave record by id
+   */
+  getApproveRecord(id) {
+
+    ajaxDispatch({
+      action: 'get-leave-record',
+      url: '/lv-approve-detail',
+      method: 'get',
+      data: { id }
+    });
+  },
+
+
 	/**
    * 获取休假汇总
    * @param id
@@ -158,8 +195,9 @@ export default {
   getLeaveSummary(id) {
     ajaxDispatch({
       action: 'get-leave-summary',
-      url: '/ess-lv-summary/' + (id || ''),
-      method: 'get'
+      url: '/ess-lv-summary',
+      method: 'get',
+      data: { id }
     });
   },
 

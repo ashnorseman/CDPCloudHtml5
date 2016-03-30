@@ -419,6 +419,38 @@ app.get('/:path?/:any?', function (req, res) {
 				},
 				"res": true
 			});
+		case 'mss-lv-todolist':
+			return res.json({
+				"val": [{
+					"id": 6,
+					"End": "2015/09/24 17:30:00",
+					"Start": "2015/09/24 09:00:00",
+					"hours": "7.5",
+					"Type": "年度带薪休假",
+					"department": "新产业开发事业部",
+					"state": "审批中",
+					"userName": "刘 天"
+				}, {
+					"id": 7,
+					"End": "2015/10/15 17:30:00",
+					"Start": "2015/10/14 09:00:00",
+					"hours": "15",
+					"Type": "年度带薪休假",
+					"department": "新产业开发事业部",
+					"state": "审批中",
+					"userName": "刘 天"
+				}, {
+					"id": 9,
+					"End": "2015/11/30 17:30:00",
+					"Start": "2015/11/27 09:00:00",
+					"hours": "15",
+					"Type": "晚婚假",
+					"department": "新产业开发事业部",
+					"state": "审批中",
+					"userName": "刘 天"
+				}],
+				"res": true
+			});
 			// return res.json({
 			// 	res: true,
 			// 	val: [
@@ -540,6 +572,7 @@ app.get('/:path?/:any?', function (req, res) {
 				}())
 			});
 		case 'ess-lv-detail':
+		case 'lv-approve-detail':
 			return res.json({
 				"val": {
 					appInfo: {

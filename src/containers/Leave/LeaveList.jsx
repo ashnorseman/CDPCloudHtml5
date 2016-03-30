@@ -230,7 +230,9 @@ export default class LeaveList extends Component {
       .filter(check => check.checked)
       .map(check => check.value);
 
-    ajax.post('/ess-submit-lv', inputs)
+    ajax.post('/ess-submit-lv', {
+      idList: inputs.join()
+    })
       .then(() => {
         location.reload();
       });
@@ -241,7 +243,9 @@ export default class LeaveList extends Component {
       .filter(check => check.checked)
       .map(check => check.value);
 
-    ajax.post('/ess-drop-lv', inputs)
+    ajax.post('/ess-drop-lv', {
+      idList: inputs.join()
+    })
       .then(() => {
         location.reload();
       });

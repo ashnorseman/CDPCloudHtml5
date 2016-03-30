@@ -30,9 +30,12 @@ import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
 import TeamProfileEmpProfileContainer from './containers/TeamProfileEmpProfileContainer.jsx';
 import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
 import LeaveMgrHistoryContainer from './containers/Leave/LeaveMgrHistoryContainer.jsx';
+import LeaveMgrSummaryContainer from './containers/Leave/LeaveMgrSummaryContainer.jsx';
 import LeaveMgrEmpHistoryContainer from './containers/Leave/LeaveMgrEmpHistoryContainer.jsx';
+import LeaveMgrEmpSummaryContainer from './containers/Leave/LeaveMgrEmpSummaryContainer.jsx';
 import LeaveMgrQuotaContainer from './containers/Leave/LeaveMgrQuotaContainer.jsx';
 import LeaveMgrEmpQuotaContainer from './containers/Leave/LeaveMgrEmpQuotaContainer.jsx';
+import LeaveMgrPendingContainer from './containers/Leave/LeaveMgrPendingContainer.jsx';
 import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 
 
@@ -82,12 +85,13 @@ React.render((
       <Route path='leave-mgr' name='leave-mgr' component={LeaveMgrContainer}>
         <IndexRoute component={LeaveMgrQuotaContainer} />
         <Route path='quota' name='quota' component={LeaveMgrQuotaContainer} />
-        <Route path='pending' name='pending' component={LeaveListContainer} />
+        <Route path='pending' name='pending' component={LeaveMgrPendingContainer} />
         <Route path='history' name='history' component={LeaveMgrHistoryContainer} />
-        <Route path='summary' name='summary' component={LeaveListContainer} />
+        <Route path='summary' name='summary' component={LeaveMgrSummaryContainer} />
       </Route>
       <Route path='leave-mgr/quota/:id' name='emp-quota' component={LeaveMgrEmpQuotaContainer} />
       <Route path='leave-mgr/history/:id' name='emp-history' component={LeaveMgrEmpHistoryContainer} />
+      <Route path='leave-mgr/summary/:id' name='emp-summary' component={LeaveMgrEmpSummaryContainer} />
 
       <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
 

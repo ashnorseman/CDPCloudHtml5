@@ -47,6 +47,18 @@ class LeaveStore extends ReduceStore {
         quota: action.data || [],
         status: 'loaded'
       };
+    case 'get-emp-pending-records':
+      return {
+        ...state,
+        pendingRecords: [],
+        status: 'loading'
+      };
+    case 'get-emp-pending-records-success':
+      return {
+        ...state,
+        pendingRecords: action.data || [],
+        status: 'loaded'
+      };
     case 'get-quota-members':
       return {
         ...state,
@@ -71,7 +83,15 @@ class LeaveStore extends ReduceStore {
       });
     case 'get-leave-form-success':
       return assign({}, state, {
-        leaveForm: action.data.formConfig,
+        leaveForm: action.data.formConfig.map((item) => {
+          if (item.type === 'select' && item.options) {
+            item.options.unshift({
+              value: '',
+              text: ''
+            });
+          }
+          return item;
+        }),
         status: 'loaded',
         leaveValidation: window.leaveValidation
       });

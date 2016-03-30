@@ -104,7 +104,11 @@ class LeaveRecord extends Component {
    * Get a single leave record
    */
   getLeaveRecord() {
-    LeaveDataUtils.getLeaveRecord(this.props.params && this.props.params.id);
+    if (this.props.route.name === 'leave-record-mgr') {
+      LeaveDataUtils.getApproveRecord(this.props.params.id);
+    } else {
+      LeaveDataUtils.getLeaveRecord(this.props.params && this.props.params.id);
+    }
   }
 
 

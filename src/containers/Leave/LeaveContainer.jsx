@@ -98,11 +98,11 @@ class Leave extends Component {
 
 
   save() {
-    if (window.leaveValidation && !window.leaveValidation()) return;
+    if (!this.refs.applyForm.isValid() || window.leaveValidation && !window.leaveValidation()) return;
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
-    ajax.post('/ess-insert-lv', formData)
+    ajax.post('/ess-insert-submit-lv', formData)
       .then((res) => {
         this.applyResponse(res);
       });
@@ -110,7 +110,7 @@ class Leave extends Component {
 
 
   submit() {
-    if (window.leaveValidation && !window.leaveValidation()) return;
+    if (!this.refs.applyForm.isValid() || window.leaveValidation && !window.leaveValidation()) return;
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
