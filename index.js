@@ -652,6 +652,7 @@ app.get('/:path?/:any?', function (req, res) {
 				"res": true
 			});
 		case 'lv-history-member':
+		case 'lv-summary-member':
 			return res.json({
 				"val": [{
 					"id": 20000436,

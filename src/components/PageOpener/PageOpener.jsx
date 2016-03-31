@@ -43,7 +43,7 @@ export default class PageOpener extends Component {
     page.style.webkitTransformOrigin = to;
 
     page.classList.add('opened');
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }
 
 
@@ -52,6 +52,6 @@ export default class PageOpener extends Component {
    */
   close() {
     React.findDOMNode(this).classList.remove('opened');
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }
 }

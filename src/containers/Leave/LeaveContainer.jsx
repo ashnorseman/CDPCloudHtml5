@@ -102,7 +102,9 @@ class Leave extends Component {
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
-    ajax.post('/ess-insert-submit-lv', formData)
+    formData.append('submit', false);
+
+    ajax.post('/ess-insert-lv', formData)
       .then((res) => {
         this.applyResponse(res);
       });
@@ -114,7 +116,9 @@ class Leave extends Component {
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
-    ajax.post('/ess-submit-lv', formData)
+    formData.append('submit', true);
+
+    ajax.post('/ess-insert-lv', formData)
       .then((res) => {
         this.applyResponse(res);
       });

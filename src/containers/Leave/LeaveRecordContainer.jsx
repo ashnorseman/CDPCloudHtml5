@@ -118,7 +118,7 @@ class LeaveRecord extends Component {
   approve() {
     LeaveDataUtils.approveRecord({
       id: this.props.params.id,
-      opinion: React.findDOMNode(this.refs.opinion).value
+      appOpinion: React.findDOMNode(this.refs.opinion).value
     });
   }
 
@@ -129,7 +129,7 @@ class LeaveRecord extends Component {
   reject() {
     LeaveDataUtils.rejectRecord({
       id: this.props.params.id,
-      opinion: React.findDOMNode(this.refs.opinion).value
+      appOpinion: React.findDOMNode(this.refs.opinion).value
     });
   }
 }

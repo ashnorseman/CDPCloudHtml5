@@ -100,6 +100,21 @@ export default {
    * Get leave history employee list
    * @param {Object} [params]
    */
+  getLeaveSummaryEmpList(params) {
+    ajax.get('/lv-summary-member', params)
+      .then((res) => {
+        dispatch({
+          type: 'get-mgr-leave-empList-success',
+          data: res
+        });
+      });
+  },
+
+
+  /**
+   * Get leave history employee list
+   * @param {Object} [params]
+   */
   getPendingRecords(params = {}) {
     if (params.loadMore) {
       params.page += + 1;
@@ -197,7 +212,7 @@ export default {
       action: 'get-leave-summary',
       url: '/ess-lv-summary',
       method: 'get',
-      data: { id }
+      data: id ? { id } : {}
     });
   },
 
@@ -235,14 +250,16 @@ export default {
   /**
    * Reject a record
    */
-  approveRecord({ id, opinion }) {
+  approveRecord({ id, appOpinion }) {
 
     ajaxDispatch({
       action: 'leave-record-approve',
-      url: '/approve-leave/' + id,
+      url: '/mss-lv-approve',
       method: 'post',
       data: {
-        opinion
+        id,
+        appOpinion,
+        agreeOrNot: true
       }
     });
   },
@@ -251,14 +268,16 @@ export default {
   /**
    * Reject a record
    */
-  rejectRecord({ id, opinion }) {
+  rejectRecord({ id, appOpinion }) {
 
     ajaxDispatch({
       action: 'leave-record-reject',
-      url: '/reject-leave/' + id,
+      url: '/mss-lv-approve',
       method: 'post',
       data: {
-        opinion
+        id,
+        appOpinion,
+        agreeOrNot: false
       }
     });
   }

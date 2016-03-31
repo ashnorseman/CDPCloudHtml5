@@ -58,12 +58,12 @@ class LeaveMgrQuota extends Component {
     query.pageSize = 16;
     query.loadMore = false;
 
-    LeaveDataUtils.getLeaveEmpList(query);
+    LeaveDataUtils.getLeaveSummaryEmpList(query);
   }
 
 
   loadMore({ page = 1, ...props } = {}) {
-    LeaveDataUtils.getLeaveEmpList({
+    LeaveDataUtils.getLeaveSummaryEmpList({
       page: page + 1,
       ...props,
       loadMore: true
