@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import './form.less';
 
 import React, { Component } from 'react';
@@ -50,6 +48,12 @@ export default class Form extends Component {
               break;
             case 'select':
               Control = Select;
+              if (control.options && control.options[0] && control.options[0].text) {
+                control.options.unshift({
+                  value: '',
+                  text: ''
+                });
+              }
               break;
             case 'checkbox':
               Control = Checkbox;
@@ -58,7 +62,7 @@ export default class Form extends Component {
 
             return (
               <FormControl key={index} {...control}>
-                <Control {...control} ref={control.id} onChange={this.isValid} />
+                <Control {...control} ref={control.id || control.name} onChange={this.isValid} />
               </FormControl>
             );
           });

@@ -1,5 +1,5 @@
 /**
- * Home page
+ * Leave
  */
 
 
@@ -58,13 +58,13 @@ class Leave extends Component {
   }
 
   render() {
-    const { status, leaveForm } = this.state;
+    const { status, leaveForm, formIsSubmitting } = this.state;
 
     return (
       <div className='bottom-gap'>
         <Header back title={getLang('MY_LEAVE')} />
-        <Tab items={tabSettings} bottom></Tab>
-        <Button icon='pencil' action onClick={this.openApply}></Button>
+        <Tab items={tabSettings} bottom />
+        <Button icon='pencil' action onClick={this.openApply} />
 
         <PageOpener ref='apply'>
           <Loader status={status}>
@@ -98,9 +98,11 @@ class Leave extends Component {
 
 
   save() {
-    if (!this.refs.applyForm.isValid() || window.leaveValidation && !window.leaveValidation()) return;
+    const form = this.refs.applyForm;
 
-    const formData = new FormData(React.findDOMNode(this.refs.applyForm));
+    if (!form.isValid() || window.leaveValidation && !window.leaveValidation()) return;
+
+    const formData = new FormData(React.findDOMNode(form));
 
     formData.append('submit', false);
 
@@ -139,6 +141,7 @@ class Leave extends Component {
     if (res) {
       alert(res);
     }
+
     this.refs.apply.close();
   }
 }

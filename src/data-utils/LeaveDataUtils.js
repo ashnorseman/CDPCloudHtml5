@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';
 
 import ajax, { ajaxDispatch } from '../common/utils/ajax';

@@ -35,12 +35,16 @@ export default class Tab extends Component {
     this.onActivate = onActivate;
 
     // Default active
-    if (!(items.some(item => item.active))) {
+    if (!(items.some(item => item.active)) ||
+        (items.filter(item => item.active)[0] &&
+        location.hash.indexOf(items.filter(item => item.active)[0].name) === -1)) {
       items.forEach((item) => {
-        if (location.hash.indexOf(item.name) !== -1) {
-          item.active = true;
-        }
+        item.active = location.hash.indexOf(item.name) !== -1;
       });
+
+      if (!(items.some(item => item.active))) {
+        items[0].active = true;
+      }
     }
 
     const tabItems = items.map((item, index) => {
@@ -56,7 +60,7 @@ export default class Tab extends Component {
             : null
         }
         {item.text}
-        {item.notification ? <span className='tab-notification'></span> : null}
+        {item.notification ? <span className='tab-notification' /> : null}
       </a>;
     });
 

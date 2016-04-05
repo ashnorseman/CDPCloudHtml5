@@ -110,6 +110,9 @@ const lang = {
     REJECT: '拒绝',
     HISTORY: '历史',
 
+    // Overtime
+    OT_SUMMARY: '加班汇总',
+
     // Validation
     REQUIRED: '必填',
 
@@ -214,6 +217,9 @@ const lang = {
     REJECT: 'Reject',
     HISTORY: 'History',
 
+    // Overtime
+    OT_SUMMARY: 'Summary',
+
     // Validation
     REQUIRED: 'Required',
 
@@ -317,6 +323,9 @@ const lang = {
     APPROVE: '通し',
     REJECT: '拒否',
     HISTORY: '历史',
+
+    // Overtime
+    OT_SUMMARY: 'まとめ',
 
     // Validation
     REQUIRED: '必要です',

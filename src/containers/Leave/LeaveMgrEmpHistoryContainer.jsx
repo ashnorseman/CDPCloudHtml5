@@ -22,13 +22,7 @@ class LeaveListContainer extends Component {
   }
 
   static calculateState() {
-    const state = LeaveStore.getState();
-
-    return {
-      // leaveTypes: state.leaveTypes,
-      leaveRecords: state.leaveRecords,
-      status: state.status
-    };
+    return LeaveStore.getState();
   }
 
   constructor(props) {
@@ -38,16 +32,15 @@ class LeaveListContainer extends Component {
   }
 
   render() {
-    const { leaveRecords } = this.state,
-      mgr = location.hash.indexOf('mgr') !== -1;
+    const { leaveRecord = {} } = this.state;
+
+    console.log(leaveRecord);
 
     return (
       <div>
         <Header back title={getLang('LEAVE_SUMMARY')} />
-        <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
-          <RecordList recordList={leaveRecords}
-                      url='leave-record-mgr' />
-        </PullLoader>
+        <RecordList recordList={leaveRecord}
+                    url='leave-record-mgr' />
       </div>
     );
   }
@@ -57,29 +50,8 @@ class LeaveListContainer extends Component {
    * Get employees' leave records (parameters)
    * @param params
    */
-  getEmpLeaveRecords(params = {}) {
-    params.page = 1;
-    params.loadMore = false;
-    params.empId = this.props.routeParams.id;
-    // params.state = 'edit';
-
-    dispatch({
-      type: 'get-emp-leave-records',
-      data: params
-    });
-  }
-
-
-  /**
-   * Load next page
-   */
-  loadMore() {
-    dispatch({
-      type: 'get-emp-leave-records',
-      data: {
-        loadMore: true
-      }
-    });
+  getEmpLeaveRecords() {
+    LeaveDataUtils.getApproveRecord(this.props.routeParams.id);
   }
 
 

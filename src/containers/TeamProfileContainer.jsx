@@ -59,7 +59,7 @@ class TeamProfile extends Component {
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 
-        <Sorter items={sortItems} defaultItem='name' onSort={this.sort} />
+        {/*<Sorter items={sortItems} defaultItem='name' onSort={this.sort} />*/}
 
         <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />

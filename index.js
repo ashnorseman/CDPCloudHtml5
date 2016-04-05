@@ -350,6 +350,7 @@ app.get('/:path?/:any?', function (req, res) {
 				"res": true
 			});
 		case 'ess-lv-config':
+		case 'ess-ot-config':
 			return res.json({
 				val: {
 					"JS_CONFIG_FILE": "demo_ess_lv_config.js",
@@ -529,6 +530,7 @@ app.get('/:path?/:any?', function (req, res) {
 				]
 			});
 		case 'ess-lv-list':
+		case 'ess-ot-list':
 			return res.json({
 				res: true,
 				val: (function () {
@@ -572,7 +574,7 @@ app.get('/:path?/:any?', function (req, res) {
 				}())
 			});
 		case 'ess-lv-detail':
-		case 'lv-approve-detail':
+		case 'ess-ot-detail':
 			return res.json({
 				"val": {
 					appInfo: {
@@ -622,7 +624,31 @@ app.get('/:path?/:any?', function (req, res) {
 				},
 				"res": true
 			});
+		case 'lv-approve-detail':
+			return res.json({
+				"val": [{
+					"End": "2015/10/22",
+					"Start": "2015/10/22",
+					"hours": "7.5",
+					"state": "拒绝",
+					"leaveType": "年度带薪休假"
+				}, {
+					"End": "2015/09/21",
+					"Start": "2015/09/21",
+					"hours": "7.5",
+					"state": "拒绝",
+					"leaveType": "年度带薪休假"
+				}, {
+					"End": "2015/09/22",
+					"Start": "2015/09/22",
+					"hours": "7.5",
+					"state": "拒绝",
+					"leaveType": "婚假"
+				}],
+				"res": true
+			});
 		case 'ess-lv-summary':
+		case 'ess-ot-summary':
 			return res.json({
 				"val": [{
 					"title": "婚假",
@@ -697,416 +723,417 @@ app.get('/:path?/:any?', function (req, res) {
 app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
 	console.log('post: ', req.body, req.file);
 
-	switch (req.params.path) {
-	case 'login':
-		return res.json({
-			res: true,
-			val: {
-				lang: [{
-					"langCode": "pla_lan_001",
-					"langName": "简体中文",
-					"flag": true
-				}, {
-					"langCode": "pla_lan_002",
-					"langName": "English",
-					"flag": false
-				}],
-				"userInfo": {
-					"companyCode": "hitachihk-1000",
-					"userName": "reese",
-					"passWord": null,
-					"valid": "true",
-					"userTime": 30,
-					"userFlag": 1,  // 0 为初次登录
-					"userInitFlag": 1,  // 0 为需要修改密码
-					"userMail": "mtse@hitachi.cn",
-					"phone": "14785296321",
-					"lang": "pla_lan_001",
-					"sysSip": null,
-					"eeId": null,
-					"useMss": 1719,
-					"useEss": 1718,
-					"userEmpId": 2608,
-					"userId": 2066,
-					"portalUser": false,
-					"objectCode": null
-				}
-			}
-			//res: false,
-			//error: '公司代码不存在',
-			//val: {
-			//  company: 'CDP'
-			//}
-		});
-	case 'change-lang':
-		return setTimeout(() => {
-			res.json({
+	setTimeout(function () {
+
+		switch (req.params.path) {
+		case 'login':
+			return res.json({
 				res: true,
-				val: 'pla_lan_002'
+				val: {
+					lang: [{
+						"langCode": "pla_lan_001",
+						"langName": "简体中文",
+						"flag": true
+					}, {
+						"langCode": "pla_lan_002",
+						"langName": "English",
+						"flag": false
+					}],
+					"userInfo": {
+						"companyCode": "hitachihk-1000",
+						"userName": "reese",
+						"passWord": null,
+						"valid": "true",
+						"userTime": 30,
+						"userFlag": 1,  // 0 为初次登录
+						"userInitFlag": 1,  // 0 为需要修改密码
+						"userMail": "mtse@hitachi.cn",
+						"phone": "14785296321",
+						"lang": "pla_lan_001",
+						"sysSip": null,
+						"eeId": null,
+						"useMss": 1719,
+						"useEss": 1718,
+						"userEmpId": 2608,
+						"userId": 2066,
+						"portalUser": false,
+						"objectCode": null
+					}
+				}
+				//res: false,
+				//error: '公司代码不存在',
+				//val: {
+				//  company: 'CDP'
+				//}
 			});
-		}, 100);
-	case 'user-base-message-info':
-		return setTimeout(function () {
-			res.json({
-				"val": {
-					"items": [[{
-						"name": "Join Date",
-						"value": "1988-06-01"
-					},
-						{
-							"name": "E-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mail",
-							"value": "mtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cn"
-						},
-						{
-							"name": "Account Code",
-							"value": "0040315725267"
-						},
-						{
-							"name": "Bank",
-							"value": "004"
-						},
-						{
-							"name": "Cost Center",
-							"value": "HK-IFG-GM2-HK"
-						},
-						{
-							"name": "Owner's Name",
-							"value": "TSE, Mei Ling, May"
-						},
-						{
-							"name": "Legal Company",
-							"value": "HCH"
-						},
-						{
-							"name": "Branch",
-							"value": "HK"
-						},
-						{
-							"name": "Department",
-							"value": "IFG"
-						},
-						{
-							"name": "Position",
-							"value": "Manager"
-						},
-						{
-							"name": "Personal ID",
-							"value": "C254404(9)"
-						},
-						{
-							"name": "Residential Address",
-							"value": "Flat 3702, Shing Yam House, On Yan Estate, Kwai Chung, New Territories"
-						},
-						{
-							"name": "Service Year",
-							"value": "27.46"
-						},
-						{
-							"name": "Employee ID",
-							"value": "18820"
-						},
-						{
-							"name": "English Name",
-							"value": "TSE, Mei Ling, May"
-						},
-						{
-							"name": "Chinese Name",
-							"value": "美玲"
-						},
-						{
-							"name": "Nationality",
-							"value": "China"
-						},
-						{
-							"name": "Age",
-							"value": "53"
-						}]]
-				},
-				"res": "true"
-			});
-		}, 2000);
-	case 'salary':
-		return res.json({
-			"val": {
-				"infoList": [
-					{
-						"title": "eps_basic_info",
-						"items": [{
-							"name": "Employee ID",
-							"value": "18820"
-						}, {
-							"name": "Chinese Name",
-							"value": "�x美玲"
+		case 'change-lang':
+			return setTimeout(() => {
+				res.json({
+					res: true,
+					val: 'pla_lan_002'
+				});
+			}, 100);
+		case 'user-base-message-info':
+			return setTimeout(function () {
+				res.json({
+					"val": {
+						"items": [[{
+							"name": "Join Date",
+							"value": "1988-06-01"
 						},
 							{
-								"name": "English Name",
+								"name": "E-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mailE-mail",
+								"value": "mtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cmtse@hitachi.cn"
+							},
+							{
+								"name": "Account Code",
+								"value": "0040315725267"
+							},
+							{
+								"name": "Bank",
+								"value": "004"
+							},
+							{
+								"name": "Cost Center",
+								"value": "HK-IFG-GM2-HK"
+							},
+							{
+								"name": "Owner's Name",
 								"value": "TSE, Mei Ling, May"
-							}, {
-								"name": "Company Name",
-								"value": "Hitachi East Asia Ltd."
+							},
+							{
+								"name": "Legal Company",
+								"value": "HCH"
+							},
+							{
+								"name": "Branch",
+								"value": "HK"
 							},
 							{
 								"name": "Department",
 								"value": "IFG"
-							}, {
+							},
+							{
 								"name": "Position",
 								"value": "Manager"
-							}, {
-								"name": "Join Date",
-								"value": "1988-06-01"
 							},
 							{
-								"name": "Pay Month",
-								"value": "201510"
-							}]
-					}, {
-						"title": "eps_earning_deduction",
-						"items": [{
-							"name": "Gross Earnings",
-							"value": "32970.00"
-						},
+								"name": "Personal ID",
+								"value": "C254404(9)"
+							},
 							{
-								"name": "Gross Deductions",
-								"value": "1648.50"
-							}]
-					}, {
-						"title": "eps_net_pay",
-						"items": [{
-							"name": "Net Pay",
-							"value": "31321.50"
-						}]
+								"name": "Residential Address",
+								"value": "Flat 3702, Shing Yam House, On Yan Estate, Kwai Chung, New Territories"
+							},
+							{
+								"name": "Service Year",
+								"value": "27.46"
+							},
+							{
+								"name": "Employee ID",
+								"value": "18820"
+							},
+							{
+								"name": "English Name",
+								"value": "TSE, Mei Ling, May"
+							},
+							{
+								"name": "Chinese Name",
+								"value": "美玲"
+							},
+							{
+								"name": "Nationality",
+								"value": "China"
+							},
+							{
+								"name": "Age",
+								"value": "53"
+							}]]
 					},
-					{
-						"title": "eps_mpf_orso",
-						"items": [{
-							"name": "Issue Date",
-							"value": "2015-10-31"
+					"res": "true"
+				});
+			}, 2000);
+		case 'salary':
+			return res.json({
+				"val": {
+					"infoList": [
+						{
+							"title": "eps_basic_info",
+							"items": [{
+								"name": "Employee ID",
+								"value": "18820"
+							}, {
+								"name": "Chinese Name",
+								"value": "�x美玲"
+							},
+								{
+									"name": "English Name",
+									"value": "TSE, Mei Ling, May"
+								}, {
+									"name": "Company Name",
+									"value": "Hitachi East Asia Ltd."
+								},
+								{
+									"name": "Department",
+									"value": "IFG"
+								}, {
+									"name": "Position",
+									"value": "Manager"
+								}, {
+									"name": "Join Date",
+									"value": "1988-06-01"
+								},
+								{
+									"name": "Pay Month",
+									"value": "201510"
+								}]
 						}, {
-							"name": "Relevant Income",
-							"value": "32970.00"
+							"title": "eps_earning_deduction",
+							"items": [{
+								"name": "Gross Earnings",
+								"value": "32970.00"
+							},
+								{
+									"name": "Gross Deductions",
+									"value": "1648.50"
+								}]
+						}, {
+							"title": "eps_net_pay",
+							"items": [{
+								"name": "Net Pay",
+								"value": "31321.50"
+							}]
 						},
-							{
-								"name": "ORSO(Company)",
-								"value": "2307.90"
+						{
+							"title": "eps_mpf_orso",
+							"items": [{
+								"name": "Issue Date",
+								"value": "2015-10-31"
 							}, {
-								"name": "ORSO(Employee)",
-								"value": "1648.50"
+								"name": "Relevant Income",
+								"value": "32970.00"
+							},
+								{
+									"name": "ORSO(Company)",
+									"value": "2307.90"
+								}, {
+									"name": "ORSO(Employee)",
+									"value": "1648.50"
+								}, {
+									"name": "Mandatory(Company)",
+									"value": "0.00"
+								},
+								{
+									"name": "Mandatory(Employee)",
+									"value": "0.00"
+								}, {
+									"name": "Voluntary(Company)",
+									"value": "0.00"
+								}]
+						},
+						{
+							"title": "eps_attendance",
+							"items": [{
+								"name": "Overtime Hours",
+								"value": "0.00"
 							}, {
-								"name": "Mandatory(Company)",
+								"name": "Early/Late/Personal Affaire Minutes",
 								"value": "0.00"
 							},
-							{
-								"name": "Mandatory(Employee)",
-								"value": "0.00"
-							}, {
-								"name": "Voluntary(Company)",
-								"value": "0.00"
-							}]
-					},
-					{
-						"title": "eps_attendance",
-						"items": [{
-							"name": "Overtime Hours",
-							"value": "0.00"
+								{
+									"name": "No Pay Leave Days",
+									"value": "0.00"
+								}, {
+									"name": "4/5 Pay Sick Leave Days",
+									"value": "0.00"
+								}, {
+									"name": "Maternity Leave Days",
+									"value": "0.00"
+								},
+								{
+									"name": "Paternity Leave Days",
+									"value": "0.00"
+								}]
 						}, {
-							"name": "Early/Late/Personal Affaire Minutes",
-							"value": "0.00"
+							"title": "eps_earnings",
+							"items": [{
+								"name": "Basic Salary",
+								"value": "32970.00"
+							},
+								{
+									"name": "Living Allowance",
+									"value": "0.00"
+								}, {
+									"name": "Housing Allowance",
+									"value": "0.00"
+								}, {
+									"name": "Transportation Allowance",
+									"value": "0.00"
+								},
+								{
+									"name": "Language Allowance",
+									"value": "0.00"
+								}, {
+									"name": "Child Education Allowance",
+									"value": "0.00"
+								}, {
+									"name": "Home Return Allowance",
+									"value": "0.00"
+								},
+								{
+									"name": "Overtime Fee",
+									"value": "0.00"
+								}, {
+									"name": "Severance Payment",
+									"value": "0.00"
+								}, {
+									"name": "Long Service Payment",
+									"value": "0.00"
+								},
+								{
+									"name": "Payment in lieu of Notice",
+									"value": "0.00"
+								}, {
+									"name": "Shortage Adjustment",
+									"value": "0.00"
+								}, {
+									"name": "Bonus",
+									"value": "0.00"
+								},
+								{
+									"name": "Double Pay",
+									"value": "0.00"
+								}, {
+									"name": "Special Bonus",
+									"value": "0.00"
+								}]
 						},
-							{
-								"name": "No Pay Leave Days",
+						{
+							"title": "eps_deductions",
+							"items": [{
+								"name": "No Pay Absence Deduction",
 								"value": "0.00"
 							}, {
-								"name": "4/5 Pay Sick Leave Days",
-								"value": "0.00"
-							}, {
-								"name": "Maternity Leave Days",
+								"name": "No Pay Leave Deduction",
 								"value": "0.00"
 							},
-							{
-								"name": "Paternity Leave Days",
-								"value": "0.00"
-							}]
+								{
+									"name": "Sick Leave Deduction",
+									"value": "0.00"
+								}, {
+									"name": "Maternity Leave Deduction",
+									"value": "0.00"
+								}, {
+									"name": "Paternity Leave Deduction",
+									"value": "0.00"
+								},
+								{
+									"name": "ORSO/MPF Deduction",
+									"value": "1648.50"
+								}, {
+									"name": "Loan Repay",
+									"value": "0.00"
+								}, {
+									"name": "Deduction in Lieu of Notice",
+									"value": "0.00"
+								}]
+						}],
+					//"payCharts": ""
+					"payCharts": [{
+						"payrollChartsName": "NetMonthly Income",
+						"payrollTotal": 11287.9
 					}, {
-						"title": "eps_earnings",
-						"items": [{
-							"name": "Basic Salary",
-							"value": "32970.00"
+						"payrollChartsName": "NetMonthly Outcome",
+						"payrollTotal": 11287.9
+					}]
+				},
+				"res": true
+			});
+		case 'team-info-page':
+			return res.json({
+				res: true,
+				val: (function () {
+					var base = [
+						{
+							id: 1,
+							firField: '张阿十',
+							avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+							secField: '前端设计师'
 						},
-							{
-								"name": "Living Allowance",
-								"value": "0.00"
-							}, {
-								"name": "Housing Allowance",
-								"value": "0.00"
-							}, {
-								"name": "Transportation Allowance",
-								"value": "0.00"
-							},
-							{
-								"name": "Language Allowance",
-								"value": "0.00"
-							}, {
-								"name": "Child Education Allowance",
-								"value": "0.00"
-							}, {
-								"name": "Home Return Allowance",
-								"value": "0.00"
-							},
-							{
-								"name": "Overtime Fee",
-								"value": "0.00"
-							}, {
-								"name": "Severance Payment",
-								"value": "0.00"
-							}, {
-								"name": "Long Service Payment",
-								"value": "0.00"
-							},
-							{
-								"name": "Payment in lieu of Notice",
-								"value": "0.00"
-							}, {
-								"name": "Shortage Adjustment",
-								"value": "0.00"
-							}, {
-								"name": "Bonus",
-								"value": "0.00"
-							},
-							{
-								"name": "Double Pay",
-								"value": "0.00"
-							}, {
-								"name": "Special Bonus",
-								"value": "0.00"
-							}]
-					},
-					{
-						"title": "eps_deductions",
-						"items": [{
-							"name": "No Pay Absence Deduction",
-							"value": "0.00"
-						}, {
-							"name": "No Pay Leave Deduction",
-							"value": "0.00"
-						},
-							{
-								"name": "Sick Leave Deduction",
-								"value": "0.00"
-							}, {
-								"name": "Maternity Leave Deduction",
-								"value": "0.00"
-							}, {
-								"name": "Paternity Leave Deduction",
-								"value": "0.00"
-							},
-							{
-								"name": "ORSO/MPF Deduction",
-								"value": "1648.50"
-							}, {
-								"name": "Loan Repay",
-								"value": "0.00"
-							}, {
-								"name": "Deduction in Lieu of Notice",
-								"value": "0.00"
-							}]
-					}],
-				//"payCharts": ""
-				"payCharts": [{
-					"payrollChartsName": "NetMonthly Income",
-					"payrollTotal": 11287.9
+						{
+							id: 2,
+							firField: '张阿廿',
+							avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+							secField: '前端服务员'
+						}
+					];
+
+					if (req.body.page <= 3) {
+						for (var i = 0; i < 4; i += 1) {
+							base = base.concat(base);
+						}
+					}
+
+					return base.slice(0, 20);
+				}())
+			});
+		case 'quota-team-member':
+			return res.json({
+				"val": [{
+					"secField": "生活产业事业部",
+					"id": 12000014,
+					"firField": "曾 晖"
 				}, {
-					"payrollChartsName": "NetMonthly Outcome",
-					"payrollTotal": 11287.9
-				}]
-			},
-			"res": true
-		});
-	case 'team-info-page':
-		return res.json({
-			res: true,
-			val: (function () {
-				var base = [
-					{
-						id: 1,
-						firField: '张阿十',
-						avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-						secField: '前端设计师'
-					},
-					{
-						id: 2,
-						firField: '张阿廿',
-						avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-						secField: '前端服务员'
-					}
-				];
+					"secField": "财务会计审查部",
+					"id": 12000015,
+					"firField": "谢 颖"
+				}, {
+					"secField": "泛用·聚氨酯涂料化学品部",
+					"id": 12000017,
+					"firField": "林 光晓"
+				}, {
+					"secField": "聚氯乙烯树脂部",
+					"id": 12000019,
+					"firField": "杨 思慧"
+				}, {
+					"secField": "人事总务法务部",
+					"id": 12000020,
+					"firField": "张 月华"
+				}, {
+					"secField": "泛用·聚氨酯涂料化学品部",
+					"id": 12000021,
+					"firField": "吴 军"
+				}, {
+					"secField": "生活产业事业部",
+					"id": 12000022,
+					"firField": "李 晓琼"
+				}, {
+					"secField": "聚氯乙烯树脂部",
+					"id": 12000024,
+					"firField": "刘 湘"
+				}, {
+					"secField": "财务会计审查部",
+					"id": 12000025,
+					"firField": "麦 智莹"
+				}, {
+					"secField": "能源部",
+					"id": 12000028,
+					"firField": "邵 远志"
+				}],
+				"res": true
+			});
+		case 'ess-submit-lv':
+		case 'ess-insert-lv':
+			return res.json({
+				res: true,
+				val: 'abc'
+			});
+		}
 
-				if (req.body.page <= 3) {
-					for (var i = 0; i < 4; i += 1) {
-						base = base.concat(base);
-					}
-				}
-
-				return base.slice(0, 20);
-			}())
-		});
-	case 'quota-team-member':
-		return res.json({
-			"val": [{
-				"secField": "生活产业事业部",
-				"id": 12000014,
-				"firField": "曾 晖"
-			}, {
-				"secField": "财务会计审查部",
-				"id": 12000015,
-				"firField": "谢 颖"
-			}, {
-				"secField": "泛用·聚氨酯涂料化学品部",
-				"id": 12000017,
-				"firField": "林 光晓"
-			}, {
-				"secField": "聚氯乙烯树脂部",
-				"id": 12000019,
-				"firField": "杨 思慧"
-			}, {
-				"secField": "人事总务法务部",
-				"id": 12000020,
-				"firField": "张 月华"
-			}, {
-				"secField": "泛用·聚氨酯涂料化学品部",
-				"id": 12000021,
-				"firField": "吴 军"
-			}, {
-				"secField": "生活产业事业部",
-				"id": 12000022,
-				"firField": "李 晓琼"
-			}, {
-				"secField": "聚氯乙烯树脂部",
-				"id": 12000024,
-				"firField": "刘 湘"
-			}, {
-				"secField": "财务会计审查部",
-				"id": 12000025,
-				"firField": "麦 智莹"
-			}, {
-				"secField": "能源部",
-				"id": 12000028,
-				"firField": "邵 远志"
-			}],
-			"res": true
-		});
-	case 'ess-submit-lv':
-	case 'ess-insert-lv':
-		return res.json({
-			res: true,
-			val: 'abc'
-		});
-	}
-
-	setTimeout(function () {
 		res.json({
 			res: true
 		});
-	}, 100);
+	}, 1000);
 });
 
 // PUT

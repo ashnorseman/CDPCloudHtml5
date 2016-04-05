@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import { ReduceStore } from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
 import assign from 'object-assign';
@@ -83,15 +81,7 @@ class LeaveStore extends ReduceStore {
       });
     case 'get-leave-form-success':
       return assign({}, state, {
-        leaveForm: action.data.formConfig.map((item) => {
-          if (item.type === 'select' && item.options) {
-            item.options.unshift({
-              value: '',
-              text: ''
-            });
-          }
-          return item;
-        }),
+        leaveForm: action.data.formConfig,
         status: 'loaded',
         leaveValidation: window.leaveValidation
       });

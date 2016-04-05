@@ -8,7 +8,7 @@ import './common/styles/app.less';
 
 import React, { Component } from 'react';
 import ReactTap from 'react-tap-event-plugin';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, Redirect } from 'react-router';
 
 import ajax from './common/utils/ajax';
 import { dispatch } from './dispatcher/Dispatcher';
@@ -20,14 +20,14 @@ import ProfileContainer from './containers/ProfileContainer.jsx';
 import SalaryContainer from './containers/SalaryContainer.jsx';
 import ChangePwd from './containers/Config/ChangePwd.jsx';
 import ChangeMobile from './containers/Config/ChangeMobile.jsx';
+import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
+import TeamProfileEmpProfileContainer from './containers/TeamProfileEmpProfileContainer.jsx';
+
 import LeaveContainer from './containers/Leave/LeaveContainer.jsx';
 import LeaveListContainer from './containers/Leave/LeaveListContainer.jsx';
 import LeaveRecordContainer from './containers/Leave/LeaveRecordContainer.jsx';
 import LeaveQuotaContainer from './containers/Leave/LeaveQuotaContainer.jsx';
 import LeaveSummaryContainer from './containers/Leave/LeaveSummaryContainer.jsx';
-import OvertimeContainer from './containers/OvertimeContainer.jsx';
-import TeamProfileContainer from './containers/TeamProfileContainer.jsx';
-import TeamProfileEmpProfileContainer from './containers/TeamProfileEmpProfileContainer.jsx';
 import LeaveMgrContainer from './containers/Leave/LeaveMgrContainer.jsx';
 import LeaveMgrHistoryContainer from './containers/Leave/LeaveMgrHistoryContainer.jsx';
 import LeaveMgrSummaryContainer from './containers/Leave/LeaveMgrSummaryContainer.jsx';
@@ -36,6 +36,11 @@ import LeaveMgrEmpSummaryContainer from './containers/Leave/LeaveMgrEmpSummaryCo
 import LeaveMgrQuotaContainer from './containers/Leave/LeaveMgrQuotaContainer.jsx';
 import LeaveMgrEmpQuotaContainer from './containers/Leave/LeaveMgrEmpQuotaContainer.jsx';
 import LeaveMgrPendingContainer from './containers/Leave/LeaveMgrPendingContainer.jsx';
+
+import OvertimeContainer from './containers/OverTime/OvertimeContainer.jsx';
+import OvertimeEmpListContainer from './containers/OverTime/OvertimeEmpListContainer';
+import OvertimeEmpRecordContainer from './containers/OverTime/OvertimeEmpRecordContainer';
+import OvertimeEmpSummaryContainer from './containers/OverTime/OvertimeEmpSummaryContainer';
 import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
 
 
@@ -77,7 +82,13 @@ React.render((
       <Route path='my-leave/leave-list(/:id)' name='leave-list' component={LeaveListContainer} />
       <Route path='leave-record/:id' name='leave-record' component={LeaveRecordContainer} />
       <Route path='leave-record-mgr/:id' name='leave-record-mgr' component={LeaveRecordContainer} />
-      <Route path='my-ot' name='my-ot' component={OvertimeContainer} />
+      
+      <Route path='my-ot' name='my-ot' component={OvertimeContainer}>
+        <IndexRoute component={OvertimeEmpListContainer} />
+        <Route path="list" name="list" component={OvertimeEmpListContainer} />
+        <Route path="summary" name="summary" component={OvertimeEmpSummaryContainer} />
+      </Route>
+      <Route path="my-ot/record/:id" name="record" component={OvertimeEmpRecordContainer} />
 
       <Route path='team-profile' name='profile' component={TeamProfileContainer} />
       <Route path='team-profile/profile(/:id)' name='profile' component={TeamProfileEmpProfileContainer} />
