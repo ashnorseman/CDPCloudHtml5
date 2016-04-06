@@ -421,6 +421,7 @@ app.get('/:path?/:any?', function (req, res) {
 				"res": true
 			});
 		case 'mss-lv-todolist':
+		case 'mss-ot-todolist':
 			return res.json({
 				"val": [{
 					"id": 6,
@@ -531,6 +532,7 @@ app.get('/:path?/:any?', function (req, res) {
 			});
 		case 'ess-lv-list':
 		case 'ess-ot-list':
+		case 'ot-approve-otdetail':
 			return res.json({
 				res: true,
 				val: (function () {
@@ -679,6 +681,7 @@ app.get('/:path?/:any?', function (req, res) {
 			});
 		case 'lv-history-member':
 		case 'lv-summary-member':
+		case 'ot-history-member':
 			return res.json({
 				"val": [{
 					"id": 20000436,
@@ -710,6 +713,34 @@ app.get('/:path?/:any?', function (req, res) {
 					"secField": "新产业开发事业部"
 				}],
 				"res": true
+			});
+		case 'team-info-page':
+			return res.json({
+				res: true,
+				val: (function () {
+					var base = [
+						{
+							id: 1,
+							firField: '张阿十',
+							avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+							secField: '前端设计师'
+						},
+						{
+							id: 2,
+							firField: '张阿廿',
+							avatar: 'a2e0012df0916596196342a0915d6c5f.png',
+							secField: '前端服务员'
+						}
+					];
+
+					if (req.body.page <= 3) {
+						for (var i = 0; i < 4; i += 1) {
+							base = base.concat(base);
+						}
+					}
+
+					return base.slice(0, 20);
+				}())
 			});
 		default:
 			res.json({

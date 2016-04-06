@@ -26,7 +26,7 @@ class OvertimeEmpSummary extends Component {
 	constructor(props) {
 		super(props);
 
-		OvertimeDataUtils.getEmpOtSummary();
+		OvertimeDataUtils.getEmpOtSummary(this.props.routeParams.id);
 	}
 
 	render() {
@@ -36,7 +36,7 @@ class OvertimeEmpSummary extends Component {
 		} = this.state;
 
 		return (
-			<Loader status={status} className='side-gap gap-t-lg pad-b'>
+			<Loader status={status} className='side-gap gap-t pad-b'>
 				{
 					empOtSummary.map((item, index) => {
 						return (

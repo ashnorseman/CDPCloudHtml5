@@ -41,7 +41,12 @@ import OvertimeContainer from './containers/OverTime/OvertimeContainer.jsx';
 import OvertimeEmpListContainer from './containers/OverTime/OvertimeEmpListContainer';
 import OvertimeEmpRecordContainer from './containers/OverTime/OvertimeEmpRecordContainer';
 import OvertimeEmpSummaryContainer from './containers/OverTime/OvertimeEmpSummaryContainer';
-import OvertimeMgrContainer from './containers/OvertimeMgrContainer.jsx';
+import OvertimeMgrContainer from './containers/OverTime/OvertimeMgrContainer.jsx';
+import OvertimeMgrPendingContainer from './containers/OverTime/OvertimeMgrPendingContainer';
+import OvertimeMgrPendingRecordContainer from './containers/OverTime/OvertimeMgrPendingRecordContainer';
+import OvertimeMgrSummaryContainer from './containers/OverTime/OvertimeMgrSummaryContainer';
+import OvertimeMgrHistoryContainer from './containers/OverTime/OvertimeMgrHistoryContainer';
+import OvertimeMgrHistoryDetailContainer from './containers/OverTime/OvertimeMgrHistoryDetailContainer';
 
 
 // Settings
@@ -82,11 +87,11 @@ React.render((
       <Route path='my-leave/leave-list(/:id)' name='leave-list' component={LeaveListContainer} />
       <Route path='leave-record/:id' name='leave-record' component={LeaveRecordContainer} />
       <Route path='leave-record-mgr/:id' name='leave-record-mgr' component={LeaveRecordContainer} />
-      
+
       <Route path='my-ot' name='my-ot' component={OvertimeContainer}>
         <IndexRoute component={OvertimeEmpListContainer} />
         <Route path="list" name="list" component={OvertimeEmpListContainer} />
-        <Route path="summary" name="summary" component={OvertimeEmpSummaryContainer} />
+        <Route path="summary(/:id)" name="summary" component={OvertimeEmpSummaryContainer} />
       </Route>
       <Route path="my-ot/record/:id" name="record" component={OvertimeEmpRecordContainer} />
 
@@ -104,7 +109,14 @@ React.render((
       <Route path='leave-mgr/history/:id' name='emp-history' component={LeaveMgrEmpHistoryContainer} />
       <Route path='leave-mgr/summary/:id' name='emp-summary' component={LeaveMgrEmpSummaryContainer} />
 
-      <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer} />
+      <Route path='ot-mgr' name='ot-mgr' component={OvertimeMgrContainer}>
+        <IndexRoute component={OvertimeMgrPendingContainer} />
+        <Route path='pending' name='pending' component={OvertimeMgrPendingContainer} />
+        <Route path='history' name='history' component={OvertimeMgrHistoryContainer} />
+        <Route path='history/:id' name='ot-history-detail' component={OvertimeMgrHistoryDetailContainer} />
+        <Route path='summary' name='summary' component={OvertimeMgrSummaryContainer} />
+      </Route>
+      <Route path='ot-record-mgr/:id' name='ot-record-mgr' component={OvertimeMgrPendingRecordContainer} />
 
       <Route path='manager' name='manager' component={ManagerContainer} routerProps={{header:true}} />
       <Route path='*' name='employee' component={EmployeeContainer} routerProps={{header:true}} />

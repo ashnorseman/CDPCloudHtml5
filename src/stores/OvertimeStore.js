@@ -8,7 +8,7 @@ import Dispatcher from '../dispatcher/Dispatcher';
 
 
 class OvertimeStore extends ReduceStore {
-	
+
 	getInitialState() {
 		return {};
 	}
@@ -70,6 +70,55 @@ class OvertimeStore extends ReduceStore {
 				...state,
 				submitting: false,
 				refreshList: true
+			};
+		case 'get-ot-pending-records':
+			return {
+				...state,
+				pendingQuery: action.data,
+				status: 'loading'
+			};
+		case 'get-ot-pending-records-success':
+			return {
+				...state,
+				pendingRecords: state.pendingQuery.page === 1 ? action.data : state.pendingRecords.concat(action.data),
+				status: 'loaded'
+			};
+		case 'approve-ot-pending-record-success':
+			return history.back();
+		case 'get-ot-history-members':
+			return {
+				...state,
+				otHistoryQuery: action.data,
+				status: 'loading'
+			};
+		case 'get-ot-history-members-success':
+			return {
+				...state,
+				otHistoryEmpList: state.otHistoryQuery.page === 1 ? action.data : state.otHistoryEmpList.concat(action.data),
+				status: 'loaded'
+			};
+		case 'get-ot-history-detail':
+			return {
+				...state,
+				status: 'loading'
+			};
+		case 'get-ot-history-detail-success':
+			return {
+				...state,
+				otHistoryDetail: action.data,
+				status: 'loaded'
+			};
+		case 'get-ot-summary-list':
+			return {
+				...state,
+				summaryQuery: action.data,
+				status: 'loading'
+			};
+		case 'get-ot-summary-list-success':
+			return {
+				...state,
+				summaryList: state.summaryQuery.page === 1 ? action.data : state.summaryList.concat(action.data),
+				status: 'loaded'
 			};
 		default:
 			return state;

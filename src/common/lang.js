@@ -108,7 +108,7 @@ const lang = {
     REJECT_ALL: '全部拒绝',
     APPROVE: '通过',
     REJECT: '拒绝',
-    HISTORY: '历史',
+    HISTORY: '历史记录',
 
     // Overtime
     OT_SUMMARY: '加班汇总',

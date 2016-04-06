@@ -58,11 +58,59 @@ export default {
 		});
 	},
 
-	getEmpOtSummary() {
+	getEmpOtSummary(id) {
 		ajaxDispatch({
 			action: 'get-emp-ot-summary',
 			url: '/ess-ot-summary',
-			method: 'get'
+			method: 'get',
+			data: id ? { id } : null
+		});
+	},
+
+	getPendingRecords(query) {
+		ajaxDispatch({
+			action: 'get-ot-pending-records',
+			url: '/mss-ot-todolist',
+			method: 'get',
+			data: query
+		});
+	},
+
+	approveRecord(data) {
+		ajaxDispatch({
+			action: 'approve-ot-pending-record',
+			url: '/mss-ot-approve',
+			method: 'post',
+			data
+		});
+	},
+
+	getTeamMembers(query) {
+		ajaxDispatch({
+			action: 'get-ot-history-members',
+			url: '/ot-history-member',
+			method: 'get',
+			data: query
+		});
+	},
+
+	getHistoryDetail(id) {
+		ajaxDispatch({
+			action: 'get-ot-history-detail',
+			url: '/ot-approve-otdetail',
+			method: 'get',
+			data: {
+				id
+			}
+		});
+	},
+
+	getSummaryMembers(query) {
+		ajaxDispatch({
+			action: 'get-ot-summary-list',
+			url: '/team-info-page',
+			method: 'get',
+			data: query
 		});
 	}
 };
