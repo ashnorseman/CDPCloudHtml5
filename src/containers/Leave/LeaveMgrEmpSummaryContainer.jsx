@@ -36,7 +36,7 @@ class LeaveListContainer extends Component {
 
     return (
       <div>
-        <Header back title={getLang('LEAVE_SUMMARY')} />
+        <Header goBack title={getLang('LEAVE_SUMMARY')} />
         <Loader status={status} className='side-gap gap-t-lg' onLoad={this.loadMore}>
           {
             leaveSummary.map((card, index) => {

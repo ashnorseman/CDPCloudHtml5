@@ -45,6 +45,7 @@ import OvertimeMgrContainer from './containers/OverTime/OvertimeMgrContainer.jsx
 import OvertimeMgrPendingContainer from './containers/OverTime/OvertimeMgrPendingContainer';
 import OvertimeMgrPendingRecordContainer from './containers/OverTime/OvertimeMgrPendingRecordContainer';
 import OvertimeMgrSummaryContainer from './containers/OverTime/OvertimeMgrSummaryContainer';
+import OvertimeMgrSummaryRecordContainer from './containers/OverTime/OvertimeMgrSummaryRecordContainer';
 import OvertimeMgrHistoryContainer from './containers/OverTime/OvertimeMgrHistoryContainer';
 import OvertimeMgrHistoryDetailContainer from './containers/OverTime/OvertimeMgrHistoryDetailContainer';
 
@@ -113,10 +114,11 @@ React.render((
         <IndexRoute component={OvertimeMgrPendingContainer} />
         <Route path='pending' name='pending' component={OvertimeMgrPendingContainer} />
         <Route path='history' name='history' component={OvertimeMgrHistoryContainer} />
-        <Route path='history/:id' name='ot-history-detail' component={OvertimeMgrHistoryDetailContainer} />
         <Route path='summary' name='summary' component={OvertimeMgrSummaryContainer} />
       </Route>
+      <Route path='ot-mgr/history/:id' name='ot-history-detail' component={OvertimeMgrHistoryDetailContainer} />
       <Route path='ot-record-mgr/:id' name='ot-record-mgr' component={OvertimeMgrPendingRecordContainer} />
+      <Route path='ot-summary-mgr/:id' name='ot-summary-mgr' component={OvertimeMgrSummaryRecordContainer} />
 
       <Route path='manager' name='manager' component={ManagerContainer} routerProps={{header:true}} />
       <Route path='*' name='employee' component={EmployeeContainer} routerProps={{header:true}} />

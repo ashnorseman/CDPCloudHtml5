@@ -38,7 +38,7 @@ class OvertimeMgrSummary extends Component {
 	}
 
 	selectUser(id) {
-		location.hash = '/my-ot/summary/' + id;
+		location.hash = '/ot-summary-mgr/' + id;
 	}
 
 	render() {

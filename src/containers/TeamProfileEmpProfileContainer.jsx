@@ -79,7 +79,7 @@ class TeamProfileEmpProfile extends Component {
 
     return (
       <div>
-        <Header back title={baseMenu && baseMenu[0] && baseMenu[0].text} />
+        <Header goBack title={baseMenu && baseMenu[0] && baseMenu[0].text} />
 
         <Loader status={status} className='side-gap pad-b'>
           {/*

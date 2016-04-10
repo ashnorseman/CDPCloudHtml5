@@ -61,7 +61,7 @@ class OvertimePendingRecord extends Component {
 
 		return (
 			<div>
-				<Header back title={getLang('MY_OT')} />
+				<Header goBack title={getLang('MY_OT')} />
 
 				<Loader status={status} className='side-gap pad-b'>
 					{

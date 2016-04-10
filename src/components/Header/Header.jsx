@@ -16,13 +16,13 @@ import Dropdown from '../Dropdown/Dropdown.jsx';
 export default class Header extends Component {
 
   render() {
-    const { title, iconLeft, iconRight, onTapLeft, onTapRight, back, dropdown } = this.props;
+    const { title, iconLeft, iconRight, onTapLeft, onTapRight, back, goBack, dropdown } = this.props;
 
-    const buttonLeft = back
+    const buttonLeft = (back || goBack)
             ? <Button className='header-icon-left'
                       icon='cdp-left-arrow'
                       iconType='icomoon'
-                      onClick={this.back} />
+                      onClick={back ? this.back : this.goBack} />
             : iconLeft
                 ? <Button className='header-icon-left'
                           icon={iconLeft}
@@ -56,5 +56,13 @@ export default class Header extends Component {
    */
   back() {
     location.hash = '';
+  }
+
+
+  /**
+   * `Back` event for `back` icon
+   */
+  goBack() {
+    history.back();
   }
 }

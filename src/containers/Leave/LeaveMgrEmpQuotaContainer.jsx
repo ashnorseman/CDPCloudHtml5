@@ -38,7 +38,7 @@ class LeaveQuota extends Component {
 
     return (
       <div>
-        <Header back title={getLang('LEAVE_QUOTA')} />
+        <Header goBack title={getLang('LEAVE_QUOTA')} />
 
         <div className="side-gap gap-t gap-b">
 

@@ -52,7 +52,7 @@ class LeaveRecord extends Component {
 
     return (
       <div>
-        <Header back title={getLang('MY_APPLY')} />
+        <Header goBack title={getLang('MY_APPLY')} />
         <Loader status={status} className='side-gap gap-t-lg pad-b'>
           {
             baseInfo
