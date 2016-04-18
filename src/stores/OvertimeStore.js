@@ -120,6 +120,11 @@ class OvertimeStore extends ReduceStore {
 				summaryList: state.summaryQuery.page === 1 ? action.data : state.summaryList.concat(action.data),
 				status: 'loaded'
 			};
+		case 'toggle-overtime-record-selectable':
+			return {
+				...state,
+				selectable: !state.selectable
+			};
 		default:
 			return state;
 		}

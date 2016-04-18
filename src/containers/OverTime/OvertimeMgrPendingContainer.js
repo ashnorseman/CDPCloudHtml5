@@ -5,7 +5,13 @@
 
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
+import CSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
+import ajax, { ajaxDispatch } from '.././../common/utils/ajax';
+import { getItem as getLang } from '../../common/lang';
+
+import Button from '../../components/Button/Button.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 
@@ -31,25 +37,94 @@ class OvertimeMgrPending extends Component {
 		});
 	}
 
+
+	/**
+	 * Approve all entries
+	 */
+	approve(agreeOrNot) {
+		const inputs = [].slice.call(document.querySelectorAll('[type=checkbox]'))
+			.filter(check => check.checked)
+			.map(check => check.value);
+
+		ajax.post('/mss-ot-approve', {
+				idList: inputs.join(),
+				agreeOrNot
+			})
+			.then(() => {
+				location.reload();
+			});
+	}
+
+
+	/**
+	 * Load more
+	 */
 	loadMore() {
 		OvertimeDataUtils.getPendingRecords({
 			page: this.state.pendingQuery.page + 1
 		});
 	}
 
+
+	/**
+	 * Test if an item is selectable
+	 * @param {Object} item
+	 */
+	select(item) {
+		return true;
+	}
+
+
+	/**
+	 * Make records selectable / unselectable
+	 */
+	toggleSelectMode() {
+		dispatch({
+			type: 'toggle-overtime-record-selectable'
+		});
+	}
+
+
 	render() {
 		const {
 			pendingRecords = [],
-			status = 'loading'
+			status = 'loading',
+			selectable
 		} = this.state;
 
 		return (
-			<PullLoader className='side-gap'
-									status={status}
-									onLoad={::this.loadMore}>
-				<RecordList recordList={pendingRecords}
-										url='ot-record-mgr' />
-			</PullLoader>
+			<div>
+				<PullLoader className='side-gap'
+										status={status}
+										onLoad={::this.loadMore}>
+					<RecordList recordList={pendingRecords}
+											selectable={selectable && this.select}
+											url='ot-record-mgr' />
+				</PullLoader>
+
+				<Button icon='pencil' action onClick={this.toggleSelectMode} />
+
+				<CSSTransitionGroup component='div' transitionName='bottom-up'>
+					{
+						selectable ?
+							<nav className='tab tab-bottom leave-mgr-bottom'>
+								<label className='leave-mgr-select-all' />
+								<div className='row'>
+									<div className='col-1-2'>
+										<Button text={getLang('APPROVE_ALL')}
+														onTouchTap={this.approve.bind(null, true)} />
+									</div>
+									<div className='col-1-2'>
+										<Button text={getLang('REJECT_ALL')}
+														hollow
+														className='text-primary'
+														onTouchTap={this.approve.bind(null, false)} />
+									</div>
+								</div>
+							</nav> : null
+					}
+				</CSSTransitionGroup>
+			</div>
 		);
 	}
 }
