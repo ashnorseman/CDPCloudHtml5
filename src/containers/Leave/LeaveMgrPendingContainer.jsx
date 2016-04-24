@@ -95,6 +95,18 @@ class LeaveListContainer extends Component {
   }
 
 
+	/**
+   * Select / unselect all
+   */
+  toggleSelectAll(e) {
+    const selected = e.target.checked;
+
+    [].slice.call(document.querySelectorAll('[type=checkbox]')).forEach(checkbox => {
+      checkbox.checked = selected;
+    });
+  }
+
+
   render() {
     const { pendingRecords, selectable, status } = this.state;
 
@@ -112,7 +124,9 @@ class LeaveListContainer extends Component {
           {
             selectable ?
               <nav className='tab tab-bottom leave-mgr-bottom'>
-                <label className='leave-mgr-select-all' />
+                <label className='leave-mgr-select-all'>
+                  <input type="checkbox" value="" onChange={this.toggleSelectAll} />
+                </label>
                 <div className='row'>
                   <div className='col-1-2'>
                     <Button text={getLang('APPROVE_ALL')}

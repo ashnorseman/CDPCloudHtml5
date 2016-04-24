@@ -106,6 +106,18 @@ export default class LeaveList extends Component {
     // LeaveDataUtils.getLeaveTypes();
   }
 
+
+  /**
+   * Select / unselect all
+   */
+  toggleSelectAll(e) {
+    const selected = e.target.checked;
+
+    [].slice.call(document.querySelectorAll('[type=checkbox]')).forEach(checkbox => {
+      checkbox.checked = selected;
+    });
+  }
+
   render() {
     const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect } = this.props;
 
@@ -134,7 +146,9 @@ export default class LeaveList extends Component {
           {
             selectable ?
               <nav className='tab tab-bottom leave-mgr-bottom'>
-                <label className='leave-mgr-select-all' />
+                <label className='leave-mgr-select-all'>
+                  <input type="checkbox" value="" onChange={this.toggleSelectAll} />
+                </label>
                 <div className='row'>
                   <div className='col-1-2'>
                     <Button text={getLang('SUBMIT')} onTouchTap={this.submit} />
