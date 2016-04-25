@@ -10,7 +10,6 @@ import { getItem as getLang } from '../../common/lang';
 
 import Button from '../../components/Button/Button.jsx';
 import Form from '../../components/Form/Form.jsx';
-import Header from '../../components/Header/Header.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import PageOpener from '../../components/PageOpener/PageOpener.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
@@ -117,9 +116,7 @@ class Overtime extends Component {
 
     return (
       <div className='bottom-gap'>
-        <Header back title={getLang('MY_OT')} />
-
-				{this.props.children}
+        {this.props.children}
 
         <Tab items={tabSettings} bottom />
 

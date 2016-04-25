@@ -572,7 +572,7 @@ app.get('/:path?/:any?', function (req, res) {
 						}
 					}
 
-					return base.slice(0, 20);
+					return base.slice(0, 2);
 				}())
 			});
 		case 'ess-lv-detail':

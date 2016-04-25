@@ -105,7 +105,9 @@ class LeaveStore extends ReduceStore {
       });
     case 'get-mgr-leave-empList-success':
       return assign({}, state, {
-        leaveEmpList: state.query.loadMore ? state.leaveEmpList.concat(action.data) : action.data,
+        leaveEmpList: (state.query.loadMore || (state.query.page == 1))
+          ? state.leaveEmpList.concat(action.data)
+          : action.data,
         status: (action.data.length < state.query.pageSize)
           ? 'no-more-data'
           : 'loaded'

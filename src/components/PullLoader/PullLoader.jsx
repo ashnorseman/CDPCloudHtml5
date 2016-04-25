@@ -56,7 +56,7 @@ export default class PullLoader extends Component {
             (status === 'loaded')
               ? getLang('PULL_TO_LOAD')
               : (status === 'loading')
-                ? <i className='fa fa-spinner fa-pulse' />
+                ? <i className='fa fa-spinner fa-pulse text-primary' />
                 : <span><i className='fa fa-meh-o' /> {getLang('NO_MORE_DATA')}</span>
           }
         </div>

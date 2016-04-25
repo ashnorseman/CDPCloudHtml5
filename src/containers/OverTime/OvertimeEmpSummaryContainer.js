@@ -5,7 +5,9 @@
 
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import { getItem as getLang } from '../../common/lang';
 
+import Header from '../../components/Header/Header.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 
@@ -36,18 +38,22 @@ class OvertimeEmpSummary extends Component {
 		} = this.state;
 
 		return (
-			<Loader status={status} className='side-gap gap-t pad-b'>
-				{
-					empOtSummary.map((item, index) => {
-						return (
-							<div key={index}>
-								<h2 className="info-card-heading gap-b">{item.title}</h2>
-								<InfoCard items={item.items} />
-							</div>
-						);
-					})
-				}
-			</Loader>
+			<div>
+				<Header back title={getLang('MY_OT')} />
+
+				<Loader status={status} className='side-gap gap-t pad-b'>
+					{
+						empOtSummary.map((item, index) => {
+							return (
+								<div key={index}>
+									<h2 className="info-card-heading gap-b">{item.title}</h2>
+									<InfoCard items={item.items} />
+								</div>
+							);
+						})
+					}
+				</Loader>
+			</div>
 		);
 	}
 }

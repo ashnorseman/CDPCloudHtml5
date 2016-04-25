@@ -6,11 +6,36 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
+import { getItem as getLang } from '../../common/lang';
+
+import Header from '../../components/Header/Header.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 
 import OvertimeStore from '../../stores/OvertimeStore';
 import OvertimeDataUtils from '../../data-utils/OvertimeDataUtils';
+
+
+const stateDropdown = {
+	items: [
+		{
+			text: '编辑中',
+			name: 'edit'
+		},
+		{
+			text: '审批中',
+			name: 'approving'
+		},
+		{
+			text: '已审批',
+			name: 'approved'
+		},
+		{
+			text: '已拒绝',
+			name: 'rejected'
+		}
+	]
+};
 
 
 class OvertimeEmpList extends Component {
@@ -27,8 +52,16 @@ class OvertimeEmpList extends Component {
 		super(props);
 
 		OvertimeDataUtils.getEmpOtList({
-			page: 1
+			page: 1,
+			state: 'edit'
 		});
+
+		stateDropdown.onClickItem = (state) => {
+			OvertimeDataUtils.getEmpOtList({
+				page: 1,
+				state
+			});
+		};
 	}
 
 
@@ -61,6 +94,12 @@ class OvertimeEmpList extends Component {
 
 		return (
 			<div>
+				<Header
+					back
+					title={getLang('MY_OT')}
+					dropdown={stateDropdown}
+				/>
+
 				<PullLoader className='side-gap'
 										status={status}
 										onLoad={::this.loadMore}>

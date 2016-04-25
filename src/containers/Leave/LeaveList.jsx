@@ -69,12 +69,40 @@ import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 //   }
 // ];
 
+const stateDropdown = {
+  items: [
+    {
+      text: '编辑中',
+      name: 'edit'
+    },
+    {
+      text: '审批中',
+      name: 'approving'
+    },
+    {
+      text: '已审批',
+      name: 'approved'
+    },
+    {
+      text: '已拒绝',
+      name: 'rejected'
+    }
+  ]
+};
+
+
 export default class LeaveList extends Component {
 
   constructor(props) {
     super(props);
     this.filter = this.filter.bind(this);
     this.loadMore = this.loadMore.bind(this);
+
+    stateDropdown.onClickItem = (state) => {
+      this.getEmpLeaveRecords({
+        state
+      });
+    };
   }
 
   componentDidMount() {
@@ -123,7 +151,11 @@ export default class LeaveList extends Component {
 
     return (
       <div>
-        <Header back title={getLang('MY_APPLY')} />
+        <Header
+          back
+          title={getLang('MY_APPLY')}
+          dropdown={stateDropdown}
+        />
 
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
@@ -190,7 +222,7 @@ export default class LeaveList extends Component {
   getEmpLeaveRecords(params = {}) {
     params.page = 1;
     params.loadMore = false;
-    params.state = 'edit';
+    params.state || (params.state = 'edit');
 
     dispatch({
       type: this._type,
