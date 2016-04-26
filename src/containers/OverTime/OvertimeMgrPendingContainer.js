@@ -106,8 +106,7 @@ class OvertimeMgrPending extends Component {
 
 		return (
 			<div>
-				<PullLoader className='side-gap'
-										status={status}
+				<PullLoader status={status}
 										onLoad={::this.loadMore}>
 					<RecordList recordList={pendingRecords}
 											selectable={selectable && this.select}

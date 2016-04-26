@@ -1,10 +1,21 @@
 /**
  * Created by AshZhang on 15/10/10.
  */
- 
+
 
 @import '../../common/styles/_variables';
 
+
+.record-list {
+
+  > li {
+    padding: @gap / 2 @gap;
+
+    &:nth-child(even) {
+      background: mix(@color-bg-light, @color-bg-gray);
+    }
+  }
+}
 
 .record-list-selectable {
   list-style: none;

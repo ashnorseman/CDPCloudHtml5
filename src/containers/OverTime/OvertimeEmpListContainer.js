@@ -100,8 +100,7 @@ class OvertimeEmpList extends Component {
 					dropdown={stateDropdown}
 				/>
 
-				<PullLoader className='side-gap'
-										status={status}
+				<PullLoader status={status}
 										onLoad={::this.loadMore}>
 					<RecordList recordList={empOtList}
 											url={'/my-ot/record'}

@@ -112,7 +112,7 @@ class LeaveListContainer extends Component {
 
     return (
       <div>
-        <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
+        <PullLoader status={status} onLoad={this.loadMore}>
           <RecordList recordList={pendingRecords}
                       selectable={selectable && this.select}
                       url='leave-record-mgr' />

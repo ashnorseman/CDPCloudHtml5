@@ -159,7 +159,7 @@ export default class LeaveList extends Component {
 
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
-        <PullLoader status={status} className='side-gap' onLoad={this.loadMore}>
+        <PullLoader status={status} onLoad={this.loadMore}>
           {
             mgr
               ? <div className="gap-t-lg">
