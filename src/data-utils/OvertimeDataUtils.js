@@ -85,9 +85,9 @@ export default {
 		});
 	},
 
-	getTeamMembers(query) {
+	getHistoryList(query) {
 		ajaxDispatch({
-			action: 'get-ot-history-members',
+			action: 'get-ot-history-list',
 			url: '/ot-history-member',
 			method: 'get',
 			data: query

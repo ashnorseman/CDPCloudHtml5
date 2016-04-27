@@ -12,7 +12,7 @@ import LeaveList from './LeaveList.jsx';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
-import UserList from '../../components/UserList/UserList.jsx';
+import RecordList from '../../components/RecordList/RecordList.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 
 
@@ -21,7 +21,7 @@ class LeaveMgrQuota extends Component {
   constructor(props) {
     super(props);
 
-    this.getTeamMembers();
+    LeaveDataUtils.getMgrLeaveHistory();
   }
 
   static getStores() {
@@ -29,48 +29,28 @@ class LeaveMgrQuota extends Component {
   }
 
   static calculateState() {
-    const state = LeaveStore.getState();
-
-    return {
-      leaveEmpList: state.leaveEmpList,
-      status: state.status
-    };
+    return LeaveStore.getState();
   }
 
   render() {
-    const { leaveEmpList, status } = this.state;
+    const { leaveRecords, status } = this.state;
 
     return (
       <PullLoader className='side-gap gap-t pad-b'
                   status={status}
                   onLoad={this.loadMore}>
-        <UserList userList={leaveEmpList}
-                  onSelectUser={this.selectUser} />
+        <RecordList recordList={leaveRecords} />
       </PullLoader>
     );
   }
 
 
-  getTeamMembers(query = {}) {
-    query.page = 1;
-    query.pageSize = 16;
-    query.loadMore = false;
-
-    LeaveDataUtils.getLeaveEmpList(query);
-  }
-
-
   loadMore({ page = 1, ...props } = {}) {
-    LeaveDataUtils.getLeaveEmpList({
+    LeaveDataUtils.getMgrLeaveHistory({
       page: page + 1,
       ...props,
       loadMore: true
     });
-  }
-
-
-  selectUser(id) {
-    location.hash = '/leave-mgr/history/' + id;
   }
 }
 

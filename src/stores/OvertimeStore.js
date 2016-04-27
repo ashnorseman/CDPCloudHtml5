@@ -85,16 +85,16 @@ class OvertimeStore extends ReduceStore {
 			};
 		case 'approve-ot-pending-record-success':
 			return history.back();
-		case 'get-ot-history-members':
+		case 'get-ot-history-list':
 			return {
 				...state,
 				otHistoryQuery: action.data,
 				status: 'loading'
 			};
-		case 'get-ot-history-members-success':
+		case 'get-ot-history-list-success':
 			return {
 				...state,
-				otHistoryEmpList: state.otHistoryQuery.page === 1 ? action.data : state.otHistoryEmpList.concat(action.data),
+				otHistoryList: state.otHistoryQuery.page === 1 ? action.data : state.otHistoryList.concat(action.data),
 				status: 'loaded'
 			};
 		case 'get-ot-history-detail':

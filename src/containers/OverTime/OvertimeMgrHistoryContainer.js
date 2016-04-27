@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
-import UserList from '../../components/UserList/UserList.jsx';
+import RecordList from '../../components/RecordList/RecordList.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 
 import OvertimeStore from '../../stores/OvertimeStore';
@@ -26,24 +26,20 @@ class OvertimeMgrHistory extends Component {
 	constructor(props) {
 		super(props);
 
-		OvertimeDataUtils.getTeamMembers({
+		OvertimeDataUtils.getHistoryList({
 			page: 1
 		});
 	}
 
 	loadMore() {
-		OvertimeDataUtils.getTeamMembers({
+		OvertimeDataUtils.getHistoryList({
 			page: this.state.otHistoryQuery.page + 1
 		});
 	}
 
-	selectUser(id) {
-		location.hash = '/ot-mgr/history/' + id;
-	}
-
 	render() {
 		const {
-			otHistoryEmpList = [],
+			otHistoryList = [],
 			status = 'loading'
 		} = this.state;
 
@@ -51,8 +47,7 @@ class OvertimeMgrHistory extends Component {
 			<PullLoader className='side-gap gap-t pad-b'
 									status={status}
 									onLoad={::this.loadMore}>
-				<UserList userList={otHistoryEmpList}
-									onSelectUser={this.selectUser} />
+				<RecordList recordList={otHistoryList} />
 			</PullLoader>
 		);
 	}
