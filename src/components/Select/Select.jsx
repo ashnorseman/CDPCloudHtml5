@@ -31,8 +31,8 @@ export default class Select extends Component {
           placeholder ? <option value=''>{placeholder}</option> : null
         }
         {
-          options.map(({ text, value }, index) => {
-            return <option value={value} key={index}>{text}</option>;
+          options.map(({ text, value, name }, index) => {
+            return <option value={name || value} key={index}>{text}</option>;
           })
         }
       </select>

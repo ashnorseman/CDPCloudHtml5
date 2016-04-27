@@ -204,13 +204,18 @@ export default {
 	/**
    * 获取休假汇总
    * @param id
+   * @param query
    */
-  getLeaveSummary(id) {
+  getLeaveSummary(id, query) {
+    if (query && id) {
+      query.append('id', id);
+    }
+
     ajaxDispatch({
       action: 'get-leave-summary',
       url: '/ess-lv-summary',
-      method: 'get',
-      data: id ? { id } : {}
+      method: 'post',
+      data: query || (id ? { id } : {})
     });
   },
 

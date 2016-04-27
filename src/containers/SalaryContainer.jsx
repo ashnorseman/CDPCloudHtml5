@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import dispatcher, { dispatch } from '../dispatcher/Dispatcher';

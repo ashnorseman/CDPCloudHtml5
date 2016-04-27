@@ -109,6 +109,9 @@ const lang = {
     APPROVE: '通过',
     REJECT: '拒绝',
     HISTORY: '审批历史',
+    APP_DATE: '申请日期',
+    START_DATE: '开始日期',
+    END_DATE: '结束日期',
 
     // Overtime
     OT_SUMMARY: '加班汇总',
@@ -216,6 +219,9 @@ const lang = {
     APPROVE: 'Approve',
     REJECT: 'Reject',
     HISTORY: 'History',
+    APP_DATE: '申请日期',
+    START_DATE: '开始日期',
+    END_DATE: '结束日期',
 
     // Overtime
     OT_SUMMARY: 'Summary',
@@ -323,6 +329,9 @@ const lang = {
     APPROVE: '通し',
     REJECT: '拒否',
     HISTORY: '历史',
+    APP_DATE: '申请日期',
+    START_DATE: '开始日期',
+    END_DATE: '结束日期',
 
     // Overtime
     OT_SUMMARY: 'まとめ',
