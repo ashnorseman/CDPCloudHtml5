@@ -27,11 +27,11 @@ const stateDropdown = {
 			name: 'approving'
 		},
 		{
-			text: '已审批',
+			text: '已批准',
 			name: 'approved'
 		},
 		{
-			text: '已拒绝',
+			text: '不批准',
 			name: 'rejected'
 		}
 	]

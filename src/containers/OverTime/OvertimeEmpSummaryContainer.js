@@ -57,23 +57,23 @@ class OvertimeEmpSummary extends Component {
               <div className='col-1-2'>
                 <FormControl label={getLang('STATUS')}>
                   <Select options={[
-                                              {
-                                                text: '编辑中',
-                                                name: 'edit'
-                                              },
-                                              {
-                                                text: '审批中',
-                                                name: 'approving'
-                                              },
-                                              {
-                                                text: '已审批',
-                                                name: 'approved'
-                                              },
-                                              {
-                                                text: '已拒绝',
-                                                name: 'rejected'
-                                              }
-                                            ]}
+                            {
+                              text: '编辑中',
+                              name: 'edit'
+                            },
+                            {
+                              text: '审批中',
+                              name: 'approving'
+                            },
+                            {
+                              text: '已批准',
+                              name: 'approved'
+                            },
+                            {
+                              text: '不批准',
+                              name: 'rejected'
+                            }
+                          ]}
                           name='status'
                           id='status'/>
                 </FormControl>

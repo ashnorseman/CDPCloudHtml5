@@ -306,7 +306,7 @@ const filterItems = [
     name: 'status',
     choices: [
       {
-        text: '已审批',
+        text: '已批准',
         name: 'approved'
       },
       {
