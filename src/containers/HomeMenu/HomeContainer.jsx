@@ -155,7 +155,7 @@ class Home extends Component {
                       : null
                   }
                   {
-                    (hasHeader && menu.mss)
+                    (hasHeader && menu.mss && menu.ess)
                       ? <Tab items={tabItems}></Tab>
                       : null
                   }
