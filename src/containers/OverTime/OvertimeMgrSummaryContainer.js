@@ -48,7 +48,7 @@ class OvertimeMgrSummary extends Component {
 		} = this.state;
 
 		return (
-			<PullLoader className='side-gap gap-t pad-b'
+			<PullLoader className='pad-b'
 									status={status}
 									onLoad={::this.loadMore}>
 				<UserList userList={summaryList}

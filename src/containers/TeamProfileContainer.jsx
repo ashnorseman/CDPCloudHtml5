@@ -61,7 +61,7 @@ class TeamProfile extends Component {
 
         {/*<Sorter items={sortItems} defaultItem='name' onSort={this.sort} />*/}
 
-        <PullLoader status={status} className='side-gap gap-t pad-b' onLoad={this.loadMore}>
+        <PullLoader status={status} className='pad-b' onLoad={this.loadMore}>
           <UserList userList={empList} onSelectUser={this.selectUser} />
         </PullLoader>
       </div>

@@ -41,7 +41,7 @@ class LeaveMgrQuota extends Component {
     const { quotaTeamList, status } = this.state;
 
     return (
-      <PullLoader className='side-gap gap-t pad-b'
+      <PullLoader className='pad-b'
                   status={status}
                   onLoad={this.loadMore}>
         <UserList userList={quotaTeamList}

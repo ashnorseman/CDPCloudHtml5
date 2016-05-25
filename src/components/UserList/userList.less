@@ -12,7 +12,11 @@
 .user-list {
 
   .user-info {
-    margin-bottom: @gap;
+    padding: @gap @gap;
+
+    &:nth-child(even) {
+      background: mix(@color-bg-gray, @color-bg-light);
+    }
   }
 
   .user-info-avatar {
