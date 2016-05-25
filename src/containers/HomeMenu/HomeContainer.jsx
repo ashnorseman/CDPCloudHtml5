@@ -124,7 +124,7 @@ class Home extends Component {
           }} />
           <div>
             <span>{picInfo.name}</span>
-            <span className="text-lighter text-sm gap-l">{picInfo.position}</span>
+            <div className="text-lighter text-sm gap-l">{picInfo.position}</div>
           </div>
         </div>
       : null;
