@@ -125,6 +125,12 @@ class OvertimeStore extends ReduceStore {
 				...state,
 				selectable: !state.selectable
 			};
+    case 'get-leave-summary-filters-success':
+			return {
+        ...state,
+        otSummaryConfig: action.data.formConfig,
+        status: 'loaded'
+      };
 		default:
 			return state;
 		}

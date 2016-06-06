@@ -58,12 +58,16 @@ export default {
 		});
 	},
 
-	getEmpOtSummary(id) {
+	getEmpOtSummary(id, query) {
+		if (query && id) {
+			query.append('id', id);
+		}
+
 		ajaxDispatch({
 			action: 'get-emp-ot-summary',
 			url: '/ess-ot-summary',
-			method: 'get',
-			data: id ? { id } : null
+			method: 'post',
+			data: query || (id ? { id } : {})
 		});
 	},
 

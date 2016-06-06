@@ -221,6 +221,19 @@ export default {
 
 
   /**
+   * 获取汇总筛选表
+   */
+  getSummaryFilters(data) {
+    ajaxDispatch({
+      action: 'get-leave-summary-filters',
+      url: '/filter-config-form',
+      method: 'get',
+      data: data
+    });
+  },
+
+
+  /**
    * Approve all records
    * @param {Array} records
    */

@@ -190,6 +190,11 @@ class LeaveStore extends ReduceStore {
     case 'leave-record-reject-success':
       history.back();
       return state;
+    case 'get-leave-summary-filters-success':
+      return assign({}, state, {
+        leaveSummaryConfig: action.data.formConfig,
+        status: 'loaded'
+      });
     }
 
     return state;
