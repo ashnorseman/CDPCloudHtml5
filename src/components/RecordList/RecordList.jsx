@@ -18,7 +18,7 @@ const statusText = [getLang('REJECTED'), getLang('APPROVED'), getLang('PENDING')
 export default class RecordList extends Component {
 
   render() {
-    const { url, recordList = [], selectable } = this.props;
+    const { url, recordList = [], selectable, href } = this.props;
 
     return (
       <ul className={'record-list' + (selectable ? ' record-list-selectable' : '')}>
@@ -31,7 +31,14 @@ export default class RecordList extends Component {
                     ? <label className='record-item-select'><input type='checkbox' defaultChecked={!!record.checked} onChange={this.toggleSelect.bind(this, record)} value={record.id} /></label>
                     : null
                 }
-                <a className='record-item' href={`#/${url}/${record.id}`}>
+                <a className='record-item' href={href === null ? null : `#/${url}/${record.id}`}>
+                  {
+                    record.userName
+                      ? <span className='record-item-name'>{record.userName}
+                          <span className="text-lighter text-sm gap-l">{record.department}</span>
+                        </span>
+                      : null
+                  }
                   <span className='record-item-name'>{record.Type}</span>
                   <span className='record-item-time'>{record.Start} - {record.End}</span>
                   <span className='record-item-hours'>{record.hours}</span>

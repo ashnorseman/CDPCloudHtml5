@@ -47,7 +47,7 @@ class OvertimeMgrHistory extends Component {
 			<PullLoader className='pad-b'
 									status={status}
 									onLoad={::this.loadMore}>
-				<RecordList recordList={otHistoryList} />
+				<RecordList recordList={otHistoryList} href={null} />
 			</PullLoader>
 		);
 	}

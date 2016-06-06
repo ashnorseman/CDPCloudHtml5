@@ -39,7 +39,7 @@ class LeaveMgrQuota extends Component {
       <PullLoader className='pad-b'
                   status={status}
                   onLoad={this.loadMore}>
-        <RecordList recordList={leaveRecords} />
+        <RecordList recordList={leaveRecords} href={null} />
       </PullLoader>
     );
   }
