@@ -16,28 +16,6 @@ import OvertimeStore from '../../stores/OvertimeStore';
 import OvertimeDataUtils from '../../data-utils/OvertimeDataUtils';
 
 
-const stateDropdown = {
-	items: [
-		{
-			text: '编辑中',
-			name: 'edit'
-		},
-		{
-			text: '审批中',
-			name: 'approving'
-		},
-		{
-			text: '已批准',
-			name: 'approved'
-		},
-		{
-			text: '不批准',
-			name: 'rejected'
-		}
-	]
-};
-
-
 class OvertimeEmpList extends Component {
 
 	static getStores() {
@@ -56,12 +34,7 @@ class OvertimeEmpList extends Component {
 			state: 'edit'
 		});
 
-		stateDropdown.onClickItem = (state) => {
-			OvertimeDataUtils.getEmpOtList({
-				page: 1,
-				state
-			});
-		};
+		OvertimeDataUtils.getFilter(JSON.parse(localStorage.getItem('companyCode')));
 	}
 
 
@@ -89,15 +62,25 @@ class OvertimeEmpList extends Component {
 		const {
 			empOtList = [],
 			selectable,
-			status = 'loading'
+			status = 'loading',
+			filter
 		} = this.state;
+
+		if (filter) {
+			filter.onClickItem = (state) => {
+				OvertimeDataUtils.getEmpOtList({
+					page: 1,
+					state
+				});
+			};
+		}
 
 		return (
 			<div>
 				<Header
 					back
 					title={getLang('MY_OT')}
-					dropdown={stateDropdown}
+					dropdown={filter}
 				/>
 
 				<PullLoader status={status}

@@ -9,17 +9,21 @@ import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../../common/lang';
 import LeaveList from './LeaveList.jsx';
+import UserStore from '../../stores/UserStore';
 import LeaveStore from '../../stores/LeaveStore';
 
 
 class LeaveListContainer extends Component {
 
   static getStores() {
-    return [LeaveStore];
+    return [LeaveStore, UserStore];
   }
 
   static calculateState() {
-    return LeaveStore.getState();
+    return {
+      ...LeaveStore.getState(),
+      user: UserStore.getState()
+    };
   }
 
   render() {

@@ -89,7 +89,7 @@ function parseResponse(res, dataType) {
  */
 function checkSuccessFalse(res) {
   if (res && (res.res !== false)) {
-    return res.val;
+    return res.val || res;
   } else {
     errorCallbacks.forEach((cb) => {
       cb.call(null, res.status, res.error);

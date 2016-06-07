@@ -25,7 +25,7 @@ export default class RecordList extends Component {
         {
           recordList.map((record, index) => {
             return (
-              <li key={index}>
+              <li key={index} className={record.userName ? 'with-name' : null}>
                 {
                   selectable && selectable(record)
                     ? <label className='record-item-select'><input type='checkbox' defaultChecked={!!record.checked} onChange={this.toggleSelect.bind(this, record)} value={record.id} /></label>

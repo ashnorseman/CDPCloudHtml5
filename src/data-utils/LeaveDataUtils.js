@@ -296,5 +296,16 @@ export default {
         agreeOrNot: false
       }
     });
+  },
+
+
+  getFilter(companyCode) {
+    ajax.get('/custom/config/' + companyCode + '_LV_STATE.json')
+      .then((res) => {
+        dispatch({
+          type: 'get-leave-filter-success',
+          data: res.items
+        });
+      });
   }
 };

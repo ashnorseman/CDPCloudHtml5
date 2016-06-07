@@ -116,5 +116,15 @@ export default {
 			method: 'get',
 			data: query
 		});
+	},
+
+	getFilter(companyCode) {
+		ajax.get('/custom/config/' + companyCode + '_LV_STATE.json')
+			.then((res) => {
+				dispatch({
+					type: 'get-ot-filter-success',
+					data: res.items
+				});
+			});
 	}
 };

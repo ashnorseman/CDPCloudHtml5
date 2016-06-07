@@ -42,6 +42,7 @@ class UserStore extends ReduceStore {
       const data = assign({}, state, {
         loggedIn: true,
         basicInfo: assign(UserDataUtils.readCookie(), action.data.userInfo),
+        companyCode: action.data.userInfo.companyCode,
         langList: action.data.lang,
         lang: action.data.lang[0].langCode
       });
@@ -49,6 +50,7 @@ class UserStore extends ReduceStore {
       if (!action.data.userInfo.userFlag) localStorage.needConfirmMobile = 1;
       if (!action.data.userInfo.userInitFlag) localStorage.needResetPassword = 1;
       localStorage.langList = JSON.stringify(action.data.lang);
+      localStorage.companyCode = JSON.stringify(action.data.userInfo.companyCode);
       UserDataUtils.getUserMenu();
       return data;
     case 'login-failed':

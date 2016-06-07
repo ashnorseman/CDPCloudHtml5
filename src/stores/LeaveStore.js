@@ -6,6 +6,7 @@
 import { ReduceStore } from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
 import assign from 'object-assign';
+import { getLang } from '../common/lang';
 
 import LeaveDataUtils from '../data-utils/LeaveDataUtils';
 
@@ -89,6 +90,19 @@ class LeaveStore extends ReduceStore {
       return assign({}, state, {
         leaveTypes: action.data
       });
+    case 'get-leave-filter-success':
+      return {
+        ...state,
+        filter: {
+          items: action.data.map(item => {
+            return {
+              ...item,
+              text: item[getLang() + '_text'],
+              name: item.value
+            };
+          })
+        }
+      };
     case 'get-emp-leave-records':
       const newQuery = assign(state.query, action.data);
 

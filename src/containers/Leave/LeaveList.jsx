@@ -22,87 +22,12 @@ import UserList from '../../components/UserList/UserList.jsx';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
-// const filter = [
-//   {
-//     text: getLang('TIME'),
-//     name: 'time',
-//     choices: [
-//       {
-//         text: getLang('THIS_WEEK'),
-//         name: 'thisMonth'
-//       },
-//       {
-//         text: getLang('THIS_MONTH'),
-//         name: 'all'
-//       },
-//       {
-//         text: getLang('THIS_YEAR'),
-//         name: 'all'
-//       },
-//       {
-//         text: getLang('ALL'),
-//         name: 'all'
-//       }
-//     ]
-//   },
-//   {
-//     text: getLang('TYPE'),
-//     name: 'type'
-//   },
-//   {
-//     text: getLang('STATUS'),
-//     name: 'status',
-//     choices: [
-//       {
-//         text: getLang('APPROVED'),
-//         name: 'approved'
-//       },
-//       {
-//         text: getLang('PENDING'),
-//         name: 'pending'
-//       },
-//       {
-//         text: getLang('REJECTED'),
-//         name: 'rejected'
-//       }
-//     ]
-//   }
-// ];
-
-const stateDropdown = {
-  items: [
-    {
-      text: '编辑中',
-      name: 'edit'
-    },
-    {
-      text: '审批中',
-      name: 'approving'
-    },
-    {
-      text: '已批准',
-      name: 'approved'
-    },
-    {
-      text: '不批准',
-      name: 'rejected'
-    }
-  ]
-};
-
-
 export default class LeaveList extends Component {
 
   constructor(props) {
     super(props);
     this.filter = this.filter.bind(this);
     this.loadMore = this.loadMore.bind(this);
-
-    stateDropdown.onClickItem = (state) => {
-      this.getEmpLeaveRecords({
-        state
-      });
-    };
   }
 
   componentDidMount() {
@@ -115,23 +40,7 @@ export default class LeaveList extends Component {
     }
 
     this.getEmpLeaveRecords(defaultFilter);
-
-    // Init default filter
-    // if (defaultFilter) {
-    //   let active = filter.filter((item) => {
-    //     return item.name === defaultFilter.type;
-    //   })[0];
-		//
-    //   if (active) {
-    //     active.active = true;
-		//
-    //     active.choices.forEach((choice) => {
-    //       choice.active = (defaultFilter.choice === choice.name);
-    //     });
-    //   }
-    // }
-
-    // LeaveDataUtils.getLeaveTypes();
+    LeaveDataUtils.getFilter(JSON.parse(localStorage.getItem('companyCode')));
   }
 
 
@@ -147,14 +56,22 @@ export default class LeaveList extends Component {
   }
 
   render() {
-    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect } = this.props;
+    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect, filter } = this.props;
+
+    if (filter) {
+      filter.onClickItem = (state) => {
+        this.getEmpLeaveRecords({
+          state
+        });
+      };
+    }
 
     return (
       <div>
         <Header
           back
           title={getLang('MY_APPLY')}
-          dropdown={stateDropdown}
+          dropdown={filter}
         />
 
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}

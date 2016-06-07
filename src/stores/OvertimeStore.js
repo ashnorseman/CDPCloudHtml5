@@ -5,6 +5,7 @@
 
 import { ReduceStore } from 'flux/utils';
 import Dispatcher from '../dispatcher/Dispatcher';
+import { getLang } from '../common/lang';
 
 
 class OvertimeStore extends ReduceStore {
@@ -131,7 +132,20 @@ class OvertimeStore extends ReduceStore {
         otSummaryConfig: action.data.formConfig,
         status: 'loaded'
       };
-		default:
+		case 'get-ot-filter-success':
+      return {
+        ...state,
+        filter: {
+          items: action.data.map(item => {
+            return {
+              ...item,
+              text: item[getLang() + '_text'],
+              name: item.value
+            };
+          })
+        }
+      };
+    default:
 			return state;
 		}
 	}

@@ -27,6 +27,7 @@
 }
 
 .record-item {
+  color: inherit;
   display: block;
   padding: @gap / 2 0;
   position: relative;
@@ -67,11 +68,19 @@
   font-size: @font-sm;
   position: absolute;
     right: 0;
+    top: @gap / 2;
+
+  .with-name & {
     top: @font-base * @line-height + @gap / 2 + @font-base / 2;
+  }
 }
 
 .record-item-status {
-  top: @font-base * @line-height * 2 + @gap / 2 + @font-base / 2 + 0.1rem;
+  top: @font-base * @line-height + @gap / 2  + 0.1rem;
+
+  .with-name & {
+    top: @font-base * @line-height * 2 + @gap / 2 + @font-base / 2 + 0.1rem;
+  }
 }
 
 .record-item-status-1 {
