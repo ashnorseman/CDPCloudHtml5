@@ -164,7 +164,7 @@ export default {
    * @param {Object} [params]
    */
   getMgrLeaveHistory(params) {
-    ajax.get('/lv-history-member', params)
+    ajax.get('/lv-approve-his', params)
       .then((res) => {
         dispatch({
           type: 'get-mgr-leave-history-success',

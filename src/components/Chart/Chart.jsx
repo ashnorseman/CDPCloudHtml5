@@ -11,7 +11,11 @@ import React, { Component } from 'react';
 import ChartJs from '../../../bower_components/Chart.js/Chart.min.js';
 
 
-const colorList = ['#5dc9e6', '#f773bd', '#fdbb7d', '#6dded5', '#a06081'];
+const colorList = [
+  '#5dc9e6', '#f773bd', '#fdbb7d', '#6dded5', '#a06081',
+  '#7fca92', '#fb755c', '#bd8cc3', '#f875a7', '#8cbeb3',
+  '#f0c868', '#9ad9de', '#f99bc0', '#a5cf85', '#fca793'
+];
 
 
 export default class Chart extends Component {

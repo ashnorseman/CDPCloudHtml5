@@ -23,17 +23,13 @@ export default class UserInfo extends Component {
 
     userInfo.url && (userInfo.avatar = userInfo.url);
 
-    const avatarStyle = userInfo.avatar ? {
-                          backgroundImage: `url(${userInfo.avatar})`
-                        } : null,
-          userClass = 'user-info clearfix' +
+    const userClass = 'user-info clearfix' +
                         (className ? ' ' + className : '') +
                         (simple ? ' user-info-simple' : '');
 
     return (
       <section className={userClass}
                onTouchTap={onSelectUser ? onSelectUser.bind(null, userInfo.id) : null}>
-        <div className='user-info-avatar' style={avatarStyle}></div>
         <div className='user-info-main clearfix'>
           <div className='user-info-name'>{userInfo.name || userInfo.firField}</div>
           <div className='user-info-pos'>{userInfo.position || userInfo.secField}</div>

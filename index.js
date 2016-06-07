@@ -649,8 +649,9 @@ app.get('/:path?/:any?', function (req, res) {
         }],
         "res": true
       });
+    case 'lv-approve-his':
+    case 'ot-approve-his':
     case 'lv-history-member':
-    case 'lv-summary-member':
     case 'ot-history-member':
       return res.json({
         "val": [{
@@ -719,6 +720,8 @@ app.get('/:path?/:any?', function (req, res) {
         }],
         "res": true
       });
+    case 'lv-summary-member':
+    case 'ot-summary-member':
     case 'team-info-page':
       return res.json({
         res: true,
@@ -1114,6 +1117,45 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
           //"payCharts": ""
           "payCharts": [{
             "payrollChartsName": "NetMonthly Income",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
+            "payrollTotal": 11287.9
+          }, {
+            "payrollChartsName": "NetMonthly Outcome",
             "payrollTotal": 11287.9
           }, {
             "payrollChartsName": "NetMonthly Outcome",

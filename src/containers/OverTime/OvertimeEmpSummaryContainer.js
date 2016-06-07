@@ -30,7 +30,9 @@ class OvertimeEmpSummary extends Component {
   constructor(props) {
     super(props);
 
-    LeaveDataUtils.getSummaryFilters();
+    LeaveDataUtils.getSummaryFilters({
+      type: 'FILTER_OT_SUMMARY'
+    });
     // OvertimeDataUtils.getEmpOtSummary(this.props.routeParams.id);
   }
 

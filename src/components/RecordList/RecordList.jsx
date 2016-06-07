@@ -34,7 +34,7 @@ export default class RecordList extends Component {
                 <a className='record-item' href={href === null ? null : `#/${url}/${record.id}`}>
                   {
                     record.userName
-                      ? <span className='record-item-name'>{record.userName}
+                      ? <span className='record-item-name-bar'>{record.userName}
                           <span className="text-lighter text-sm gap-l">{record.department}</span>
                         </span>
                       : null

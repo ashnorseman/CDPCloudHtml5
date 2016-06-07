@@ -92,7 +92,7 @@ export default {
 	getHistoryList(query) {
 		ajaxDispatch({
 			action: 'get-ot-history-list',
-			url: '/ot-history-member',
+			url: '/ot-approve-his',
 			method: 'get',
 			data: query
 		});
@@ -112,7 +112,7 @@ export default {
 	getSummaryMembers(query) {
 		ajaxDispatch({
 			action: 'get-ot-summary-list',
-			url: '/team-info-page',
+			url: '/ot-summary-member',
 			method: 'get',
 			data: query
 		});
