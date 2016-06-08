@@ -13,12 +13,16 @@ import CSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import { getItem as getLang } from '../../common/lang';
 import Filter from '../../components/Filter/Filter.jsx';
 import Button from '../../components/Button/Button.jsx';
+import Form from '../../components/Form/Form.jsx';
 import Header from '../../components/Header/Header.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
+import PageOpener from '../../components/PageOpener/PageOpener.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 import UserList from '../../components/UserList/UserList.jsx';
 
+import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
@@ -28,6 +32,10 @@ export default class LeaveList extends Component {
     super(props);
     this.filter = this.filter.bind(this);
     this.loadMore = this.loadMore.bind(this);
+    this.openApply = this.openApply.bind(this);
+    this.applyResponse = this.applyResponse.bind(this);
+    this.save = this.save.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +52,68 @@ export default class LeaveList extends Component {
   }
 
 
+  save() {
+    const form = this.refs.applyForm;
+
+    if (!form.isValid() || window.leaveValidation && !window.leaveValidation()) return;
+
+    const formData = new FormData(React.findDOMNode(form));
+
+    formData.append('submit', false);
+
+    ajax.post('/ess-insert-lv', formData)
+      .then((res) => {
+        this.applyResponse(res);
+      });
+  }
+
+
+  submit() {
+    if (!this.refs.applyForm.isValid() || window.leaveValidation && !window.leaveValidation()) return;
+
+    const formData = new FormData(React.findDOMNode(this.refs.applyForm));
+
+    formData.append('submit', true);
+
+    ajax.post('/ess-insert-lv', formData)
+      .then((res) => {
+        this.applyResponse(res);
+      });
+  }
+
+
+  /**
+   * Apply response
+   * @param res
+   */
+  applyResponse(res) {
+    const inputs = React.findDOMNode(this.refs.applyForm).querySelectorAll('input, select, textarea');
+
+    for (let i = 0; i < inputs.length; i += 1) {
+      inputs[i].value = '';
+    }
+
+    if (res) {
+      alert(res);
+    }
+
+    this.refs.apply.close();
+  }
+
+
+  /**
+   * Open apply form
+   * @param e
+   */
+  openApply(e) {
+    this.refs.apply.open(e);
+
+    if (!LeaveStore.getState().leaveForm || !LeaveStore.getState().leaveForm.length) {
+      LeaveDataUtils.getLeaveForm();
+    }
+  }
+
+
   /**
    * Select / unselect all
    */
@@ -56,7 +126,7 @@ export default class LeaveList extends Component {
   }
 
   render() {
-    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect, filter } = this.props;
+    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect, filter, leaveForm, formIsSubmitting } = this.props;
 
     if (filter) {
       filter.onClickItem = (state) => {
@@ -89,7 +159,21 @@ export default class LeaveList extends Component {
           }
         </PullLoader>
 
-        <Button icon='pencil' action onClick={this.toggleEnterMode} />
+        <Button icon='plus' action onClick={this.openApply} />
+
+        <Button icon='pencil' action onClick={this.toggleEnterMode} style={{bottom: '10rem'}} />
+
+        <PageOpener ref='apply'>
+          <Loader status={status}>
+            <Form className='side-gap pad-b' action='/leave-apply' ref='applyForm'
+                  controls={leaveForm} />
+
+            <div className="row">
+              <div className="col-1-2"><Button type='button' text={getLang('SAVE')} onClick={this.save} /></div>
+              <div className="col-1-2"><Button type='button' text={getLang('SUBMIT')} onClick={this.submit} /></div>
+            </div>
+          </Loader>
+        </PageOpener>
 
         <CSSTransitionGroup component='div' transitionName='bottom-up'>
           {

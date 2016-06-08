@@ -3,12 +3,12 @@
  */
 
 
-import React, {Component} from 'react';
-import {Container} from 'flux/utils';
+import React, { Component } from 'react';
+import { Container } from 'flux/utils';
 
 import Form from '../../components/Form/Form.jsx';
 
-import {getItem as getLang} from '../../common/lang';
+import { getItem as getLang } from '../../common/lang';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
@@ -51,15 +51,16 @@ class LeaveQuota extends Component {
     const {leaveSummary, status, leaveSummaryConfig = []} = this.state;
 
     return (
-        <div>
-          <Form className="side-gap"
-                ref="query"
-                action="/ess-lv-summary"
-                controls={leaveSummaryConfig}
-                submitButton={{ text: getLang('SUBMIT') }}
-                onSubmit={this.querySummary.bind(this)}>
-          </Form>
+      <div>
+        <Form className="side-gap"
+              ref="query"
+              action="/ess-lv-summary"
+              controls={leaveSummaryConfig}
+              submitButton={{ text: getLang('SUBMIT') }}
+              onSubmit={this.querySummary.bind(this)}>
+        </Form>
 
+        <div style={{minHeight: '100vh'}}>
           <Loader status={status} className='side-gap gap-t-lg pad-b'>
             {
               Array.isArray(leaveSummary) && leaveSummary.map((item, index) => {
@@ -68,6 +69,7 @@ class LeaveQuota extends Component {
             }
           </Loader>
         </div>
+      </div>
     );
   }
 }
