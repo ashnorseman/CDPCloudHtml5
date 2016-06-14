@@ -51,6 +51,8 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
 
   if (!path) {
     return res.sendFile(__dirname + '/build/index.html');
+  } else if (req.url === '/custom/config/HITACHIHK-1000_LV_STATE.json') {
+    return res.sendFile(__dirname + '/form-validation/demo.json');
   }
 
   setTimeout(function () {
@@ -786,16 +788,6 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
               "type": "datetime-local"
             }]
         }, "res": true
-      });
-    case 'custom':
-      return res.json({
-        items: [{
-          name: "edit",//状态名
-          zh_text: "编辑中",//中文显示
-          en_text: "Edit",//英文显示
-          jp_text: "変更中",//日文显示
-          value: "edit"//切换后向后台提交值
-        }]
       });
     default:
       res.json({

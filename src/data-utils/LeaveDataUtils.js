@@ -300,7 +300,7 @@ export default {
 
 
   getFilter(companyCode) {
-    ajax.get('/custom/config/' + companyCode + '_LV_STATE.json')
+    ajax.get('/custom/config/' + companyCode.toUpperCase() + '_LV_STATE.json')
       .then((res) => {
         dispatch({
           type: 'get-leave-filter-success',

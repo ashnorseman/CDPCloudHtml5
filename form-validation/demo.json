@@ -1,0 +1,9 @@
+{
+  "items": [{
+    "name": "edit",
+    "zh_text": "编辑中",
+    "en_text": "Edit",
+    "jp_text": "変更中",
+    "value": "edit"
+  }]
+}
