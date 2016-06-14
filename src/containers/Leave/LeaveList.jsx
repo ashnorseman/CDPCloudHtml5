@@ -30,6 +30,7 @@ export default class LeaveList extends Component {
 
   constructor(props) {
     super(props);
+    this.checkEdit = this.checkEdit.bind(this);
     this.filter = this.filter.bind(this);
     this.loadMore = this.loadMore.bind(this);
     this.openApply = this.openApply.bind(this);
@@ -49,6 +50,16 @@ export default class LeaveList extends Component {
 
     this.getEmpLeaveRecords(defaultFilter);
     LeaveDataUtils.getFilter(JSON.parse(localStorage.getItem('companyCode')));
+  }
+
+
+  checkEdit(item, e) {
+    if (item.state === 'edit') {
+      e.preventDefault();
+
+      LeaveDataUtils.getLeaveRecord(item.id);
+      this.openApply(e);
+    }
   }
 
 
@@ -154,6 +165,7 @@ export default class LeaveList extends Component {
                 </div>
               : <RecordList recordList={leaveRecords}
                             url={'leave-record' + (mgr ? '-mgr' : '')}
+                            onClickItem={this.checkEdit}
                             selectable={selectable && this.select}
                             toggleSelect={this.toggleSelect} />
           }

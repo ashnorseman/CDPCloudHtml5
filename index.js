@@ -544,28 +544,28 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
             "Start": "2015/09/22",
             "hours": "7.5",
             "Type": "婚假",
-            "state": "审批中"
+            "state": "edit"
           }, {
             "id": 7,
             "End": "2015/10/15",
             "Start": "2015/10/14",
             "hours": "15",
             "Type": "年度带薪休假",
-            "state": "审批中"
+            "state": "edit"
           }, {
             "id": 6,
             "End": "2015/09/24",
             "Start": "2015/09/24",
             "hours": "7.5",
             "Type": "年度带薪休假",
-            "state": "审批中"
+            "state": "approved"
           }, {
             "id": 9,
             "End": "2015/11/30",
             "Start": "2015/11/27",
             "hours": "15",
             "Type": "晚婚假",
-            "state": "审批中"
+            "state": "pending"
           }];
 
           if (req.query.page <= 3) {
@@ -574,7 +574,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
             }
           }
 
-          return base.slice(0, 2);
+          return base;
         }())
       });
     case 'ess-lv-detail':
