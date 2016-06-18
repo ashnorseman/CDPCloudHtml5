@@ -422,6 +422,24 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
         },
         "res": true
       });
+    case 'ess-lv-edit-config':
+      return res.json({
+        res: true,
+        val: {
+          "formConfig": [{
+            "name": "type",
+            "label": "休假类型名称",
+            "type": "select",
+            "options": [{
+              "text": "年度带薪休假",
+              "value": "M0"
+            }],
+            "required": true,
+            "defaultValue": "M0"
+          }],
+          "JS_CONFIG_FILE": "custom/validate/demo_ess_lv.js"
+        }
+      });
     case 'mss-lv-todolist':
     case 'mss-ot-todolist':
       return res.json({

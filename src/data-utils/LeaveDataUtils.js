@@ -95,6 +95,27 @@ export default {
 
 
   /**
+   * Get edit info
+   * @param id
+   */
+  getLeaveEditRecord(id) {
+    dispatch({
+      type: 'get-leave-form'
+    });
+
+    ajax.get('/ess-lv-edit-config', {
+      id
+    })
+      .then((res) => {
+        dispatch({
+          type: 'get-leave-form-success',
+          data: res
+        });
+      });
+  },
+
+
+  /**
    * Get leave history employee list
    * @param {Object} [params]
    */

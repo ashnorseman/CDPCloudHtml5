@@ -11,7 +11,6 @@ import ajax, { ajaxDispatch } from '.././../common/utils/ajax';
 
 import CSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import { getItem as getLang } from '../../common/lang';
-import Filter from '../../components/Filter/Filter.jsx';
 import Button from '../../components/Button/Button.jsx';
 import Form from '../../components/Form/Form.jsx';
 import Header from '../../components/Header/Header.jsx';
@@ -57,8 +56,8 @@ export default class LeaveList extends Component {
     if (item.state === 'edit') {
       e.preventDefault();
 
-      LeaveDataUtils.getLeaveRecord(item.id);
-      this.openApply(e);
+      LeaveDataUtils.getLeaveEditRecord(item.id);
+      this.openApply(e, true);
     }
   }
 
@@ -72,7 +71,7 @@ export default class LeaveList extends Component {
 
     formData.append('submit', false);
 
-    ajax.post('/ess-insert-lv', formData)
+    ajax.post(this.url, formData)
       .then((res) => {
         this.applyResponse(res);
       });
@@ -86,7 +85,7 @@ export default class LeaveList extends Component {
 
     formData.append('submit', true);
 
-    ajax.post('/ess-insert-lv', formData)
+    ajax.post(this.url, formData)
       .then((res) => {
         this.applyResponse(res);
       });
@@ -115,13 +114,19 @@ export default class LeaveList extends Component {
   /**
    * Open apply form
    * @param e
+   * @param editMode
    */
-  openApply(e) {
+  openApply(e, editMode) {
     this.refs.apply.open(e);
 
-    if (!LeaveStore.getState().leaveForm || !LeaveStore.getState().leaveForm.length) {
-      LeaveDataUtils.getLeaveForm();
+    if (editMode === true) {
+      this.url = '/ess-edit-lv';
+      return;
+    } else {
+      this.url = '/ess-insert-lv';
     }
+
+    LeaveDataUtils.getLeaveForm();
   }
 
 
