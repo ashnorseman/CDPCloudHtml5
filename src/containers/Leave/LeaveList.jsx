@@ -53,7 +53,7 @@ export default class LeaveList extends Component {
 
 
   checkEdit(item, e) {
-    if (item.state === 'edit') {
+    if (item.stateCode === 0) {
       e.preventDefault();
 
       LeaveDataUtils.getLeaveEditRecord(item.id);
