@@ -30,6 +30,27 @@ export default {
 		});
 	},
 
+
+	/**
+	 * Get edit info
+	 * @param id
+	 */
+	getOtEditRecord(id) {
+		dispatch({
+			type: 'get-ot-form'
+		});
+
+		ajax.get('/ess-ot-edit-config', {
+			id
+		})
+			.then((res) => {
+				dispatch({
+					type: 'get-ot-form-success',
+					data: res
+				});
+			});
+	},
+
 	getOtForm() {
 		dispatch({
 			type: 'get-ot-form'
@@ -49,10 +70,10 @@ export default {
 			});
 	},
 
-	insertOt(formData) {
+	insertOt(formData, url) {
 		ajaxDispatch({
 			action: 'insert-ot-form',
-			url: '/ess-insert-ot',
+			url: url,
 			method: 'post',
 			data: formData
 		});

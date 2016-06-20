@@ -423,6 +423,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
         "res": true
       });
     case 'ess-lv-edit-config':
+    case 'ess-ot-edit-config':
       return res.json({
         res: true,
         val: {
