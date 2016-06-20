@@ -56,6 +56,7 @@ export default class LeaveList extends Component {
     if (item.stateCode === 0) {
       e.preventDefault();
 
+      this._editId = item.id;
       LeaveDataUtils.getLeaveEditRecord(item.id);
       this.openApply(e, true);
     }
@@ -71,6 +72,10 @@ export default class LeaveList extends Component {
 
     formData.append('submit', false);
 
+    if (this._editId) {
+      formData.append('id', this._editId);
+    }
+
     ajax.post(this.url, formData)
       .then((res) => {
         this.applyResponse(res);
@@ -84,6 +89,10 @@ export default class LeaveList extends Component {
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
     formData.append('submit', true);
+
+    if (this._editId) {
+      formData.append('id', this._editId);
+    }
 
     ajax.post(this.url, formData)
       .then((res) => {
@@ -106,6 +115,8 @@ export default class LeaveList extends Component {
     if (res) {
       alert(res);
     }
+
+    this._editId = null;
 
     this.refs.apply.close();
   }

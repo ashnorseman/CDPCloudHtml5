@@ -562,7 +562,8 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
             "Start": "2015/09/22",
             "hours": "7.5",
             "Type": "婚假",
-            "state": "edit"
+            "state": "edit",
+            stateCode: 0
           }, {
             "id": 7,
             "End": "2015/10/15",
