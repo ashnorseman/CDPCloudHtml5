@@ -112,8 +112,8 @@ export default class LeaveList extends Component {
       inputs[i].value = '';
     }
 
-    if (res) {
-      alert(res);
+    if (res && !res.res && res.error) {
+      alert(res.error);
     }
 
     this._editId = null;
