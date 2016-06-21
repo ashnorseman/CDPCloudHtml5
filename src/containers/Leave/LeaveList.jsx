@@ -35,7 +35,7 @@ export default class LeaveList extends Component {
     this.openApply = this.openApply.bind(this);
     this.applyResponse = this.applyResponse.bind(this);
     this.save = this.save.bind(this);
-    this.submit = this.submit.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -83,7 +83,7 @@ export default class LeaveList extends Component {
   }
 
 
-  submit() {
+  submitForm() {
     if (!this.refs.applyForm.isValid() || window.leaveValidation && !window.leaveValidation()) return;
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
@@ -198,7 +198,7 @@ export default class LeaveList extends Component {
 
             <div className="row">
               <div className="col-1-2"><Button type='button' text={getLang('SAVE')} onClick={this.save} /></div>
-              <div className="col-1-2"><Button type='button' text={getLang('SUBMIT')} onClick={this.submit} /></div>
+              <div className="col-1-2"><Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} /></div>
             </div>
           </Loader>
         </PageOpener>
