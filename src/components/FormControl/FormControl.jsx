@@ -49,7 +49,7 @@ export default class FormControl extends Component {
                       : null;
 
     return (
-      <div className={controlClass}>
+      <div className={controlClass} style={{display: this.props.type === 'hidden' ? 'none' : 'block'}}>
         {labelEl}
         {children}
       </div>

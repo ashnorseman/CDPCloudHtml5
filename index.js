@@ -437,6 +437,11 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
             }],
             "required": true,
             "defaultValue": "M0"
+          }, {
+            "name": "hidden",
+            "label": "隐藏",
+            "type": "hidden",
+            "defaultValue": "123"
           }],
           "JS_CONFIG_FILE": "custom/validate/demo_ess_lv.js"
         }

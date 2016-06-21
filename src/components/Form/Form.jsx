@@ -38,6 +38,7 @@ export default class Form extends Component {
             }
 
             switch (control.type) {
+            case 'hidden':
             case 'text':
             case 'tel':
             case 'password':
