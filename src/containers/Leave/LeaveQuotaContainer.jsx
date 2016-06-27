@@ -38,7 +38,7 @@ class LeaveQuota extends Component {
       <div className="side-gap gap-t gap-b">
         <Loader status={status}>
           {
-            quota.map((card, index) => {
+            (quota.map ? quota : []).map((card, index) => {
               return <div className="gap-t" key={index}>
                 <h2 className="info-card-heading gap-b">{card.title}</h2>
                 <InfoCard items={card.items} />

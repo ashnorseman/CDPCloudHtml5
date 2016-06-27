@@ -325,8 +325,15 @@ export default {
       .then((res) => {
         dispatch({
           type: 'get-leave-filter-success',
-          data: res.items
+          data: (res && res.items) || []
         });
       });
+  },
+
+
+  submitForm() {
+    dispatch({
+      type: 'form-submitting'
+    });
   }
 };

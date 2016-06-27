@@ -40,7 +40,7 @@ class Profile extends Component {
     const {
             basicInfo,
             empId,
-            infoList,
+            infoList = [],
             status,
             picInfo = {},
             menu

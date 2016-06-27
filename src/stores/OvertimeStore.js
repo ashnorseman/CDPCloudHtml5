@@ -64,12 +64,14 @@ class OvertimeStore extends ReduceStore {
 		case 'insert-ot-form':
 			return {
 				...state,
+				status: 'loading',
 				submitting: true
 			};
 		case 'insert-ot-form-success':
 			return {
 				...state,
 				submitting: false,
+				status: 'loaded',
 				refreshList: true
 			};
 		case 'get-ot-pending-records':
@@ -136,7 +138,7 @@ class OvertimeStore extends ReduceStore {
       return {
         ...state,
         filter: {
-          items: action.data.map(item => {
+          items: (action.data.map ? action.data : []).map(item => {
             return {
               ...item,
               text: item[getLang() + '_text'],

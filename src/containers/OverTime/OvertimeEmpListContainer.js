@@ -35,7 +35,7 @@ class OvertimeEmpList extends Component {
 
 		OvertimeDataUtils.getEmpOtList({
 			page: 1,
-			state: 'edit'
+			state: 'approving'
 		});
 
 		OvertimeDataUtils.getFilter(JSON.parse(localStorage.getItem('companyCode')));
@@ -97,6 +97,8 @@ class OvertimeEmpList extends Component {
 		const formData = this.collectFormData(submitValue);
 
 		if (!formData) return;
+		
+		
 
 		OvertimeDataUtils.insertOt(formData, this.url);
 	}

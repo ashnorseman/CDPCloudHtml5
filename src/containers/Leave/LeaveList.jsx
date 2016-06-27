@@ -76,9 +76,14 @@ export default class LeaveList extends Component {
       formData.append('id', this._editId);
     }
 
+    LeaveDataUtils.submitForm();
+
     ajax.post(this.url, formData)
       .then((res) => {
         this.applyResponse(res);
+        this.getEmpLeaveRecords({
+          state: 'edit'
+        });
       });
   }
 
@@ -94,9 +99,14 @@ export default class LeaveList extends Component {
       formData.append('id', this._editId);
     }
 
+    LeaveDataUtils.submitForm();
+
     ajax.post(this.url, formData)
       .then((res) => {
         this.applyResponse(res);
+        this.getEmpLeaveRecords({
+          state: 'approving'
+        });
       });
   }
 
@@ -106,11 +116,11 @@ export default class LeaveList extends Component {
    * @param res
    */
   applyResponse(res) {
-    const inputs = React.findDOMNode(this.refs.applyForm).querySelectorAll('input, select, textarea');
+    // const inputs = React.findDOMNode(this.refs.applyForm).querySelectorAll('input, select, textarea');
 
-    for (let i = 0; i < inputs.length; i += 1) {
-      inputs[i].value = '';
-    }
+    // for (let i = 0; i < inputs.length; i += 1) {
+    //   inputs[i].value = '';
+    // }
 
     if (res && !res.res && res.error) {
       alert(res.error);
@@ -251,7 +261,7 @@ export default class LeaveList extends Component {
   getEmpLeaveRecords(params = {}) {
     params.page = 1;
     params.loadMore = false;
-    params.state || (params.state = 'edit');
+    params.state || (params.state = 'approving');
 
     dispatch({
       type: this._type,

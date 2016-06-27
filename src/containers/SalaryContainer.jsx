@@ -54,7 +54,7 @@ class Salary extends Component {
   }
 
   render() {
-    const { total, picInfo, infoList, salaryCalendar, accountList, status, chartData, menu } = this.state,
+    const { total, picInfo, infoList, salaryCalendar = {}, accountList, status, chartData, menu } = this.state,
 
       yearList = (function (year) {
         let list = [];
@@ -200,7 +200,7 @@ class Salary extends Component {
    * @param month
    * @returns {*|Array.<T>}
    */
-  getAccountList(data, year, month) {
+  getAccountList(data = [], year, month) {
     const accountList = data.filter((item) => {
       return (item.payPerYear === +year) && (item.payPerMon === +month);
     }).map((item) => {

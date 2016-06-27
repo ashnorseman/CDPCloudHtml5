@@ -42,7 +42,7 @@ class ProfileStore extends ReduceStore {
 
     case 'get-profile-categories-success':
       // Get first category by default
-      if (action.data && action.data.baseType.length) {
+      if (action.data && action.data.baseType && action.data.baseType.length) {
         setTimeout(() => {
           dispatch({
             type: 'get-profile-category-detail',

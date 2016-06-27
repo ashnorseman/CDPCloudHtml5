@@ -144,8 +144,14 @@ export default {
 			.then((res) => {
 				dispatch({
 					type: 'get-ot-filter-success',
-					data: res.items
+					data: (res && res.items)
 				});
 			});
+	},
+
+	submitForm() {
+		dispatch({
+			type: 'form-submitting'
+		});
 	}
 };

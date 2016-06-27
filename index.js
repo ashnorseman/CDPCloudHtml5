@@ -479,67 +479,6 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
         }],
         "res": true
       });
-      // return res.json({
-      // 	res: true,
-      // 	val: [
-      // 		{
-      // 			id: 'type',
-      // 			name: 'type',
-      // 			label: '假期类型',
-      // 			type: 'select',
-      // 			required: true,
-      // 			options: [
-      // 				{
-      // 					text: ''
-      // 				},
-      // 				{
-      // 					text: '事假',
-      // 					value: 1
-      // 				}
-      // 			]
-      // 		},
-      // 		{
-      // 			id: 'startDate',
-      // 			name: 'startDate',
-      // 			label: '开始日期',
-      // 			type: 'date',
-      // 			half: true
-      // 		},
-      // 		{
-      // 			id: 'startTime',
-      // 			name: 'startTime',
-      // 			label: '时间',
-      // 			half: true,
-      // 			type: 'time'
-      // 		},
-      // 		{
-      // 			id: 'endDate',
-      // 			name: 'endDate',
-      // 			label: '结束日期',
-      // 			half: true,
-      // 			type: 'date'
-      // 		},
-      // 		{
-      // 			id: 'endTime',
-      // 			name: 'endTime',
-      // 			label: '时间',
-      // 			half: true,
-      // 			type: 'time'
-      // 		},
-      // 		{
-      // 			id: 'reason',
-      // 			name: 'reason',
-      // 			label: '理由',
-      // 			type: 'text'
-      // 		},
-      // 		{
-      // 			id: 'attach',
-      // 			name: 'attach',
-      // 			label: '附件',
-      // 			type: 'file'
-      // 		}
-      // 	]
-      // });
     case 'demo_ess_lv_config.js':
       return res.sendFile(__dirname + '/form-validation/leave.js');
     case 'leave-types':
@@ -655,25 +594,27 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
       });
     case 'lv-approve-detail':
       return res.json({
-        "val": [{
-          "End": "2015/10/22",
-          "Start": "2015/10/22",
-          "hours": "7.5",
-          "state": "拒绝",
-          "leaveType": "年度带薪休假"
-        }, {
-          "End": "2015/09/21",
-          "Start": "2015/09/21",
-          "hours": "7.5",
-          "state": "拒绝",
-          "leaveType": "年度带薪休假"
-        }, {
-          "End": "2015/09/22",
-          "Start": "2015/09/22",
-          "hours": "7.5",
-          "state": "拒绝",
-          "leaveType": "婚假"
-        }],
+        "val": [
+          {
+            "End": "2015/10/22",
+            "Start": "2015/10/22",
+            "hours": "7.5",
+            "state": "拒绝",
+            "leaveType": "年度带薪休假"
+          }, {
+            "End": "2015/09/21",
+            "Start": "2015/09/21",
+            "hours": "7.5",
+            "state": "拒绝",
+            "leaveType": "年度带薪休假"
+          }, {
+            "End": "2015/09/22",
+            "Start": "2015/09/22",
+            "hours": "7.5",
+            "state": "拒绝",
+            "leaveType": "婚假"
+          }
+        ],
         "res": true
       });
     case 'lv-approve-his':
@@ -752,30 +693,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
     case 'team-info-page':
       return res.json({
         res: true,
-        val: (function () {
-          var base = [
-            {
-              id: 1,
-              firField: '张阿十',
-              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-              secField: '前端设计师'
-            },
-            {
-              id: 2,
-              firField: '张阿廿',
-              avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-              secField: '前端服务员'
-            }
-          ];
-
-          if (req.body.page <= 3) {
-            for (var i = 0; i < 4; i += 1) {
-              base = base.concat(base);
-            }
-          }
-
-          return base.slice(0, 20);
-        }())
+        val: null
       });
     case 'filter-config-form':
       return res.json({

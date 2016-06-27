@@ -23,7 +23,7 @@ export default class RecordList extends Component {
     return (
       <ul className={'record-list' + (selectable ? ' record-list-selectable' : '')}>
         {
-          recordList.map((record, index) => {
+          (recordList.map ? recordList : []).map((record, index) => {
             return (
               <li key={index} className={record.userName ? 'with-name' : null}>
                 {

@@ -39,7 +39,7 @@ class TeamProfileEmpProfile extends Component {
   render() {
     const {
         basicInfo,
-        infoList,
+        infoList = [],
         status,
         picInfo = {},
         menu
