@@ -33,10 +33,15 @@
     display: block;
     padding-top: percentage(272 / 717);
   }
+
+  &.form-focus {
+    display: none;
+  }
 }
 
 .login-form {
   color: @color-text;
+  padding-top: @gap * 2;
 
   ::-moz-placeholder { color: @placeholder; }
   ::-webkit-input-placeholder { color: @placeholder; }

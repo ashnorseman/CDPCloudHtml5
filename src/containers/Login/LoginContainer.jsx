@@ -105,6 +105,24 @@ class Login extends Component {
     );
   }
 
+  componentDidMount() {
+    const form = React.findDOMNode(this.refs.loginForm),
+      logo = React.findDOMNode(this.refs.logo),
+      inputs = [].slice.call(form.querySelectorAll('input'));
+
+    for (let i = 0; i < inputs.length; i += 1) {
+
+      inputs[i].addEventListener('focus', () => {
+        logo.classList.add('form-focus');
+      }, false);
+
+      inputs[i].addEventListener('blur', (e) => {
+        console.log(e);
+        logo.classList.remove('form-focus');
+      }, false);
+    }
+  }
+
   componentDidUpdate() {
     if (this.state.loginStatus && this.state.loginStatus.indexOf('failed') > -1) {
       this.refs.loginForm.setState({
@@ -128,7 +146,7 @@ class Login extends Component {
 
     return (
       <div className='login'>
-        <div className='login-logo'></div>
+        <div className='login-logo' ref="logo"></div>
 
         <Form className='login-form'
               ref='loginForm'
