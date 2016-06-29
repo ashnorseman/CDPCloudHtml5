@@ -442,6 +442,11 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
             "label": "隐藏",
             "type": "hidden",
             "defaultValue": "123"
+          }, {
+            "name": "file",
+            "label": "附件",
+            "type": "file",
+            "defaultValue": "abc/003.jpg"
           }],
           "JS_CONFIG_FILE": "custom/validate/demo_ess_lv.js"
         }

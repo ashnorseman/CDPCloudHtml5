@@ -50,6 +50,9 @@ export default class FormControl extends Component {
 
     return (
       <div className={controlClass} style={{display: this.props.type === 'hidden' ? 'none' : 'block'}}>
+        {
+          this.props.type === 'file' ? <div>{this.props.defaultValue}</div> : null
+        }
         {labelEl}
         {children}
       </div>
