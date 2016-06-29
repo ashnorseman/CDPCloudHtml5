@@ -19,7 +19,6 @@ import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 import UserList from '../../components/UserList/UserList.jsx';
 
-import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
@@ -136,6 +135,8 @@ export default class LeaveList extends Component {
    * @param editMode
    */
   openApply(e, editMode) {
+    this.editMode = (editMode === true);
+
     this.refs.apply.open(e);
 
     if (editMode === true) {
@@ -205,8 +206,16 @@ export default class LeaveList extends Component {
                   controls={leaveForm} />
 
             <div className="row">
-              <div className="col-1-2"><Button type='button' text={getLang('SAVE')} onClick={this.save} /></div>
-              <div className="col-1-2"><Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} /></div>
+              <div className={this.editMode ? 'col-1-2' : ''}>
+                <Button type='button' text={getLang('SAVE')} onClick={this.save} />
+              </div>
+              {
+                this.editMode
+                  ? <div className="col-1-2">
+                      <Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} />
+                    </div>
+                  : null
+              }
             </div>
           </Loader>
         </PageOpener>
@@ -298,9 +307,7 @@ export default class LeaveList extends Component {
     return true;
   }
 
-  toggleSelect(record) {
-    console.log(record);
-  }
+  toggleSelect(record) {}
 
   toggleEnterMode() {
     dispatch({
