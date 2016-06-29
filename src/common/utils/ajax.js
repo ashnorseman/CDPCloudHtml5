@@ -89,7 +89,7 @@ function parseResponse(res, dataType) {
  */
 function checkSuccessFalse(res) {
   if (res && (res.res !== false)) {
-    return res.val;
+    return res.val !== undefined ? res.val : res;
   } else {
     errorCallbacks.forEach((cb) => {
       cb.call(null, res.status, res.error);
@@ -215,6 +215,12 @@ export const ajaxDispatch = function ({
     .then((res) => {
       dispatch({
         type: action + '-success',
+        data: res
+      });
+    })
+    .catch((res) => {
+      dispatch({
+        type: action + '-fail',
         data: res
       });
     });

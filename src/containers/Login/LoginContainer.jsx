@@ -117,8 +117,9 @@ class Login extends Component {
       }, false);
 
       inputs[i].addEventListener('blur', (e) => {
-        console.log(e);
-        logo.classList.remove('form-focus');
+        if (!e.relatedTarget || e.relatedTarget.nodeName !== 'BUTTON') {
+          logo.classList.remove('form-focus');
+        }
       }, false);
     }
   }
@@ -184,6 +185,7 @@ class Login extends Component {
   // ---------------------------
 
   login() {
+    React.findDOMNode(this.refs.logo).classList.remove('form-focus');
 
     // Remember me
     dispatch({

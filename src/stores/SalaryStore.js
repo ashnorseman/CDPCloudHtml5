@@ -47,6 +47,12 @@ class SalaryStore extends ReduceStore {
         accountList: state.accountList,
         status: 'loaded'
       });
+    case 'get-salary-fail':
+      return {
+        ...state,
+        chartData: [],
+        status: 'loaded'
+      };
     case 'get-salary-calendar-success':
       return assign({}, state, {
         salaryCalendar: action.data.payrollData,

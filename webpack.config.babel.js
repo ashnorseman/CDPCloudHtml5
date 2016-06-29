@@ -37,7 +37,7 @@ if (TARGET === 'start' || TARGET === 'dev') {
         '*': 'http://localhost:9090'
       }
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: path.resolve(ROOT_PATH, isDev ? 'src/modules.jsx' : 'src/app.jsx'),
     module: {
       loaders: [
