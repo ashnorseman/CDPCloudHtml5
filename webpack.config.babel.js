@@ -31,7 +31,7 @@ if (TARGET === 'start' || TARGET === 'dev') {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      port: 8888,
+      port: 8889,
       progress: true,
       proxy: {
         '*': 'http://localhost:9090'
