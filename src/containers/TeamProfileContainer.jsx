@@ -55,7 +55,7 @@ class TeamProfile extends Component {
 
     return (
       <div>
-        <Header back title={getLang('TEAM_PROFILE')} dropdown>
+        <Header goBack title={getLang('TEAM_PROFILE')} dropdown>
           <Search placeholder={getLang('ENTER_USER_SEARCH')} onSearch={this.search}></Search>
         </Header>
 

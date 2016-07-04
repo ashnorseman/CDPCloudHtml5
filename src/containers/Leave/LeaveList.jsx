@@ -196,9 +196,13 @@ export default class LeaveList extends Component {
           }
         </PullLoader>
 
-        <Button icon='plus' action onClick={this.openApply} />
+        {
+          this.enableSubmit
+            ? <Button icon='pencil' action onClick={this.toggleEnterMode} style={{bottom: '10rem'}} />
+            : null
+        }
 
-        <Button icon='pencil' action onClick={this.toggleEnterMode} style={{bottom: '10rem'}} />
+        <Button icon='plus' action onClick={this.openApply} />
 
         <PageOpener ref='apply'>
           <Loader status={status}>
@@ -206,16 +210,12 @@ export default class LeaveList extends Component {
                   controls={leaveForm} />
 
             <div className="row">
-              <div className={this.editMode ? 'col-1-2' : ''}>
+              <div className="col-1-2">
                 <Button type='button' text={getLang('SAVE')} onClick={this.save} />
               </div>
-              {
-                this.editMode
-                  ? <div className="col-1-2">
-                      <Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} />
-                    </div>
-                  : null
-              }
+              <div className="col-1-2">
+                <Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} />
+              </div>
             </div>
           </Loader>
         </PageOpener>
