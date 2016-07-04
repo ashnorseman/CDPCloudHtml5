@@ -132,24 +132,15 @@ export default {
 
   /**
    * Get leave history employee list
-   * @param {Object} [params]
+   * @param {Object} query
    */
-  getPendingRecords(params = {}) {
-    if (params.loadMore) {
-      params.page += + 1;
-    }
-
-    dispatch({
-      type: 'get-emp-pending-records'
+  getPendingRecords(query) {
+    ajaxDispatch({
+      action: 'get-lv-pending-records',
+      url: '/mss-lv-todolist',
+      method: 'get',
+      data: query
     });
-
-    ajax.get('/mss-lv-todolist', params)
-      .then((res) => {
-        dispatch({
-          type: 'get-emp-pending-records-success',
-          data: res
-        });
-      });
   },
 
 

@@ -32,7 +32,11 @@ class LeaveListContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.getPendingRecords();
+    LeaveDataUtils.getPendingRecords({
+      page: 1
+    });
+
+    this.loadMore = this.loadMore.bind(this);
   }
 
 
@@ -55,23 +59,11 @@ class LeaveListContainer extends Component {
 
 
   /**
-   * Get employees' leave records (parameters)
-   * @param params
-   */
-  getPendingRecords(params = {}) {
-    params.page = 1;
-    params.loadMore = false;
-
-    LeaveDataUtils.getPendingRecords(params);
-  }
-
-
-  /**
    * Load next page
    */
   loadMore() {
     LeaveDataUtils.getPendingRecords({
-      loadMore: true
+      page: this.state.pendingQuery.page + 1
     });
   }
 

@@ -46,16 +46,16 @@ class LeaveStore extends ReduceStore {
         quota: action.data || [],
         status: 'loaded'
       };
-    case 'get-emp-pending-records':
+    case 'get-lv-pending-records':
       return {
         ...state,
-        pendingRecords: [],
+        pendingQuery: action.data,
         status: 'loading'
       };
-    case 'get-emp-pending-records-success':
+    case 'get-lv-pending-records-success':
       return {
         ...state,
-        pendingRecords: action.data || [],
+        pendingRecords: state.pendingQuery.page === 1 ? action.data : state.pendingRecords.concat(action.data),
         status: 'loaded'
       };
     case 'get-quota-members':
