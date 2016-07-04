@@ -229,7 +229,7 @@ export default class LeaveList extends Component {
                 </label>
                 <div className='row'>
                   <div className='col-1-2'>
-                    <Button text={getLang('SUBMIT')} onTouchTap={this.submit} />
+                    <Button text={getLang('SUBMIT')} disabled={!this.enableSubmit} onTouchTap={this.submit} />
                   </div>
                   <div className='col-1-2'>
                     <Button text={getLang('DROP')} hollow className='text-primary' onTouchTap={this.drop} />
@@ -269,6 +269,8 @@ export default class LeaveList extends Component {
     params.page = 1;
     params.loadMore = false;
     params.state || (params.state = 'approving');
+
+    this.enableSubmit = params.state === 'edit';
 
     dispatch({
       type: this._type,
