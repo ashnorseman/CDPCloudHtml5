@@ -53,6 +53,12 @@ class SalaryStore extends ReduceStore {
         chartData: [],
         status: 'loaded'
       };
+    case 'get-salary-calendar':
+      return {
+        ...state,
+        infoList: [],
+        chartData: []
+      };
     case 'get-salary-calendar-success':
       return assign({}, state, {
         salaryCalendar: action.data.payrollData,
