@@ -61,7 +61,7 @@ class LeaveQuota extends Component {
         </Form>
 
         <div style={{minHeight: '100vh'}}>
-          <Loader status={status} className='side-gap gap-t-lg pad-b'>
+          <Loader status={status} className='side-gap gap-t-lg pad-t-lg pad-b'>
             {
               Array.isArray(leaveSummary) && leaveSummary.map((item, index) => {
                 return <InfoCard title={item.title} items={item.items} key={index}/>;

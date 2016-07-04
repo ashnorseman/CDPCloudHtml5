@@ -208,48 +208,6 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
           //]
         }
       });
-    case 'user-message-info-type':
-      return res.json({
-        "val": {
-          baseType: [{
-            "cmdId": 12000,
-            "langCode": "portal_tab_baseinfo",
-            "efnType": "p_grp_ess",
-            "pla_lan": "Basic Information"
-          },
-            {
-              "cmdId": 12005,
-              "langCode": "portal_tab_social_relations",
-              "efnType": "p_grp_ess",
-              "pla_lan": "社会关系"
-            },
-            {
-              "cmdId": 12001,
-              "langCode": "portal_tab_contract_information",
-              "efnType": "p_grp_ess",
-              "pla_lan": "合同信息"
-            },
-            {
-              "cmdId": 12007,
-              "langCode": "portal_tab_ id_ information",
-              "efnType": "p_grp_ess",
-              "pla_lan": "证件信息"
-            },
-            {
-              "cmdId": 12008,
-              "langCode": "portal_tab_ expat_residency_rermit",
-              "efnType": "p_grp_ess",
-              "pla_lan": "外籍员工居留许可信息"
-            }],
-          picInfo: {
-            "name": "著美玲",
-            "empWorkId": "18820",
-            "url": "../export/upload/hitachihk_emp_info_2608.jpg",
-            position: '前端'
-          }
-        },
-        "res": "true"
-      });
     case 'calendar-salary':
       return res.json({
         "val": {
@@ -988,6 +946,48 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
           val: 'pla_lan_002'
         });
       }, 100);
+    case 'user-message-info-type':
+      return res.json({
+        "val": {
+          baseType: [{
+            "cmdId": 12000,
+            "langCode": "portal_tab_baseinfo",
+            "efnType": "p_grp_ess",
+            "pla_lan": "Basic Information"
+          },
+            {
+              "cmdId": 12005,
+              "langCode": "portal_tab_social_relations",
+              "efnType": "p_grp_ess",
+              "pla_lan": "社会关系"
+            },
+            {
+              "cmdId": 12001,
+              "langCode": "portal_tab_contract_information",
+              "efnType": "p_grp_ess",
+              "pla_lan": "合同信息"
+            },
+            {
+              "cmdId": 12007,
+              "langCode": "portal_tab_ id_ information",
+              "efnType": "p_grp_ess",
+              "pla_lan": "证件信息"
+            },
+            {
+              "cmdId": 12008,
+              "langCode": "portal_tab_ expat_residency_rermit",
+              "efnType": "p_grp_ess",
+              "pla_lan": "外籍员工居留许可信息"
+            }],
+          picInfo: {
+            "name": "著美玲",
+            "empWorkId": "18820",
+            "url": "../export/upload/hitachihk_emp_info_2608.jpg",
+            position: '前端'
+          }
+        },
+        "res": "true"
+      });
     case 'user-base-message-info':
       return setTimeout(function () {
         res.json({
@@ -1312,7 +1312,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
               id: 1,
               firField: '张阿十',
               avatar: 'a2e0012df0916596196342a0915d6c5f.png',
-              secField: '前端设计师'
+              secField: '前端设计师前端设计师前端设计师前端设计师前端设计师'
             },
             {
               id: 2,

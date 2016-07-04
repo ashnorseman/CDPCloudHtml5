@@ -67,7 +67,7 @@ class OvertimeEmpSummary extends Component {
                 onSubmit={this.querySummary.bind(this)}>
           </Form>
 
-          <Loader status={status} className='side-gap gap-t pad-b'>
+          <Loader status={status} className='side-gap gap-t-lg pad-t-lg pad-b'>
             {
               empOtSummary.map((item, index) => {
                 return (
