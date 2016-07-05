@@ -8,10 +8,10 @@
 
 
 .label-up {
-  font-size: @font-sm;
+  font-size: @font-xs;
   line-height: @line-height;
-  -webkit-transform: translateY(-@font-sm * @line-height - (@control-height - @font-base * @line-height) / 2);
-  transform: translateY(-@font-sm * @line-height - (@control-height - @font-base * @line-height) / 2);
+  -webkit-transform: translateY(-@font-xs * @line-height - (@control-height - @font-base * @line-height) / 2);
+  transform: translateY(-@font-xs * @line-height - (@control-height - @font-base * @line-height) / 2);
 }
 
 
@@ -21,8 +21,8 @@
 .form-control {
   border-bottom: @control-border solid @color-border;
   color: @color-bg;
-  margin-bottom: @gap;
-  padding-top: @font-sm * @line-height;
+  margin-bottom: @gap / 2;
+  padding-top: @font-xs * @line-height;
   position: relative;
 
 
@@ -47,7 +47,7 @@
   color: @color-text-lighter;
   pointer-events: none;
   position: absolute;
-    top: @font-sm * @line-height + (@control-height - @font-base * @line-height) / 2;
+    top: @font-xs * @line-height + (@control-height - @font-base * @line-height) / 2;
   -webkit-transition: all @duration ease-in-out;
   transition: all @duration ease-in-out;
 }

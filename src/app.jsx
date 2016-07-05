@@ -66,6 +66,11 @@ ajax.onError((status, err) => {
   }
 });
 
+const style = document.createElement('style');
+
+document.head.appendChild(style);
+style.innerHTML = '.loader.loading { min-height: ' + window.innerHeight * 0.9 + 'px; }';
+
 
 // Routes
 // ---------------------------

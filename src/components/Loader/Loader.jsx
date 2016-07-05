@@ -13,11 +13,11 @@ import React, { Component } from 'react';
 export default class Loader extends Component {
 
   render() {
-    const { status, className } = this.props,
+    const { status, className, ...props } = this.props,
           loaderClass = 'loader ' + status + ' ' + (className || '');
 
     return (
-      <div className={loaderClass}>
+      <div className={loaderClass} {...props}>
         {
           (status === 'loaded')
             ? this.props.children

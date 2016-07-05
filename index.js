@@ -651,7 +651,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
     case 'ess-ot-list':
     case 'ot-approve-otdetail':
       return res.json({
-        res: true,
+        res: false,
         val: (function () {
           var base = [{
             "id": 2,
@@ -1410,6 +1410,36 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
     case 'ess-insert-lv':
       return res.json({
         res: true
+      });
+    case 'lv-team-summary':
+    case 'ot-team-summary':
+      return res.json({
+        "val": [{
+          "summaryInfo": {
+            "title": "审批信息",
+            "items": [{
+              "title": "年度带薪休假",
+              "items": [{"firField": "编辑中", "secField": "3.75"}, {
+                "firField": "审批中",
+                "secField": "18.75"
+              }, {"firField": "已批准", "secField": "48.75"}, {"firField": "不批准", "secField": "7.5"}]
+            }, {"title": "婚假", "items": [{"firField": "审批中", "secField": "67.5"}]}, {
+              "title": "晚婚假",
+              "items": [{"firField": "审批中", "secField": "60"}]
+            }, {"title": "丧假", "items": [{"firField": "审批中", "secField": "7.5"}]}, {
+              "title": "产假",
+              "items": [{"firField": "不批准", "secField": "3.75"}]
+            }]
+          }, "userInfo": {"title": "员工信息", "items": [{"firField": "刘 天", "secField": "新产业开发事业部"}]}
+        }, {
+          "summaryInfo": {
+            "title": "审批信息",
+            "items": [{"title": "年度带薪休假", "items": [{"firField": "编辑中", "secField": "3.75"}]}, {
+              "title": "产前定期检查",
+              "items": [{"firField": "审批中", "secField": "3.75"}]
+            }]
+          }, "userInfo": {"title": "员工信息", "items": [{"firField": "海 天", "secField": "新产业开发事业部"}]}
+        }], "res": true
       });
     }
 

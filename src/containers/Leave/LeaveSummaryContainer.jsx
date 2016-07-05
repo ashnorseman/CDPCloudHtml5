@@ -32,8 +32,6 @@ class LeaveQuota extends Component {
   }
 
   componentDidMount() {
-    // LeaveDataUtils.getLeaveSummary();
-    // LeaveDataUtils.getLeaveTypes();
     LeaveDataUtils.getSummaryFilters({
       type: 'FILTER_LV_SUMMARY'
     });
@@ -52,7 +50,7 @@ class LeaveQuota extends Component {
 
     return (
       <div>
-        <Form className="side-gap"
+        <Form className="side-gap gap-t"
               ref="query"
               action="/ess-lv-summary"
               controls={leaveSummaryConfig}

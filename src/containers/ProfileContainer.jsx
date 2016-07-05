@@ -63,7 +63,7 @@ class Profile extends Component {
 
             {
               list.status
-                ? <Loader status={list.status}>
+                ? <Loader status={list.status} style={{minHeight: 0}}>
                     {
                       list.items && list.items.map((card, index) => {
                         return <InfoCard items={card} key={index} />;

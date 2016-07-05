@@ -3,55 +3,42 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
-import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
-
 import { getItem as getLang } from '../../common/lang';
-import LeaveList from './LeaveList.jsx';
+
+import Form from '../../components/Form/Form.jsx';
+import PullLoader from '../../components/PullLoader/PullLoader.jsx';
+import UserList from '../../components/UserList/UserList.jsx';
+
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
-import UserList from '../../components/UserList/UserList.jsx';
-import PullLoader from '../../components/PullLoader/PullLoader.jsx';
-
 
 class LeaveMgrQuota extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.getTeamMembers();
-  }
 
   static getStores() {
     return [LeaveStore];
   }
 
   static calculateState() {
-    const state = LeaveStore.getState();
-
-    return {
-      leaveEmpList: state.leaveEmpList,
-      status: state.status
-    };
+    return LeaveStore.getState();
   }
 
-  render() {
-    const { leaveEmpList, status } = this.state;
-
-    return (
-      <PullLoader className='pad-b'
-                  status={status}
-                  onLoad={this.loadMore}>
-        <UserList userList={leaveEmpList}
-                  onSelectUser={this.selectUser} />
-      </PullLoader>
-    );
+  componentDidMount() {
+    LeaveDataUtils.getSummaryFilters({
+      type: 'FILTER_LV_SUMMARY'
+    });
   }
 
+  querySummary() {
+    LeaveDataUtils.getLeaveSummary(null, new FormData(React.findDOMNode(this.refs.query)));
+
+    this.refs.query.setState({
+      submitting: false,
+      disabled: false
+    });
+  }
 
   getTeamMembers(query = {}) {
     query.page = 1;
@@ -70,9 +57,26 @@ class LeaveMgrQuota extends Component {
     });
   }
 
+  render() {
+    const { leaveEmpList, status, leaveSummaryConfig = []} = this.state;
 
-  selectUser(id) {
-    location.hash = '/leave-mgr/summary/' + id;
+    return (
+      <div>
+        <Form className="side-gap gap-t"
+              ref="query"
+              action="/lv-team-summary"
+              controls={leaveSummaryConfig}
+              submitButton={{ text: getLang('SUBMIT') }}
+              onSubmit={::this.querySummary}>
+        </Form>
+
+        <PullLoader className='pad-b'
+                    status={status}
+                    onLoad={this.loadMore}>
+          <UserList userList={leaveEmpList} />
+        </PullLoader>
+      </div>
+    );
   }
 }
 

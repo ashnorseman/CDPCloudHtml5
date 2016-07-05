@@ -22,6 +22,12 @@ class OvertimeStore extends ReduceStore {
 				empOtListQuery: action.data,
 				status: 'loading'
 			};
+		case 'get-emp-ot-list-fail':
+			return {
+				...state,
+				empOtList: [],
+				status: 'loaded'
+			};
 		case 'get-emp-ot-list-success':
 			return {
 				...state,
@@ -67,6 +73,7 @@ class OvertimeStore extends ReduceStore {
 				status: 'loading',
 				submitting: true
 			};
+		case 'insert-ot-form-fail':
 		case 'insert-ot-form-success':
 			return {
 				...state,

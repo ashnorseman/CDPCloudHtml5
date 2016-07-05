@@ -167,6 +167,12 @@ export default {
           type: 'get-emp-leave-records-success',
           data: res
         });
+      })
+      .catch(e => {
+        dispatch({
+          type: 'get-emp-leave-records-success',
+          data: []
+        });
       });
   },
 

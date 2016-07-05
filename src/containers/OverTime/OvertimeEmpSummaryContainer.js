@@ -59,7 +59,7 @@ class OvertimeEmpSummary extends Component {
         <div>
           <Header back title={getLang('MY_OT')}/>
 
-          <Form className="side-gap"
+          <Form className="side-gap gap-t"
                 ref="query"
                 action="/ess-ot-summary"
                 controls={otSummaryConfig}

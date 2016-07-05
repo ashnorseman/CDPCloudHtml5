@@ -15,6 +15,18 @@
     text-align: center;
   }
 
+  &.loading {
+    position: relative;
+
+    .fa {
+      position: absolute;
+        top: 50%;
+        left: 50%;
+      margin-left: -@font-icon-button / 2;
+      margin-top: -@font-icon-button / 2;
+    }
+  }
+
   &.load-error {
     color: @color-text-lighter;
     font-size: @font-icon-button * 2;

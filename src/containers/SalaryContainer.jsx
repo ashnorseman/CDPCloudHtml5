@@ -110,7 +110,7 @@ class Salary extends Component {
           </div>
         </div>
 
-        <Loader status={status} className='side-gap gap-t pad-b'>
+        <Loader status={status} className='side-gap gap-t pad-b' style={{minHeight: 0}}>
           {
             infoList.length && chartData.length
                 ? <div className='gap-b'><Chart height='200' data={chartData}/></div>
