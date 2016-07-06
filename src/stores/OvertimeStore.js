@@ -25,7 +25,6 @@ class OvertimeStore extends ReduceStore {
 		case 'get-emp-ot-list-fail':
 			return {
 				...state,
-				empOtList: [],
 				status: 'loaded'
 			};
 		case 'get-emp-ot-list-success':

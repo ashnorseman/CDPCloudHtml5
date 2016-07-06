@@ -117,12 +117,19 @@ class LeaveStore extends ReduceStore {
         status: 'loading',
         query: newQuery
       });
+    case 'get-mgr-leave-empList':
+    case 'get-mgr-leave-empList-fail':
+      return {
+        ...state,
+        status: 'loaded'
+      };
     case 'get-mgr-leave-empList-success':
+      console.log(action.data.page);
       return assign({}, state, {
-        leaveEmpList: (state.query.loadMore || (state.query.page == 1))
+        leaveEmpList: action.data.page !== 1
           ? state.leaveEmpList.concat(action.data)
           : action.data,
-        status: (action.data.length < state.query.pageSize)
+        status: (action.data.length < 16)
           ? 'no-more-data'
           : 'loaded'
       });

@@ -118,13 +118,25 @@ export default {
   /**
    * Get leave history employee list
    * @param {Object} [params]
+   * @param {Object} [page]
    */
-  getLeaveSummaryEmpList(params) {
-    ajax.get('/lv-summary-member', params)
+  getLeaveSummaryEmpList(params, page) {
+    dispatch({
+      type: 'get-mgr-leave-empList'
+    });
+
+    ajax.post('/lv-team-summary', params)
       .then((res) => {
+        res.page = page;
+
         dispatch({
           type: 'get-mgr-leave-empList-success',
           data: res
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'get-mgr-leave-empList-fail'
         });
       });
   },

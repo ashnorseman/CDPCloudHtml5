@@ -651,7 +651,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
     case 'ess-ot-list':
     case 'ot-approve-otdetail':
       return res.json({
-        res: false,
+        res: true,
         val: (function () {
           var base = [{
             "id": 2,
@@ -1409,7 +1409,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
     case 'ess-submit-lv':
     case 'ess-insert-lv':
       return res.json({
-        res: true
+        res: false
       });
     case 'lv-team-summary':
     case 'ot-team-summary':

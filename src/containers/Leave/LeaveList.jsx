@@ -81,6 +81,9 @@ export default class LeaveList extends Component {
         this.getEmpLeaveRecords({
           state: 'edit'
         });
+      })
+      .catch(() => {
+        location.reload();
       });
   }
 
@@ -104,6 +107,9 @@ export default class LeaveList extends Component {
         this.getEmpLeaveRecords({
           state: 'approving'
         });
+      })
+      .catch(() => {
+        location.reload();
       });
   }
 

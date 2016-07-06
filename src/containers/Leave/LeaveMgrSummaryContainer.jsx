@@ -9,7 +9,7 @@ import { getItem as getLang } from '../../common/lang';
 
 import Form from '../../components/Form/Form.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
-import UserList from '../../components/UserList/UserList.jsx';
+import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
@@ -31,8 +31,16 @@ class LeaveMgrQuota extends Component {
     });
   }
 
-  querySummary() {
-    LeaveDataUtils.getLeaveSummary(null, new FormData(React.findDOMNode(this.refs.query)));
+  querySummary(page) {
+    const form = new FormData(React.findDOMNode(this.refs.query));
+
+    if (typeof page !== 'number') page = 1;
+
+    form.append('page', page);
+
+    this.page = page;
+
+    LeaveDataUtils.getLeaveSummaryEmpList(form, page);
 
     this.refs.query.setState({
       submitting: false,
@@ -40,22 +48,11 @@ class LeaveMgrQuota extends Component {
     });
   }
 
-  getTeamMembers(query = {}) {
-    query.page = 1;
-    query.pageSize = 16;
-    query.loadMore = false;
 
-    LeaveDataUtils.getLeaveSummaryEmpList(query);
+  loadMore() {
+    this.querySummary(this.page + 1);
   }
 
-
-  loadMore({ page = 1, ...props } = {}) {
-    LeaveDataUtils.getLeaveSummaryEmpList({
-      page: page + 1,
-      ...props,
-      loadMore: true
-    });
-  }
 
   render() {
     const { leaveEmpList, status, leaveSummaryConfig = []} = this.state;
@@ -70,10 +67,24 @@ class LeaveMgrQuota extends Component {
               onSubmit={::this.querySummary}>
         </Form>
 
-        <PullLoader className='pad-b'
+        <PullLoader className='pad-b gap-t-lg pad-t-lg side-gap'
                     status={status}
-                    onLoad={this.loadMore}>
-          <UserList userList={leaveEmpList} />
+                    onLoad={::this.loadMore}>
+          {
+            Array.isArray(leaveEmpList) && leaveEmpList.map((item, index) => {
+              return <div key={index}>
+                <div className="summary-user-info">
+                  <span>{item.userInfo.items[0].firField}</span>
+                  <span className="summary-user-pos">{item.userInfo.items[0].secField}</span>
+                </div>
+                {
+                  item.summaryInfo.items.map((item, index) => {
+                    return <InfoCard title={item.title} items={item.items} key={index} />;
+                  })
+                }
+              </div>;
+            })
+          }
         </PullLoader>
       </div>
     );
