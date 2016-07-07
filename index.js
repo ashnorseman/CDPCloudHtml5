@@ -629,7 +629,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
           "state": "审批中",
           "userName": "刘 天"
         }],
-        "res": true
+        "res": false
       });
     case 'demo_ess_lv_config.js':
       return res.sendFile(__dirname + '/form-validation/leave.js');

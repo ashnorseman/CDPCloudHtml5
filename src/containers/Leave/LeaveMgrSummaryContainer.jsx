@@ -69,6 +69,7 @@ class LeaveMgrQuota extends Component {
 
         <PullLoader className='pad-b gap-t-lg pad-t-lg side-gap'
                     status={status}
+                    style={{paddingBottom: 80}}
                     onLoad={::this.loadMore}>
           {
             Array.isArray(leaveEmpList) && leaveEmpList.map((item, index) => {

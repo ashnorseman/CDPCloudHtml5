@@ -3,14 +3,11 @@
  */
 
 
-'use strict';
-
 import './leave-mgr.less';
 
 import React, { Component } from 'react';
 
 import { getItem as getLang } from '../../common/lang';
-import Header from '../../components/Header/Header.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
 
 
@@ -43,8 +40,6 @@ class LeaveMgr extends Component {
   render() {
     return (
       <div className='bottom-gap'>
-        <Header back title={getLang('LEAVE_MGR')} />
-
         <Tab items={tabSettings} bottom></Tab>
 
         {this.props.children}

@@ -52,6 +52,11 @@ class LeaveStore extends ReduceStore {
         pendingQuery: action.data,
         status: 'loading'
       };
+    case 'get-lv-pending-records-fail':
+      return {
+        ...state,
+        status: 'loaded'
+      };
     case 'get-lv-pending-records-success':
       return {
         ...state,
@@ -118,6 +123,10 @@ class LeaveStore extends ReduceStore {
         query: newQuery
       });
     case 'get-mgr-leave-empList':
+      return {
+        ...state,
+        status: 'loading'
+      };
     case 'get-mgr-leave-empList-fail':
       return {
         ...state,

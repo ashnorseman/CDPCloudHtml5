@@ -46,7 +46,7 @@ class OvertimeMgr extends Component {
   render() {
     return (
       <div>
-        <Header back title={getLang('OT_MGR')} />
+        <Header back="manager" title={getLang('OT_MGR')} />
 
         {this.props.children}
 

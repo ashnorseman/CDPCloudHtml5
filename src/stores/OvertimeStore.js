@@ -38,6 +38,11 @@ class OvertimeStore extends ReduceStore {
 				...state,
 				status: 'loading'
 			};
+		case 'get-emp-ot-record-fail':
+			return {
+				...state,
+				status: 'loaded'
+			};
 		case 'get-emp-ot-record-success':
 			return {
 				...state,
@@ -86,6 +91,11 @@ class OvertimeStore extends ReduceStore {
 				pendingQuery: action.data,
 				status: 'loading'
 			};
+		case 'get-ot-pending-records-fail':
+			return {
+				...state,
+				status: 'loaded'
+			};
 		case 'get-ot-pending-records-success':
 			return {
 				...state,
@@ -123,10 +133,17 @@ class OvertimeStore extends ReduceStore {
 				summaryQuery: action.data,
 				status: 'loading'
 			};
+		case 'get-ot-summary-list-fail':
+			return {
+				...state,
+				status: 'loaded'
+			};
 		case 'get-ot-summary-list-success':
 			return {
 				...state,
-				summaryList: state.summaryQuery.page === 1 ? action.data : state.summaryList.concat(action.data),
+				summaryList: action.data.page !== 1
+					? state.summaryList.concat(action.data)
+					: action.data,
 				status: 'loaded'
 			};
 		case 'toggle-overtime-record-selectable':

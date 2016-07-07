@@ -5,12 +5,15 @@
 
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import { getItem as getLang } from '../../common/lang';
 
-import UserList from '../../components/UserList/UserList.jsx';
+import Form from '../../components/Form/Form.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
+import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 
 import OvertimeStore from '../../stores/OvertimeStore';
 import OvertimeDataUtils from '../../data-utils/OvertimeDataUtils';
+import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
 
 class OvertimeMgrSummary extends Component {
@@ -23,37 +26,71 @@ class OvertimeMgrSummary extends Component {
 		return OvertimeStore.getState();
 	}
 
-	constructor(props) {
-		super(props);
-
-		OvertimeDataUtils.getSummaryMembers({
-			page: 1
+	componentDidMount() {
+		LeaveDataUtils.getSummaryFilters({
+			type: 'FILTER_OT_SUMMARY'
 		});
 	}
 
-	loadMore() {
-		OvertimeDataUtils.getSummaryMembers({
-			page: this.state.summaryQuery.page + 1
+	querySummary(page) {
+		const form = new FormData(React.findDOMNode(this.refs.query));
+
+		if (typeof page !== 'number') page = 1;
+
+		form.append('page', page);
+
+		this.page = page;
+
+    OvertimeDataUtils.getSummaryMembers(form, page);
+
+		this.refs.query.setState({
+			submitting: false,
+			disabled: false
 		});
 	}
 
-	selectUser(id) {
-		location.hash = '/ot-summary-mgr/' + id;
-	}
+  loadMore() {
+    this.querySummary(this.page + 1);
+  }
 
 	render() {
 		const {
 			summaryList = [],
-			status = 'loading'
+			status = 'loading',
+      otSummaryConfig
 		} = this.state;
 
 		return (
-			<PullLoader className='pad-b'
-									status={status}
-									onLoad={::this.loadMore}>
-				<UserList userList={summaryList}
-									onSelectUser={this.selectUser} />
-			</PullLoader>
+      <div>
+        <Form className="side-gap gap-t"
+              ref="query"
+              action="/ot-team-summary"
+              controls={otSummaryConfig}
+              submitButton={{ text: getLang('SUBMIT') }}
+              onSubmit={::this.querySummary}>
+        </Form>
+
+        <PullLoader className='pad-b-lg gap-t-lg pad-t-lg side-gap'
+                    status={status}
+                    style={{paddingBottom: 80}}
+                    onLoad={::this.loadMore}>
+          {
+            Array.isArray(summaryList) && summaryList.map((item, index) => {
+              return <div key={index}>
+                <div className="summary-user-info">
+                  <span>{item.userInfo.items[0].firField}</span>
+                  <span className="summary-user-pos">{item.userInfo.items[0].secField}</span>
+                </div>
+                {
+                  item.summaryInfo.items.map((item, index) => {
+                    return <InfoCard title={item.title} items={item.items} key={index} />;
+                  })
+                }
+              </div>;
+            })
+          }
+        </PullLoader>
+      </div>
 		);
 	}
 }

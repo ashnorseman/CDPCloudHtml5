@@ -22,7 +22,7 @@ export default class Header extends Component {
             ? <Button className='header-icon-left'
                       icon='cdp-left-arrow'
                       iconType='icomoon'
-                      onClick={back ? this.back : this.goBack} />
+                      onClick={back ? this.back.bind(this, back) : this.goBack} />
             : iconLeft
                 ? <Button className='header-icon-left'
                           icon={iconLeft}
@@ -54,8 +54,8 @@ export default class Header extends Component {
   /**
    * `Back` event for `back` icon
    */
-  back() {
-    location.hash = '';
+  back(hash = '') {
+    location.hash = hash;
   }
 
 

@@ -45,10 +45,10 @@ export default class PullLoader extends Component {
   }
 
   render() {
-    const { status, className = '' } = this.props;
+    const { status, className = '', ...props } = this.props;
 
     return (
-      <div className={className}>
+      <div className={className} {...props}>
         {this.props.children}
 
         <div className={'pull-loader ' + status}>

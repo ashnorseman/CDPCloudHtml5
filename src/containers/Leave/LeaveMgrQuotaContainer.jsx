@@ -4,14 +4,13 @@
 
 
 import React, { Component } from 'react';
-import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../../common/lang';
-import LeaveList from './LeaveList.jsx';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
+import Header from '../../components/Header/Header.jsx';
 import UserList from '../../components/UserList/UserList.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 
@@ -41,12 +40,16 @@ class LeaveMgrQuota extends Component {
     const { quotaTeamList, status } = this.state;
 
     return (
-      <PullLoader className='pad-b'
-                  status={status}
-                  onLoad={this.loadMore}>
-        <UserList userList={quotaTeamList}
-                  onSelectUser={this.selectUser} />
-      </PullLoader>
+      <div>
+        <Header back="manager" title={getLang('LEAVE_QUOTA')} />
+
+        <PullLoader className='pad-b'
+                    status={status}
+                    onLoad={this.loadMore}>
+          <UserList userList={quotaTeamList}
+                    onSelectUser={this.selectUser} />
+        </PullLoader>
+      </div>
     );
   }
 

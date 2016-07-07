@@ -130,13 +130,25 @@ export default {
 		});
 	},
 
-	getSummaryMembers(query) {
-		ajaxDispatch({
-			action: 'get-ot-summary-list',
-			url: '/ot-summary-member',
-			method: 'get',
-			data: query
+	getSummaryMembers(params, page) {
+		dispatch({
+			type: 'get-ot-summary-list'
 		});
+
+		ajax.post('/ot-team-summary', params)
+			.then((res) => {
+				res.page = page;
+
+				dispatch({
+					type: 'get-ot-summary-list-success',
+					data: res
+				});
+			})
+			.catch(() => {
+				dispatch({
+					type: 'get-ot-summary-list-fail'
+				});
+			});
 	},
 
 	getFilter(companyCode) {
