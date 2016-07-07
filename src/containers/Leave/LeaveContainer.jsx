@@ -44,7 +44,6 @@ class Leave extends Component {
 
     return (
       <div className='bottom-gap'>
-        <Header back title={getLang('MY_LEAVE')} />
         <Tab items={tabSettings} bottom />
 
         {this.props.children}

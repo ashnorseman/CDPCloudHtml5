@@ -3,11 +3,10 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
+import Header from '../../components/Header/Header.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 
@@ -35,8 +34,10 @@ class LeaveQuota extends Component {
     const { quota = [], status } = this.state;
 
     return (
-      <div className="side-gap gap-t gap-b">
-        <Loader status={status}>
+      <div>
+        <Header back title={getLang('LEAVE_QUOTA')} />
+
+        <Loader status={status} className="side-gap gap-t gap-b">
           {
             (quota.map ? quota : []).map((card, index) => {
               return <div className="gap-t" key={index}>

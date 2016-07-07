@@ -12,6 +12,7 @@ import ajax, { ajaxDispatch } from '.././../common/utils/ajax';
 import { getItem as getLang } from '../../common/lang';
 
 import Button from '../../components/Button/Button.jsx';
+import Header from '../../components/Header/Header.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 
@@ -106,6 +107,8 @@ class OvertimeMgrPending extends Component {
 
 		return (
 			<div>
+				<Header back="manager" title={getLang('PENDING')} />
+
 				<PullLoader status={status}
 										onLoad={::this.loadMore}>
 					<RecordList recordList={pendingRecords}

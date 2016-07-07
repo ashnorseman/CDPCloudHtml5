@@ -204,7 +204,7 @@ export default class LeaveList extends Component {
 
         {
           this.enableSubmit
-            ? <Button icon='pencil' action onClick={this.toggleEnterMode} style={{bottom: '10rem'}} />
+            ? <Button icon='pencil' action onClick={this.toggleEnterMode} style={{bottom: '8.5rem'}} />
             : null
         }
 

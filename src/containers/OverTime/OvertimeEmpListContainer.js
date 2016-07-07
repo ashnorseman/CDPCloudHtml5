@@ -169,7 +169,7 @@ class OvertimeEmpList extends Component {
 			<div>
 				<Header
 					back
-					title={getLang('MY_OT')}
+					title={getLang('MY_APPLY')}
 					dropdown={filter}
 				/>
 

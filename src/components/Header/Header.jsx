@@ -54,8 +54,8 @@ export default class Header extends Component {
   /**
    * `Back` event for `back` icon
    */
-  back(hash = '') {
-    location.hash = hash;
+  back(hash) {
+    location.hash = typeof hash === 'string' ? hash : '';
   }
 
 

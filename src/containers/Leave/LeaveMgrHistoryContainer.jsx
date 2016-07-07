@@ -4,14 +4,13 @@
 
 
 import React, { Component } from 'react';
-import dispatcher, { dispatch } from '../../dispatcher/Dispatcher';
 import { Container } from 'flux/utils';
 
 import { getItem as getLang } from '../../common/lang';
-import LeaveList from './LeaveList.jsx';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
+import Header from '../../components/Header/Header.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 
@@ -36,11 +35,15 @@ class LeaveMgrQuota extends Component {
     const { leaveRecords, status } = this.state;
 
     return (
-      <PullLoader className='pad-b'
-                  status={status}
-                  onLoad={this.loadMore}>
-        <RecordList recordList={leaveRecords} href={null} />
-      </PullLoader>
+      <div>
+        <Header back="manager" title={getLang('HISTORY')} />
+
+        <PullLoader className='pad-b'
+                    status={status}
+                    onLoad={this.loadMore}>
+          <RecordList recordList={leaveRecords} href={null} />
+        </PullLoader>
+      </div>
     );
   }
 

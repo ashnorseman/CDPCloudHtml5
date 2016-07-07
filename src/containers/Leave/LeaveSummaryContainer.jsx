@@ -6,14 +6,15 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
-import Form from '../../components/Form/Form.jsx';
 
 import { getItem as getLang } from '../../common/lang';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
 
-import Loader from '../../components/Loader/Loader.jsx';
+import Form from '../../components/Form/Form.jsx';
+import Header from '../../components/Header/Header.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
 
 
 class LeaveQuota extends Component {
@@ -50,6 +51,8 @@ class LeaveQuota extends Component {
 
     return (
       <div>
+        <Header back title={getLang('LEAVE_SUMMARY')} />
+
         <Form className="side-gap gap-t"
               ref="query"
               action="/ess-lv-summary"

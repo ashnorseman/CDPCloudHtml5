@@ -5,7 +5,9 @@
 
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import { getItem as getLang } from '../../common/lang';
 
+import Header from '../../components/Header/Header.jsx';
 import RecordList from '../../components/RecordList/RecordList.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 
@@ -44,11 +46,15 @@ class OvertimeMgrHistory extends Component {
 		} = this.state;
 
 		return (
-			<PullLoader className='pad-b'
-									status={status}
-									onLoad={::this.loadMore}>
-				<RecordList recordList={otHistoryList} href={null} />
-			</PullLoader>
+			<div>
+				<Header back="manager" title={getLang('HISTORY')} />
+
+				<PullLoader className='pad-b'
+										status={status}
+										onLoad={::this.loadMore}>
+					<RecordList recordList={otHistoryList} href={null} />
+				</PullLoader>
+			</div>
 		);
 	}
 }

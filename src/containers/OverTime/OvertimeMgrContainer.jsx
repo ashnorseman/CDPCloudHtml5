@@ -6,13 +6,11 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
-import Header from '../../components/Header/Header.jsx';
 import Tab from '../../components/Tab/Tab.jsx';
 
 import { getItem as getLang } from '../../common/lang';
 
 import OvertimeStore from '../../stores/OvertimeStore';
-import OvertimeDataUtils from '../../data-utils/OvertimeDataUtils';
 
 
 const tabSettings = [
@@ -46,8 +44,6 @@ class OvertimeMgr extends Component {
   render() {
     return (
       <div>
-        <Header back="manager" title={getLang('OT_MGR')} />
-
         {this.props.children}
 
         <Tab items={tabSettings} bottom />

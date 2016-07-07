@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import { getItem as getLang } from '../../common/lang';
 
+import Header from '../../components/Header/Header.jsx';
 import Form from '../../components/Form/Form.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
@@ -59,6 +60,8 @@ class LeaveMgrQuota extends Component {
 
     return (
       <div>
+        <Header back="manager" title={getLang('LEAVE_SUMMARY')} />
+
         <Form className="side-gap gap-t"
               ref="query"
               action="/lv-team-summary"

@@ -104,6 +104,8 @@ class LeaveListContainer extends Component {
 
     return (
       <div>
+        <Header back="manager" title={getLang('PENDING')} />
+
         <PullLoader status={status} onLoad={this.loadMore}>
           <RecordList recordList={pendingRecords}
                       selectable={selectable && this.select}
