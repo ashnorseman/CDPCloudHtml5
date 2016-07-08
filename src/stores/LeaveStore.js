@@ -133,7 +133,6 @@ class LeaveStore extends ReduceStore {
         status: 'loaded'
       };
     case 'get-mgr-leave-empList-success':
-      console.log(action.data.page);
       return assign({}, state, {
         leaveEmpList: action.data.page !== 1
           ? state.leaveEmpList.concat(action.data)
@@ -225,9 +224,23 @@ class LeaveStore extends ReduceStore {
     case 'leave-record-reject-success':
       history.back();
       return state;
+    case 'get-leave-summary-filters':
+      return {
+        ...state,
+        leaveEmpList: [],
+        configStatus: 'loading',
+        status: 'loaded'
+      };
+    case 'get-leave-summary-filters-fail':
+      return {
+        ...state,
+        configStatus: 'loaded',
+        status: 'loaded'
+      };
     case 'get-leave-summary-filters-success':
       return assign({}, state, {
         leaveSummaryConfig: action.data.formConfig,
+        configStatus: 'loaded',
         status: 'loaded'
       });
     }

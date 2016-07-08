@@ -9,6 +9,7 @@ import { getItem as getLang } from '../../common/lang';
 
 import Header from '../../components/Header/Header.jsx';
 import Form from '../../components/Form/Form.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 
@@ -56,19 +57,28 @@ class LeaveMgrQuota extends Component {
 
 
   render() {
-    const { leaveEmpList, status, leaveSummaryConfig = []} = this.state;
+    const {
+      leaveEmpList,
+      configStatus = 'loading',
+      status = 'loaded',
+      leaveSummaryConfig = []
+    } = this.state;
+
+    console.log(status);
 
     return (
       <div>
         <Header back="manager" title={getLang('LEAVE_SUMMARY')} />
 
-        <Form className="side-gap gap-t"
-              ref="query"
-              action="/lv-team-summary"
-              controls={leaveSummaryConfig}
-              submitButton={{ text: getLang('SUBMIT') }}
-              onSubmit={::this.querySummary}>
-        </Form>
+        <Loader status={configStatus}>
+          <Form className="side-gap gap-t"
+                ref="query"
+                action="/lv-team-summary"
+                controls={leaveSummaryConfig}
+                submitButton={{ text: getLang('SUBMIT') }}
+                onSubmit={::this.querySummary}>
+          </Form>
+        </Loader>
 
         <PullLoader className='pad-b gap-t-lg pad-t-lg side-gap'
                     status={status}

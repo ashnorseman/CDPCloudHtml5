@@ -9,6 +9,7 @@ import { getItem as getLang } from '../../common/lang';
 
 import Header from '../../components/Header/Header.jsx';
 import Form from '../../components/Form/Form.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
 import PullLoader from '../../components/PullLoader/PullLoader.jsx';
 import InfoCard from '../../components/InfoCard/InfoCard.jsx';
 
@@ -57,7 +58,8 @@ class OvertimeMgrSummary extends Component {
 	render() {
 		const {
 			summaryList = [],
-			status = 'loading',
+			configStatus = 'loading',
+			status = 'loaded',
       otSummaryConfig
 		} = this.state;
 
@@ -65,13 +67,15 @@ class OvertimeMgrSummary extends Component {
       <div>
 				<Header back="manager" title={getLang('OT_SUMMARY')} />
 
-				<Form className="side-gap gap-t"
-              ref="query"
-              action="/ot-team-summary"
-              controls={otSummaryConfig}
-              submitButton={{ text: getLang('SUBMIT') }}
-              onSubmit={::this.querySummary}>
-        </Form>
+				<Loader status={configStatus}>
+					<Form className="side-gap gap-t"
+								ref="query"
+								action="/ot-team-summary"
+								controls={otSummaryConfig}
+								submitButton={{ text: getLang('SUBMIT') }}
+								onSubmit={::this.querySummary}>
+					</Form>
+				</Loader>
 
         <PullLoader className='pad-b-lg gap-t-lg pad-t-lg side-gap'
                     status={status}
