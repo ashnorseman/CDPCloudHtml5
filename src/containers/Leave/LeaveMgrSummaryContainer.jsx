@@ -36,7 +36,7 @@ class LeaveMgrQuota extends Component {
   querySummary(page) {
     const form = new FormData(React.findDOMNode(this.refs.query));
 
-    if (typeof page !== 'number') page = 1;
+    if ((typeof page !== 'number') || isNaN(page)) page = 1;
 
     form.append('page', page);
 
@@ -63,8 +63,6 @@ class LeaveMgrQuota extends Component {
       status = 'loaded',
       leaveSummaryConfig = []
     } = this.state;
-
-    console.log(status);
 
     return (
       <div>
