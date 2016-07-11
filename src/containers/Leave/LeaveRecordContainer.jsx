@@ -27,7 +27,9 @@ class LeaveRecord extends Component {
     this.approve = this.approve.bind(this);
     this.reject = this.reject.bind(this);
 
-    this.getLeaveRecord();
+    if (this.props.route.name !== 'leave-record-mgr') {
+      this.getLeaveRecord();
+    }
   }
 
   static getStores() {
@@ -53,31 +55,35 @@ class LeaveRecord extends Component {
     return (
       <div>
         <Header goBack title={getLang('MY_APPLY')} />
-        <Loader status={status} className='side-gap gap-t-lg pad-b'>
-          {
-            baseInfo
-              ? <div>
-              <h2 className="info-card-heading gap-b">{baseInfo.title}</h2>
-              <InfoCard items={baseInfo.items} />
-            </div>
-              : null
-          }
-          {
-            appInfo
-              ? <div>
-                  <h2 className="info-card-heading gap-b">{appInfo.title}</h2>
-                  {
-                    appInfo.items.map((item, index) => {
-                      return <InfoCard items={item} key={index} />;
-                    })
-                  }
-                </div>
-              : null
-          }
-        </Loader>
+        {
+          !mgr
+            ? <Loader status={status} className='side-gap gap-t-lg pad-b'>
+                {
+                  baseInfo
+                    ? <div>
+                        <h2 className="info-card-heading gap-b">{baseInfo.title}</h2>
+                        <InfoCard items={baseInfo.items} />
+                      </div>
+                    : null
+                }
+                {
+                  appInfo
+                    ? <div>
+                        <h2 className="info-card-heading gap-b">{appInfo.title}</h2>
+                        {
+                          appInfo.items.map((item, index) => {
+                            return <InfoCard items={item} key={index} />;
+                          })
+                        }
+                      </div>
+                    : null
+                }
+              </Loader>
+            : null
+        }
         {
           mgr ?
-            <div>
+            <div className="gap-t">
               <div className='row'>
                 <div className='col-1-1'>
                   <FormControl label='审批意见'>

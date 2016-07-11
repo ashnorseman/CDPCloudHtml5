@@ -32,7 +32,7 @@ class OvertimePendingRecord extends Component {
 	constructor(props) {
 		super(props);
 
-		OvertimeDataUtils.getEmpOtRecord(this.props.routeParams.id);
+		// OvertimeDataUtils.getEmpOtRecord(this.props.routeParams.id);
 	}
 
 
@@ -63,7 +63,7 @@ class OvertimePendingRecord extends Component {
 			<div>
 				<Header goBack title={getLang('MY_OT')} />
 
-				<Loader status={status} className='side-gap pad-b'>
+				{/*<Loader status={status} className='side-gap pad-b'>
 					{
 						baseInfo &&
 						<div>
@@ -82,27 +82,27 @@ class OvertimePendingRecord extends Component {
 							}
 						</div>
 					}
+				</Loader>*/}
 
-					<div className='row'>
-						<div className='col-1-1'>
-							<FormControl label='审批意见'>
-								<TextInput ref='opinion' />
-							</FormControl>
-						</div>
+				<div className='row gap-t'>
+					<div className='col-1-1'>
+						<FormControl label='审批意见'>
+							<TextInput ref='opinion' />
+						</FormControl>
 					</div>
+				</div>
 
-					<div className='row'>
-						<div className='col-1-2'>
-							<Button text={getLang('APPROVE')}
-											onTouchTap={this.approve.bind(this, true)} />
-						</div>
-						<div className='col-1-2'>
-							<Button hollow className='text-primary'
-											text={getLang('REJECT')}
-											onTouchTap={this.approve.bind(this, false)} />
-						</div>
+				<div className='row'>
+					<div className='col-1-2'>
+						<Button text={getLang('APPROVE')}
+										onTouchTap={this.approve.bind(this, true)} />
 					</div>
-				</Loader>
+					<div className='col-1-2'>
+						<Button hollow className='text-primary'
+										text={getLang('REJECT')}
+										onTouchTap={this.approve.bind(this, false)} />
+					</div>
+				</div>
 			</div>
 		);
 	}
