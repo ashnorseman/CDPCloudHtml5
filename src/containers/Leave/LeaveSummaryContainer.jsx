@@ -6,7 +6,6 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
-
 import { getItem as getLang } from '../../common/lang';
 import LeaveStore from '../../stores/LeaveStore';
 import LeaveDataUtils from '../../data-utils/LeaveDataUtils';
@@ -47,22 +46,32 @@ class LeaveQuota extends Component {
   }
 
   render() {
-    const {leaveSummary, status, leaveSummaryConfig = []} = this.state;
+    const {
+      leaveSummary,
+      status = 'loading',
+      configStatus = 'loading',
+      leaveSummaryConfig = []
+    } = this.state;
+
+    console.log(status);
 
     return (
       <div>
         <Header back title={getLang('LEAVE_SUMMARY')} />
 
-        <Form className="side-gap gap-t"
-              ref="query"
-              action="/ess-lv-summary"
-              controls={leaveSummaryConfig}
-              submitButton={{ text: getLang('SUBMIT') }}
-              onSubmit={this.querySummary.bind(this)}>
-        </Form>
+        <Loader status={configStatus} className="side-gap gap-t">
+          <Form ref="query"
+                action="/ess-lv-summary"
+                controls={leaveSummaryConfig}
+                submitButton={{ text: getLang('SUBMIT') }}
+                onSubmit={this.querySummary.bind(this)}>
+          </Form>
+        </Loader>
 
         <div style={{minHeight: '100vh'}}>
-          <Loader status={status} className='side-gap gap-t-lg pad-t-lg pad-b'>
+          <Loader status={status}
+                  className='side-gap gap-t-lg pad-t-lg pad-b'
+                  style={{minHeight: 0}}>
             {
               Array.isArray(leaveSummary) && leaveSummary.map((item, index) => {
                 return <InfoCard title={item.title} items={item.items} key={index}/>;

@@ -51,6 +51,7 @@ class OvertimeEmpSummary extends Component {
   render() {
     const {
       empOtSummary = [],
+      configStatus = 'loading',
       status = 'loading',
       otSummaryConfig = []
     } = this.state;
@@ -59,15 +60,18 @@ class OvertimeEmpSummary extends Component {
         <div>
           <Header back title={getLang('OT_SUMMARY')}/>
 
-          <Form className="side-gap gap-t"
-                ref="query"
-                action="/ess-ot-summary"
-                controls={otSummaryConfig}
-                submitButton={{ text: getLang('SUBMIT') }}
-                onSubmit={this.querySummary.bind(this)}>
-          </Form>
+          <Loader status={configStatus} className="side-gap gap-t">
+            <Form ref="query"
+                  action="/ess-ot-summary"
+                  controls={otSummaryConfig}
+                  submitButton={{ text: getLang('SUBMIT') }}
+                  onSubmit={this.querySummary.bind(this)}>
+            </Form>
+          </Loader>
 
-          <Loader status={status} className='side-gap gap-t-lg pad-t-lg pad-b'>
+          <Loader status={status}
+                  className='side-gap gap-t-lg pad-t-lg pad-b'
+                  style={{minHeight: 0}}>
             {
               empOtSummary.map((item, index) => {
                 return (
