@@ -98,8 +98,6 @@ class OvertimeEmpList extends Component {
 
 		if (!formData) return;
 
-
-
 		OvertimeDataUtils.insertOt(formData, this.url);
 	}
 

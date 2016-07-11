@@ -344,5 +344,12 @@ export default {
     dispatch({
       type: 'form-submitting'
     });
+  },
+
+
+  submitFormFail() {
+    dispatch({
+      type: 'form-submitting-fail'
+    });
   }
 };

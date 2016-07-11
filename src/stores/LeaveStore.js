@@ -146,6 +146,11 @@ class LeaveStore extends ReduceStore {
         ...state,
         status: 'loading'
       };
+    case 'form-submitting-fail':
+      return {
+        ...state,
+        status: 'loaded'
+      };
     case 'get-emp-leave-records-success':
     case 'get-mgr-leave-history-success':
       const data = action.data;

@@ -83,7 +83,7 @@ export default class LeaveList extends Component {
         });
       })
       .catch(() => {
-        location.reload();
+        LeaveDataUtils.submitFormFail();
       });
   }
 
@@ -109,7 +109,7 @@ export default class LeaveList extends Component {
         });
       })
       .catch(() => {
-        location.reload();
+        LeaveDataUtils.submitFormFail();
       });
   }
 
