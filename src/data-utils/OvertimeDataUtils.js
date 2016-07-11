@@ -76,7 +76,10 @@ export default {
 			url: url,
 			method: 'post',
 			data: formData
-		});
+		})
+			.catch(e => {
+				console.log(e);
+			});
 	},
 
 	getEmpOtSummary(id, query) {

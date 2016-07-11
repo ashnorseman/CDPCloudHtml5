@@ -93,12 +93,14 @@ class OvertimeEmpList extends Component {
 	 * - submit: { submit: true }
 	 * @param submitValue
 	 */
-	insert(submitValue) {
+	insert(submitValue, e) {
 		const formData = this.collectFormData(submitValue);
 
 		if (!formData) return;
 
 		OvertimeDataUtils.insertOt(formData, this.url);
+
+		e.preventDefault();
 	}
 
 

@@ -1444,7 +1444,7 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
     }
 
     res.json({
-      res: false
+      res: true
     });
   }, 1000);
 });

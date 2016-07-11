@@ -211,7 +211,7 @@ export const ajaxDispatch = function ({
     data
   });
 
-  ajax[method](url, data)
+  return ajax[method](url, data)
     .then((res) => {
       dispatch({
         type: action + '-success',

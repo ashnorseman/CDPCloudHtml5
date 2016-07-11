@@ -83,7 +83,7 @@ class OvertimeStore extends ReduceStore {
 				...state,
 				submitting: false,
 				status: 'loaded',
-				refreshList: true
+				refreshList: action.type === 'insert-ot-form-success'
 			};
 		case 'get-ot-pending-records':
 			return {
