@@ -300,7 +300,7 @@ export default {
 
     ajaxDispatch({
       action: 'leave-record-approve',
-      url: '/mss-lv-approve',
+      url: '/mss-approve-app',
       method: 'post',
       data: {
         id,
@@ -318,7 +318,7 @@ export default {
 
     ajaxDispatch({
       action: 'leave-record-reject',
-      url: '/mss-lv-approve',
+      url: '/mss-approve-app',
       method: 'post',
       data: {
         id,
