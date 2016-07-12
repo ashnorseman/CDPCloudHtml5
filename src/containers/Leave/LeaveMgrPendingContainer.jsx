@@ -48,7 +48,7 @@ class LeaveListContainer extends Component {
       .filter(check => check.checked)
       .map(check => check.value);
 
-    ajax.post('/mss-approve-app', {
+    ajax.post('/mss-lv-approve', {
         idList: inputs.join(),
         agreeOrNot
       })
