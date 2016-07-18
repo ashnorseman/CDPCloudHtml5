@@ -75,8 +75,9 @@ class OvertimeEmpList extends Component {
 	 */
 	openApply(e, editMode) {
 		this.refs.apply.open(e);
+    this.refs.pullLoader.stopLoading();
 
-		if (editMode === true) {
+    if (editMode === true) {
 			this.url = '/ess-edit-ot';
 			return;
 		} else {
@@ -137,7 +138,8 @@ class OvertimeEmpList extends Component {
 		}
 
 		this.refs.apply.close();
-	}
+    this.refs.pullLoader.continueLoading();
+  }
 
 	render() {
 		const {
@@ -173,7 +175,8 @@ class OvertimeEmpList extends Component {
 					dropdown={filter}
 				/>
 
-				<PullLoader status={status}
+				<PullLoader ref="pullLoader"
+										status={status}
 										onLoad={::this.loadMore}>
 					<RecordList recordList={empOtList}
 											url={'/my-ot/record'}

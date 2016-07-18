@@ -375,7 +375,8 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
           }, {
             "label": "休假理由",
             "name": "eleaveNote",
-            "type": "text"
+            "type": "text",
+            "disabled": true
           }]
         },
         "res": true

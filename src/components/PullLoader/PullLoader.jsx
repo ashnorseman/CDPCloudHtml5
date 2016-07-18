@@ -37,10 +37,18 @@ export default class PullLoader extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', load, false);
+    this.continueLoading();
   }
 
   componentWillUnmount() {
+    this.stopLoading();
+  }
+
+  continueLoading() {
+    window.addEventListener('scroll', load, false);
+  }
+
+  stopLoading() {
     window.removeEventListener('scroll', load, false);
   }
 

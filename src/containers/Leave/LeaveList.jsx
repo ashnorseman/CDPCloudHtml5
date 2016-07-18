@@ -132,6 +132,7 @@ export default class LeaveList extends Component {
     this._editId = null;
 
     this.refs.apply.close();
+    this.refs.pullLoader.continueLoading();
   }
 
 
@@ -144,6 +145,7 @@ export default class LeaveList extends Component {
     this.editMode = (editMode === true);
 
     this.refs.apply.open(e);
+    this.refs.pullLoader.stopLoading();
 
     if (editMode === true) {
       this.url = '/ess-edit-lv';
@@ -188,7 +190,7 @@ export default class LeaveList extends Component {
 
         {/*<Filter items={filter} onFilter={this.filter}></Filter>*/}
 
-        <PullLoader status={status} onLoad={this.loadMore}>
+        <PullLoader ref="pullLoader" status={status} onLoad={this.loadMore}>
           {
             mgr
               ? <div className="gap-t-lg">
