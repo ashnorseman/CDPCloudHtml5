@@ -20,7 +20,10 @@ export default class ActionMenu extends Component {
             const style = item.style || 1,
                   className = `action-menu-item action-menu-style-${style} clearfix`;
 
-            return <a key={index} href={`#/${item.link}`} className={className}>
+            return <a key={index}
+                      href={item.url || `#/${item.link}`}
+                      className={className}
+                      target={item.url ? '_blank' : '_self'}>
               <i className={'icon-fontello icon-' + item.icon + ' action-menu-icon'}>
                 {
                   item.notification ? <span className='action-menu-label'>{item.notification}</span> : null

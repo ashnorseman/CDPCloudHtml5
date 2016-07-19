@@ -91,6 +91,13 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
                 text: '我的加班',
                 content: '查看个人加班',
                 id: 1456
+              },
+              {
+                name: 'CDPLife',
+                text: '我的福利',
+                content: '进入 CDPLife',
+                url: 'http://www.google.com',
+                id: 1457
               }
             ],
             mss: [

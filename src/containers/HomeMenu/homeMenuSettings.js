@@ -3,10 +3,6 @@
  */
 
 
-'use strict';
-
-import { getItem as getLang } from '../../common/lang';
-
 export default {
 
   baseMessage: {
@@ -28,6 +24,11 @@ export default {
     style: 4,
     link: 'my-ot',
     icon: 'clock'
+  },
+  CDPLife: {
+    style: 4,
+    link: 'my-ot',
+    icon: 'money'
   },
   leaveManagement: {
     style: 5,

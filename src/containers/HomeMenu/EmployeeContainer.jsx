@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import assign from 'object-assign';
 
-import { getItem as getLang } from '../../common/lang';
 import menuSettings from './homeMenuSettings';
 import ActionMenu from '../../components/ActionMenu/ActionMenu.jsx';
 import UserStore from '../../stores/UserStore';
