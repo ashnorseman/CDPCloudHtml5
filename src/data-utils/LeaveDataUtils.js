@@ -24,12 +24,12 @@ export default {
     } : null;
 
     ajax.get('/user-quota', params)
-        .then((data) => {
-          dispatch({
-            type: 'get-leave-quota-success',
-            data
-          });
+      .then((data) => {
+        dispatch({
+          type: 'get-leave-quota-success',
+          data
         });
+      });
   },
 
 
@@ -42,15 +42,20 @@ export default {
     });
 
     ajax.post('/quota-team-member', query)
-        .then((data) => {
-          dispatch({
-            type: 'get-quota-members-success',
-            data: {
-              list: data,
-              loadMore: query.loadMore
-            }
-          });
+      .then((data) => {
+        dispatch({
+          type: 'get-quota-members-success',
+          data: {
+            list: data,
+            loadMore: query.loadMore
+          }
         });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'get-quota-members-fail'
+        })
+      });
   },
 
 
@@ -236,12 +241,12 @@ export default {
       action: 'get-leave-record',
       url: '/lv-approve-detail',
       method: 'get',
-      data: { id }
+      data: {id}
     });
   },
 
 
-	/**
+  /**
    * 获取休假汇总
    * @param id
    * @param query
@@ -255,7 +260,7 @@ export default {
       action: 'get-leave-summary',
       url: '/ess-lv-summary',
       method: 'post',
-      data: query || (id ? { id } : {})
+      data: query || (id ? {id} : {})
     });
   },
 
@@ -306,7 +311,7 @@ export default {
   /**
    * Reject a record
    */
-  approveRecord({ id, appOpinion }) {
+  approveRecord({id, appOpinion}) {
 
     ajaxDispatch({
       action: 'leave-record-approve',
@@ -324,7 +329,7 @@ export default {
   /**
    * Reject a record
    */
-  rejectRecord({ id, appOpinion }) {
+  rejectRecord({id, appOpinion}) {
 
     ajaxDispatch({
       action: 'leave-record-reject',

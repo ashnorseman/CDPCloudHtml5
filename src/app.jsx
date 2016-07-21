@@ -59,6 +59,7 @@ ajax.onError((status, err) => {
     dispatch({
       type: 'logout'
     });
+    location.hash = '';
   } else {
     alert(err);
   }

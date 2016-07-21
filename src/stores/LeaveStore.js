@@ -68,6 +68,11 @@ class LeaveStore extends ReduceStore {
         ...state,
         status: 'loading'
       };
+    case 'get-quota-members-fail':
+      return {
+        ...state,
+        status: 'loaded'
+      };
     case 'get-quota-members-success':
       const newList = (action.data.list || []).map(item => {
         return {

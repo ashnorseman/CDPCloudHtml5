@@ -108,6 +108,11 @@ class OvertimeStore extends ReduceStore {
 				otHistoryQuery: action.data,
 				status: 'loading'
 			};
+		case 'get-ot-history-list-fail':
+			return {
+				...state,
+				status: 'loaded'
+			};
 		case 'get-ot-history-list-success':
 			return {
 				...state,
