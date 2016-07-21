@@ -172,6 +172,11 @@ class LeaveStore extends ReduceStore {
         status: 'loading',
         query: newQueryHistory
       });
+    case 'get-mgr-leave-history-fail':
+      return {
+        ...state,
+        status: 'loaded'
+      };
     case 'get-leave-record':
       return assign({}, state, {
         status: 'loading'

@@ -205,6 +205,11 @@ export default {
           type: 'get-mgr-leave-history-success',
           data: res
         });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'get-mgr-leave-history-fail'
+        });
       });
   },
 

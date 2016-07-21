@@ -846,7 +846,7 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
           "state": "拒绝",//审批状态
           "appTime": "2016/04/21 16:18" //审批时间
         }],
-        "res": true
+        "res": false
       });
     case 'lv-summary-member':
     case 'ot-summary-member':
