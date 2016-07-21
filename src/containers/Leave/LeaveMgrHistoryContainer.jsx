@@ -20,7 +20,10 @@ class LeaveMgrQuota extends Component {
   constructor(props) {
     super(props);
 
+    this.page = 1;
     LeaveDataUtils.getMgrLeaveHistory();
+
+    this.loadMore = this.loadMore.bind(this);
   }
 
   static getStores() {
@@ -48,10 +51,12 @@ class LeaveMgrQuota extends Component {
   }
 
 
-  loadMore({ page = 1, ...props } = {}) {
+  loadMore(query = {}) {
+    this.page += 1;
+
     LeaveDataUtils.getMgrLeaveHistory({
-      page: page + 1,
-      ...props,
+      ...query,
+      page: this.page,
       loadMore: true
     });
   }

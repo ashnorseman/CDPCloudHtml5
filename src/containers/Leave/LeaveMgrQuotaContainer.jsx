@@ -21,6 +21,7 @@ class LeaveMgrQuota extends Component {
     super(props);
 
     this.getTeamMembers();
+    this.loadMore = this.loadMore.bind(this);
   }
 
   static getStores() {
@@ -56,17 +57,20 @@ class LeaveMgrQuota extends Component {
 
   getTeamMembers(query = {}) {
     query.page = 1;
-    query.pageSize = 16;
     query.loadMore = false;
+
+    this.page = query.page;
 
     LeaveDataUtils.getQuotaMembers(query);
   }
 
 
-  loadMore({ page = 1, ...props } = {}) {
+  loadMore(query = {}) {
+    this.page += 1;
+
     LeaveDataUtils.getQuotaMembers({
-      page: page + 1,
-      ...props,
+      ...query,
+      page: this.page,
       loadMore: true
     });
   }
