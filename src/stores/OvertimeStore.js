@@ -74,7 +74,6 @@ class OvertimeStore extends ReduceStore {
 		case 'insert-ot-form':
 			return {
 				...state,
-				status: 'loading',
 				submitting: true
 			};
 		case 'insert-ot-form-fail':
@@ -82,7 +81,6 @@ class OvertimeStore extends ReduceStore {
 			return {
 				...state,
 				submitting: false,
-				status: 'loaded',
 				refreshList: action.type === 'insert-ot-form-success'
 			};
 		case 'get-ot-pending-records':

@@ -144,12 +144,12 @@ class LeaveStore extends ReduceStore {
     case 'form-submitting':
       return {
         ...state,
-        status: 'loading'
+        formSubmitting: true
       };
     case 'form-submitting-fail':
       return {
         ...state,
-        status: 'loaded'
+        formSubmitting: false
       };
     case 'get-emp-leave-records-success':
       const data = action.data;

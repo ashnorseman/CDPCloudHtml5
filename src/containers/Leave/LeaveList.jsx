@@ -170,7 +170,7 @@ export default class LeaveList extends Component {
   }
 
   render() {
-    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect, filter, leaveForm, formIsSubmitting } = this.props;
+    const { leaveRecords, status, leaveTypes, mgr, selectable, toggleSelect, filter, leaveForm, formIsSubmitting, formSubmitting } = this.props;
 
     if (filter) {
       filter.onClickItem = (state) => {
@@ -219,10 +219,16 @@ export default class LeaveList extends Component {
 
             <div className="row">
               <div className="col-1-2">
-                <Button type='button' text={getLang('SAVE')} onClick={this.save} />
+                <Button type='button'
+                        text={getLang('SAVE')}
+                        disabled={formSubmitting}
+                        onClick={this.save} />
               </div>
               <div className="col-1-2">
-                <Button type='button' text={getLang('SUBMIT')} onClick={this.submitForm} />
+                <Button type='button'
+                        text={getLang('SUBMIT')}
+                        disabled={formSubmitting}
+                        onClick={this.submitForm} />
               </div>
             </div>
           </Loader>
