@@ -30,7 +30,7 @@ export default class FormControl extends Component {
         controlClass += ' form-has-data';
       }
 
-      if (child.props.isLine === false) {
+      if (child.props.isline === false) {
         controlClass += ' form-control-half';
       }
 
