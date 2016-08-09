@@ -30,6 +30,10 @@ export default class FormControl extends Component {
         controlClass += ' form-has-data';
       }
 
+      if (child.props.isLine === false) {
+        controlClass += ' form-control-half';
+      }
+
       return React.cloneElement(child, {
         onValid: this.onValid,
         onInvalid: this.onInvalid,

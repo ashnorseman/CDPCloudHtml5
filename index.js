@@ -374,7 +374,21 @@ app.get('/:path?/:any?/:thing?', function (req, res) {
           }, {
             "label": "开始时间",
             "name": "eleaveStart",
-            "type": "datetime-local"
+            "type": "date",
+            isLine: false
+          }, {
+            "label": "时段",
+            "name": "ampm",
+            "required": true,
+            "options": [{
+              "text": "上午",
+              "value": "am"
+            }, {
+              "text": "下午",
+              "value": "pm"
+            }],
+            "type": "select",
+            isLine: false
           }, {
             "label": "结束时间",
             "name": "eleaveEnd",

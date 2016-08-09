@@ -21,10 +21,10 @@
 .form-control {
   border-bottom: @control-border solid @color-border;
   color: @color-bg;
+  clear: both;
   margin-bottom: @gap / 2;
   padding-top: @font-xs * @line-height;
   position: relative;
-
 
   [type=file] {
     padding-top: 1rem;
@@ -37,8 +37,8 @@
   }
 
   &.form-control-half {
-    display: inline-block;
-    vertical-align: top;
+    clear: none;
+    float: left;
     width: 50%;
   }
 }

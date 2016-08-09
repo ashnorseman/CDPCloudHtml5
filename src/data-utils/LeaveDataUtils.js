@@ -54,7 +54,7 @@ export default {
       .catch(() => {
         dispatch({
           type: 'get-quota-members-fail'
-        })
+        });
       });
   },
 
