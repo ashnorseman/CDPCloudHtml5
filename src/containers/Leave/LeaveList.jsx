@@ -67,11 +67,15 @@ export default class LeaveList extends Component {
 
     const formData = new FormData(React.findDOMNode(form));
 
-    formData.append('submit', false);
+    this._submit = false;
+
+    formData.append('submit', this._submit);
 
     if (this._editId) {
       formData.append('id', this._editId);
     }
+
+    formData.append('verify', this._noVerify !== true);
 
     LeaveDataUtils.submitForm();
 
@@ -93,11 +97,15 @@ export default class LeaveList extends Component {
 
     const formData = new FormData(React.findDOMNode(this.refs.applyForm));
 
-    formData.append('submit', true);
+    this._submit = true;
+
+    formData.append('submit', this._submit);
 
     if (this._editId) {
       formData.append('id', this._editId);
     }
+
+    formData.append('verify', this._noVerify !== true);
 
     LeaveDataUtils.submitForm();
 
@@ -119,14 +127,39 @@ export default class LeaveList extends Component {
    * @param res
    */
   applyResponse(res) {
-    // const inputs = React.findDOMNode(this.refs.applyForm).querySelectorAll('input, select, textarea');
-
-    // for (let i = 0; i < inputs.length; i += 1) {
-    //   inputs[i].value = '';
-    // }
 
     if (res && !res.res && res.error) {
       alert(res.error);
+    } else if (res && !res.res && res.confirm) {
+
+      if (confirm(res.confirm)) {
+        this._noVerify = true;
+
+        const formData = new FormData(React.findDOMNode(this.refs.applyForm));
+
+        formData.append('submit', this._submit);
+
+        if (this._editId) {
+          formData.append('id', this._editId);
+        }
+
+        formData.append('verify', this._noVerify !== true);
+
+        LeaveDataUtils.submitForm();
+
+        ajax.post(this.url, formData)
+          .then((res) => {
+            this.applyResponse(res);
+            this.getEmpLeaveRecords({
+              state: 'approving'
+            });
+          })
+          .catch(() => {
+            LeaveDataUtils.submitFormFail();
+          });
+
+        return;
+      }
     }
 
     this._editId = null;
