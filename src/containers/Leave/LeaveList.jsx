@@ -127,10 +127,12 @@ export default class LeaveList extends Component {
    * @param res
    */
   applyResponse(res) {
+    console.log(res);
 
-    if (res && !res.res && res.error) {
+    if (res && res.error) {
       alert(res.error);
-    } else if (res && !res.res && res.confirm) {
+      LeaveDataUtils.submitFormFail();
+    } else if (res && res.confirm) {
 
       if (confirm(res.confirm)) {
         this._noVerify = true;
@@ -159,6 +161,8 @@ export default class LeaveList extends Component {
           });
 
         return;
+      } else {
+        LeaveDataUtils.submitFormFail();
       }
     }
 
