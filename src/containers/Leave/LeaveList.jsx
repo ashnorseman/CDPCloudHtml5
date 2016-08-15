@@ -81,6 +81,7 @@ export default class LeaveList extends Component {
 
     ajax.post(this.url, formData)
       .then((res) => {
+        LeaveDataUtils.submitFormFail();
         this.applyResponse(res);
         this.getEmpLeaveRecords({
           state: 'edit'
@@ -111,6 +112,7 @@ export default class LeaveList extends Component {
 
     ajax.post(this.url, formData)
       .then((res) => {
+        LeaveDataUtils.submitFormFail();
         this.applyResponse(res);
         this.getEmpLeaveRecords({
           state: 'approving'
@@ -127,7 +129,6 @@ export default class LeaveList extends Component {
    * @param res
    */
   applyResponse(res) {
-    console.log(res);
 
     if (res && res.error) {
       alert(res.error);
