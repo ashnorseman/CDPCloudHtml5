@@ -75,7 +75,7 @@ export default class LeaveList extends Component {
       formData.append('id', this._editId);
     }
 
-    formData.append('verify', this._noVerify !== true);
+    formData.append('verify', true);
 
     LeaveDataUtils.submitForm();
 
@@ -105,7 +105,7 @@ export default class LeaveList extends Component {
       formData.append('id', this._editId);
     }
 
-    formData.append('verify', this._noVerify !== true);
+    formData.append('verify', true);
 
     LeaveDataUtils.submitForm();
 
@@ -143,7 +143,7 @@ export default class LeaveList extends Component {
           formData.append('id', this._editId);
         }
 
-        formData.append('verify', this._noVerify !== true);
+        formData.append('verify', false);
 
         LeaveDataUtils.submitForm();
 

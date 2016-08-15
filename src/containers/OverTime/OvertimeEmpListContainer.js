@@ -119,6 +119,8 @@ class OvertimeEmpList extends Component {
 
 		formData.append('submit', submitValue);
 
+		formData.append('verify', false);
+
 		if (this._editId) {
 			formData.append('id', this._editId);
 		}
