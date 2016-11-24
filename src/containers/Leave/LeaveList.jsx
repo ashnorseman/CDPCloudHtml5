@@ -83,9 +83,6 @@ export default class LeaveList extends Component {
       .then((res) => {
         LeaveDataUtils.submitFormFail();
         this.applyResponse(res);
-        this.getEmpLeaveRecords({
-          state: 'edit'
-        });
       })
       .catch(() => {
         LeaveDataUtils.submitFormFail();
@@ -114,9 +111,6 @@ export default class LeaveList extends Component {
       .then((res) => {
         LeaveDataUtils.submitFormFail();
         this.applyResponse(res);
-        this.getEmpLeaveRecords({
-          state: 'approving'
-        });
       })
       .catch(() => {
         LeaveDataUtils.submitFormFail();
@@ -161,9 +155,13 @@ export default class LeaveList extends Component {
             LeaveDataUtils.submitFormFail();
           });
 
+        this.getEmpLeaveRecords({
+          state: 'edit'
+        });
+
         return;
       } else {
-        LeaveDataUtils.submitFormFail();
+        return;
       }
     }
 
@@ -171,6 +169,10 @@ export default class LeaveList extends Component {
 
     this.refs.apply.close();
     this.refs.pullLoader.continueLoading();
+
+    this.getEmpLeaveRecords({
+      state: 'edit'
+    });
   }
 
 

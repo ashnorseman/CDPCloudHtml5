@@ -1434,6 +1434,11 @@ app.post('/:path?/:id?', multer.single('attach'), function (req, res) {
         res: true,
         confirm: 'Confirm'
       });
+    case 'ess-edit-lv':
+      return res.json({
+        res: true,
+        confirm: 'Confirm'
+      });
     case 'lv-team-summary':
     case 'ot-team-summary':
       return res.json({
